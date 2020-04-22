@@ -586,3 +586,18 @@ org.eclipse.core.runtime.CoreException: Could not resolve artifact org.tuckey:ur
 2020-04-22 18:28:53,833 [Worker-5: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\hsm35\Desktop\goodsom\goodsom\src\main\resources
 2020-04-22 18:28:53,836 [Worker-5: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2020-04-22 18:28:53,836 [Worker-5: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\hsm35\Desktop\goodsom\goodsom\src\test\resources
+2020-04-22 18:53:38,897 [Worker-4: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2020-04-22 18:54:14,392 [Worker-4: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-04-22 18:54:14,392 [Worker-4: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\github\SSD_Project\goodsom\goodsom\src\main\resources
+2020-04-22 18:54:14,396 [Worker-4: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-04-22 18:54:14,397 [Worker-4: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\github\SSD_Project\goodsom\goodsom\src\test\resources
+2020-04-22 18:54:32,783 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-04-22 18:54:32,785 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\github\SSD_Project\goodsom\goodsom\src\main\resources
+2020-04-22 18:54:32,787 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-04-22 18:54:32,788 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\github\SSD_Project\goodsom\goodsom\src\test\resources
+2020-04-22 18:54:45,880 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-04-22 18:54:45,881 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\github\SSD_Project\goodsom\goodsom\src\main\resources
+2020-04-22 18:54:45,887 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-04-22 18:54:45,887 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\github\SSD_Project\goodsom\goodsom\src\test\resources
+2020-04-22 18:58:35,314 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-04-22 18:58:35,314 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\github\SSD_Project\goodsom\goodsom\src\main\resources
