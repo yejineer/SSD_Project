@@ -601,3 +601,5 @@ org.eclipse.core.runtime.CoreException: Could not resolve artifact org.tuckey:ur
 2020-04-22 18:54:45,887 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\github\SSD_Project\goodsom\goodsom\src\test\resources
 2020-04-22 18:58:35,314 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2020-04-22 18:58:35,314 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\github\SSD_Project\goodsom\goodsom\src\main\resources
+2020-04-22 18:58:35,316 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-04-22 18:58:35,317 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\github\SSD_Project\goodsom\goodsom\src\test\resources
