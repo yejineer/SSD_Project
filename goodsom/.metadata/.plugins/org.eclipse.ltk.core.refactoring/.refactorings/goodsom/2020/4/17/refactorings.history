@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Rename package &apos;service&apos; to &apos;dongduk.cs.ssd.service&apos;&#x0D;&#x0A;- Original project: &apos;goodsom&apos;&#x0D;&#x0A;- Original element: &apos;goodsom/src/main/java/service&apos;&#x0D;&#x0A;- Renamed element: &apos;goodsom/src/main/java/dongduk.cs.ssd.service&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename package &apos;service&apos;" flags="589830" hierarchical="false" id="org.eclipse.jdt.ui.rename.package" input="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;service" name="dongduk.cs.ssd.service" qualified="false" references="true" stamp="1587549272289" textual="false" version="1.0"/>
-</session>
