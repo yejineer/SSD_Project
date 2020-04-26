@@ -15,9 +15,18 @@ public class Order {
 	String phone;
 	String refundBank;
 	String refundAccount;
+	int userId;
 	List<LineGroupBuy> lineGroupBuy = new ArrayList<LineGroupBuy>();
 	Bid bid = new Bid();
 	User user = new User();
+	
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
 	
 	public Bid getBid() {
 		return bid;
