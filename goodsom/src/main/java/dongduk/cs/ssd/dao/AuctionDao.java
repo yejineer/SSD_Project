@@ -7,7 +7,6 @@ import org.springframework.dao.DataAccessException;
 
 import dongduk.cs.ssd.domain.Auction;
 import dongduk.cs.ssd.domain.Bid;
-import dongduk.cs.ssd.domain.GroupBuy;
 
 public interface AuctionDao {
 	Auction getAuction(int auctionId) throws DataAccessException;
