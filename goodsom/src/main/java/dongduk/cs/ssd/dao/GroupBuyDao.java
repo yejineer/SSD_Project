@@ -10,7 +10,7 @@ public interface GroupBuyDao {
 	
 	GroupBuy getGroupBuy(int groupBuyId) throws DataAccessException;
 
-	List<GroupBuy> getGroupBuyList(int menuId) throws DataAccessException;
+	List<GroupBuy> getGroupBuyList() throws DataAccessException;
 	
 	List<GroupBuy> getGroupBuyListByKeyword(String keyword) throws DataAccessException;
 

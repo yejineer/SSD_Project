@@ -6,7 +6,7 @@ import org.springframework.dao.DataAccessException;
 
 public interface PostDao {
 	
-	List<Post> getPostList(int menuId) throws DataAccessException;
+	List<Post> getPostList() throws DataAccessException;
 	
 	Post getDetailPost(int postId) throws DataAccessException;
 	
