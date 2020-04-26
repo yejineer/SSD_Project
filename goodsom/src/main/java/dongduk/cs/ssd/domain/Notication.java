@@ -1,3 +1,5 @@
+package dongduk.cs.ssd.domain;
+
 import java.util.Date;
 
 public class Notication {
@@ -10,9 +12,7 @@ public class Notication {
 	Date notiDate;
 	
 	public Notication() {
-		
 	}
-	
 	
 	public int getNotiId() {
 		return notiId;
@@ -41,28 +41,33 @@ public class Notication {
 	public int getUserId() {
 		return userId;
 	}
+	
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
+	
 	public String getTitle() {
 		return title;
 	}
+	
 	public void setTitle(String title) {
 		this.title = title;
 	}
+	
 	public String getContent() {
 		return content;
 	}
+	
 	public void setContent(String content) {
 		this.content = content;
 	}
+	
 	public Date getNotiDate() {
 		return notiDate;
 	}
+	
 	public void setNotiDate(Date notiDate) {
 		this.notiDate = notiDate;
 	}
 	
-	
-		
 }

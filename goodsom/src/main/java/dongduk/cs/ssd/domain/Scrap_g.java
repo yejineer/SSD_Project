@@ -1,3 +1,4 @@
+package dongduk.cs.ssd.domain;
 
 public class Scrap_g {
 	int scrapId;
@@ -18,6 +19,7 @@ public class Scrap_g {
 	public int getScrapId() {
 		return scrapId;
 	}
+	
 	public void setScrapId(int scrapId) {
 		this.scrapId = scrapId;
 	}

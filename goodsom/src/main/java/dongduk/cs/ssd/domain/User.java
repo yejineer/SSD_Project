@@ -1,12 +1,11 @@
-import java.util.ArrayList;
-import java.util.List;
+package dongduk.cs.ssd.domain;
 
 public class User {
 	int userId;
 	String email;
 	String passwd;
 	String userName;
-	String nicName;
+	String nickName;
 	String address1;
 	String address2;
 	String address3;
@@ -14,10 +13,10 @@ public class User {
 	String refundBank;
 	String refundAccount;
 
-	
 	public User() {
 		
 	}
+	
 	public String getUserName() {
 		return userName;
 	}
@@ -29,9 +28,11 @@ public class User {
 	public String getPasswd() {
 		return passwd;
 	}
+	
 	public void setPasswd(String passwd) {
 		this.passwd = passwd;
 	}
+	
 	public int getUserId() {
 		return userId;
 	}
@@ -48,12 +49,12 @@ public class User {
 		this.email = email;
 	}
 
-	public String getNicName() {
-		return nicName;
+	public String getNickName() {
+		return nickName;
 	}
 
-	public void setNicName(String nicName) {
-		this.nicName = nicName;
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
 	}
 
 	public String getAddress1() {

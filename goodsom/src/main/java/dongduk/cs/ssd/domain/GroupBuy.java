@@ -1,3 +1,5 @@
+package dongduk.cs.ssd.domain;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -19,9 +21,6 @@ public class GroupBuy {
 	List<Question> questions = new ArrayList<Question>();
 	int catId;
 	int menuId;
-	
-	
-
 
 	public List<Question> getQuestions() {
 		return questions;
@@ -155,9 +154,7 @@ public class GroupBuy {
 		this.participants = participants;
 	}
 
-	public GroupBuy() {
-		
+	public GroupBuy() {		
 	}
 
-	
 }

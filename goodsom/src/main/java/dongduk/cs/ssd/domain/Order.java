@@ -1,3 +1,5 @@
+package dongduk.cs.ssd.domain;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,36 +19,29 @@ public class Order {
 	Bid bid = new Bid();
 	User user = new User();
 	
-	
 	public Bid getBid() {
 		return bid;
 	}
-
 
 	public void setBid(Bid bid) {
 		this.bid = bid;
 	}
 
-
 	public User getUser() {
 		return user;
 	}
-
 
 	public void setUser(User user) {
 		this.user = user;
 	}
 
 
-
 	public Order() {
 	}
-	
 	
 	public List<LineGroupBuy> getLineGroupBuy() {
 		return lineGroupBuy;
 	}
-
 
 	public void setLineGroupBuy(List<LineGroupBuy> lineGroupBuy) {
 		this.lineGroupBuy = lineGroupBuy;
@@ -139,7 +134,5 @@ public class Order {
 	public void setRefundAccount(String refundAccount) {
 		this.refundAccount = refundAccount;
 	}
-
-
 
 }

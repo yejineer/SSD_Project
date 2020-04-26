@@ -1,3 +1,4 @@
+package dongduk.cs.ssd.domain;
 
 public class Category {
 	int catId;
@@ -26,6 +27,7 @@ public class Category {
 	public String getCatName() {
 		return catName;
 	}
+	
 	public void setCatName(String catName) {
 		this.catName = catName;
 	}

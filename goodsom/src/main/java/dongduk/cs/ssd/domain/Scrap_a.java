@@ -1,3 +1,4 @@
+package dongduk.cs.ssd.domain;
 
 public class Scrap_a {
 	int scrapId;
