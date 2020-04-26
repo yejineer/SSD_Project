@@ -1,5 +1,5 @@
 package dongduk.cs.ssd.dao;
 
-public interface ScarpDao {
+public interface ScrapDao {
 
 }

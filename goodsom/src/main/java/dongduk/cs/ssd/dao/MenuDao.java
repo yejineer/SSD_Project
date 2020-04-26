@@ -9,5 +9,7 @@ import dongduk.cs.ssd.domain.Menu;
 public interface MenuDao {
 	List<Menu> getMenuList() throws DataAccessException;
 
+	List<Menu> getCategoryList() throws DataAccessException;
+
 	Menu getMenu(String menuId) throws DataAccessException;
 }
