@@ -1,0 +1,15 @@
+package dongduk.cs.ssd.dao;
+
+import dongduk.cs.ssd.domain.Comment_q;
+import org.springframework.dao.DataAccessException;
+
+public interface Comment_qDao {
+	
+	Comment_q getComment_q(int commentId) throws DataAccessException;
+	
+	Comment_q createComment_q(Comment_q comment) throws DataAccessException;
+	
+	void updateComment_q(Comment_q comment) throws DataAccessException;
+	
+	void deleteComment_q(int commentId) throws DataAccessException;
+}
