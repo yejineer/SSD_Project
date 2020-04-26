@@ -16,7 +16,16 @@ public class Auction {
 	int maxPrice;
 	int state;
 	int menuId;
+	int userId;
 	List<Bid> bid = new ArrayList<Bid>();
+	
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
 	
 	public List<Bid> getBid() {
 		return bid;

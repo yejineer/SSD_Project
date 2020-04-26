@@ -8,11 +8,16 @@ import dongduk.cs.ssd.domain.Notification;
 
 public interface NotificationDao {
 	
-	List<Notification> getNotiListByUserId(String userId) throws DataAccessException;
+	List<Notification> getNotiListByUserId(int userId) throws DataAccessException; //Do sql operations twice.
 	
-	void createNoti() throws DataAccessException;
+	Notification getNoti(int notiId) throws DataAccessException; // Two tables share one noti_sequence.
 	
-	void sendNoti() throws DataAccessException;
+	void createNoti_g(int groupBuyId) throws DataAccessException; // lineGroupBuys table
 	
+	void createNoti_a(int auctionId) throws DataAccessException; // successBidders table
+	
+	void deleteNoti_g(int notiId) throws DataAccessException;
+	
+	void deleteNoti_a(int notiId) throws DataAccessException;
 	
 }
