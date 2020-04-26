@@ -8,10 +8,10 @@ import dongduk.cs.ssd.domain.Order;
 
 public interface OrderDao {
 
-	  List<Order> getOrdersByUsername(String username) throws DataAccessException;
+	  List<Order> getOrderList(int userId) throws DataAccessException;
 
 	  Order getOrder(int orderId) throws DataAccessException;
 
-	  void insertOrder(Order order) throws DataAccessException;
+	  void createOrder(Order order) throws DataAccessException;
 
 }
