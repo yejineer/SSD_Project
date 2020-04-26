@@ -21,7 +21,16 @@ public class GroupBuy {
 	List<Question> questions = new ArrayList<Question>();
 	int catId;
 	int menuId;
+	int userId;
+	
+	public int getUserId() {
+		return userId;
+	}
 
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+	
 	public List<Question> getQuestions() {
 		return questions;
 	}
