@@ -2,7 +2,7 @@ package dongduk.cs.ssd.domain;
 
 import java.util.Date;
 
-public class Notication {
+public class Notification {
 	int notiId;
 	int userId;
 	int groupBuyId;
@@ -11,7 +11,7 @@ public class Notication {
 	String content;
 	Date notiDate;
 	
-	public Notication() {
+	public Notification() {
 	}
 	
 	public int getNotiId() {
