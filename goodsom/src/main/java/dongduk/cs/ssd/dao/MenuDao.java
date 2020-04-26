@@ -1,5 +1,13 @@
 package dongduk.cs.ssd.dao;
 
-public interface MenuDao {
+import java.util.List;
 
+import org.springframework.dao.DataAccessException;
+
+import dongduk.cs.ssd.domain.Menu;
+
+public interface MenuDao {
+	List<Menu> getMenuList() throws DataAccessException;
+
+	Menu getMenu(String menuId) throws DataAccessException;
 }
