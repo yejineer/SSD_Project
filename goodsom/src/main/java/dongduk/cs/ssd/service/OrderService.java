@@ -8,6 +8,11 @@ import org.springframework.stereotype.Service;
 import dongduk.cs.ssd.dao.OrderDao;
 import dongduk.cs.ssd.domain.Order;
 
+/**
+ * @author Seonmi Hwang
+ * @since 2020.05.01
+ */
+
 @Service
 public class OrderService {
 	

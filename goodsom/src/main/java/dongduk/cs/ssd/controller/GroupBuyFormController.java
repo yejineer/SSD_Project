@@ -27,13 +27,7 @@ public class GroupBuyFormController {
 	
 	private final String formViewName = "groupBuy/form";
 	private final String detailViewName = "groupBuy/detail";
-	
-	@RequestMapping("/groupBuy/detail.do")
-	public ModelAndView groupBuyDetail(HttpServletRequest request, 
-									@RequestParam("groupBuyId") int groupBuyId,
-									@ModelAttribute("sessionLineGroupBuy") GroupBuyForm groupBuyForm) {
-		return new ModelAndView();
-	}
+
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String form() {

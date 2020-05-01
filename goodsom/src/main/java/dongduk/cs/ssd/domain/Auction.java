@@ -17,7 +17,7 @@ public class Auction {
 	int state;
 	int menuId;
 	int userId;
-	List<Bid> bid = new ArrayList<Bid>();
+	List<Bid> bids = new ArrayList<Bid>();
 	
 	public int getUserId() {
 		return userId;
@@ -27,12 +27,12 @@ public class Auction {
 		this.userId = userId;
 	}
 	
-	public List<Bid> getBid() {
-		return bid;
+	public List<Bid> getBids() {
+		return bids;
 	}
 
-	public void setBid(List<Bid> bid) {
-		this.bid = bid;
+	public void setBids(List<Bid> bids) {
+		this.bids = bids;
 	}
 
 	public int getMenuId() {

@@ -1,6 +1,7 @@
 package dongduk.cs.ssd.domain;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Order {
@@ -15,10 +16,28 @@ public class Order {
 	String phone;
 	String refundBank;
 	String refundAccount;
+	Date orderDate;
 	int userId;
-	List<LineGroupBuy> lineGroupBuy = new ArrayList<LineGroupBuy>();
-	Bid bid = new Bid();
+	List<LineGroupBuy> lineGroupBuys = new ArrayList<LineGroupBuy>();
+	Bid successBidder = new Bid();
 	User user = new User();
+	int totalPrice;
+	
+	public int getTotalPrice() {
+		return totalPrice;
+	}
+
+	public void setTotalPrice(int totalPrice) {
+		this.totalPrice = totalPrice;
+	}
+
+	public Date getOrderDate() {
+		return orderDate;
+	}
+
+	public void setOrderDate(Date orderDate) {
+		this.orderDate = orderDate;
+	}
 	
 	public int getUserId() {
 		return userId;
@@ -28,12 +47,12 @@ public class Order {
 		this.userId = userId;
 	}
 	
-	public Bid getBid() {
-		return bid;
+	public Bid getSuccessBidder() {
+		return successBidder;
 	}
 
-	public void setBid(Bid bid) {
-		this.bid = bid;
+	public void setSuccessBidder(Bid successBidder) {
+		this.successBidder = successBidder;
 	}
 
 	public User getUser() {
@@ -48,12 +67,12 @@ public class Order {
 	public Order() {
 	}
 	
-	public List<LineGroupBuy> getLineGroupBuy() {
-		return lineGroupBuy;
+	public List<LineGroupBuy> getLineGroupBuys() {
+		return lineGroupBuys;
 	}
 
-	public void setLineGroupBuy(List<LineGroupBuy> lineGroupBuy) {
-		this.lineGroupBuy = lineGroupBuy;
+	public void setLineGroupBuys(List<LineGroupBuy> lineGroupBuys) {
+		this.lineGroupBuys = lineGroupBuys;
 	}
 
 	public int getOrderId() {
@@ -142,6 +161,44 @@ public class Order {
 
 	public void setRefundAccount(String refundAccount) {
 		this.refundAccount = refundAccount;
+	}
+
+	
+	public void initOrder(User user, GroupBuy groupBuy, Auction auction) {
+		// 주소 불러오기
+		address1 = user.getAddress1();
+		address2 = user.getAddress2();
+		address3 = user.getAddress3();
+		
+		// 전화번호 불러오기
+		phone = user.getPhone();
+		
+		// 환불계좌 정보 불러오기
+		refundBank = user.getRefundBank();
+		refundAccount = user.getRefundAccount();
+		
+		// order한 날짜
+		orderDate = new Date();
+		
+		// GroupBuy를 결제하는 경우
+		if (groupBuy != null) {
+			lineGroupBuys = groupBuy.getLineGroupBuys();
+			totalPrice = groupBuy.getTotalPrice();
+		}
+
+		// Auction을 결제하는 경우
+		if (auction != null) {
+			List<Bid> bids = auction.getBids();
+			totalPrice = auction.getMaxPrice();
+			
+			for (Bid bid : bids) {
+				if (bid.getBidPrice() == totalPrice) {
+					successBidder = bid;
+					break;
+				}
+			}
+		}
+
 	}
 
 }
