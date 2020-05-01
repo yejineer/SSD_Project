@@ -8,7 +8,7 @@ public interface PostDao {
 	
 	List<Post> getPostList() throws DataAccessException;
 	
-	Post getDetailPost(int postId) throws DataAccessException;
+	Post getPost(int postId) throws DataAccessException;
 	
 	Post createPost(Post post) throws DataAccessException;
 	
