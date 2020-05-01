@@ -10,5 +10,5 @@ public interface MenuDao {
 	
 	List<Menu> getMenuList() throws DataAccessException;
 
-	Menu getMenu(String menuId) throws DataAccessException;
+	Menu getMenu(int menuId) throws DataAccessException;
 }
