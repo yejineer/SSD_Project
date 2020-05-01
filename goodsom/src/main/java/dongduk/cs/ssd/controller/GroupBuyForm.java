@@ -4,6 +4,11 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * @author Seonmi Hwang
+ * @since 2020.05.01
+ */
+
 public class GroupBuyForm implements Serializable {
 	String title;
 	String img;

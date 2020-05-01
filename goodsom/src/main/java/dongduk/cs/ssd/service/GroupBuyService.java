@@ -7,6 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import dongduk.cs.ssd.dao.GroupBuyDao;
 import dongduk.cs.ssd.domain.GroupBuy;
 
+/**
+ * @author Seonmi Hwang
+ * @since 2020.05.01
+ */
+
 public class GroupBuyService {
 	
 	@Autowired
