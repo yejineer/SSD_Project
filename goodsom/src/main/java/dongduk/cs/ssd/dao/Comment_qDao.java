@@ -5,7 +5,7 @@ import org.springframework.dao.DataAccessException;
 
 public interface Comment_qDao {
 	
-	Comment_q getComment_q(int commentId) throws DataAccessException;
+	Comment_q getComment_q(int questionId) throws DataAccessException;
 	
 	Comment_q createComment_q(Comment_q comment) throws DataAccessException;
 	
