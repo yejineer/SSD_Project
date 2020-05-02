@@ -9,7 +9,7 @@ public interface UserDao {
 	User getUserByEmail(String email) throws DataAccessException;
 	// User getUser(String email, String password) throws DataAccessException;
 	
-	User getUserByEmail(int userId) throws DataAccessException;
+	User getUserById(int userId) throws DataAccessException;
 	
 	void createUser(User user) throws DataAccessException;
 

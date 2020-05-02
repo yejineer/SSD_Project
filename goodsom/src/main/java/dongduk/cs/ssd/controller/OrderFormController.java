@@ -5,25 +5,38 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.ModelAndView;
+
+/**
+ * @author Seonmi Hwang
+ * @since 2020.05.01
+ */
 
 @Controller
-public class OrderController {
-//
-//	@ModelAttribute("orderForm")
-//	public OrderForm createOrderForm() {
-//		return new OrderForm();
-//	}
+@SessionAttributes({"userSession", "sessionLineGroupBuy", })
+public class OrderFormController {
+
+	@ModelAttribute("orderForm")
+	public OrderForm createOrderForm() {
+		return new OrderForm();
+	}
+	
+	
+	@ModelAttribute("cardBanks")
+	public List<String> referenceData() {
+		ArrayList<String> cardBanks = new ArrayList<String>();
+		cardBanks.add("신한");
+		cardBanks.add("하나");
+		cardBanks.add("우리");
+		cardBanks.add("농협");
+		cardBanks.add("국민");
+		return cardBanks;			
+	}
 //	
-//	@ModelAttribute("creditCardTypes")
-//	public List<String> referenceData() {
-//		ArrayList<String> creditCardTypes = new ArrayList<String>();
-//		creditCardTypes.add("Visa");
-//		creditCardTypes.add("MasterCard");
-//		creditCardTypes.add("American Express");
-//		return creditCardTypes;			
-//	}
-//	
-//	@RequestMapping("/shop/newOrder.do")
+//	@RequestMapping("/order/create.do")
 //	public String initNewOrder(HttpServletRequest request,
 //			@ModelAttribute("sessionCart") Cart cart,
 //			@ModelAttribute("orderForm") OrderForm orderForm
