@@ -1,4 +1,4 @@
-package dongduk.cs.ssd.controller;
+package dongduk.cs.ssd.controller.order;
 
 import java.util.ArrayList;
 import java.util.List;

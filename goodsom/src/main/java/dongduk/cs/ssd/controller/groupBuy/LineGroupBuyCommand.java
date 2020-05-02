@@ -1,4 +1,4 @@
-package dongduk.cs.ssd.controller;
+package dongduk.cs.ssd.controller.groupBuy;
 
 import dongduk.cs.ssd.domain.GroupBuy;
 
