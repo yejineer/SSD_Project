@@ -1,5 +1,5 @@
 package dongduk.cs.ssd.service;
 
-public interface GroupBuyService {
+public class QuestionServiceImpl {
 
 }
