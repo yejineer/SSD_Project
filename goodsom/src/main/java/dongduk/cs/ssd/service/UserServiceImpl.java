@@ -1,4 +1,4 @@
-package dongduk.cs.ssd.service.user;
+package dongduk.cs.ssd.service;
 
 /**
  * @author Yejin Lee

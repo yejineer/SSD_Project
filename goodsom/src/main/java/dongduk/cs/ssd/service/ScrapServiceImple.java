@@ -1,4 +1,4 @@
-package dongduk.cs.ssd.service.scrap;
+package dongduk.cs.ssd.service;
 
 public class ScrapServiceImple implements ScrapService {
 
