@@ -7,7 +7,7 @@ import dongduk.cs.ssd.domain.GroupBuy;
 
 /**
  * @author Hyekyung Kim
- * @since 2020.05.04
+ * @since 2020.05.05
  */
 
 public interface SearchService {

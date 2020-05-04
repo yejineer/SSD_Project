@@ -11,7 +11,7 @@ import dongduk.cs.ssd.dao.AuctionDao;
 
 /**
  * @author Hyekyung Kim
- * @since 2020.05.04
+ * @since 2020.05.05
  */
 
 public class SearchServiceImpl implements SearchService{
