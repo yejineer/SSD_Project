@@ -13,11 +13,20 @@ import dongduk.cs.ssd.domain.GroupBuy;
  */
 
 public class GroupBuyServiceImpl implements GroupBuyService {
+	
 	@Autowired
 	private GroupBuyDao groupBuyDao;
 	
 	public GroupBuy getGroupBuy(int groupBuyId) {
 		return groupBuyDao.getGroupBuy(groupBuyId);
+	}
+	
+	public void createGroupBuy(GroupBuy groupBuy) {
+		groupBuyDao.createGroupBuy(groupBuy);
+	}
+	
+	public void updateGroupBuy(GroupBuy groupBuy) {
+		groupBuyDao.updateGroupBuy(groupBuy);
 	}
 	
 	public void deleteGroupBuy(int groupBuyId) {

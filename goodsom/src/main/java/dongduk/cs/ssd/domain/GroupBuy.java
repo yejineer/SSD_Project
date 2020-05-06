@@ -22,15 +22,6 @@ public class GroupBuy {
 	int catId;
 	int menuId;
 	int userId;
-	List<LineGroupBuy> lineGroupBuys = new ArrayList<LineGroupBuy>(); // ?
-
-	public List<LineGroupBuy> getLineGroupBuys() {
-		return lineGroupBuys;
-	}
-
-	public void setLineGroupBuys(List<LineGroupBuy> lineGroupBuys) {
-		this.lineGroupBuys = lineGroupBuys;
-	}
 
 	public int getUserId() {
 		return userId;
@@ -175,21 +166,5 @@ public class GroupBuy {
 	public GroupBuy() {
 	}
 
-	public void addLineGroupBuy(LineGroupBuy lineGroupBuy) {
-		lineGroupBuys.add(lineGroupBuy);
-	}
-
-	public void removeLineGroupBuyById(int lineId) {
-		lineGroupBuys.remove(lineId);
-	}
-
-	public int getTotalPrice() {
-		int totalPrice = 0;
-
-		for (LineGroupBuy lineGroupBuy : lineGroupBuys) {
-			totalPrice += lineGroupBuy.getUnitPrice();
-		}
-		return totalPrice;
-	}
 
 }
