@@ -9,15 +9,19 @@ import dongduk.cs.ssd.domain.GroupBuy;
 
 /**
  * @author Seonmi Hwang
- * @since 2020.05.01
+ * @since 2020.05.06
  */
 
-public class GroupBuyServiceImpl {
+public class GroupBuyServiceImpl implements GroupBuyService {
 	@Autowired
 	private GroupBuyDao groupBuyDao;
 	
 	public GroupBuy getGroupBuy(int groupBuyId) {
 		return groupBuyDao.getGroupBuy(groupBuyId);
+	}
+	
+	public void deleteGroupBuy(int groupBuyId) {
+		groupBuyDao.deleteGroupBuy(groupBuyId);
 	}
 	
 	public List<GroupBuy> getGroupBuyList() {
