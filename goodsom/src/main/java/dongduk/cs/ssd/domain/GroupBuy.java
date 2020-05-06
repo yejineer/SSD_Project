@@ -22,7 +22,7 @@ public class GroupBuy {
 	int catId;
 	int menuId;
 	int userId;
-	List<LineGroupBuy> lineGroupBuys = new ArrayList<LineGroupBuy>();
+	List<LineGroupBuy> lineGroupBuys = new ArrayList<LineGroupBuy>(); // ?
 
 	public List<LineGroupBuy> getLineGroupBuys() {
 		return lineGroupBuys;
