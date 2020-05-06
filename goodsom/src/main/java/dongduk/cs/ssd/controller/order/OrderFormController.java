@@ -76,6 +76,7 @@ public class OrderFormController {
 				User user = userSession.getUser();
 				GroupBuy groupBuy = orderService.getGroupBuy((int)request.getAttribute("groupBuyId")); // null일 경우?
 				Auction auction = orderService.getAuction((int)request.getAttribute("auctionId")); // null일 경우?
+				// lineGroupBuy 처리해줘야함!!!!!!!!!!!!!!
 				orderForm.getOrder().initOrder(user, groupBuy, auction);
 				return "order/order_create";	
 			} else { // 선택한 상품이 없을 경우
