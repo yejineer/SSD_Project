@@ -5,29 +5,41 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dongduk.cs.ssd.domain.Bid;
+import dongduk.cs.ssd.domain.GroupBuy;
 import dongduk.cs.ssd.domain.LineGroupBuy;
 import dongduk.cs.ssd.domain.Order;
 import dongduk.cs.ssd.domain.User;
 
 /**
  * @author Seonmi Hwang
- * @since 2020.05.01
+ * @since 2020.05.04
  */
 
 public class OrderForm implements Serializable {
-	String cardBank;
-	String cardNo;
-	String validDate;
-	String cvc;
-	String address1;
-	String address2;
-	String address3;
-	String phone;
-	String refundBank;
-	String refundAccount;
-	int userId;
-	List<LineGroupBuy> lineGroupBuy = new ArrayList<LineGroupBuy>();
-	Bid bid = new Bid();
-	User user = new User();
+	private Order order;
+	
+	private boolean newOrder;
+	
+	public OrderForm() {
+		this.order = new Order();
+		this.newOrder = true;
+	}
+	
+	public OrderForm(Order order) {
+		this.order = order;
+		this.newOrder = false;
+	}
+	
+	public Order getOrder() {
+		return order;
+	}
+
+	public boolean isNewOrder() {
+		return newOrder;
+	}
+	
+	public void setOrder(Order order) {
+		this.order = order;
+	}
 	
 }
