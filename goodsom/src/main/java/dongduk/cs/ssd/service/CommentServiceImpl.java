@@ -1,5 +1,65 @@
 package dongduk.cs.ssd.service;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import dongduk.cs.ssd.dao.Comment_pDao;
+import dongduk.cs.ssd.dao.Comment_qDao;
+import dongduk.cs.ssd.domain.Comment_p;
+import dongduk.cs.ssd.domain.Comment_q;
+
+/**
+ * @author kimdahyee
+ * @since 05.06.2020
+ */
+
 public class CommentServiceImpl implements CommentService {
+
+	@Autowired
+	private Comment_pDao comment_pDao;
+	
+	@Autowired
+	private Comment_qDao comment_qDao;
+	
+	@Override
+	public List<Comment_p> getComment_pList(int postId) {
+		return comment_pDao.getComment_pList(postId);
+	}
+
+	@Override
+	public Comment_q getComment_q(int questionId) {
+		return comment_qDao.getComment_q(questionId);
+	}
+
+	@Override
+	public Comment_p createCommnet_p(Comment_p comment) {
+		return comment_pDao.createCommnet_p(comment);
+	}
+
+	@Override
+	public Comment_q createComment_q(Comment_q comment) {
+		return comment_qDao.createComment_q(comment);
+	}
+
+	@Override
+	public void updateComment_p(Comment_p comment) {
+		comment_pDao.updateComment_p(comment);
+	}
+
+	@Override
+	public void updateComment_q(Comment_q comment) {
+		comment_qDao.updateComment_q(comment);		
+	}
+
+	@Override
+	public void deleteComment_p(int commentId) {
+		comment_pDao.deleteComment_p(commentId);
+	}
+
+	@Override
+	public void deleteComment_q(int commentId) {
+		comment_qDao.deleteComment_q(commentId);
+	}
 
 }
