@@ -1,5 +1,34 @@
 package dongduk.cs.ssd.controller.groupBuy;
 
-public class DetailQuestionController {
+import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.ModelAndView;
+
+import dongduk.cs.ssd.service.QuestionService;
+
+/**
+ * @author Seonmi Hwang
+ * @since 2020.05.07
+ */
+
+@Controller
+@SessionAttributes("groupBuySession")
+public class DetailQuestionController {
+	@Autowired
+	QuestionService questionService;
+	
+	@RequestMapping("/question/detail.do")
+	public ModelAndView questionDetail(HttpServletRequest request, 
+									@RequestParam("questionId") int questionId,
+									@ModelAttribute("groupBuySession") GroupBuySession groupBuySession) {
+		ModelAndView mav = new ModelAndView("question/question_detail");
+		mav.addObject("question", questionService.getQuestion(questionId));
+		return mav;
+	}
 }

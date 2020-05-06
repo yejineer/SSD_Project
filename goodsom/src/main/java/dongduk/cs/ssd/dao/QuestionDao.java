@@ -16,5 +16,5 @@ public interface QuestionDao {
 
 	void updateQuestion(Question question) throws DataAccessException;
 	
-	void deleteGroupBuy(int questionId) throws DataAccessException;
+	void deleteQuestion(int questionId) throws DataAccessException;
 }
