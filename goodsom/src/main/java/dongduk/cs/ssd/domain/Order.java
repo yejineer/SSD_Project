@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import dongduk.cs.ssd.controller.groupBuy.LineGroupBuyCommand;
+import dongduk.cs.ssd.controller.groupBuy.GroupBuySession;
 
 public class Order {
 	int orderId;
@@ -166,7 +166,7 @@ public class Order {
 	}
 
 	
-	public void initOrder(User user, GroupBuy groupBuy, Auction auction) { // , LineGroupBuyCommand lineGroupBuyCommand ?
+	public void initOrder(User user, GroupBuySession lineGroupBuyCommand, Auction auction) {
 		// 주소 불러오기
 		address1 = user.getAddress1();
 		address2 = user.getAddress2();
@@ -183,15 +183,9 @@ public class Order {
 		orderDate = new Date();
 		
 		// GroupBuy를 결제하는 경우
-		if (groupBuy != null) {
-			lineGroupBuys = groupBuy.getLineGroupBuys();
-
-//			for (LineGroupBuy lineGroupBuy : lineGroupBuys) {
-//				lineGroupBuy.setOption(lineGroupBuyCommand.getOption());
-//				lineGroupBuy.setQuantity(lineGroupBuyCommand.getQuantity());
-//				lineGroupBuy.setUnitPrice(lineGroupBuyCommand.getUnitPrice());
-//			}
-			totalPrice = groupBuy.getTotalPrice();
+		if (lineGroupBuyCommand != null) {
+			lineGroupBuys = lineGroupBuyCommand.getLineGroupBuyList();
+			totalPrice = lineGroupBuyCommand.getTotalPrice();
 		}
 
 		// Auction을 결제하는 경우

@@ -1,15 +1,7 @@
 package dongduk.cs.ssd.controller.order;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-
-import dongduk.cs.ssd.controller.groupBuy.LineGroupBuyCommand;
-import dongduk.cs.ssd.domain.Bid;
-import dongduk.cs.ssd.domain.GroupBuy;
-import dongduk.cs.ssd.domain.LineGroupBuy;
 import dongduk.cs.ssd.domain.Order;
-import dongduk.cs.ssd.domain.User;
 
 /**
  * @author Seonmi Hwang

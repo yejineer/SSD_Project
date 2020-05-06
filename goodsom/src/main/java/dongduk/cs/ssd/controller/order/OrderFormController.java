@@ -15,12 +15,9 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.ModelAndViewDefiningException;
 
-import dongduk.cs.ssd.controller.groupBuy.LineGroupBuyCommand;
+import dongduk.cs.ssd.controller.groupBuy.GroupBuySession;
 import dongduk.cs.ssd.controller.user.UserSession;
-import dongduk.cs.ssd.domain.Auction;
-import dongduk.cs.ssd.domain.GroupBuy;
 import dongduk.cs.ssd.domain.User;
-import dongduk.cs.ssd.service.GroupBuyService;
 import dongduk.cs.ssd.service.OrderService;
 
 /**
@@ -29,7 +26,7 @@ import dongduk.cs.ssd.service.OrderService;
  */
 
 @Controller
-@SessionAttributes({"userSession", "sessionLineGroupBuy"})
+@SessionAttributes({"userSession", "groupBuySession"})
 @RequestMapping("/order/create.do")
 public class OrderFormController {
 	@Autowired
@@ -57,37 +54,32 @@ public class OrderFormController {
 		return cardBanks;			
 	}
 	
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET) // form 출력
 	public String form(HttpServletRequest request,
-			@ModelAttribute("sessionLineGroupBuy") LineGroupBuyCommand lineGroupBuyCommand,
+			@ModelAttribute("groupBuySession") GroupBuySession groupBuySession,
 			@ModelAttribute("orderForm") OrderForm orderForm
 			) throws ModelAndViewDefiningException {
+		
 		UserSession userSession = (UserSession) request.getSession().getAttribute("userSession");
-	
-		if (request.getAttribute("orderId") != null) { // update
-			int orderId = (int) request.getAttribute("orderId");
-			
-			orderForm.setOrder(orderService.getOrder(orderId));
-			return "order/payment_detail";
-		} else { // create
-			if (lineGroupBuyCommand != null) {
-				// Re-read account from DB at team's request.
-	//			User user = orderService.getUser(userSession.getUser().getUserId());
-				User user = userSession.getUser();
-				GroupBuy groupBuy = orderService.getGroupBuy((int)request.getAttribute("groupBuyId")); // null일 경우?
-				Auction auction = orderService.getAuction((int)request.getAttribute("auctionId")); // null일 경우?
-				// lineGroupBuy 처리해줘야함!!!!!!!!!!!!!!
-				orderForm.getOrder().initOrder(user, groupBuy, auction);
-				return "order/order_create";	
-			} else { // 선택한 상품이 없을 경우
-				ModelAndView modelAndView = new ModelAndView("Error");
-				modelAndView.addObject("message", "An order could not be created because products could not be found.");
-				throw new ModelAndViewDefiningException(modelAndView);
-			}
+		User user = userSession.getUser();
+		Object auctionIdObj = request.getAttribute("auctionId");
+		
+		if (groupBuySession != null) { // groupBuy에서 결제하는 경우
+			// Re-read account from DB at team's request.
+			// User user = orderService.getUser(userSession.getUser().getUserId());
+			orderForm.getOrder().initOrder(user, groupBuySession, null);
+			return "order/order_create";
+		} else if (auctionIdObj != null) { 
+			orderForm.getOrder().initOrder(user, null, orderService.getAuction((int)auctionIdObj));
+			return "order/order_create";
+		} else { // 선택한 상품이 없을 경우
+			ModelAndView modelAndView = new ModelAndView("Error");
+			modelAndView.addObject("message", "An order could not be created because products could not be found.");
+			throw new ModelAndViewDefiningException(modelAndView);
 		}
 	}
 	
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(method = RequestMethod.POST) // 결과 출력
 	protected ModelAndView submit(
 			@ModelAttribute("orderForm") OrderForm orderForm, 
 			SessionStatus status) {

@@ -18,7 +18,8 @@ import dongduk.cs.ssd.domain.User;
  * @since 2020.05.06
  */
 
-public class OrderServiceImpl {
+public class OrderServiceImpl implements OrderService {
+	
 	@Autowired
 	private OrderDao orderDao;
 	@Autowired
