@@ -39,8 +39,8 @@ public class ScrapServiceImple implements ScrapService {
 	}
 	
 	@Override
-	public Scrap_g createScrap_g(int groupById) throws DataAccessException {
-		return scrap_gDao.createScrap_g(groupById);
+	public Scrap_g createScrap_g(int groupBuyId) throws DataAccessException {
+		return scrap_gDao.createScrap_g(groupBuyId);
 	}
 
 	@Override
@@ -49,8 +49,8 @@ public class ScrapServiceImple implements ScrapService {
 	}
 
 	@Override
-	public int deleteScrap_g(int groupById) throws DataAccessException {
-		return scrap_gDao.deleteScrap_g(groupById);
+	public int deleteScrap_g(int groupBuyId) throws DataAccessException {
+		return scrap_gDao.deleteScrap_g(groupBuyId);
 	}
 
 }

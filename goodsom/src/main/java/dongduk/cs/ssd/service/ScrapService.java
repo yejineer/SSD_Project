@@ -23,7 +23,7 @@ public interface ScrapService {
 	
 	List<Scrap_g> getScrap_gList();
 	
-	Scrap_g createScrap_g(int groupById);
+	Scrap_g createScrap_g(int groupBuyId);
 	
-	int deleteScrap_g(int groupById);
+	int deleteScrap_g(int groupBuyId);
 }

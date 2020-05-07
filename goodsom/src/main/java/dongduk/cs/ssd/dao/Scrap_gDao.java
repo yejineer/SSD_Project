@@ -8,7 +8,7 @@ public interface Scrap_gDao {
 	
 	List<Scrap_g> getScrap_gList() throws DataAccessException;
 	
-	Scrap_g createScrap_g(int groupById) throws DataAccessException;
+	Scrap_g createScrap_g(int groupBuyId) throws DataAccessException;
 	
-	int deleteScrap_g(int groupById) throws DataAccessException;
+	int deleteScrap_g(int groupBuyId) throws DataAccessException;
 }

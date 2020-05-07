@@ -9,9 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import dongduk.cs.ssd.controller.groupBuy.GroupBuyForm;
-import dongduk.cs.ssd.controller.groupBuy.GroupBuySession;
-import dongduk.cs.ssd.service.GroupBuyService;
 import dongduk.cs.ssd.service.PostService;
 
 /**
