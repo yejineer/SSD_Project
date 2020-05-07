@@ -22,13 +22,11 @@ public class SearchServiceImpl implements SearchService{
 	
 	@Override
 	public List<GroupBuy> groupBuyListByKeyword(String keyword) {
-		// TODO Auto-generated method stub
 		return groupBuy.getGroupBuyListByKeyword(keyword);
 	}
 
 	@Override
 	public List<Auction> auctionListByKeyword(String keyword) {
-		// TODO Auto-generated method stub
 		return auction.getAuctionListByKeyword(keyword);
 	}
 	

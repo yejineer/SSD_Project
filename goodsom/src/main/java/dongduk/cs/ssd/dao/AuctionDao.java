@@ -8,14 +8,19 @@ import org.springframework.dao.DataAccessException;
 import dongduk.cs.ssd.domain.Auction;
 import dongduk.cs.ssd.domain.Bid;
 
+/**
+ * @author Hyekyung Kim
+ * @since 2020.05.05
+ */
+
 public interface AuctionDao {
 	Auction getAuction(int auctionId) throws DataAccessException;
 	
 	void createAuction(Auction auction) throws DataAccessException;
 	
-	void updateAuciton(Auction auction) throws DataAccessException;
+	void updateAuction(Auction auction) throws DataAccessException;
 	
-	void deleteAuction(Auction auction) throws DataAccessException;
+	void deleteAuction(int auctionId) throws DataAccessException;
 	
 	
 	List<Auction> getAuctionList() throws DataAccessException;

@@ -21,7 +21,7 @@ import dongduk.cs.ssd.service.SearchService;
 
 @Controller
 public class SearchController {
-	final int GROUPBUY = 1;
+	final int GROUPBUY = 1; // 일단 임의로 정함
 	final int AUCTION = 2;
 	
 	private SearchService searchService;

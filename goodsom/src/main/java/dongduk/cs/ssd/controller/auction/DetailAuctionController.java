@@ -19,19 +19,17 @@ import dongduk.cs.ssd.service.AuctionService;
 
 @Controller
 @SessionAttributes("auction")
-public class DeleteAuctionController {
+public class DetailAuctionController {
 	
 	@Autowired
 	AuctionService auctionService;
 	
-	@RequestMapping("/auction/delete.do")
-	public ModelAndView auctionDelete(HttpServletRequest request,
-			@ModelAttribute("auction") Auction auction){
-		
-		ModelAndView mav = new ModelAndView("auction/auction_list");
-		auctionService.deleteAuction(auction.getAuctionId());
-		mav.addObject("auction", auctionService.getAuctionList());
-		
+	@RequestMapping("/auction/detail.do")
+	public ModelAndView auctionDetail(HttpServletRequest request,
+			@ModelAttribute("auction") Auction auction) {
+		ModelAndView mav = new ModelAndView("auction/auction_detail");
+		mav.addObject("auction", auctionService.getAuction(auction.getAuctionId()));
 		return mav;
 	}
+	
 }
