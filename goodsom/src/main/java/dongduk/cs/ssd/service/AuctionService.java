@@ -1,31 +1,32 @@
 package dongduk.cs.ssd.service;
 
+import java.util.Date;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-import dongduk.cs.ssd.dao.AuctionDao;
 import dongduk.cs.ssd.domain.Auction;
+import dongduk.cs.ssd.domain.Bid;
 
 
 /**
  * @author Hyekyung Kim
- * @since 2020.05.03
+ * @since 2020.05.05
  */
 
-public class AuctionService {
-	@Autowired
-	private AuctionDao auctionDao;
+public interface AuctionService {
+	Auction getAuction(int auctionId);
 	
-	public Auction getAuction(int auctionId) {
-		return auctionDao.getAuction(auctionId);
-	}
+	void createAuction(Auction auction);
 	
-	public List<Auction> getAuctionList() {
-		return auctionDao.getAuctionList();
-	}
+	void updateAuction(Auction auction);
 	
-	public List<Auction> getAuctionListByKeyword(String keyword) {
-		return auctionDao.getAuctionListByKeyword(keyword);
-	}
+	void deleteAuction(int auctionId);
+	
+	
+	List<Auction> getAuctionList();
+	
+	List<Auction> getAuctionListByKeyword(String keyword);
+	
+	List<Bid> getBidByAuctionId(int auctionId);
+	
+	boolean isAuctionClosed(int auctionId, Date endDate);
 }

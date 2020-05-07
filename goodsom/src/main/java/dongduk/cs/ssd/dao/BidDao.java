@@ -6,6 +6,11 @@ import dongduk.cs.ssd.domain.Bid;
 import dongduk.cs.ssd.domain.User;
 
 
+/**
+ * @author Hyekyung Kim
+ * @since 2020.05.08
+ */
+
 public interface BidDao {
 	Bid getBid(int bidId) throws DataAccessException;
 	
