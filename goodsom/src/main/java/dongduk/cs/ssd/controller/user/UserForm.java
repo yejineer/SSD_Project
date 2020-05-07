@@ -2,6 +2,10 @@ package dongduk.cs.ssd.controller.user;
 
 import dongduk.cs.ssd.domain.User;
 
+/**
+ * @author Yejin Lee
+ * @since 2020.05.07
+ */
 public class UserForm {
 	
 	private User user;

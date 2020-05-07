@@ -6,6 +6,10 @@ import org.springframework.validation.Validator;
 
 import dongduk.cs.ssd.domain.User;
 
+/**
+ * @author Yejin Lee
+ * @since 2020.05.07
+ */
 public class UserFormValidator implements Validator {
 
 	public boolean supports(Class<?> clazz) {
