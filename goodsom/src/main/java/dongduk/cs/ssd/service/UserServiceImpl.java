@@ -12,6 +12,11 @@ import dongduk.cs.ssd.domain.User;
 
 public class UserServiceImpl implements UserService {
 	
+	@Override
+	public User getUser(String email, String passwd) {
+		return userDao.getUser(email, passwd);
+	}
+
 	@Autowired
 	private UserDao userDao;
 
@@ -39,6 +44,5 @@ public class UserServiceImpl implements UserService {
 	public void deleteUser(int userId) {
 		userDao.deleteUser(userId);
 	}
-	
 
 }

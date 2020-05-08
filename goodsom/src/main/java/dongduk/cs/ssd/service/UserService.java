@@ -4,8 +4,9 @@ import dongduk.cs.ssd.domain.User;
 
 public interface UserService {
 
+	User getUser(String email, String passwd); // 로그인 시 사용
+	
 	User getUserByEmail(String email);
-	// User getUser(String email, String password) throws DataAccessException;
 	
 	User getUserById(int userId);
 	

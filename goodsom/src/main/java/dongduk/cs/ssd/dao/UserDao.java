@@ -6,8 +6,9 @@ import dongduk.cs.ssd.domain.User;
 
 public interface UserDao {
 
+	User getUser(String email, String passwd) throws DataAccessException;
+
 	User getUserByEmail(String email) throws DataAccessException;
-	// User getUser(String email, String password) throws DataAccessException;
 	
 	User getUserById(int userId) throws DataAccessException;
 	
