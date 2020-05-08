@@ -10,13 +10,16 @@ import dongduk.cs.ssd.domain.Bid;
 public class BidForm {
 
 	private Bid bid;
+	private boolean newBid;
 	
-	public BidForm() {
-		
+	public BidForm() { // create
+		this.bid = new Bid();
+		this.newBid = true;
 	}
 	
-	public BidForm(Bid bid) {
+	public BidForm(Bid bid) { //update
 		this.bid = bid;
+		this.newBid = false;
 	}
 	
 	public void setBid(Bid bid) {
@@ -25,5 +28,9 @@ public class BidForm {
 	
 	public Bid getBid() {
 		return bid;
+	}
+	
+	public boolean isNewBid() {
+		return newBid;
 	}
 }

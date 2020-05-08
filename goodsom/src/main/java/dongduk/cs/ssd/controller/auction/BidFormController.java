@@ -30,11 +30,13 @@ public class BidFormController {
 	
 	@ModelAttribute("bidForm")
 	public BidForm formBacking(HttpServletRequest request,
-			@RequestParam("auctionId") int auctionId,
 			@ModelAttribute("bid") Bid bid) throws Exception{
 		
-		//auctionId가 필요할까?
-		return new BidForm(bidService.getBid(bid.getBidId(), auctionId));
+		if(bid.getIsBidded()) { // update 
+			return new BidForm(bidService.getBid(bid.getBidId()));
+		} else { // create
+			return new BidForm();
+		}
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)
@@ -45,6 +47,13 @@ public class BidFormController {
 	@RequestMapping(method = RequestMethod.POST)
 	public String createOrUpdate(HttpServletRequest request,
 			BidForm bidForm) {
+		
+		if(bidForm.isNewBid()) { // create
+			bidService.createBid(bidForm.getBid());
+		} else { // update
+			bidService.updateBid(bidForm.getBid());
+		}
+	
 		return detailViewName;
 	}
 

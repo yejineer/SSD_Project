@@ -7,6 +7,7 @@ public class Bid {
 	int userId;
 	int auctionId;
 	int bidPrice;
+	boolean isBidded;
 	Date bidDate;
 	User user = new User();
 	
@@ -52,6 +53,14 @@ public class Bid {
 	
 	public void setBidPrice(int bidPrice) {
 		this.bidPrice = bidPrice;
+	}
+	
+	public boolean getIsBidded() {
+		return isBidded;
+	}
+	
+	public void setIsBidded(boolean isBidded) {
+		this.isBidded = isBidded;
 	}
 	
 	public Date getBidDate() {
