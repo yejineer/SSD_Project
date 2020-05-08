@@ -18,8 +18,6 @@ import dongduk.cs.ssd.service.CommentService;
  */
 
 @Controller
-@RequestMapping({"/comment_p/create.do", "/comment_p/update.do",
-	"/comment_q/create.do", "/comment_q/update.do"})
 public class CommentFormController {
 	
 	@Autowired
@@ -45,12 +43,12 @@ public class CommentFormController {
 		}
 	}
 	
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value = "/comment_p/create.do", method = RequestMethod.GET)
 	public String form() {
 		return formViewName_p;
 	}
 	
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(value = "/comment_p/update.do", method = RequestMethod.POST)
 	public String updateOrSubmit(HttpServletRequest request,
 						CommentForm commentForm) {
 		String reqPage = request.getServletPath();
@@ -82,12 +80,12 @@ public class CommentFormController {
 		}
 	}
 	
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value = "/comment_q/create.do", method = RequestMethod.GET)
 	public String form2() {
 		return formViewName_q;
 	}
 	
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(value = "/comment_q/update.do", method = RequestMethod.POST)
 	public String updateOrSubmit2(HttpServletRequest request,
 						CommentForm commentForm) {
 		String reqPage = request.getServletPath();
