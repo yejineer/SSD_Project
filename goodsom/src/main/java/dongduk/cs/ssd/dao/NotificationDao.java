@@ -16,8 +16,6 @@ public interface NotificationDao {
 	
 	void createNoti_a(int auctionId) throws DataAccessException; // successBidders table
 	
-	void deleteNoti_g(int notiId) throws DataAccessException;
-	
-	void deleteNoti_a(int notiId) throws DataAccessException;
-	
+	void deleteNoti(int notiId) throws DataAccessException;
+
 }

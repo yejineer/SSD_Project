@@ -14,7 +14,6 @@ public interface NotiService {
 	
 	void createNoti_a(int auctionId); // successBidders table
 	
-	void deleteNoti_g(int notiId);
-	
-	void deleteNoti_a(int notiId);
+	void deleteNoti(int notiId);
+
 }

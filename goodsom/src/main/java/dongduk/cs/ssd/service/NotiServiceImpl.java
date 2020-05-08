@@ -33,13 +33,9 @@ public class NotiServiceImpl implements NotiService {
 	}
 
 	@Override
-	public void deleteNoti_g(int notiId) {
-		notiDao.deleteNoti_g(notiId);
+	public void deleteNoti(int notiId) {
+		notiDao.deleteNoti(notiId);
 	}
 
-	@Override
-	public void deleteNoti_a(int notiId) {
-		notiDao.deleteNoti_a(notiId);
-	}
 
 }

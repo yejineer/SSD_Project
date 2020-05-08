@@ -35,7 +35,7 @@ public class LoginController {
 			Model model) throws Exception {
 		User user = userService.getUser(email, password); // 로그인 시도
 		if (user == null) { // 해당 email과 password를 갖는 사용자가 존재하지 않을 시
-			return new ModelAndView("Error", "message", "Invalid email or password. Login failed.");
+			return new ModelAndView("login", "message", "Invalid email or password. Login failed.");
 		} else { // 로그인 성공 시
 			UserSession userSession = new UserSession(user);
 			session.setAttribute("userSession", userSession);
