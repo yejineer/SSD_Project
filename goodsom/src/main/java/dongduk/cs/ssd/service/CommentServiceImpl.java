@@ -26,6 +26,11 @@ public class CommentServiceImpl implements CommentService {
 	public List<Comment_p> getComment_pList(int postId) {
 		return comment_pDao.getComment_pList(postId);
 	}
+	
+	@Override
+	public Comment_p getComment_p(int postId) {
+		return comment_pDao.getComment_p(postId);
+	}
 
 	@Override
 	public Comment_q getComment_q(int questionId) {

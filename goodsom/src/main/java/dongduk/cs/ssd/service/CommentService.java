@@ -17,6 +17,8 @@ public interface CommentService {
 	
 	List<Comment_p> getComment_pList(int postId);
 	
+	Comment_p getComment_p(int postId);
+	
 	Comment_q getComment_q(int questionId);
 	
 	Comment_p createCommnet_p(Comment_p comment);
