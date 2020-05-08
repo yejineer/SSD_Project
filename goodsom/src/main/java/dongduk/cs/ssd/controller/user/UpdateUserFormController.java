@@ -43,7 +43,7 @@ public class UpdateUserFormController {
 	@ModelAttribute("userForm")
 	public UserForm formBackingObject(HttpServletRequest request) throws Exception {
 		UserSession userSession = (UserSession) WebUtils.getSessionAttribute(request, "userSession");
-		return new UserForm(userService.getUserById(userSession.getUser().getUserId()));
+		return new UserForm(userService.getUserByEmailId(userSession.getUser().getEmailId()));
 		
 	}
 	
@@ -65,7 +65,7 @@ public class UpdateUserFormController {
 			return formViewName;
 		}
 		
-		UserSession userSession = new UserSession(userService.getUserByEmail(userForm.getUser().getEmail()));
+		UserSession userSession = new UserSession(userService.getUserByEmailId(userForm.getUser().getEmailId()));
 		session.setAttribute("userSession", userSession);
 		return successViewName;
 	}

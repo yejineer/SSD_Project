@@ -13,8 +13,8 @@ public class NotiServiceImpl implements NotiService {
 	private NotificationDao notiDao;
 	
 	@Override
-	public List<Notification> getNotiListByUserId(int userId) {
-		return notiDao.getNotiListByUserId(userId);
+	public List<Notification> getNotiListByEmailId(String emailId) {
+		return notiDao.getNotiListByEmailId(emailId);
 	}
 
 	@Override

@@ -1,11 +1,10 @@
 package dongduk.cs.ssd.domain;
 
 public class User {
-	int userId;
-	String email;
-	String passwd;
+	String emailId;
+	String password;
 	String userName;
-	String nickName;
+	String nickname;
 	String address1;
 	String address2;
 	String address3;
@@ -17,6 +16,22 @@ public class User {
 		
 	}
 	
+	public String getPassword() {
+		return password;
+	}
+	
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+	public String getEmailId() {
+		return emailId;
+	}
+	
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
+	}
+	
 	public String getUserName() {
 		return userName;
 	}
@@ -25,36 +40,14 @@ public class User {
 		this.userName = userName;
 	}
 	
-	public String getPasswd() {
-		return passwd;
-	}
-	
-	public void setPasswd(String passwd) {
-		this.passwd = passwd;
-	}
-	
-	public int getUserId() {
-		return userId;
+
+
+	public String getNickname() {
+		return nickname;
 	}
 
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getNickName() {
-		return nickName;
-	}
-
-	public void setNickName(String nickName) {
-		this.nickName = nickName;
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 
 	public String getAddress1() {

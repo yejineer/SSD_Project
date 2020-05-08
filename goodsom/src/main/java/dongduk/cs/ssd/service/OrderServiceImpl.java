@@ -30,8 +30,8 @@ public class OrderServiceImpl implements OrderService {
 	private UserDao userDao;
 	
 	
-	public User getUser(int userId) {
-		return userDao.getUserById(userId);
+	public User getUser(String emailId) {
+		return userDao.getUserByEmailId(emailId);
 	}
 	
 	public GroupBuy getGroupBuy(int groupBuyId) {
@@ -50,8 +50,8 @@ public class OrderServiceImpl implements OrderService {
 		orderDao.createOrder(order);
 	}
 	
-	public List<Order> getOrderList(int userId) {
-		return orderDao.getOrderList(userId);
+	public List<Order> getOrderList(String emailId) {
+		return orderDao.getOrderList(emailId);
 	}
 	
 }

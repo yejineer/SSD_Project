@@ -4,15 +4,14 @@ import dongduk.cs.ssd.domain.User;
 
 public interface UserService {
 
-	User getUser(String email, String passwd); // 로그인 시 사용
+	User getUser(String emailId, String passwd); // 로그인 시 사용
 	
-	User getUserByEmail(String email);
-	
-	User getUserById(int userId);
+	User getUserByEmailId(String emailId);
 	
 	void createUser(User user);
 
 	void updateUser(User user);
 
-	void deleteUser(int userId);
+	void deleteUser(String emailId);
+	
 }

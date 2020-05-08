@@ -28,7 +28,7 @@ public class DeleteUserController {
 	public String handleRequest(HttpSession session) throws Exception {
 		/* 로그인한 사용자의 userId를 세션에서 가져와 deleteUser(userId)해준다. */
 		User user = (User) session.getAttribute("userSession");
-		userService.deleteUser(user.getUserId());
+		userService.deleteUser(user.getEmailId());
 		session.removeAttribute("userSession");
 		session.invalidate();
 		return "login";

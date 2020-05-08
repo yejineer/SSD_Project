@@ -6,16 +6,14 @@ import dongduk.cs.ssd.domain.User;
 
 public interface UserDao {
 
-	User getUser(String email, String passwd) throws DataAccessException;
+	User getUser(String emailId, String password) throws DataAccessException; // login시 필요
 
-	User getUserByEmail(String email) throws DataAccessException;
-	
-	User getUserById(int userId) throws DataAccessException;
+	User getUserByEmailId(String emailId) throws DataAccessException; // email로 user객체 얻어와서
 	
 	void createUser(User user) throws DataAccessException;
 
 	void updateUser(User user) throws DataAccessException;
 
-	void deleteUser(int userId) throws DataAccessException;
+	void deleteUser(String emailId) throws DataAccessException;
 
 }

@@ -62,7 +62,7 @@ public class RegisterUserFormController {
 			return formViewName;
 		}
 		
-		UserSession userSession = new UserSession(userService.getUserByEmail(userForm.getUser().getEmail()));
+		UserSession userSession = new UserSession(userService.getUserByEmailId(userForm.getUser().getEmailId()));
 		session.setAttribute("userSession", userSession);
 		return successViewName;
 	}

@@ -6,7 +6,7 @@ import dongduk.cs.ssd.domain.Notification;
 
 public interface NotiService {
 
-	List<Notification> getNotiListByUserId(int userId); //Do sql operations twice.
+	List<Notification> getNotiListByEmailId(String emailId); //Do sql operations twice.
 	
 	Notification getNoti(int notiId); // Two tables share one noti_sequence.
 	

@@ -8,7 +8,7 @@ import dongduk.cs.ssd.domain.Notification;
 
 public interface NotificationDao {
 	
-	List<Notification> getNotiListByUserId(int userId) throws DataAccessException; //Do sql operations twice.
+	List<Notification> getNotiListByEmailId(String emailId) throws DataAccessException; //Do sql operations twice.
 	
 	Notification getNoti(int notiId) throws DataAccessException; // Two tables share one noti_sequence.
 	
