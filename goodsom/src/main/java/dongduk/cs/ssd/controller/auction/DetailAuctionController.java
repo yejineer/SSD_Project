@@ -28,6 +28,7 @@ public class DetailAuctionController {
 	public ModelAndView auctionDetail(HttpServletRequest request,
 			@ModelAttribute("auction") Auction auction) {
 		ModelAndView mav = new ModelAndView("auction/auction_detail");
+		// 이름이 헷갈리지 않을까요?
 		mav.addObject("auction", auctionService.getAuction(auction.getAuctionId()));
 		return mav;
 	}

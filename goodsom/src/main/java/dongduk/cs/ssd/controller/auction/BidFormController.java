@@ -20,7 +20,7 @@ import dongduk.cs.ssd.service.BidService;
 
 @Controller
 @SessionAttributes("bid")
-@RequestMapping({"/auction/bid/create.do", "/auction/bid/update.do"})
+@RequestMapping("/auction/detail.do")
 public class BidFormController {
 	@Autowired
 	BidService bidService;

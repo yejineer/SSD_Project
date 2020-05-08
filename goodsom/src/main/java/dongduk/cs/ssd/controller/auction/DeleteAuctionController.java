@@ -30,6 +30,7 @@ public class DeleteAuctionController {
 		
 		ModelAndView mav = new ModelAndView("auction/auction_list");
 		auctionService.deleteAuction(auction.getAuctionId());
+		// 이름을 auctionList로 바꿀까요?
 		mav.addObject("auction", auctionService.getAuctionList());
 		
 		return mav;
