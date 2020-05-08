@@ -59,9 +59,7 @@ public class UpdateUserFormController {
 		
 		if (result.hasErrors()) return formViewName;
 		try {
-			if (!userForm.isNewUser()) {
-				userService.updateUser(userForm.getUser());
-			}
+			userService.updateUser(userForm.getUser());
 		} catch (DataIntegrityViolationException ex) {
 			result.rejectValue("user.username", "USER_ID_ALREADY_EXISTS", "User ID already exists: choose a different ID.");
 			return formViewName;

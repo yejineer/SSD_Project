@@ -56,11 +56,9 @@ public class RegisterUserFormController {
 		
 		if (result.hasErrors()) return formViewName;
 		try {
-			if (userForm.isNewUser()) {
-				userService.createUser(userForm.getUser());
-			}
+			userService.createUser(userForm.getUser());
 		} catch (DataIntegrityViolationException ex) {
-			result.rejectValue("user.username", "USER_ID_ALREADY_EXISTS", "User ID already exists: choose a different ID.");
+			result.rejectValue("user.email", "EMAIL_ID_ALREADY_EXISTS", "Email ID already exists: choose a different Email.");
 			return formViewName;
 		}
 		

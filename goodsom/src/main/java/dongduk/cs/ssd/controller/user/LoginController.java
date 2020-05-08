@@ -1,6 +1,7 @@
 package dongduk.cs.ssd.controller.user;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,7 +19,6 @@ import dongduk.cs.ssd.service.UserService;
  * @since 2020.05.08
  */
 @Controller
-@SessionAttributes("userSession")
 public class LoginController {
 	
 	private UserService userService;
@@ -30,6 +30,7 @@ public class LoginController {
 	
 	@RequestMapping("/user/login.do")
 	public ModelAndView handleRequest(HttpServletRequest request,
+			HttpSession session,
 			@RequestParam("email") String email,
 			@RequestParam("password") String password,
 			Model model) throws Exception {
@@ -38,7 +39,7 @@ public class LoginController {
 			return new ModelAndView("Error", "message", "Invalid email or password. Login failed.");
 		} else { // 로그인 성공 시
 			UserSession userSession = new UserSession(user);
-			model.addAttribute("userSession", userSession);
+			session.setAttribute("userSession", userSession);
 			return new ModelAndView("home");
 		}
 	}

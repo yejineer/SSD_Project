@@ -20,9 +20,9 @@ public class UserFormValidator implements Validator {
 		UserForm userForm = (UserForm)obj; 
 		User user = userForm.getUser();
 
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "user.email", "EMAIL_REQUIRED", "Email address is required.");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "user.userName", "USER_NAME_REQUIRED", "Phone number is required.");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "user.nickName", "NICKNAME_REQUIRED", "Address (1) is required.");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "user.email", "EMAIL_REQUIRED", "Email is required.");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "user.userName", "USER_NAME_REQUIRED", "User name is required.");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "user.nickName", "NICKNAME_REQUIRED", "Nickname is required.");
 		
 		if (userForm.isNewUser()) {
 //			user.setStatus("OK");
