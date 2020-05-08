@@ -15,7 +15,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.ModelAndViewDefiningException;
 
-import dongduk.cs.ssd.controller.groupBuy.GroupBuySession;
+import dongduk.cs.ssd.controller.groupBuy.LineGroupBuyCommand;
 import dongduk.cs.ssd.controller.user.UserSession;
 import dongduk.cs.ssd.domain.User;
 import dongduk.cs.ssd.service.OrderService;
@@ -56,7 +56,7 @@ public class OrderFormController {
 	
 	@RequestMapping(method = RequestMethod.GET) // form 출력
 	public String form(HttpServletRequest request,
-			@ModelAttribute("groupBuySession") GroupBuySession groupBuySession,
+			@ModelAttribute("groupBuySession") LineGroupBuyCommand groupBuySession,
 			@ModelAttribute("orderForm") OrderForm orderForm
 			) throws ModelAndViewDefiningException {
 		

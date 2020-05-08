@@ -26,7 +26,7 @@ public class DeleteGroupBuyController {
 	
 	@RequestMapping("/groupBuy/delete.do")
 	public ModelAndView groupBuyDelete(HttpServletRequest request, 
-									@ModelAttribute("groupBuySession") GroupBuySession groupBuySession,
+									@ModelAttribute("groupBuySession") LineGroupBuyCommand groupBuySession,
 									SessionStatus status) {
 		ModelAndView mav = new ModelAndView("groupBuy/groupBuy_list");
 		groupBuyService.deleteGroupBuy(groupBuySession.getGroupBuyId());
