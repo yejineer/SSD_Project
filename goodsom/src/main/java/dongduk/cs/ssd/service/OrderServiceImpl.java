@@ -50,8 +50,8 @@ public class OrderServiceImpl implements OrderService {
 		orderDao.createOrder(order);
 	}
 	
-	public List<Order> getOrderList(String emailId) {
-		return orderDao.getOrderList(emailId);
+	public List<Order> getOrderList(int userId) {
+		return orderDao.getOrderList(userId);
 	}
 	
 }
