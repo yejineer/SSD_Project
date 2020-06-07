@@ -7,6 +7,8 @@ import dongduk.cs.ssd.domain.Post;
 /**
  * @author kimdahyee
  * @since 05.08.2020
+ * 
+ * git commit test code
  */
 
 @SuppressWarnings("serial")
