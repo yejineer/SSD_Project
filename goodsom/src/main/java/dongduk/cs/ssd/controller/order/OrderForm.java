@@ -8,6 +8,7 @@ import dongduk.cs.ssd.domain.Order;
  * @since 2020.05.04
  */
 
+@SuppressWarnings("serial")
 public class OrderForm implements Serializable {
 	private Order order;
 	
