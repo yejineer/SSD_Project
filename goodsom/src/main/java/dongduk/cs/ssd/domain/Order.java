@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import dongduk.cs.ssd.controller.groupBuy.GroupBuySession;
+import dongduk.cs.ssd.controller.groupBuy.LineGroupBuyCommand;
 
 public class Order {
 	int orderId;
@@ -164,9 +164,8 @@ public class Order {
 	public void setRefundAccount(String refundAccount) {
 		this.refundAccount = refundAccount;
 	}
-
 	
-	public void initOrder(User user, GroupBuySession lineGroupBuyCommand, Auction auction) {
+	public void initOrder(User user, LineGroupBuyCommand lineGroupBuyCommand, Auction auction) {
 		// 주소 불러오기
 		address1 = user.getAddress1();
 		address2 = user.getAddress2();

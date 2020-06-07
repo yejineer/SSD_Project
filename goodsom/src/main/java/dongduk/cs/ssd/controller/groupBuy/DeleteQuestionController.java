@@ -31,7 +31,7 @@ public class DeleteQuestionController {
 	@RequestMapping("/question/delete.do")
 	public ModelAndView groupBuyDelete(HttpServletRequest request, 
 									@RequestParam("questionId") int questionId,
-									@ModelAttribute("groupBuySession") GroupBuySession groupBuySession,
+									@ModelAttribute("groupBuySession") LineGroupBuyCommand groupBuySession,
 									SessionStatus status) {
 		ModelAndView mav = new ModelAndView("groupBuy/groupBuy_detail");
 		questionService.deleteQuestion(questionId);

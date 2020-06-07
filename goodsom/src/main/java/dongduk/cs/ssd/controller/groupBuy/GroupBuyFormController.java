@@ -29,7 +29,7 @@ public class GroupBuyFormController {
 
 	@ModelAttribute("groupBuyForm")
 	public GroupBuyForm formBacking(HttpServletRequest request,
-									@ModelAttribute("groupBuySession") GroupBuySession groupBuySession) // 없으면 null?
+									@ModelAttribute("groupBuySession") LineGroupBuyCommand groupBuySession) // 없으면 null?
 			throws Exception {
 		String reqPage = request.getServletPath();
 

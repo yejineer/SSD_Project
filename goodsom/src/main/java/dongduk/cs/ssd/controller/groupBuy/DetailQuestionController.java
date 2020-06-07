@@ -26,7 +26,7 @@ public class DetailQuestionController {
 	@RequestMapping("/question/detail.do")
 	public ModelAndView questionDetail(HttpServletRequest request, 
 									@RequestParam("questionId") int questionId,
-									@ModelAttribute("groupBuySession") GroupBuySession groupBuySession) {
+									@ModelAttribute("groupBuySession") LineGroupBuyCommand groupBuySession) {
 		ModelAndView mav = new ModelAndView("question/question_detail");
 		mav.addObject("question", questionService.getQuestion(questionId));
 		return mav;

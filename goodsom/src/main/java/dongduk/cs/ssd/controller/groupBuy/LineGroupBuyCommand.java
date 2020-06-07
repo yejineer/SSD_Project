@@ -8,7 +8,7 @@ import dongduk.cs.ssd.domain.LineGroupBuy;
  * @since 2020.05.06
  */
 
-public class GroupBuySession {
+public class LineGroupBuyCommand {
 	private List<LineGroupBuy> lineGroupBuyList;
 	private int groupBuyId;
 
