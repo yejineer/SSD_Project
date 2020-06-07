@@ -25,7 +25,7 @@ public class ListOrderController {
 	public ModelAndView handleRequest(
 			@ModelAttribute("userSession") UserSession userSession) {
 		ModelAndView mav = new ModelAndView("order/payment_list");
-		mav.addObject("orderList", orderService.getOrderList(userSession.getUser().getEmailId()));
+		mav.addObject("orderList", orderService.getOrderList(userSession.getUser().getUserId()));
 		return mav;
 	}
 }

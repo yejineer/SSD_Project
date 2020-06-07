@@ -9,7 +9,7 @@ import dongduk.cs.ssd.domain.User;
 
 public interface OrderDao {
 	
-	  List<Order> getOrderList(String emailId) throws DataAccessException;
+	  List<Order> getOrderList(int userId) throws DataAccessException;
 
 	  Order getOrder(int orderId) throws DataAccessException;
 
