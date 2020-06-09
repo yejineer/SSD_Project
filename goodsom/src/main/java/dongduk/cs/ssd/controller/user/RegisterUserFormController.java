@@ -18,6 +18,7 @@ import dongduk.cs.ssd.service.UserService;
  * @author Yejin Lee
  * @since 2020.05.07
  */
+
 @Controller
 @RequestMapping("/user/register.do")
 public class RegisterUserFormController {
