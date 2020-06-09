@@ -3,6 +3,7 @@ package dongduk.cs.ssd.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import dongduk.cs.ssd.dao.PostDao;
 import dongduk.cs.ssd.domain.Post;
@@ -12,6 +13,7 @@ import dongduk.cs.ssd.domain.Post;
  * @since 05.06.2020
  */
 
+@Service("postServiceImpl")
 public class PostServiceImpl implements PostService {
 
 	@Autowired
