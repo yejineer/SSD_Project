@@ -3,6 +3,7 @@ package dongduk.cs.ssd.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import dongduk.cs.ssd.dao.Comment_pDao;
 import dongduk.cs.ssd.dao.Comment_qDao;
@@ -15,6 +16,7 @@ import dongduk.cs.ssd.service.CommentService;
  * @since 05.06.2020
  */
 
+@Service
 public class CommentServiceImpl implements CommentService {
 
 	@Autowired

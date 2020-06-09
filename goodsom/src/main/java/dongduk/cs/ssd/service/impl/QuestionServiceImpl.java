@@ -1,6 +1,7 @@
 package dongduk.cs.ssd.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import dongduk.cs.ssd.dao.QuestionDao;
 import dongduk.cs.ssd.domain.Question;
@@ -11,6 +12,7 @@ import dongduk.cs.ssd.service.QuestionService;
  * @since 2020.05.07
  */
 
+@Service
 public class QuestionServiceImpl implements QuestionService {
 	
 	@Autowired

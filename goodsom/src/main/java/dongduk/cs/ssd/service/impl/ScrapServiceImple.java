@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.stereotype.Service;
 
 import dongduk.cs.ssd.dao.Scrap_aDao;
 import dongduk.cs.ssd.dao.Scrap_gDao;
@@ -16,6 +17,7 @@ import dongduk.cs.ssd.service.ScrapService;
  * @since 05.06.2020
  */
 
+@Service
 public class ScrapServiceImple implements ScrapService {
 
 	@Autowired

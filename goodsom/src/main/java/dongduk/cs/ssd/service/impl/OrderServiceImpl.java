@@ -3,6 +3,7 @@ package dongduk.cs.ssd.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import dongduk.cs.ssd.dao.AuctionDao;
 import dongduk.cs.ssd.dao.GroupBuyDao;
@@ -19,6 +20,7 @@ import dongduk.cs.ssd.service.OrderService;
  * @since 2020.05.06
  */
 
+@Service
 public class OrderServiceImpl implements OrderService {
 	
 	@Autowired
