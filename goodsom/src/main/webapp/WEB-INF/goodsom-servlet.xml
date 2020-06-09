@@ -18,7 +18,6 @@
 	<!-- 위 패키지 내 controller 객체들을 Bean으로 등록 -->
 
 	<mvc:annotation-driven/>		<!-- create RequestMappingHandlerMapping -->
-	<mvc:default-servlet-handler/>
 	
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
