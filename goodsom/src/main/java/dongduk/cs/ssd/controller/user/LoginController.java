@@ -4,11 +4,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import dongduk.cs.ssd.domain.User;
 import dongduk.cs.ssd.service.UserService;
@@ -18,8 +20,13 @@ import dongduk.cs.ssd.service.UserService;
  * @since 2020.05.08
  */
 @Controller
+@RequestMapping("/user/login.do")
 public class LoginController {
 	
+	@Value("login")
+	private String formViewName;
+	
+	@Autowired
 	private UserService userService;
 	
 	@Autowired
@@ -27,7 +34,12 @@ public class LoginController {
 		this.userService = userService;
 	}
 	
-	@RequestMapping("/user/login.do")
+	@RequestMapping(method=RequestMethod.GET)
+	public String form() {
+		return formViewName;
+	}
+	
+	@RequestMapping(method=RequestMethod.POST)
 	public ModelAndView handleRequest(HttpServletRequest request,
 			HttpSession session,
 			@RequestParam("email") String email,
