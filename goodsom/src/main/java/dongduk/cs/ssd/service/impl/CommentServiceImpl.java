@@ -1,4 +1,4 @@
-package dongduk.cs.ssd.service;
+package dongduk.cs.ssd.service.impl;
 
 import java.util.List;
 
@@ -8,6 +8,7 @@ import dongduk.cs.ssd.dao.Comment_pDao;
 import dongduk.cs.ssd.dao.Comment_qDao;
 import dongduk.cs.ssd.domain.Comment_p;
 import dongduk.cs.ssd.domain.Comment_q;
+import dongduk.cs.ssd.service.CommentService;
 
 /**
  * @author kimdahyee

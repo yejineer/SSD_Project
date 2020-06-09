@@ -1,4 +1,4 @@
-package dongduk.cs.ssd.service;
+package dongduk.cs.ssd.service.impl;
 
 import java.util.List;
 
@@ -12,6 +12,7 @@ import dongduk.cs.ssd.domain.Auction;
 import dongduk.cs.ssd.domain.GroupBuy;
 import dongduk.cs.ssd.domain.Order;
 import dongduk.cs.ssd.domain.User;
+import dongduk.cs.ssd.service.OrderService;
 
 /**
  * @author Seonmi Hwang

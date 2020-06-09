@@ -1,4 +1,4 @@
-package dongduk.cs.ssd.service;
+package dongduk.cs.ssd.service.impl;
 
 import java.util.List;
 
@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import dongduk.cs.ssd.dao.PostDao;
 import dongduk.cs.ssd.domain.Post;
+import dongduk.cs.ssd.service.PostService;
 
 /**
  * @author kimdahyee

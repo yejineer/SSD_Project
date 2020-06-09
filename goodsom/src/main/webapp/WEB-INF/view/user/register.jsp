@@ -16,9 +16,7 @@
 	<h1>회원 가입 화면</h1>
 	<div align="center">
 		<form action='<c:url value="/user/register.do"/>' method="POST">
-			<table>
-		     
-		    </table>
+			
 		</form>
 	</div>
 </body>

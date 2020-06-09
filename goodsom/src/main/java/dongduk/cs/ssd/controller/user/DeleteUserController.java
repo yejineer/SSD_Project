@@ -18,7 +18,7 @@ import dongduk.cs.ssd.service.UserService;
 @SessionAttributes("userSession")
 public class DeleteUserController {
 
-	@Autowired
+	//@Autowired
 	private UserService userService;
 	public void setUserService(UserService userService) {
 		this.userService = userService;

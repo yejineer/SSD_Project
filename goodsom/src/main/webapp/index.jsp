@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
+	
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+	
 
 <!doctype html>
 <html lang="en">
@@ -95,7 +101,7 @@
 						<p class="lead">Lorem ipsum dolor sit amet, consectetur
 							adipisicing elit maxime nemo placeat dolor est.</p>
 						<p>
-							<a href="https://vimeo.com/191947042" data-fancybox
+							<a href="<c:url value='/user/register.do' />" data-fancybox
 								class="btn-video_38929"><span class="icon-play"></span></a>
 						</p>
 					</div>

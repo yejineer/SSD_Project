@@ -26,10 +26,10 @@ public class LoginController {
 	@Value("login")
 	private String formViewName;
 	
-	@Autowired
+	//@Autowired
 	private UserService userService;
 	
-	@Autowired
+	//@Autowired
 	public void setUserService(UserService userService) {
 		this.userService = userService;
 	}

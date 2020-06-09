@@ -1,4 +1,4 @@
-package dongduk.cs.ssd.service;
+package dongduk.cs.ssd.service.impl;
 
 import java.util.List;
 
@@ -7,6 +7,7 @@ import org.springframework.dao.DataAccessException;
 
 import dongduk.cs.ssd.dao.MenuDao;
 import dongduk.cs.ssd.domain.Menu;
+import dongduk.cs.ssd.service.MenuService;
 
 /**
  * @author Hyekyung Kim

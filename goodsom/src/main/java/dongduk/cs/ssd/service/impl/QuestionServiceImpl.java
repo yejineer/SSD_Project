@@ -1,9 +1,10 @@
-package dongduk.cs.ssd.service;
+package dongduk.cs.ssd.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import dongduk.cs.ssd.dao.QuestionDao;
 import dongduk.cs.ssd.domain.Question;
+import dongduk.cs.ssd.service.QuestionService;
 
 /**
  * @author Seonmi Hwang

@@ -1,4 +1,4 @@
-package dongduk.cs.ssd.service;
+package dongduk.cs.ssd.service.impl;
 
 import java.util.List;
 
@@ -9,6 +9,7 @@ import dongduk.cs.ssd.dao.Scrap_aDao;
 import dongduk.cs.ssd.dao.Scrap_gDao;
 import dongduk.cs.ssd.domain.Scrap_a;
 import dongduk.cs.ssd.domain.Scrap_g;
+import dongduk.cs.ssd.service.ScrapService;
 
 /**
  * @author kimdahyee

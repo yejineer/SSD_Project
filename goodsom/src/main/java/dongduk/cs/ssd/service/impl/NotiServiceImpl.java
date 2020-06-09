@@ -1,4 +1,4 @@
-package dongduk.cs.ssd.service;
+package dongduk.cs.ssd.service.impl;
 
 import java.util.List;
 
@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import dongduk.cs.ssd.dao.NotificationDao;
 import dongduk.cs.ssd.domain.Notification;
+import dongduk.cs.ssd.service.NotiService;
 
 public class NotiServiceImpl implements NotiService {
 

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import dongduk.cs.ssd.domain.Auction;
 import dongduk.cs.ssd.service.AuctionService;
-import dongduk.cs.ssd.service.AuctionServiceImpl;
+import dongduk.cs.ssd.service.impl.AuctionServiceImpl;
 
 /**
  * @author Hyekyung Kim

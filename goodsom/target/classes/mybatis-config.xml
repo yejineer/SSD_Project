@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context" 
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" 	
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       	http://www.springframework.org/schema/beans/spring-beans.xsd
+       	http://www.springframework.org/schema/context
+       	http://www.springframework.org/schema/context/spring-context.xsd
+       	http://www.springframework.org/schema/mvc 				
+		http://www.springframework.org/schema/mvc/spring-mvc.xsd"
+	xmlns:mybatis="http://mybatis.org/schema/mybatis-spring"
+	xmlns:tx="http://www.springframework.org/schema/tx"> 
+
+	<context:component-scan base-package="dongduk.cs.ssd.dao" />
+	
+	<context:property-placeholder location="classpath:jdbc.oracle.properties" />	
+	
+	<!-- data source 설정 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/mybatis_example" />
+		<property name="username" value="mybatis" />
+		<property name="password" value="mybatis" />
+	</bean>
+	
+	<!-- MyBatis SqlSessionFactoryBean 생성 -->
+	<bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="typeAliasesPackage" value="dongduk.cs.ssd.domain" />
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:/mybatis-config.xml" />
+		<property name="mapperLocations">
+			<array><value>classpath:/ldg/mybatis/repository/mapper/**/*.xml</value></array>
+		</property>
+	</bean>
+	
+	<!-- MyBatis SqlSessionTemplate bean 생성 -->
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactoryBean" />
+	</bean>
+	
+	<!-- MyBatis MapperScannerConfigurer 설정:
+			Mapper interface scan 및 mapper 객체(bean) 자동 생성 -->
+			
+	<mybatis:scan base-package="dongduk.cs.ssd.dao" /> 
+	
+	<!-- 트랜잭션 관리자 설정 -->
+	<bean id="transactionManager" 
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<!-- Annotation 기반 트랜잭션 설정 활성화 -->
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	
+	<!-- DAO bean scan 또는 명시적 설정 -->
+	<context:component-scan base-package="dao.mybatis.mapper" />
+	
+</beans>

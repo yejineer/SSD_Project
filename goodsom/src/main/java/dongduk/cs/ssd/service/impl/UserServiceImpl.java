@@ -1,10 +1,11 @@
-package dongduk.cs.ssd.service;
+package dongduk.cs.ssd.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import dongduk.cs.ssd.dao.UserDao;
 import dongduk.cs.ssd.domain.User;
+import dongduk.cs.ssd.service.UserService;
 
 /**
  * @author Yejin Lee
