@@ -3,10 +3,12 @@ package dongduk.cs.ssd.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import dongduk.cs.ssd.dao.NotificationDao;
 import dongduk.cs.ssd.domain.Notification;
 
+@Service
 public class NotiServiceImpl implements NotiService {
 
 	@Autowired

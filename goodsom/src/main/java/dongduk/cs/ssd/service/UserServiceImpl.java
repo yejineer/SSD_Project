@@ -2,6 +2,7 @@ package dongduk.cs.ssd.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
 import dongduk.cs.ssd.dao.UserDao;
 import dongduk.cs.ssd.domain.User;
@@ -11,6 +12,7 @@ import dongduk.cs.ssd.domain.User;
  * @since 2020.05.02
  */
 
+@Repository
 @Service("userServiceImpl")
 public class UserServiceImpl implements UserService {
 	

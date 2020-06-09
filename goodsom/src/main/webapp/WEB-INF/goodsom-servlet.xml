@@ -14,7 +14,7 @@
        	http://www.springframework.org/schema/mvc 				
 		http://www.springframework.org/schema/mvc/spring-mvc.xsd"> 
 
-	<context:component-scan base-package="dongduk.cs.ssd.controller.user" /> 
+	<context:component-scan base-package="dongduk.cs.ssd.controller" /> 
 	<!-- 위 패키지 내 controller 객체들을 Bean으로 등록 -->
 
 	<mvc:annotation-driven/>		<!-- create RequestMappingHandlerMapping -->

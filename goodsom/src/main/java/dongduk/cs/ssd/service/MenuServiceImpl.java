@@ -3,7 +3,7 @@ package dongduk.cs.ssd.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
+import org.springframework.stereotype.Service;
 
 import dongduk.cs.ssd.dao.MenuDao;
 import dongduk.cs.ssd.domain.Menu;
@@ -13,6 +13,7 @@ import dongduk.cs.ssd.domain.Menu;
  * @since 2020.05.05
  */
 
+@Service
 public class MenuServiceImpl implements MenuService{
 
 	@Autowired

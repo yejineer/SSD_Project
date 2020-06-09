@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import dongduk.cs.ssd.dao.AuctionDao;
 import dongduk.cs.ssd.domain.Auction;
@@ -15,6 +16,7 @@ import dongduk.cs.ssd.domain.Bid;
  * @since 2020.05.05
  */
 
+@Service
 public class AuctionServiceImpl implements AuctionService{
 	@Autowired
 	private AuctionDao auctionDao;
