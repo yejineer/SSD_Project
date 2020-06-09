@@ -32,7 +32,7 @@
 		<property name="dataSource" ref="dataSource" />
 		<property name="configLocation" value="classpath:/mybatis-config.xml" />
 		<property name="mapperLocations">
-			<array><value>classpath:/ldg/mybatis/repository/mapper/**/*.xml</value></array>
+			<array><value>classpath*:/dongduk/cs/ssd/service/*.xml</value></array>
 		</property>
 	</bean>
 	

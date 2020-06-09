@@ -4,7 +4,11 @@
 <mapper namespace="dao.mybatis.mapper.Auction">
   <cache />
   
+  <select id="getAuction" resultType="Auction">
+    SELECT * FROM AUCTIONS
+    WHERE AUCTIONID = ${auctionId}
+  </select>
   
   
   
- </mapper>
+</mapper>
