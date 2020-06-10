@@ -15,8 +15,9 @@ import dongduk.cs.ssd.service.OrderService;
  * @since 2020.05.04
  */
 
-@Controller
+//@Controller
 public class DetailOrderController {
+	/*
 	@Autowired
 	OrderService orderService;
 	
@@ -30,4 +31,5 @@ public class DetailOrderController {
 			mav.addObject("order", orderService.getOrder(orderId));
 			return mav;
 	}
+	*/
 }

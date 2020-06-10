@@ -8,7 +8,7 @@ import dongduk.cs.ssd.domain.Bid;
  */
 
 public class BidForm {
-
+	/*
 	private Bid bid;
 	private boolean newBid;
 	
@@ -33,4 +33,5 @@ public class BidForm {
 	public boolean isNewBid() {
 		return newBid;
 	}
+	*/
 }

@@ -19,10 +19,13 @@ import dongduk.cs.ssd.service.UserService;
  * @author Yejin Lee
  * @since 2020.05.08
  */
+
+/*
 @Controller
 @RequestMapping("/user/login.do")
+*/
 public class LoginController {
-	
+	/*
 	@Value("login")
 	private String formViewName;
 	
@@ -54,4 +57,5 @@ public class LoginController {
 			return new ModelAndView("home");
 		}
 	}
+	*/
 }

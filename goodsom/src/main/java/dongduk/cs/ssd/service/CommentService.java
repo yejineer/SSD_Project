@@ -12,9 +12,10 @@ import dongduk.cs.ssd.domain.Comment_q;
  * @since 05.06.2020
  */
 
-@Service("commentServiceImpl")
+//@Service("commentServiceImpl")
 public interface CommentService {
 	
+	/*
 	List<Comment_p> getComment_pList(int postId);
 	
 	Comment_p getComment_p(int postId);
@@ -32,4 +33,5 @@ public interface CommentService {
 	void deleteComment_p(int commentId);
 	
 	void deleteComment_q(int commentId);
+	*/
 }

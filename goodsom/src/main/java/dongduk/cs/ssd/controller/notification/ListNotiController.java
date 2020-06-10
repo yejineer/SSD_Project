@@ -17,16 +17,19 @@ import dongduk.cs.ssd.service.NotiService;
  * @author Yejin Lee
  * @since 2020.05.07
  */
-@Controller
+//@Controller
 public class ListNotiController {
-	
+	/*
 	@Autowired
 	private NotiService notiService;
 	public void setNotiService(NotiService notiService) {
 		this.notiService = notiService;
 	}
+	*/
+	
 	
 	/* 세션에서 로그인한 사용자 정보를 받아와 해당 사용자의 notification list들을 보여주면 된다. */
+	/*
 	@RequestMapping("/noti/list.do")  // ex) /user/detail.do?userId=2
 	public ModelAndView handleRequest(HttpSession session) throws Exception {
 		User user = (User) session.getAttribute("userSession");
@@ -34,6 +37,6 @@ public class ListNotiController {
 		return new ModelAndView("noti_list", "notiList", notiList);
 	}
 	
-	
+	*/
 	
 }

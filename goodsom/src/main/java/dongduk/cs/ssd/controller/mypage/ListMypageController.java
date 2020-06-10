@@ -15,10 +15,12 @@ import dongduk.cs.ssd.service.ScrapService;
  * @since 05.08.2020
  */
 
+/*
 @Controller
 @SessionAttributes("userSession")
+*/
 public class ListMypageController {
-	
+	/*
 	@Autowired
 	ScrapService scrapService;
 	
@@ -31,4 +33,5 @@ public class ListMypageController {
 		mav.addObject("scrap_gList", scrapService.getScrap_gList());
 		return mav;
 	}
+	*/
 }

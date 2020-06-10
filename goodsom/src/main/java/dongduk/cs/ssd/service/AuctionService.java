@@ -13,6 +13,7 @@ import dongduk.cs.ssd.domain.Bid;
  */
 
 public interface AuctionService {
+	/*
 	Auction getAuction(int auctionId);
 	
 	void createAuction(Auction auction);
@@ -29,4 +30,5 @@ public interface AuctionService {
 	List<Bid> getBidByAuctionId(int auctionId);
 	
 	boolean isAuctionClosed(int auctionId, Date endDate);
+	*/
 }

@@ -9,6 +9,7 @@ import dongduk.cs.ssd.domain.Question;
 
 public interface QuestionService {
 	
+	/*
 	public void createQuestion(Question question);
 	
 	public void updateQuestion(Question question);
@@ -16,5 +17,6 @@ public interface QuestionService {
 	public void deleteQuestion(int questionId);
 	
 	public Question getQuestion(int questionId);
+	*/
 
 }

@@ -12,9 +12,9 @@ import dongduk.cs.ssd.service.QuestionService;
  * @since 2020.05.07
  */
 
-@Service
+//@Service
 public class QuestionServiceImpl implements QuestionService {
-	
+	/*
 	@Autowired
 	private QuestionDao questionDao;
 	
@@ -33,5 +33,5 @@ public class QuestionServiceImpl implements QuestionService {
 	public Question getQuestion(int questionId) {
 		return questionDao.getQuestion(questionId);
 	}
-
+	*/
 }

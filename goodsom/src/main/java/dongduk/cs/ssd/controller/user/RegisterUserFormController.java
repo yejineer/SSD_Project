@@ -19,10 +19,13 @@ import dongduk.cs.ssd.service.UserService;
  * @since 2020.05.07
  */
 
+/*
 @Controller
 @RequestMapping("/user/register.do")
+*/
 public class RegisterUserFormController {
 	
+	/*
 	@Value("register")
 	private String formViewName;
 	@Value("login")
@@ -67,4 +70,5 @@ public class RegisterUserFormController {
 		session.setAttribute("userSession", userSession);
 		return successViewName;
 	}
+	*/
 }

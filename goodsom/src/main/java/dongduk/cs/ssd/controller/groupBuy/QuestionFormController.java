@@ -17,10 +17,14 @@ import dongduk.cs.ssd.service.QuestionService;
  * @since 2020.05.07
  */
 
+/*
 @Controller
 @SessionAttributes("groupBuySession")
 @RequestMapping({"/question/create.do", "/question/update.do"})
+*/
 public class QuestionFormController {
+	
+	/*
 	@Autowired
 	private QuestionService questionService;
 	
@@ -62,4 +66,5 @@ public class QuestionFormController {
 	public void setQuestionService(QuestionService questionService) {
 		this.questionService = questionService;
 	}
+	*/
 }

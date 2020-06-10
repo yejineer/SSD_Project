@@ -17,10 +17,14 @@ import dongduk.cs.ssd.service.AuctionService;
  * @since 2020.05.08
  */
 
+/*
 @Controller
 @SessionAttributes("auction")
+*/
+
 public class DeleteAuctionController {
 	
+	/*
 	@Autowired
 	AuctionService auctionService;
 	
@@ -35,4 +39,5 @@ public class DeleteAuctionController {
 		
 		return mav;
 	}
+	*/
 }

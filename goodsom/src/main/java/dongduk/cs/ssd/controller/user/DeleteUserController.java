@@ -14,10 +14,13 @@ import dongduk.cs.ssd.service.UserService;
  * @author Yejin Lee
  * @since 2020.05.07
  */
+
+/*
 @Controller
 @SessionAttributes("userSession")
+*/
 public class DeleteUserController {
-
+	/*
 	@Autowired
 	private UserService userService;
 	public void setUserService(UserService userService) {
@@ -26,11 +29,12 @@ public class DeleteUserController {
 	
 	@RequestMapping("/user/delete.do")
 	public String handleRequest(HttpSession session) throws Exception {
-		/* 로그인한 사용자의 userId를 세션에서 가져와 deleteUser(userId)해준다. */
+		//로그인한 사용자의 userId를 세션에서 가져와 deleteUser(userId)해준다.
 		User user = (User) session.getAttribute("userSession");
 		userService.deleteUser(user.getEmailId());
 		session.removeAttribute("userSession");
 		session.invalidate();
 		return "login";
 	}
+	*/
 }

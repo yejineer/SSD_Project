@@ -16,9 +16,13 @@ import dongduk.cs.ssd.service.GroupBuyService;
  * @since 2020.05.04
  */
 
+/*
 @Controller
 @SessionAttributes("groupBuySession")
+*/
 public class DetailGroupBuyController {
+	
+	/*
 	@Autowired
 	GroupBuyService groupBuyService;
 	
@@ -29,4 +33,6 @@ public class DetailGroupBuyController {
 		mav.addObject("groupBuy", groupBuyService.getGroupBuy(groupBuySession.getGroupBuyId()));
 		return mav;
 	}
+	
+	*/
 }

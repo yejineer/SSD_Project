@@ -17,10 +17,13 @@ import dongduk.cs.ssd.service.AuctionService;
  * @since 2020.05.08
  */
 
+/*
 @Controller
 @SessionAttributes("auction")
+*/
 public class DetailAuctionController {
 	
+	/*
 	@Autowired
 	AuctionService auctionService;
 	
@@ -32,5 +35,5 @@ public class DetailAuctionController {
 		mav.addObject("auction", auctionService.getAuction(auction.getAuctionId()));
 		return mav;
 	}
-	
+	*/
 }

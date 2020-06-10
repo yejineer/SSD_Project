@@ -16,9 +16,10 @@ import dongduk.cs.ssd.service.CommentService;
  * @since 05.06.2020
  */
 
-@Service
+//@Service
 public class CommentServiceImpl implements CommentService {
 
+	/*
 	@Autowired
 	private Comment_pDao comment_pDao;
 	
@@ -69,5 +70,5 @@ public class CommentServiceImpl implements CommentService {
 	public void deleteComment_q(int commentId) {
 		comment_qDao.deleteComment_q(commentId);
 	}
-
+	*/
 }

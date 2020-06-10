@@ -15,10 +15,12 @@ import dongduk.cs.ssd.service.PostService;
  * @since 05.08.2020
  */
 
+/*
 @Controller
 @SessionAttributes("userSession")
+*/
 public class ListPostController {
-	
+	/*
 	@Autowired
 	PostService postService;
 	
@@ -30,4 +32,5 @@ public class ListPostController {
 		mav.addObject("postList", postService.getPostList());
 		return mav;
 	}
+	*/
 }

@@ -15,9 +15,9 @@ import dongduk.cs.ssd.service.PostService;
  * @since 05.08.2020
  */
 
-@Controller
+//@Controller
 public class DetailPostController {
-
+	/*
 	private PostService postService;
 	
 	@Autowired
@@ -32,4 +32,5 @@ public class DetailPostController {
 		mav.addObject("post", postService.getPost(postId));
 		return mav;
 	}
+	*/
 }

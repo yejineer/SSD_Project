@@ -11,6 +11,8 @@ import dongduk.cs.ssd.domain.GroupBuy;
  */
 
 public interface SearchService {
+	/*
 	List<GroupBuy> groupBuyListByKeyword(String keyword);
 	List<Auction> auctionListByKeyword(String keyword);
+	*/
 }

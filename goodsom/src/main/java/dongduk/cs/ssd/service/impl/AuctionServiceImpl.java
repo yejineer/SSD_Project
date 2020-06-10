@@ -17,8 +17,9 @@ import dongduk.cs.ssd.service.AuctionService;
  * @since 2020.05.05
  */
 
-@Service
+//@Service
 public class AuctionServiceImpl implements AuctionService{
+	/*
 	@Autowired
 	private AuctionDao auctionDao;
 	
@@ -53,4 +54,5 @@ public class AuctionServiceImpl implements AuctionService{
 	public boolean isAuctionClosed(int auctionId, Date endDate) {
 		return auctionDao.isAuctionClosed(auctionId, endDate);
 	}
+	*/
 }

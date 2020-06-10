@@ -16,11 +16,13 @@ import dongduk.cs.ssd.service.CommentService;
  * @since 05.08.2020
  */
 
+/*
 @Controller
 @SessionAttributes("userSession")
+*/
 public class ListCommentController {
 
-
+	/*
 	@Autowired
 	CommentService commentService;
 	
@@ -43,4 +45,5 @@ public class ListCommentController {
 		mav.addObject("comment_q", commentService.getComment_q(questionId));
 		return mav;
 	}
+	*/
 }

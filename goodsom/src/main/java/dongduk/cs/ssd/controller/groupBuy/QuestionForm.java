@@ -8,6 +8,8 @@ import dongduk.cs.ssd.domain.Question;
  */
 
 public class QuestionForm {
+	
+	/*
 	private Question question;
 	
 	private boolean newQuestion;
@@ -33,4 +35,6 @@ public class QuestionForm {
 	public void setQuestion(Question question) {
 		this.question = question;
 	}
+	
+	*/
 }

@@ -13,10 +13,12 @@ import dongduk.cs.ssd.service.UserService;
  * @since 2020.05.02
  */
 
+/*
 @Repository
 @Service("userServiceImpl")
+*/
 public class UserServiceImpl implements UserService {
-	
+	/*
 	@Autowired
 	private UserDao userDao;
 	
@@ -44,5 +46,5 @@ public class UserServiceImpl implements UserService {
 	public void deleteUser(String emailId) {
 		userDao.deleteUser(emailId);
 	}
-
+	*/
 }

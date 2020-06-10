@@ -16,10 +16,12 @@ import dongduk.cs.ssd.service.PostService;
  * @since 05.08.2020
  */
 
+/*
 @Controller
 @RequestMapping({"/post/create.do", "/post/update.do"})
+*/
 public class PostFormController {
-	
+	/*
 	@Autowired
 	private PostService postService;
 	
@@ -60,5 +62,5 @@ public class PostFormController {
 	public void setPostService(PostService postService) {
 		this.postService = postService;
 	}
-
+	*/
 }

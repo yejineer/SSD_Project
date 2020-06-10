@@ -15,9 +15,9 @@ import dongduk.cs.ssd.service.ScrapService;
  * @since 05.08.2020
  */
 
-@Controller
+//@Controller
 public class CreateScrapController {
-	
+	/*
 	@Autowired
 	private ScrapService scrapService;
 	
@@ -40,4 +40,5 @@ public class CreateScrapController {
 		mav.addObject("scrap_g", scrapService.createScrap_g(groupBuyId));
 		return mav;
 	}
+	*/
 }

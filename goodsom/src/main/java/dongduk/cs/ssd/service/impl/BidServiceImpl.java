@@ -13,8 +13,9 @@ import dongduk.cs.ssd.service.BidService;
  * @since 2020.05.08
  */
 
-@Service
+//@Service
 public class BidServiceImpl implements BidService{
+	/*
 	@Autowired
 	private BidDao bidDao;
 	
@@ -37,4 +38,5 @@ public class BidServiceImpl implements BidService{
 	public User getUserById(int userId) {
 		return bidDao.getUserById(userId);
 	}
+	*/
 }

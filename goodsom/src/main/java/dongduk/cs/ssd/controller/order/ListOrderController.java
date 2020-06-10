@@ -15,9 +15,12 @@ import dongduk.cs.ssd.service.OrderService;
  * @since 2020.05.04
  */
 
+/*
 @Controller
 @SessionAttributes("userSession")
+*/
 public class ListOrderController {
+	/*
 	@Autowired
 	OrderService orderService;
 	
@@ -28,4 +31,5 @@ public class ListOrderController {
 		mav.addObject("orderList", orderService.getOrderList(userSession.getUser().getUserId()));
 		return mav;
 	}
+	*/
 }

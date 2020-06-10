@@ -10,8 +10,9 @@ import dongduk.cs.ssd.domain.Menu;
  */
 
 public interface MenuService {
-	
+	/*
 	List<Menu> getMenuList();
 
 	Menu getMenu(int menuId);
+	*/
 }

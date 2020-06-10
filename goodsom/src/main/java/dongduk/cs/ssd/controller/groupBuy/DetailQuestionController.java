@@ -17,9 +17,13 @@ import dongduk.cs.ssd.service.QuestionService;
  * @since 2020.05.07
  */
 
+/*
 @Controller
 @SessionAttributes("groupBuySession")
+*/
 public class DetailQuestionController {
+	
+	/*
 	@Autowired
 	QuestionService questionService;
 	
@@ -31,4 +35,6 @@ public class DetailQuestionController {
 		mav.addObject("question", questionService.getQuestion(questionId));
 		return mav;
 	}
+	
+	*/
 }

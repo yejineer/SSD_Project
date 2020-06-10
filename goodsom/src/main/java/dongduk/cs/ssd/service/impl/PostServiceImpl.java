@@ -14,9 +14,10 @@ import dongduk.cs.ssd.service.PostService;
  * @since 05.06.2020
  */
 
-@Service("postServiceImpl")
+//@Service("postServiceImpl")
 public class PostServiceImpl implements PostService {
 
+	/*
 	@Autowired
 	private PostDao postDao;
 	
@@ -49,5 +50,5 @@ public class PostServiceImpl implements PostService {
 	public List<Post> getPostByKeyword(String keyword) {
 		return postDao.getPostByKeyword(keyword);
 	}
-
+	*/
 }

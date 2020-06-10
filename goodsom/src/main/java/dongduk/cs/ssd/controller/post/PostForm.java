@@ -11,9 +11,9 @@ import dongduk.cs.ssd.domain.Post;
  * git commit test code
  */
 
-@SuppressWarnings("serial")
+//@SuppressWarnings("serial")
 public class PostForm implements Serializable {
-	
+	/*
 	private Post post;
 	
 	private boolean newPost;
@@ -35,4 +35,5 @@ public class PostForm implements Serializable {
 	public boolean isNewPost() {
 		return newPost;
 	}
+	*/
 }

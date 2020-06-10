@@ -9,6 +9,7 @@ import dongduk.cs.ssd.domain.User;
  */
 
 public interface BidService {
+	/*
 	Bid getBid(int bidId);
 	
 	Bid getBid(int bidId, int auctionId);
@@ -18,5 +19,5 @@ public interface BidService {
 	void updateBid(Bid bid);
 	
 	User getUserById(int userId);
-
+	*/
 }

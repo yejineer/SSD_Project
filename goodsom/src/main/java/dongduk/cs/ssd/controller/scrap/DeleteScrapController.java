@@ -15,9 +15,9 @@ import dongduk.cs.ssd.service.ScrapService;
  * @since 05.08.2020
  */
 
-@Controller
+//@Controller
 public class DeleteScrapController {
-	
+	/*
 	@Autowired
 	private ScrapService scrapService;
 	
@@ -46,5 +46,5 @@ public class DeleteScrapController {
 		mav.addObject("groupBuy", groupBuyService.getGroupBuy(groupBuyId));
 		return mav;
 	}
-
+	*/
 }

@@ -17,9 +17,10 @@ import dongduk.cs.ssd.service.CommentService;
  * requestMapping이 제대로 이루어진건지 모르겠음
  */
 
-@Controller
+//@Controller
 public class CommentFormController {
 	
+	/*
 	@Autowired
 	private CommentService commentService;
 	
@@ -98,5 +99,5 @@ public class CommentFormController {
 			return detailViewName_q;
 		}
 	}
-	
+	*/
 }

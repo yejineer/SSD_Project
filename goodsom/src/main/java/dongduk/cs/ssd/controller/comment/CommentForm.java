@@ -10,9 +10,10 @@ import dongduk.cs.ssd.domain.Comment_q;
  * @since 05.08.2020
  */
 
-@SuppressWarnings("serial")
+//@SuppressWarnings("serial")
 public class CommentForm implements Serializable {
 
+	/*
 	private int num; //comment_p인지 comment_q인지 구별하기 위한
 	
 	private Comment_p comment_p;
@@ -56,4 +57,5 @@ public class CommentForm implements Serializable {
 	public boolean isNewComment_q() {
 		return newComment_q;
 	}
+	*/
 }

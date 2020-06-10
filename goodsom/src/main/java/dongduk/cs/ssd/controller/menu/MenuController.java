@@ -19,9 +19,12 @@ import dongduk.cs.ssd.service.MenuService;
  * @since 2020.05.05
  */
 
+/*
 @Controller
 @SessionAttributes({"menuId", "menuList"})
+*/
 public class MenuController {
+	/*
 	private MenuService menuService;
 	
 	@Autowired
@@ -67,5 +70,5 @@ public class MenuController {
 		
 		return "community_list";
 	}
-
+	*/
 }

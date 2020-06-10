@@ -10,6 +10,7 @@ import dongduk.cs.ssd.domain.Post;
 
 public interface PostService {
 
+	/*
 	List<Post> getPostList();
 	
 	Post getPost(int postId);
@@ -21,4 +22,5 @@ public interface PostService {
 	void deletePost(int postId);
 	
 	List<Post> getPostByKeyword(String keyword);
+	*/
 }

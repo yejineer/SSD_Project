@@ -12,8 +12,9 @@ import dongduk.cs.ssd.service.NotiService;
  * @author Yejin Lee
  * @since 2020.05.07
  */
-@Controller
+//@Controller
 public class DetailNotiController {
+	/*
 	@Autowired
 	NotiService notiService;
 	
@@ -23,4 +24,5 @@ public class DetailNotiController {
 			) throws Exception {
 			return new ModelAndView("noti_detail", "noti", notiService.getNoti(notiId));
 	}
+	*/
 }

@@ -17,10 +17,12 @@ import dongduk.cs.ssd.service.GroupBuyService;
  * @since 2020.05.06
  */
 
+/*
 @Controller
 @SessionAttributes("groupBuySession")
+*/
 public class DeleteGroupBuyController {
-
+	/*
 	@Autowired
 	GroupBuyService groupBuyService;
 	
@@ -34,5 +36,5 @@ public class DeleteGroupBuyController {
 		status.setComplete();
 		return mav;
 	}
-	
+	*/
 }

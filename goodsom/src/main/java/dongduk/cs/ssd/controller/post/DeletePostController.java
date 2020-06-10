@@ -13,9 +13,9 @@ import dongduk.cs.ssd.service.PostService;
  * @since 05.08.2020
  */
 
-@Controller
+//@Controller
 public class DeletePostController {
-
+	/*
 	@Autowired
 	private PostService postService;
 	
@@ -28,4 +28,5 @@ public class DeletePostController {
 		mav.addObject("postList", postService.getPostList());
 		return mav;
 	}
+	*/
 }

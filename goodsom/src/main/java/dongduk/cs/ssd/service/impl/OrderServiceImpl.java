@@ -20,9 +20,9 @@ import dongduk.cs.ssd.service.OrderService;
  * @since 2020.05.06
  */
 
-@Service
+//@Service
 public class OrderServiceImpl implements OrderService {
-	
+	/*
 	@Autowired
 	private OrderDao orderDao;
 	@Autowired
@@ -56,5 +56,5 @@ public class OrderServiceImpl implements OrderService {
 	public List<Order> getOrderList(int userId) {
 		return orderDao.getOrderList(userId);
 	}
-	
+	*/
 }

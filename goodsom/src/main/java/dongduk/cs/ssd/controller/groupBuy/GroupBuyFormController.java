@@ -16,11 +16,14 @@ import dongduk.cs.ssd.service.GroupBuyService;
  * @since 2020.05.06
  */
 
+/*
 @Controller
 @SessionAttributes("groupBuySession")
 @RequestMapping({"/groupBuy/create.do", "/groupBuy/update.do"})
+*/
 public class GroupBuyFormController {
 	
+	/*
 	@Autowired
 	private GroupBuyService groupBuyService;
 	
@@ -62,6 +65,6 @@ public class GroupBuyFormController {
 	public void setGroupBuyService(GroupBuyService groupBuyService) {
 		this.groupBuyService = groupBuyService;
 	}
-	
+	*/
 
 }

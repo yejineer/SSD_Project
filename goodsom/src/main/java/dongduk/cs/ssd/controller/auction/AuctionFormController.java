@@ -19,11 +19,14 @@ import dongduk.cs.ssd.service.impl.AuctionServiceImpl;
  * @since 2020.05.08
  */
 
+/*
 @Controller
 @SessionAttributes("auction")
 @RequestMapping({"/auction/create.do", "/auction/update.do"})
+ */
 public class AuctionFormController {
 	
+	/*
 	@Autowired
 	private AuctionService auctionService;
 	
@@ -67,6 +70,6 @@ public class AuctionFormController {
 		this.auctionService = auctionService;
 	}
 	
-	
+	*/
 	
 }

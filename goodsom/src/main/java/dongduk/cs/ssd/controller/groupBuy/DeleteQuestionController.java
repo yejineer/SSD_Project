@@ -19,10 +19,12 @@ import dongduk.cs.ssd.service.QuestionService;
  * @since 2020.05.07
  */
 
+/*
 @Controller
 @SessionAttributes("groupBuySession")
+*/
 public class DeleteQuestionController {
-	
+	/*
 	@Autowired
 	QuestionService questionService;
 	@Autowired
@@ -39,4 +41,5 @@ public class DeleteQuestionController {
 		status.setComplete(); // remove groupBuySession from session
 		return mav;
 	}
+	*/
 }

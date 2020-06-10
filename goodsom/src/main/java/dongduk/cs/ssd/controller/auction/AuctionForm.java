@@ -9,9 +9,9 @@ import dongduk.cs.ssd.domain.Auction;
  * @since 2020.05.08
  */
 
-@SuppressWarnings("serial")
+//@SuppressWarnings("serial")
 public class AuctionForm implements Serializable{
-	private Auction auction;
+	/*private Auction auction;
 	
 	private boolean newAuction;
 	
@@ -31,5 +31,5 @@ public class AuctionForm implements Serializable{
 	
 	public boolean isNewAuction() {
 		return newAuction;
-	}
+	}*/
 }

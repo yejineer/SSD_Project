@@ -9,9 +9,9 @@ import dongduk.cs.ssd.dao.NotificationDao;
 import dongduk.cs.ssd.domain.Notification;
 import dongduk.cs.ssd.service.NotiService;
 
-@Service
+//@Service
 public class NotiServiceImpl implements NotiService {
-
+	/*
 	@Autowired
 	private NotificationDao notiDao;
 	
@@ -39,6 +39,6 @@ public class NotiServiceImpl implements NotiService {
 	public void deleteNoti(int notiId) {
 		notiDao.deleteNoti(notiId);
 	}
-
+	*/
 
 }

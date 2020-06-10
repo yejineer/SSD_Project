@@ -14,9 +14,10 @@ import dongduk.cs.ssd.service.MenuService;
  * @since 2020.05.05
  */
 
-@Service
+//@Service
 public class MenuServiceImpl implements MenuService{
 
+	/*
 	@Autowired
 	private MenuDao menuDao;
 	
@@ -29,5 +30,5 @@ public class MenuServiceImpl implements MenuService{
 	public Menu getMenu(int menuId) {
 		return menuDao.getMenu(menuId);
 	}
-	
+	*/
 }

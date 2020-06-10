@@ -18,10 +18,13 @@ import dongduk.cs.ssd.service.BidService;
  * @since 2020.05.08
  */
 
+/*
 @Controller
 @SessionAttributes("bid")
 @RequestMapping("/auction/detail.do")
+*/
 public class BidFormController {
+	/*
 	@Autowired
 	BidService bidService;
 	
@@ -60,4 +63,5 @@ public class BidFormController {
 	public void setBidService(BidService bidService) {
 		this.bidService = bidService;
 	}
+	*/
 }

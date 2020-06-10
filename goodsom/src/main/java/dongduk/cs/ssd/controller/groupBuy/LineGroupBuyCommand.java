@@ -9,6 +9,8 @@ import dongduk.cs.ssd.domain.LineGroupBuy;
  */
 
 public class LineGroupBuyCommand {
+	
+	/*
 	private List<LineGroupBuy> lineGroupBuyList;
 	private int groupBuyId;
 
@@ -44,5 +46,5 @@ public class LineGroupBuyCommand {
 		}
 		return totalPrice;
 	}
-
+	*/
 }

@@ -18,8 +18,10 @@ import dongduk.cs.ssd.service.NotiService;
  * @author Yejin Lee
  * @since 2020.05.07
  */
-@Controller
+//@Controller
 public class DeleteNotiController {
+	
+	/*
 	@Autowired
 	NotiService notiService;
 	
@@ -32,4 +34,6 @@ public class DeleteNotiController {
 		List<Notification> notiList = notiService.getNotiListByEmailId(user.getEmailId());
 		return new ModelAndView("noti_list", "notiList", notiList);
 	}
+	
+	*/
 }

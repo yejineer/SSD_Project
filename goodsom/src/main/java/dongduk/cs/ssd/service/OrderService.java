@@ -14,6 +14,7 @@ import dongduk.cs.ssd.domain.User;
 
 public interface OrderService {
 	
+	/*
 	public User getUser(String emailId);
 	
 	public GroupBuy getGroupBuy(int groupBuyId);
@@ -25,5 +26,5 @@ public interface OrderService {
 	public void createOrder(Order order);
 	
 	public List<Order> getOrderList(int userId); // ListOrderController에서 사용
-	
+	*/
 }

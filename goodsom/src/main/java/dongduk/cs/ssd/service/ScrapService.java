@@ -12,9 +12,10 @@ import dongduk.cs.ssd.domain.Scrap_g;
  * @since 05.06.2020
  */
 
-@Service("scrapServiceImpl")
+//@Service("scrapServiceImpl")
 public interface ScrapService {
 	
+	/*
 	List<Scrap_a> getScrap_aList();
 	
 	Scrap_a createScrap_a(int auctionId);
@@ -26,4 +27,5 @@ public interface ScrapService {
 	Scrap_g createScrap_g(int groupBuyId);
 	
 	int deleteScrap_g(int groupBuyId);
+	*/
 }

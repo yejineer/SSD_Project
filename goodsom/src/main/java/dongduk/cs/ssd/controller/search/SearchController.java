@@ -19,8 +19,9 @@ import dongduk.cs.ssd.service.SearchService;
  * @since 2020.05.05
  */
 
-@Controller
+//@Controller
 public class SearchController {
+	/*
 	final int GROUPBUY = 1; // 일단 임의로 정함
 	final int AUCTION = 2;
 	
@@ -82,4 +83,5 @@ public class SearchController {
 			return mav;
 		}
 	}
+	*/
 }

@@ -13,9 +13,10 @@ import dongduk.cs.ssd.service.CommentService;
  * @since 05.08.2020
  */
 
-@Controller
+//@Controller
 public class DeleteCommentController {
-
+	
+	/*
 	@Autowired
 	private CommentService commentService;
 	
@@ -40,4 +41,5 @@ public class DeleteCommentController {
 		mav.addObject("comment_q", commentService.getComment_q(questionId));
 		return mav;
 	}
+	*/
 }

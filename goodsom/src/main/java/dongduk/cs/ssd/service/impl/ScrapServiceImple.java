@@ -17,9 +17,10 @@ import dongduk.cs.ssd.service.ScrapService;
  * @since 05.06.2020
  */
 
-@Service
+//@Service
 public class ScrapServiceImple implements ScrapService {
 
+	/*
 	@Autowired
 	private Scrap_aDao scrap_aDao;
 	
@@ -55,5 +56,5 @@ public class ScrapServiceImple implements ScrapService {
 	public int deleteScrap_g(int groupBuyId) throws DataAccessException {
 		return scrap_gDao.deleteScrap_g(groupBuyId);
 	}
-
+	*/
 }

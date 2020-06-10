@@ -8,9 +8,9 @@ import dongduk.cs.ssd.domain.User;
  * @author Yejin Lee
  * @since 2020.05.01
  */
-@SuppressWarnings("serial")
+//@SuppressWarnings("serial")
 public class UserSession implements Serializable {
-
+	/*
 	private User user;
 
 	public UserSession(User user) {
@@ -20,5 +20,5 @@ public class UserSession implements Serializable {
 	public User getUser() {
 		return user;
 	}
-
+	*/
 }

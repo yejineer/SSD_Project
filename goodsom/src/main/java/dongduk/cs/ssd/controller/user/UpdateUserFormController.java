@@ -19,10 +19,14 @@ import dongduk.cs.ssd.service.UserService;
  * @author Yejin Lee
  * @since 2020.05.07
  */
+
+/*
 @Controller
 @RequestMapping("/user/update.do")
+*/
 public class UpdateUserFormController {
 
+	/*
 	@Value("user_update")
 	private String formViewName;
 	@Value("user_detail")
@@ -69,5 +73,5 @@ public class UpdateUserFormController {
 		session.setAttribute("userSession", userSession);
 		return successViewName;
 	}
-	
+	*/
 }

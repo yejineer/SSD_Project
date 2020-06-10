@@ -9,9 +9,9 @@ import dongduk.cs.ssd.domain.GroupBuy;
  * @since 2020.05.06
  */
 
-@SuppressWarnings("serial")
+//@SuppressWarnings("serial")
 public class GroupBuyForm implements Serializable {
-	
+	/*
 	private GroupBuy groupBuy;
 	
 	private boolean newGroupBuy;
@@ -33,4 +33,5 @@ public class GroupBuyForm implements Serializable {
 	public boolean isNewGroupBuy() {
 		return newGroupBuy;
 	}
+	*/
 }

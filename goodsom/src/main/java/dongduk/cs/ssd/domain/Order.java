@@ -183,8 +183,8 @@ public class Order {
 		
 		// GroupBuy를 결제하는 경우
 		if (lineGroupBuyCommand != null) {
-			lineGroupBuys = lineGroupBuyCommand.getLineGroupBuyList();
-			totalPrice = lineGroupBuyCommand.getTotalPrice();
+			//lineGroupBuys = lineGroupBuyCommand.getLineGroupBuyList();
+			//totalPrice = lineGroupBuyCommand.getTotalPrice();
 		}
 
 		// Auction을 결제하는 경우
