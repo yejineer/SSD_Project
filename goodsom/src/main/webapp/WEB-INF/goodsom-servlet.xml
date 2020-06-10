@@ -18,6 +18,13 @@
 	<!-- 위 패키지 내 controller 객체들을 Bean으로 등록 -->
 
 	<mvc:annotation-driven/>		<!-- create RequestMappingHandlerMapping -->
+
+	<mvc:default-servlet-handler />
+		
+	<!--<mvc:view-controller path="/user/login.do" view-name="user/login" />	  -->
+	<mvc:view-controller path="/index.do" view-name="index"/>
+<!-- 	<mvc:view-controller path="/user/register.do" view-name="user/register"/>  -->
+	
 	
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -25,9 +32,7 @@
 		<property name="prefix" value="/WEB-INF/view/"/>
 		<property name="suffix" value=".jsp"/>
 	</bean>
-	
-	<mvc:view-controller path="/index.do" view-name="index"/>
- 	<mvc:view-controller path="/user/register.do" view-name="user/register"/> 
-	
+
+
 	
 </beans>
