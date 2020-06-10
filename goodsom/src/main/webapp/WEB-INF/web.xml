@@ -1,19 +1,42 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-	xmlns="http://xmlns.jcp.org/xml/ns/javaee" 
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
-						http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" 
+						http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
 	id="WebApp_ID" version="3.1">
-  <display-name>Archetype Created Web Application</display-name>
-  
-  <servlet>
-    <servlet-name>goodsom</servlet-name>
-    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-  </servlet>
-  
-  <servlet-mapping>
-    <servlet-name>goodsom</servlet-name>
-    <url-pattern>*.do</url-pattern>
-  </servlet-mapping>
+	<display-name>Goodsom</display-name>
+
+	<description>Spring Final Project Goodsom</description>
+	<context-param>
+		<param-name>webAppRootKey</param-name>
+		<param-value>goodsom.root</param-value>
+	</context-param>
+	<context-param>
+		<param-name>log4jConfigLocation</param-name>
+		<param-value>classpath:log4j.properties</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+       	classpath:applicationContext.xml
+      	classpath:dataAccessContext-mybatis.xml 
+	</param-value>
+	</context-param>
+
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<servlet>
+		<servlet-name>goodsom</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>goodsom</servlet-name>
+		<url-pattern>*.do</url-pattern>
+	</servlet-mapping>
+
 </web-app>
