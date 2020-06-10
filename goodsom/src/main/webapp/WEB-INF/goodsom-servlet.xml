@@ -28,6 +28,6 @@
 	
 	<mvc:view-controller path="/index.do" view-name="index"/>
  	<mvc:view-controller path="/user/register.do" view-name="user/register"/> 
-	
+	<mvc:view-controller path="/user/login.do" view-name="user/login"/> 
 	
 </beans>

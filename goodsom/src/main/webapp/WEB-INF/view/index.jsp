@@ -75,7 +75,10 @@
 							role="navigation">
 							<ul class="site-menu main-menu js-clone-nav ml-auto ">
 								<li><a href="<%=request.getContextPath()%>/index.do" class="nav-link">Home</a></li>
-								<li><a href="<%=request.getContextPath()%>/user/register.do" class="nav-link">Register</a></li>
+								<li><a href="#">A</a></li>
+								<li><a href="#">B</a></li>
+								<li><a href="#">C</a></li>
+								<li><a href="#">D</a></li>
 							</ul>
 						</nav>
 					</div>
