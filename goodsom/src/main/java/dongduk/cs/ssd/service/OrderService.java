@@ -11,7 +11,7 @@ import dongduk.cs.ssd.domain.User;
  * @author Seonmi Hwang
  * @since 2020.05.04
  */
-
+//@Service("orderServiceImpl")
 public interface OrderService {
 	
 	/*
