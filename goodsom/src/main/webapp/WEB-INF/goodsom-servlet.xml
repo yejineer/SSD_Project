@@ -21,9 +21,8 @@
 
 	<mvc:default-servlet-handler />
 		
-  	<mvc:view-controller path="/index.do" view-name="index"/>
+  	<mvc:view-controller path="/index/login.do" view-name="user/login"/>
 	<mvc:view-controller path="/user/register.do" view-name="user/register"/>
-	<mvc:view-controller path="/user/login.do" view-name="user/login"/> 
 
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
