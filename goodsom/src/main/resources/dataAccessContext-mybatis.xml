@@ -18,6 +18,7 @@
 		http://www.springframework.org/schema/tx
 		http://www.springframework.org/schema/tx/spring-tx-3.1.xsd"> 
 
+	<!-- DAO bean scan 또는 명시적 설정 (package 맞는지 확인) -->
 	<context:component-scan base-package="dongduk.cs.ssd.dao" />
 	
 	<context:property-placeholder location="classpath:jdbc.oracle.properties" />	
@@ -57,8 +58,5 @@
 	
 	<!-- Annotation 기반 트랜잭션 설정 활성화 -->
 	<tx:annotation-driven transaction-manager="transactionManager" />
-	
-	<!-- DAO bean scan 또는 명시적 설정 (package 맞는지 확인) -->
-	<context:component-scan base-package="dongduk.cs.ssd.dao.mybatis" />
-	
+
 </beans>

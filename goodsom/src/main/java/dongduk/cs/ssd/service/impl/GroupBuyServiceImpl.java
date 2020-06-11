@@ -14,7 +14,7 @@ import dongduk.cs.ssd.service.GroupBuyService;
  * @since 2020.05.06
  */
 
-//@Service
+@Service
 public class GroupBuyServiceImpl implements GroupBuyService {
 	/*
 	@Autowired

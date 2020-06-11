@@ -3,5 +3,36 @@
 
 <mapper namespace="dongduk.cs.ssd.dao.mybatis.mapper.OrderMapper">
   <cache />
+  <sql id="BaseColumns">
+  	orderId,
+  	cardBank, cardNo, validDate, cvc,
+  	address1, address2, address3,
+  	phone,
+  	refundBank, refundAccount,
+  	totalPrice,
+  	orderDate,
+  	userId
+  </sql>
   
+  <select id="getOrderList" parameterType="int"
+  		resultType="java.util.List">
+  	SELECT <include refid="BaseColumns" /> 
+  	FROM orders
+  	WHERE userId = #{userId}
+  </select>
+  
+  <select id="getOrder" parameterType="int"
+  		resultType="dongduk.cs.ssd.domain.Order">
+  	SELECT <include refid="BaseColumns" /> 
+  	FROM orders
+  	WHERE orderId = #{orderId}
+  </select>
+  
+  <insert id="createOrder" parameterType="dongduk.cs.ssd.domain.Order">
+  	INSERT INTO orders (<include refid="BaseColumns" />)
+  	VALUES (#{orderId}, #{cardBank}, #{cardNo}, #{validDate}, #{cvc},
+  		#{address1}, #{address2}, #{address3}, #{phone},
+  		#{refundBank}, #{refundAccount}, #{totalPrice}, 
+  		#{orderDate}, #{userId})
+  </insert>
  </mapper>

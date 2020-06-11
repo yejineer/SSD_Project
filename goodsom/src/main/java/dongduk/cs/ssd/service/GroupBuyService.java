@@ -9,7 +9,6 @@ import dongduk.cs.ssd.domain.GroupBuy;
  */
 
 public interface GroupBuyService {
-	
 	/*
 	public GroupBuy getGroupBuy(int groupBuyId);
 	

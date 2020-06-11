@@ -25,11 +25,10 @@ import dongduk.cs.ssd.service.OrderService;
  * @since 2020.05.04
  */
 
-/*
+
 @Controller
 @SessionAttributes({"userSession", "groupBuySession"})
 @RequestMapping("/order/create.do")
-*/
 public class OrderFormController {
 	/*
 	@Autowired

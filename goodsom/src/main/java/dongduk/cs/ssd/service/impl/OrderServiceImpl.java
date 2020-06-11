@@ -20,41 +20,42 @@ import dongduk.cs.ssd.service.OrderService;
  * @since 2020.05.06
  */
 
-//@Service
-public class OrderServiceImpl implements OrderService {
-	/*
+@Service
+public class OrderServiceImpl { // implements OrderService {
+
+	
 	@Autowired
 	private OrderDao orderDao;
-	@Autowired
-	private GroupBuyDao groupBuyDao;
-	@Autowired
-	private AuctionDao auctionDao;
-	@Autowired
-	private UserDao userDao;
+//	@Autowired
+//	private GroupBuyDao groupBuyDao;
+//	@Autowired
+//	private AuctionDao auctionDao;
+//	@Autowired
+//	private UserDao userDao;
+//	
+//	
+//	public User getUser(String emailId) {
+//		return userDao.getUserByEmailId(emailId);
+//	}
+//	
+//	public GroupBuy getGroupBuy(int groupBuyId) {
+//		return groupBuyDao.getGroupBuy(groupBuyId);
+//	}
+//	
+//	public Auction getAuction(int auctionId) {
+//		return auctionDao.getAuction(auctionId);
+//	}
+//	
+//	public Order getOrder(int orderId) {
+//		return orderDao.getOrder(orderId);
+//	}
+//	
+//	public void createOrder(Order order) {
+//		orderDao.createOrder(order);
+//	}
+//	
+//	public List<Order> getOrderList(int userId) {
+//		return orderDao.getOrderList(userId);
+//	}
 	
-	
-	public User getUser(String emailId) {
-		return userDao.getUserByEmailId(emailId);
-	}
-	
-	public GroupBuy getGroupBuy(int groupBuyId) {
-		return groupBuyDao.getGroupBuy(groupBuyId);
-	}
-	
-	public Auction getAuction(int auctionId) {
-		return auctionDao.getAuction(auctionId);
-	}
-	
-	public Order getOrder(int orderId) {
-		return orderDao.getOrder(orderId);
-	}
-	
-	public void createOrder(Order order) {
-		orderDao.createOrder(order);
-	}
-	
-	public List<Order> getOrderList(int userId) {
-		return orderDao.getOrderList(userId);
-	}
-	*/
 }
