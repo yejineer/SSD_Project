@@ -63,7 +63,7 @@ function login() {
 					</div>
 
 					<div class="form-group">
-						<label for="name">Password</label> <input name="passwd"
+						<label for="name">Password</label> <input name="password"
 							id="passwd" type="password" class="form-control"
 							placeholder="Password">
 					</div>
