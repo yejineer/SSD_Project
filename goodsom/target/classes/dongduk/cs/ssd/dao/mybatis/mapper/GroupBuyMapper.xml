@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dao.mybatis.mapper.Auction">
+  <cache />
+  
+  <select id="getGroupBuy" resultType="GroupBuy">
+    SELECT * FROM GROUPBUYS
+    WHERE AUCTIONID = ${groupBuyId}
+  </select>
+  
+  <insert id="createGroupBuy" parameterType="GroupBuy">
+  	INSERT INTO GROUPBUYS
+	VALUES (${groupBuyId}, ${title}, ${content}, ${img}, ${minNo}, ${uploadDate}, 
+			${endDate}, ${count}, ${state}, ${rate}, ${participants}, 2, ${catId});
+  </insert>
+  
+  <update id="updateGroupBuy" parameterType="GroupBuy">
+   	UPDATE GROUPBUYS
+    SET TITLE=${title}, CONTENT=${content}, IMG=${img}, MINNO=${minNo}, UPLOADDATE=${uploadDate}, 
+    	ENDDATE=${endDate}, COUNT=${count}, STATE=${state}, RATE=${rate}, PARTICIPANTS=${state}, CATID=${catId}
+  	WHERE  GROUPBUYID=${groupBuyId};
+  </update>
+   
+  <delete id="deleteGroupBuy" parameterType="java.lang.Integer">
+    DELETE FROM GROUPBUYS
+    WHERE  GROUPBUYID=${groupBuyId};
+  	
+  </delete>
+  
+</mapper>
