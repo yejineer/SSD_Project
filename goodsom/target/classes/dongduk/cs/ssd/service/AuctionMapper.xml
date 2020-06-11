@@ -10,22 +10,24 @@
   </select>
   
   <insert id="createAuction" parameterType="Auction">
-    INSERT INTO AUCTIONS
-    VALUES (${auctionId}, ${title}, ${content}, ${img}, ${startPrice}, 
-    		${uploadDate}, ${endDate}, ${count}, ${maxPrice}, ${state}, 1)
+  	INSERT INTO AUCTIONS
+	VALUES (${auctionId}, ${title}, ${content}, ${img}, ${startPrice}, 
+			${uploadDate}, ${endDate}, ${count}, ${maxPrice}, ${state}, 1);
   </insert>
   
   <update id="updateAuction" parameterType="Auction">
-    UPDATE AUCTIONS
+   	UPDATE AUCTIONS
     SET TITLE=${title}, CONTENT=${content}, IMG=${img}, STARTPRICE=${startPrice}, 
     		UPLOADDATE=${uploadDate}, ENDDATE=${endDate}, COUNT=${count}, MAXPRICE=${maxPrice}, STATE=${state}
   	WHERE  AUCTIONID=${auctionId};
   </update>
-  
-   <delete id="deleteAuction" parameterType="java.lang.Integer">
+   
+  <delete id="deleteAuction" parameterType="java.lang.Integer">
     DELETE FROM AUCTIONS
-  	WHERE  AUCTIONID=${auctionId};
+    WHERE  AUCTIONID=${auctionId};
+  	
   </delete>
+  
   
   
 </mapper>
