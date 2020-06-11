@@ -108,9 +108,7 @@
 
 		<div class="container-fluid portfolio-wrap bg-light pt-0 site-section">
 			<div class="col-md-6 mr-auto">
-				<input type="button"
-					class="btn btn-block btn-primary text-white py-3 px-5"
-					value="공동구매 더보기">
+				<a href="<c:url value='/groupBuy/list.do'></c:url>" class="nav-link">공동구매 더보기</a>
 			</div>
 			<div class="row align-items-end mb-4">
 				<div class="col-md-3">
@@ -128,9 +126,7 @@
 			</div>
 			
 			<div class="col-md-6 mr-auto">
-				<input type="button"
-					class="btn btn-block btn-primary text-white py-3 px-5"
-					value="경매 더보기">
+				<a href="<c:url value='/auction/list.do'></c:url>">경매 더보기</a>
 			</div>
 			<div class="row align-items-start">
 				<div class="col-md-4">

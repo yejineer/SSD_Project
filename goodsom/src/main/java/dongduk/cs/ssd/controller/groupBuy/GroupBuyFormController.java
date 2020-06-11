@@ -16,13 +16,22 @@ import dongduk.cs.ssd.service.GroupBuyService;
  * @since 2020.05.06
  */
 
+/**
+ * @author HK
+ * @since 2020.06.12
+ */
+
+
 /*
 @Controller
 @SessionAttributes("groupBuySession")
 @RequestMapping({"/groupBuy/create.do", "/groupBuy/update.do"})
 */
+@RequestMapping("/groupBuy")
 public class GroupBuyFormController {
 	
+	private static final String GROUPBUY_LIST = "groupBuy/groupBuy_list";
+
 	/*
 	@Autowired
 	private GroupBuyService groupBuyService;
@@ -47,7 +56,16 @@ public class GroupBuyFormController {
 	public String form() {
 		return formViewName;
 	}
+	*/
 	
+	
+	@RequestMapping(value="/list.do", method=RequestMethod.GET)
+	public String groupBuyList(){
+		return GROUPBUY_LIST;
+	}
+	
+	
+	/*
 	@RequestMapping(method = RequestMethod.POST)
 	public String updateOrSubmit(HttpServletRequest request,
 						GroupBuyForm groupBuyForm) {
