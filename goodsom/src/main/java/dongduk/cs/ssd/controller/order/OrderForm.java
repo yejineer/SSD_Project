@@ -8,9 +8,9 @@ import dongduk.cs.ssd.domain.Order;
  * @since 2020.05.04
  */
 
-//@SuppressWarnings("serial")
+@SuppressWarnings("serial")
 public class OrderForm implements Serializable {
-	/*
+	
 	private Order order;
 	
 	private boolean newOrder;
@@ -36,5 +36,5 @@ public class OrderForm implements Serializable {
 	public void setOrder(Order order) {
 		this.order = order;
 	}
-	*/
+	
 }
