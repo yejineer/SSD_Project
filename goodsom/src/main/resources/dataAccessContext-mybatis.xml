@@ -36,7 +36,7 @@
 		<property name="dataSource" ref="dataSource" />
 		<property name="configLocation" value="classpath:/mybatis-config.xml" />
 		<property name="mapperLocations">
-			<array><value>classpath*:/dongduk/cs/ssd/service/*.xml</value></array>
+			<array><value>classpath*:/dongduk/cs/ssd/dao/mybatis/mapper/*.xml</value></array>
 		</property>
 	</bean>
 	
@@ -47,8 +47,7 @@
 	
 	<!-- MyBatis MapperScannerConfigurer 설정:
 			Mapper interface scan 및 mapper 객체(bean) 자동 생성 -->
-			
-	<mybatis:scan base-package="dongduk.cs.ssd.dao" /> 
+	<mybatis:scan base-package="dongduk.cs.ssd.dao.mybatis.mapper" /> 
 	
 	<!-- 트랜잭션 관리자 설정 -->
 	<bean id="transactionManager" 
@@ -59,7 +58,7 @@
 	<!-- Annotation 기반 트랜잭션 설정 활성화 -->
 	<tx:annotation-driven transaction-manager="transactionManager" />
 	
-	<!-- DAO bean scan 또는 명시적 설정 -->
-	<context:component-scan base-package="dao.mybatis.mapper" />
+	<!-- DAO bean scan 또는 명시적 설정 (package 맞는지 확인) -->
+	<context:component-scan base-package="dongduk.cs.ssd.dao.mybatis" />
 	
 </beans>
