@@ -58,13 +58,13 @@ function login() {
 				<form name="form" method="POST" action="<c:url value='/user/login.do' />" class="bg-light p-5 contact-form">
 
 					<div class="form-group">
-						<label for="name">ID</label> <input name="id" id="id" type="text"
+						<label for="name">ID</label> <input name="email" id="email" type="text"
 							class="form-control" placeholder="ID">
 					</div>
 
 					<div class="form-group">
-						<label for="name">Password</label> <input name="password"
-							id="password" type="password" class="form-control"
+						<label for="name">Password</label> <input name="passwd"
+							id="passwd" type="password" class="form-control"
 							placeholder="Password">
 					</div>
 					<br />
