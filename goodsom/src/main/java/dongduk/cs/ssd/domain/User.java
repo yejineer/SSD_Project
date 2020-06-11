@@ -12,9 +12,20 @@ public class User {
 	String phone;
 	String refundBank;
 	String refundAccount;
+	
+	public User() {}
 
-	public User() {
-		
+	public User(int userId, String emailId, String password, String nickname, String address1, String address2, String address3, String phone, String refundBank, String refundAccount) {
+		this.userId = userId;
+		this.emailId = emailId;
+		this.password = password;
+		this.nickname = nickname;
+		this.address1 = address1;
+		this.address2 = address2;
+		this.address3 = address3;
+		this.phone = phone;
+		this.refundBank = refundBank;
+		this.refundAccount = refundAccount;
 	}
 	
 	public int getUserId() {
