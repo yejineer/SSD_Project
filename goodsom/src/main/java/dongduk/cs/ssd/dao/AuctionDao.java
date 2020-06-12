@@ -16,9 +16,9 @@ import dongduk.cs.ssd.domain.Bid;
 public interface AuctionDao {
 	Auction getAuction(int auctionId) throws DataAccessException;
 	
-	void createAuction(Auction auction) throws DataAccessException;
+	int createAuction(Auction auction) throws DataAccessException;
 	
-	void updateAuction(Auction auction) throws DataAccessException;
+	int updateAuction(Auction auction) throws DataAccessException;
 	
 	void deleteAuction(int auctionId) throws DataAccessException;
 	

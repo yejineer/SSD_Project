@@ -16,17 +16,17 @@ public interface AuctionMapper { // AuctionMapper.xml에서 구현한 method 이
 	
 	Auction getAuction(int auctionId) throws DataAccessException;
 	
-	void createAuction(Auction auction) throws DataAccessException;
+	int createAuction(Auction auction) throws DataAccessException;
 	
-	void updateAuction(Auction auction) throws DataAccessException;
+	int updateAuction(Auction auction) throws DataAccessException;
 	
 	void deleteAuction(int auctionId) throws DataAccessException;
 	
 	List<Auction> getAuctionList() throws DataAccessException;
 	
-//	List<Auction> getAuctionListByKeyword(String keyword) throws DataAccessException;
-//	
-//	List<Bid> getBidByAuctionId(int auctionId) throws DataAccessException;
-//	
-//	boolean isAuctionClosed(int auctionId, Date endDate) throws DataAccessException;
+	List<Auction> getAuctionListByKeyword(String keyword) throws DataAccessException;
+	
+	List<Bid> getBidByAuctionId(int auctionId) throws DataAccessException;
+	
+	boolean isAuctionClosed(int auctionId, Date endDate) throws DataAccessException;
 }
