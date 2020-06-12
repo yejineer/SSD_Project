@@ -69,14 +69,12 @@
 							class="text-primary site-menu-toggle js-menu-toggle py-5"><span
 								class="icon-menu h3 text-primary"></span></a></span>
 
-
-
 						<nav class="site-navigation text-right ml-auto d-none d-lg-block"
 							role="navigation">
 							<ul class="site-menu main-menu js-clone-nav ml-auto ">
 								<li><a href="<%=request.getContextPath()%>/home.do" class="nav-link">Home</a></li>
-								<li><a href="#">GroupBuy</a></li>
-								<li><a href="#">Auction</a></li>
+								<li><a href="<%=request.getContextPath()%>/groupBuy/list.do" class="nav-link">GroupBuy</a></li>
+								<li><a href="<%=request.getContextPath()%>/auction/list.do" class="nav-link"">Auction</a></li>
 								<li><a href="#">Community</a></li>
 								<!-- 로그인 회원 이름 출력 -->
 							</ul>
