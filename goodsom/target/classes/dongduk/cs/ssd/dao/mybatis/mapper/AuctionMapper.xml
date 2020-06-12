@@ -1,30 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="dao.mybatis.mapper.Auction">
+<!-- AuctionMapper 인터페이스의 package이름과 같아야 함 -->
+<mapper namespace="dongduk.cs.ssd.dao.mybatis.mapper.AuctionMapper">
   <cache />
-  
-  <select id="getAuction" resultType="Auction">
+<!--   <sql id="BaseColumns">
+
+  </sql> -->
+  <select id="getAuction" parameterType="java.lang.Integer" resultType="Auction"> <!-- parameterType없이도 되남 -->
     SELECT * FROM AUCTIONS
-    WHERE AUCTIONID = ${auctionId}
+    WHERE AUCTIONID = #{auctionId}
   </select>
   
   <insert id="createAuction" parameterType="Auction">
   	INSERT INTO AUCTIONS
-	VALUES (${auctionId}, ${title}, ${content}, ${img}, ${startPrice}, 
-			${uploadDate}, ${endDate}, ${count}, ${maxPrice}, ${state}, 1);
+	VALUES (#{auctionId}, #{title}, #{content}, #{img}, #{startPrice}, 
+			#{uploadDate}, #{endDate}, #{count}, #{maxPrice}, #{state}, 1);
   </insert>
   
   <update id="updateAuction" parameterType="Auction">
    	UPDATE AUCTIONS
-    SET TITLE=${title}, CONTENT=${content}, IMG=${img}, STARTPRICE=${startPrice}, 
- 		UPLOADDATE=${uploadDate}, ENDDATE=${endDate}, COUNT=${count}, MAXPRICE=${maxPrice}, STATE=${state}
-  	WHERE  AUCTIONID=${auctionId};
+    SET TITLE=#{title}, CONTENT=#{content}, IMG=#{img}, STARTPRICE=#{startPrice}, 
+ 		UPLOADDATE=#{uploadDate}, ENDDATE=#{endDate}, COUNT=#{count}, MAXPRICE=#{maxPrice}, STATE=#{state}
+  	WHERE  AUCTIONID=#{auctionId};
   </update>
    
   <delete id="deleteAuction" parameterType="java.lang.Integer">
     DELETE FROM AUCTIONS
-    WHERE  AUCTIONID=${auctionId};
+    WHERE  AUCTIONID=#{auctionId};
   	
   </delete>
   

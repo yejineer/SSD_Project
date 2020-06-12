@@ -1,4 +1,4 @@
-package dongduk.cs.ssd.dao;
+package dongduk.cs.ssd.dao.mybatis.mapper;
 
 import java.util.Date;
 import java.util.List;
@@ -9,11 +9,11 @@ import dongduk.cs.ssd.domain.Auction;
 import dongduk.cs.ssd.domain.Bid;
 
 /**
- * @author Hyekyung Kim
- * @since 2020.05.05
+ * @author Yejin Lee
+ * @since 2020.06.12
  */
-
-public interface AuctionDao {
+public interface AuctionMapper { // AuctionMapper.xml에서 구현한 method 이름과 일치해야함!
+	
 	Auction getAuction(int auctionId) throws DataAccessException;
 	
 	void createAuction(Auction auction) throws DataAccessException;
@@ -24,9 +24,9 @@ public interface AuctionDao {
 	
 	List<Auction> getAuctionList() throws DataAccessException;
 	
-	List<Auction> getAuctionListByKeyword(String keyword) throws DataAccessException;
-	
-	List<Bid> getBidByAuctionId(int auctionId) throws DataAccessException;
-	
-	boolean isAuctionClosed(int auctionId, Date endDate) throws DataAccessException;
+//	List<Auction> getAuctionListByKeyword(String keyword) throws DataAccessException;
+//	
+//	List<Bid> getBidByAuctionId(int auctionId) throws DataAccessException;
+//	
+//	boolean isAuctionClosed(int auctionId, Date endDate) throws DataAccessException;
 }
