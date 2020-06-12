@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.dao.DataAccessException;
 
+import dongduk.cs.ssd.domain.LineGroupBuy;
 import dongduk.cs.ssd.domain.Order;
 
 public interface OrderDao {
@@ -14,4 +15,5 @@ public interface OrderDao {
 
 	  void createOrder(Order order) throws DataAccessException;
 
+	  List<LineGroupBuy> getLineGroupBuys(int orderId) throws DataAccessException;
 }

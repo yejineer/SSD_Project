@@ -9,30 +9,38 @@
   	address1, address2, address3,
   	phone,
   	refundBank, refundAccount,
-  	totalPrice,
-  	orderDate,
+  	totalPrice, <!-- 총 가격 -->
+  	orderDate, <!-- 승인 일시 -->
   	userId
   </sql>
   
   <select id="getOrderList" parameterType="int"
-  		resultType="java.util.List">
+  		resultType="Order">
   	SELECT <include refid="BaseColumns" /> 
   	FROM orders
   	WHERE userId = #{userId}
-  </select>
+  </select> <!-- OrderList를 가져옴 -->
   
   <select id="getOrder" parameterType="int"
-  		resultType="dongduk.cs.ssd.domain.Order">
+  		resultType="Order">
   	SELECT <include refid="BaseColumns" /> 
   	FROM orders
   	WHERE orderId = #{orderId}
-  </select>
+  </select> <!-- Order를 가져옴 -->
   
-  <insert id="createOrder" parameterType="dongduk.cs.ssd.domain.Order">
+  <select id="getLineGroupBuys" parameterType="int"
+  		resultType="LineGroupBuy">
+  	SELECT lineId, quantity, selectOption, unitPrice, groupBuyId, orderId
+  	FROM lineGroupBuys
+  	WHERE orderId = #{orderId}	
+  </select> <!-- orderId에 해당하는 LineGroupBuy list를 가져옴 -->
+  
+  <insert id="createOrder" parameterType="Order">
   	INSERT INTO orders (<include refid="BaseColumns" />)
   	VALUES (#{orderId}, #{cardBank}, #{cardNo}, #{validDate}, #{cvc},
   		#{address1}, #{address2}, #{address3}, #{phone},
   		#{refundBank}, #{refundAccount}, #{totalPrice}, 
   		#{orderDate}, #{userId})
   </insert>
+  
  </mapper>
