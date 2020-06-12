@@ -24,8 +24,8 @@ import dongduk.cs.ssd.service.OrderService;
 public class OrderServiceImpl { // implements OrderService {
 
 	
-	@Autowired
-	private OrderDao orderDao;
+//	@Autowired
+//	private OrderDao orderDao;
 //	@Autowired
 //	private GroupBuyDao groupBuyDao;
 //	@Autowired

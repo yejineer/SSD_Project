@@ -1,13 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
-
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+	pageEncoding="EUC-KR"%>
+	
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-    
+	
+
 <!doctype html>
 <html lang="en">
+
+<head>
 
 <head>
 <title>Approach &mdash; Website Template by Colorlib</title>
@@ -58,7 +61,7 @@
 
 					<div class="col-3">
 						<div class="site-logo">
-							<a href="index.html" class="font-weight-bold">Approach</a>
+							<a href="index.html" class="font-weight-bold">Goodsom</a>
 						</div>
 					</div>
 
@@ -74,12 +77,10 @@
 						<nav class="site-navigation text-right ml-auto d-none d-lg-block"
 							role="navigation">
 							<ul class="site-menu main-menu js-clone-nav ml-auto ">
-								<li><a href="index.html" class="nav-link">Home</a></li>
-								<li><a href="portfolio.html" class="nav-link">Portfolio</a></li>
-								<li><a href="about.html" class="nav-link">About</a></li>
-								<li><a href="services.html" class="nav-link">Services</a></li>
-								<li><a href="blog.html" class="nav-link">Blog</a></li>
-								<li class="active"><a href="contact.html" class="nav-link">Contact</a></li>
+								<li><a href="<%=request.getContextPath()%>/home.do" class="nav-link">Home</a></li>
+								<li><a href="<%=request.getContextPath()%>/groupBuy/list.do" class="nav-link">GroupBuy</a></li>
+								<li><a href="<%=request.getContextPath()%>/auction/list.do" class="nav-link"">Auction</a></li>
+								<li><a href="#">Community</a></li>
 							</ul>
 						</nav>
 					</div>
@@ -96,109 +97,84 @@
 				<div
 					class="row align-items-center text-center justify-content-center">
 					<div class="col-lg-6">
-						<h1 class="text-white mb-4">Contact Us</h1>
+						<h1 class="text-white mb-4">Add GroupBuy</h1>
 						<p class="lead">Lorem ipsum dolor sit amet, consectetur
-							adipisicing elit maxime nemo placeat dolor est.</p>
+							adipisicing elit maxime nemo placeat dolor.</p>
 
 					</div>
 				</div>
 			</div>
 		</div>
 
-		
+
+		<!-- start form -->
 		<div class="site-section bg-left-half">
 			<div class="container">
-
-
-				<div class="row">
+				<div class="row" >
 					<div class="col-lg-8 mb-5">
-					
-						<form:form modelAttribute="groupBuy" action="detail.do" method="post">
+						<form action="#" method="post">
+						
 							<div class="form-group row">
-								<div class="col-md-6 mb-4 mb-lg-0">
-									
-									<form:input path="title"
-										class="form-control"
-										placeholder="제목"/>
+								<div class="col-md-12">
+									<label for="name">Title</label> 
+									<input type="text" class="form-control" placeholder="Title">
 								</div>
-								
 							</div>
+							
+							<div class="form-group row">
+								<div class="col-md-12">
+									<label for="name">Image</label> </br>
+                					<input type="file" value="input file" name="image"/>
+              					</div>
+              				</div>
+							
+							<div class="form-group row">
+								<div class="col-md-12">
+									<label for="name">Description</label> 
+									<textarea name="" id="" class="form-control"
+										placeholder="Write description." cols="30" rows="10"></textarea>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label for="name">Option</label> <br/>
+								<input type="button" onClick="" value="Add" /> &nbsp; ** Click Add Button <br/>
+								<input name="" id="" type="text" style="width:150px;" />
+							</div>
+							
+							<div class="form-group">
+								<label for="name">Tag</label> <br/>
+								<input type="button" onClick="" value="Tag1" /> &nbsp; <input type="button" onClick="" value="Tag2" />
+								 &nbsp; <input type="button" onClick="" value="Tag3" />  &nbsp; <input type="button" onClick="" value="Tag4" />
+								 &nbsp; <input type="button" onClick="" value="Tag5" />
+							</div>
+							
+							<div class="form-group row">
+								<div class="col-md-12">
+									<label for="name">Minimum quantity</label> 
+									<div class="d-flex">
+										<div class="form-group mr-2">
+										<input type="text" class="form-control" id="" name = "" placeholder="Quantitiy">
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							<div class="form-group">
+			              	<label for="name">End Date</label>
+				                <div class="d-flex">
+					    		  <div class="form-group mr-2">
+					                <input type="text" class="form-control" id="" name = "" placeholder="Date">
+					              </div>
+			              		</div>
+			              	</div>
 
-							<div class="form-group row">
-								<div class="col-md-12">
-									<form:label path="img">대표 이미지</form:label>
-									<form:input path="img"
-										class="form-control"
-										placeholder="대표 이미지"/>
-								</div>
-							</div>
-
-							<div class="form-group row">
-								<div class="col-md-12">
-									<form:label path="content">상세 설명</form:label>
-									<form:textarea path="content"
-										class="form-control"
-										placeholder="상세 설명" 
-										cols="30" rows="10"/>							
-								</div>
-							</div>
 							
-							<div class="form-group row">
-								<div class="col-md-6 mr-auto">
-									<input type="button"
-										class="btn btn-block btn-primary text-white py-3 px-5"
-										value="추가">
-								</div>
-								<div class="col-md-12">
-									<form:input path="options"
-										class="form-control"
-										placeholder="추가될 옵션"/>
-								</div>
+							<div class="form-group" align="right">
+								<a class="btn btn-primary py-3 px-5" href="<c:url value='/groupbuy/list.do'></c:url>">Cancel</a> &nbsp;
+								<input type="button" value="Save" onClick="" class="btn btn-primary py-3 px-5">
 							</div>
-							
-							<div class="form-group row">
-								<div class="col-md-12">
-									<form:label path="catId">태그</form:label>
-									<form:input path="catId"  
-										class="form-control"
-										placeholder="태그" />
-								</div>
-							</div>
-							
-							<div class="form-group row">
-								<div class="col-md-12">
-									<form:label path="minNo">최소수량</form:label>
-									<form:input path="minNo" 
-										class="form-control"
-										placeholder="최소수량" />
-								</div>
-							</div>
-							
-							<div class="form-group row">
-								<div class="col-md-6 mr-auto">
-									<input type="button"
-										class="btn btn-block btn-primary text-white py-3 px-5"
-										value="취소">
-								</div>
-								<div class="col-md-6 mr-auto">
-									<input type="submit"
-										class="btn btn-block btn-primary text-white py-3 px-5"
-										value="완료" />
-								</div>
-							</div>
-						</form:form>
-					</div>
-					<div class="col-lg-4 ml-auto">
-						<div class="bg-white p-3 p-md-5">
-							<h3 class="text-black mb-4">Contact Info</h3>
-							<ul class="list-unstyled footer-link">
-								<li class="d-block mb-3"><span class="d-block text-black">Address:</span>
-									<span>34 Street Name, City Name Here, United States</span></li>
-								<li class="d-block mb-3"><span class="d-block text-black">Phone:</span><span>+1
-										242 4942 290</span></li>
-								<li class="d-block mb-3"><span class="d-block text-black">Email:</span><span>info@yourdomain.com</span></li>
-							</ul>
-						</div>
+						</form>
 					</div>
 				</div>
 
@@ -212,33 +188,33 @@
 				<div class="row">
 					<div class="col-md-3">
 						<div class="site-logo-footer">
-							<a href="index.html">Approach</a>
+							<a href="index.html"></a>
 						</div>
 					</div>
 					<div class="col-md-8 ml-auto">
 						<div class="row">
 							<div class="col-md-4 ml-auto">
 								<ul class="list-unstyled links">
-									<li><a href="#">Contact Us</a></li>
+									<!-- <li><a href="#">Contact Us</a></li>
 									<li><a href="#">hello@mydomain.com</a></li>
 									<li><a href="#">+1 829 2293 382</a></li>
-									<li><a href="#">Support</a></li>
+									<li><a href="#">Support</a></li> -->
 								</ul>
 							</div>
 							<div class="col-md-4">
 								<ul class="list-unstyled links">
-									<li><a href="#">Home</a></li>
+									<!-- <li><a href="#">Home</a></li>
 									<li><a href="#">Blog</a></li>
 									<li><a href="#">Services</a></li>
-									<li><a href="#">About Us</a></li>
+									<li><a href="#">About Us</a></li> -->
 								</ul>
 							</div>
 							<div class="col-md-4">
 								<ul class="list-unstyled links">
-									<li><a href="#">Home</a></li>
+									<!-- <li><a href="#">Home</a></li>
 									<li><a href="#">Blog</a></li>
 									<li><a href="#">Services</a></li>
-									<li><a href="#">About Us</a></li>
+									<li><a href="#">About Us</a></li> -->
 								</ul>
 							</div>
 						</div>
