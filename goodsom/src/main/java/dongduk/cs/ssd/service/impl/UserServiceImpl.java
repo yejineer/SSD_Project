@@ -9,33 +9,21 @@ import dongduk.cs.ssd.domain.User;
 import dongduk.cs.ssd.service.UserService;
 
 /**
- * @author Yejin Lee
- * @since 2020.05.02
+ * @author kimdahyee
+ * @since 2020.06.12
  */
 
-/*
-@Repository
 @Service("userServiceImpl")
-*/
 public class UserServiceImpl implements UserService {
 	
-	/*
 	@Autowired
 	private UserDao userDao;
 	
-	public User getUser(String email, String passwd) {
-		return userDao.getUser(email, passwd);
-	}*/
-	
-	/*
-	@Autowired
-	private UserDao userDao;
-	
-	@Override
-	public User getUser(String email, String passwd) {
-		return userDao.getUser(email, passwd);
+	public User getUser(String email, String password) {
+		return userDao.getUser(email, password);
 	}
-
+	
+	/*
 	@Override
 	public User getUserByEmailId(String emailId) {
 		return userDao.getUserByEmailId(emailId);

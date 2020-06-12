@@ -1,6 +1,14 @@
 package dongduk.cs.ssd.domain;
 
-public class User {
+import java.io.Serializable;
+
+/**
+ * @author kimdahyee
+ * @since 2020.06.12
+ */
+
+@SuppressWarnings("serial")
+public class User implements Serializable {
 	int userId;
 	String emailId;
 	String password;

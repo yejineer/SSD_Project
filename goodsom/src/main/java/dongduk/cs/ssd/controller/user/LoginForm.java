@@ -3,7 +3,7 @@ package dongduk.cs.ssd.controller.user;
 //import javax.validation.constraints.Email;
 //import javax.validation.constraints.NotBlank;
 
-public class LoginForm {
+public class LoginForm { //command class
 
 //	@NotBlank @Email
 	private String id;
