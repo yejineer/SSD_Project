@@ -6,7 +6,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 	
-
 <!doctype html>
 <html lang="en">
 
@@ -36,7 +35,6 @@
 </head>
 
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
-
 
 	<div class="site-wrap" id="home-section">
 
@@ -90,25 +88,29 @@
 		</header>
 		
 		<!-- 구현 시작 -->
+		<h1>결제 내역</h1>
+		<table border="1">
+		<tr>
+			<td><b>공동구매</b></td>
+			<td><b>경매</b></td>
+		</tr>
 		
-		<h1>세부 결제 내역</h1>
-		
-		<c:choose>
-			<c:when test="${order.successBidder eq null}"> 
-				<h3>공동구매</h3>
-			</c:when>
-			<c:otherwise> 
-				<h3>경매</h3> 
-			</c:otherwise>
-		</c:choose>
-		${order.title}
-		
-		
+		<c:forEach var="order" items="${orderList}" varStatus="status">
+			<tr>
+				<td>${status.count}</td>
+				<td><img src="${order.img}"></td>
+				<td><a href="<c:url value="/order/detail.do">
+								<c:param name="orderId" value="${order.orderId}" />
+							</c:url>">${order.title}</a></td>
+				<td>${order.date}</td>
+				<td>${order.totalPrice}</td>
+			</tr>
+		</c:forEach>
+		</table>
 		
 		<!-- 구현 끝 -->
-				
-				
-				<div class="site-section">
+		
+		<div class="site-section">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-4">
@@ -193,4 +195,7 @@
 	<script src="js/main.js"></script>
 
 </body>
+
 </html>
+
+		

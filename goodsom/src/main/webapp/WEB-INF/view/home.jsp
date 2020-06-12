@@ -98,7 +98,7 @@
 						<h1 class="text-white mb-4">Don’t worry if it doesn’t work right. If everything did, you’d be out of a job.</h1>
 						<p class="lead">올바로 동작하지 않더라도 걱정말아라. 모든 것이 그랬다면, 넌 직업을 잃었을테니까.</p>
 						<p>
-							<a href="<c:url value='/user/register.do' />" data-fancybox
+							<a href="<c:url value='/order/list.do' />" data-fancybox
 								class="btn-video_38929"><span class="icon-play"></span></a>
 						</p>
 					</div>
