@@ -31,7 +31,8 @@ import dongduk.cs.ssd.service.GroupBuyService;
 public class GroupBuyFormController {
 	
 	private static final String GROUPBUY_LIST = "groupBuy/groupBuy_list";
-
+	private static final String GROUPBUY_FORM = "groupBuy/groupBuy_form";
+	
 	/*
 	@Autowired
 	private GroupBuyService groupBuyService;
@@ -62,6 +63,11 @@ public class GroupBuyFormController {
 	@RequestMapping(value="/list.do", method=RequestMethod.GET)
 	public String groupBuyList(){
 		return GROUPBUY_LIST;
+	}
+	
+	@RequestMapping(value="/form.do")
+	public String groupBuyForm(){
+		return GROUPBUY_FORM;
 	}
 	
 	

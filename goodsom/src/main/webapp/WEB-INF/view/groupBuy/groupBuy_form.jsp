@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!doctype html>
 <html lang="en">
 
@@ -159,7 +159,12 @@
 								<div class="col-md-6 mr-auto">
 									<input type="submit"
 										class="btn btn-block btn-primary text-white py-3 px-5"
-										value="Send Message">
+										value="취소">
+								</div>
+								<div class="col-md-6 mr-auto">
+									<input type="submit"
+										class="btn btn-block btn-primary text-white py-3 px-5"
+										value="완료">
 								</div>
 							</div>
 						</form>
