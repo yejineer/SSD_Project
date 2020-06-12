@@ -23,7 +23,6 @@ public class UserServiceImpl implements UserService {
 		return userDao.getUser(email, password);
 	}
 	
-	/*
 	@Override
 	public User getUserByEmailId(String emailId) {
 		return userDao.getUserByEmailId(emailId);
@@ -43,5 +42,5 @@ public class UserServiceImpl implements UserService {
 	public void deleteUser(String emailId) {
 		userDao.deleteUser(emailId);
 	}
-	*/
+	
 }

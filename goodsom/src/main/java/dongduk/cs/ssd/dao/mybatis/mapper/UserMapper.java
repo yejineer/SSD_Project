@@ -11,4 +11,11 @@ public interface UserMapper {
 
 	User getUser(String email, String passwd);
 	
+	User getUserByEmailId(String emailId);
+	
+	void createUser(User user);
+
+	void updateUser(User user);
+
+	void deleteUser(String emailId);
 }

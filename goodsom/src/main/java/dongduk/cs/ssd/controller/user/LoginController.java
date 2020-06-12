@@ -32,18 +32,23 @@ public class LoginController {
 		this.userService = userService;
 	}
 	
+	//forward : 주소 변경 X, 화면 전환, 대량의 데이터 전달
+	//redirect : 주소 변경 O, 화면 전환, 소량의 데이터 전달 (get 방식만 가능)
 	@RequestMapping("/user/login.do")
 	public ModelAndView handleRequest(HttpServletRequest request,
 			HttpSession session,
 			@RequestParam("emailId") String email,
 			@RequestParam("password") String password,
 			Model model) throws Exception {
-		User user = userService.getUser(email, password); // 로그인 시도
+		
+		User user = userService.getUser(email, password);// 로그인 시도
+		
 		if (user == null) { // 해당 email과 password를 갖는 사용자가 존재하지 않을 시
-			return new ModelAndView("login", "message", "Invalid email or password. Login failed.");
+			return new ModelAndView("/user/login", "message", "Invalid email or password. Login failed.");
 		} else { // 로그인 성공 시
 			UserSession userSession = new UserSession(user);
 			session.setAttribute("userSession", userSession);
+			model.addAttribute("userSession", userSession);
 			return new ModelAndView("home");
 		}
 	}

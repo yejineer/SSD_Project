@@ -11,9 +11,6 @@ public interface UserService {
 
 	User getUser(String emailId, String password); // 로그인 시 사용
 	
-	/*
-	User getUser(String emailId, String password); // 로그인 시 사용
-	
 	User getUserByEmailId(String emailId);
 	
 	void createUser(User user);
@@ -21,5 +18,4 @@ public interface UserService {
 	void updateUser(User user);
 
 	void deleteUser(String emailId);
-	*/
 }

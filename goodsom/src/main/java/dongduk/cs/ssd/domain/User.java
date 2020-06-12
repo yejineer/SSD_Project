@@ -21,7 +21,13 @@ public class User implements Serializable {
 	String refundBank;
 	String refundAccount;
 	
+	/*
 	public User() {}
+	
+	public User(String emailId, String password) {
+		this.emailId = emailId;
+		this.password = password;
+	}
 
 	public User(int userId, String emailId, String password, String nickname, String address1, String address2, String address3, String phone, String refundBank, String refundAccount) {
 		this.userId = userId;
@@ -34,7 +40,7 @@ public class User implements Serializable {
 		this.phone = phone;
 		this.refundBank = refundBank;
 		this.refundAccount = refundAccount;
-	}
+	} */
 	
 	public int getUserId() {
 		return userId;
