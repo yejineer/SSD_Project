@@ -36,7 +36,11 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/style.css">
 
 </head>
-
+<script>
+function createGroupBuy() {
+	form.submit();
+}
+</script>
 <body data-spy="scroll" data-target=".site-navbar-target"
 	data-offset="300">
 
@@ -114,7 +118,7 @@
 			<div class="container">
 				<div class="row" >
 					<div class="col-lg-8 mb-5">
-						<form action="#" method="post">
+						<form action="/groupBuy/detail.do" method="post">
 						
 							<div class="form-group row">
 								<div class="col-md-12">
@@ -174,7 +178,7 @@
 							
 							<div class="form-group" align="right">
 								<a class="btn btn-primary py-3 px-5" href="<c:url value='/groupbuy/list.do'></c:url>">취소</a> &nbsp;
-								<input type="button" value="완료" onClick="" class="btn btn-primary py-3 px-5">
+								<input type="button" value="완료" onClick="createGroupBuy()" class="btn btn-primary py-3 px-5">
 							</div>
 						</form>
 					</div>
