@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 	
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -116,34 +116,34 @@
 						
 							<div class="form-group row">
 								<div class="col-md-12">
-									<label for="name">Title</label> 
-									<input type="text" class="form-control" placeholder="Title">
+									<label for="name">제목</label> 
+									<input type="text" class="form-control" placeholder="제목">
 								</div>
 							</div>
 							
 							<div class="form-group row">
 								<div class="col-md-12">
-									<label for="name">Image</label> </br>
+									<label for="name">대표 이미지</label> </br>
                 					<input type="file" value="input file" name="image"/>
               					</div>
               				</div>
 							
 							<div class="form-group row">
 								<div class="col-md-12">
-									<label for="name">Description</label> 
+									<label for="name">상세설명</label> 
 									<textarea name="" id="" class="form-control"
-										placeholder="Write description." cols="30" rows="10"></textarea>
+										placeholder="상세설명을 입력하세요" cols="30" rows="10"></textarea>
 								</div>
 							</div>
 							
 							<div class="form-group">
-								<label for="name">Option</label> <br/>
-								<input type="button" onClick="" value="Add" /> &nbsp; ** Click Add Button <br/>
+								<label for="name">옵션</label> <br/>
+								<input type="button" onClick="" value="Add" /> &nbsp; ** 추가 버튼을 클릭해보세요 <br/>
 								<input name="" id="" type="text" style="width:150px;" />
 							</div>
 							
 							<div class="form-group">
-								<label for="name">Tag</label> <br/>
+								<label for="name">태그</label> <br/>
 								<input type="button" onClick="" value="Tag1" /> &nbsp; <input type="button" onClick="" value="Tag2" />
 								 &nbsp; <input type="button" onClick="" value="Tag3" />  &nbsp; <input type="button" onClick="" value="Tag4" />
 								 &nbsp; <input type="button" onClick="" value="Tag5" />
@@ -151,28 +151,28 @@
 							
 							<div class="form-group row">
 								<div class="col-md-12">
-									<label for="name">Minimum quantity</label> 
+									<label for="name">최소수량</label> 
 									<div class="d-flex">
 										<div class="form-group mr-2">
-										<input type="text" class="form-control" id="" name = "" placeholder="Quantitiy">
+										<input type="text" class="form-control" id="" name = "" placeholder="ex) 40">
 										</div>
 									</div>
 								</div>
 							</div>
 							
 							<div class="form-group">
-			              	<label for="name">End Date</label>
+			              	<label for="name">마감 기한</label>
 				                <div class="d-flex">
 					    		  <div class="form-group mr-2">
-					                <input type="text" class="form-control" id="" name = "" placeholder="Date">
+					                <input type="text" class="form-control" id="" name = "" placeholder="ex) 2020년 10월 22일">
 					              </div>
 			              		</div>
 			              	</div>
 
 							
 							<div class="form-group" align="right">
-								<a class="btn btn-primary py-3 px-5" href="<c:url value='/groupbuy/list.do'></c:url>">Cancel</a> &nbsp;
-								<input type="button" value="Save" onClick="" class="btn btn-primary py-3 px-5">
+								<a class="btn btn-primary py-3 px-5" href="<c:url value='/groupbuy/list.do'></c:url>">취소</a> &nbsp;
+								<input type="button" value="완료" onClick="" class="btn btn-primary py-3 px-5">
 							</div>
 						</form>
 					</div>
