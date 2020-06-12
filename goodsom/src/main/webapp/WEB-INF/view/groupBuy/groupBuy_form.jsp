@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+    
 <!doctype html>
 <html lang="en">
 
@@ -99,75 +105,88 @@
 			</div>
 		</div>
 
-
+		
 		<div class="site-section bg-left-half">
 			<div class="container">
 
 
 				<div class="row">
 					<div class="col-lg-8 mb-5">
-						<form action="#" method="post">
+					
+						<form:form modelAttribute="groupBuy" action="detail.do" method="post">
 							<div class="form-group row">
 								<div class="col-md-6 mb-4 mb-lg-0">
-									<input type="text" class="form-control"
-										placeholder="제목">
+									
+									<form:input path="title"
+										class="form-control"
+										placeholder="제목"/>
 								</div>
 								
 							</div>
 
 							<div class="form-group row">
 								<div class="col-md-12">
-									<input type="text" class="form-control"
-										placeholder="대표 이미지">
+									<form:label path="img">대표 이미지</form:label>
+									<form:input path="img"
+										class="form-control"
+										placeholder="대표 이미지"/>
 								</div>
 							</div>
 
 							<div class="form-group row">
 								<div class="col-md-12">
-									<textarea name="" id="" class="form-control"
-										placeholder="상세 설명" cols="30" rows="10"></textarea>
+									<form:label path="content">상세 설명</form:label>
+									<form:textarea path="content"
+										class="form-control"
+										placeholder="상세 설명" 
+										cols="30" rows="10"/>							
 								</div>
 							</div>
 							
 							<div class="form-group row">
 								<div class="col-md-6 mr-auto">
-									<input type="submit"
+									<input type="button"
 										class="btn btn-block btn-primary text-white py-3 px-5"
 										value="추가">
 								</div>
 								<div class="col-md-12">
-									<input type="text" class="form-control"
-										placeholder="추가될 옵션">
+									<form:input path="options"
+										class="form-control"
+										placeholder="추가될 옵션"/>
 								</div>
 							</div>
 							
 							<div class="form-group row">
 								<div class="col-md-12">
-									<input type="text" class="form-control"
-										placeholder="태그">
+									<form:label path="catId">태그</form:label>
+									<form:input path="catId"  
+										class="form-control"
+										placeholder="태그" />
 								</div>
 							</div>
 							
 							<div class="form-group row">
 								<div class="col-md-12">
-									<input type="text" class="form-control"
-										placeholder="최소수량">
+									<form:label path="minNo">최소수량</form:label>
+									<form:input path="minNo" 
+										class="form-control"
+										placeholder="최소수량" />
 								</div>
 							</div>
 							
 							<div class="form-group row">
 								<div class="col-md-6 mr-auto">
-									<input type="submit"
+									<input type="button"
 										class="btn btn-block btn-primary text-white py-3 px-5"
 										value="취소">
 								</div>
 								<div class="col-md-6 mr-auto">
 									<input type="submit"
 										class="btn btn-block btn-primary text-white py-3 px-5"
-										value="완료">
+										value="완료" />
 								</div>
 							</div>
-						</form>
+						</form:form>
 					</div>
 					<div class="col-lg-4 ml-auto">
 						<div class="bg-white p-3 p-md-5">

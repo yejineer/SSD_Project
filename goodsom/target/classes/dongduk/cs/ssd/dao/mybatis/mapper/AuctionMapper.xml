@@ -18,7 +18,7 @@
   <update id="updateAuction" parameterType="Auction">
    	UPDATE AUCTIONS
     SET TITLE=${title}, CONTENT=${content}, IMG=${img}, STARTPRICE=${startPrice}, 
-    		UPLOADDATE=${uploadDate}, ENDDATE=${endDate}, COUNT=${count}, MAXPRICE=${maxPrice}, STATE=${state}
+ 		UPLOADDATE=${uploadDate}, ENDDATE=${endDate}, COUNT=${count}, MAXPRICE=${maxPrice}, STATE=${state}
   	WHERE  AUCTIONID=${auctionId};
   </update>
    

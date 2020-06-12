@@ -12,13 +12,13 @@
   <insert id="createGroupBuy" parameterType="GroupBuy">
   	INSERT INTO GROUPBUYS
 	VALUES (${groupBuyId}, ${title}, ${content}, ${img}, ${minNo}, ${uploadDate}, 
-			${endDate}, ${count}, ${state}, ${rate}, ${participants}, 2, ${catId});
+			${endDate}, ${count}, ${state}, ${rate}, ${participants}, 2, ${catId}, ${options});
   </insert>
   
   <update id="updateGroupBuy" parameterType="GroupBuy">
    	UPDATE GROUPBUYS
-    SET TITLE=${title}, CONTENT=${content}, IMG=${img}, MINNO=${minNo}, UPLOADDATE=${uploadDate}, 
-    	ENDDATE=${endDate}, COUNT=${count}, STATE=${state}, RATE=${rate}, PARTICIPANTS=${state}, CATID=${catId}
+    SET TITLE=${title}, CONTENT=${content}, IMG=${img}, MINNO=${minNo}, UPLOADDATE=${uploadDate}, ENDDATE=${endDate}, 
+    	COUNT=${count}, STATE=${state}, RATE=${rate}, PARTICIPANTS=${state}, CATID=${catId}, OPTIONS=${options}
   	WHERE  GROUPBUYID=${groupBuyId};
   </update>
    

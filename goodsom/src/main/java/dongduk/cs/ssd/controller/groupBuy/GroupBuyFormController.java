@@ -32,6 +32,7 @@ public class GroupBuyFormController {
 	
 	private static final String GROUPBUY_LIST = "groupBuy/groupBuy_list";
 	private static final String GROUPBUY_FORM = "groupBuy/groupBuy_form";
+	private static final String GROUPBUY_DETAIL = "groupBuy/groupBuy_detail";
 	
 	/*
 	@Autowired
@@ -71,21 +72,23 @@ public class GroupBuyFormController {
 	}
 	
 	
-	/*
-	@RequestMapping(method = RequestMethod.POST)
+	
+	@RequestMapping(value="/detail.do", method={RequestMethod.GET, RequestMethod.POST})
 	public String updateOrSubmit(HttpServletRequest request,
 						GroupBuyForm groupBuyForm) {
-		String reqPage = request.getServletPath();
-		
-		if (reqPage.trim().equals("groupBuy_form")) { // update
-			groupBuyService.updateGroupBuy(groupBuyForm.getGroupBuy());
-			return formViewName;
-		} else { // show after create
-			groupBuyService.createGroupBuy(groupBuyForm.getGroupBuy());
-			return detailViewName;
-		}
+//		String reqPage = request.getServletPath();
+//		
+//		if (reqPage.trim().equals("groupBuy_form")) { // update
+//			groupBuyService.updateGroupBuy(groupBuyForm.getGroupBuy());
+//			return formViewName;
+//		} else { // show after create
+//			groupBuyService.createGroupBuy(groupBuyForm.getGroupBuy());
+//			return detailViewName;
+//		}
+		return GROUPBUY_DETAIL;
 	}
 	
+	/*
 	public void setGroupBuyService(GroupBuyService groupBuyService) {
 		this.groupBuyService = groupBuyService;
 	}

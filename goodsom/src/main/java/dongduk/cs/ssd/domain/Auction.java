@@ -17,6 +17,8 @@ public class Auction {
 	int state;
 	int menuId;
 	int userId;
+	
+
 	List<Bid> bids = new ArrayList<Bid>();
 	
 	public int getUserId() {
