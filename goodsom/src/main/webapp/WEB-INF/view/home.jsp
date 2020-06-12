@@ -11,7 +11,9 @@
 <html lang="en">
 
 <head>
-<title>Goodsom &mdash; 동덕여대 굿즈 상품</title>
+
+<head>
+<title>Goodsom &mdash; SSD Final Project</title>
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -35,7 +37,8 @@
 
 </head>
 
-<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+<body data-spy="scroll" data-target=".site-navbar-target"
+	data-offset="300">
 
 
 	<div class="site-wrap" id="home-section">
@@ -69,6 +72,8 @@
 							class="text-primary site-menu-toggle js-menu-toggle py-5"><span
 								class="icon-menu h3 text-primary"></span></a></span>
 
+
+
 						<nav class="site-navigation text-right ml-auto d-none d-lg-block"
 							role="navigation">
 							<ul class="site-menu main-menu js-clone-nav ml-auto ">
@@ -76,7 +81,8 @@
 								<li><a href="<%=request.getContextPath()%>/groupBuy/list.do" class="nav-link">GroupBuy</a></li>
 								<li><a href="<%=request.getContextPath()%>/auction/list.do" class="nav-link"">Auction</a></li>
 								<li><a href="#">Community</a></li>
-								<!-- 로그인 회원 이름 출력 -->
+								<li><a href="#"><img src="<%=request.getContextPath()%>/resources/images/mypage.jpg" alt="Image" 
+								width="30px" height="20px" class="img-fluid"></a></li>
 							</ul>
 						</nav>
 					</div>

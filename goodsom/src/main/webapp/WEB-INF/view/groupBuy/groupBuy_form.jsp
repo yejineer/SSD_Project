@@ -13,7 +13,7 @@
 <head>
 
 <head>
-<title>Approach &mdash; Website Template by Colorlib</title>
+<title>Goodsom &mdash; SSD Final Project</title>
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -81,6 +81,8 @@
 								<li><a href="<%=request.getContextPath()%>/groupBuy/list.do" class="nav-link">GroupBuy</a></li>
 								<li><a href="<%=request.getContextPath()%>/auction/list.do" class="nav-link"">Auction</a></li>
 								<li><a href="#">Community</a></li>
+								<li><a href="#"><img src="<%=request.getContextPath()%>/resources/images/mypage.jpg" alt="Image" 
+								width="30px" height="20px" class="img-fluid"></a></li>
 							</ul>
 						</nav>
 					</div>
