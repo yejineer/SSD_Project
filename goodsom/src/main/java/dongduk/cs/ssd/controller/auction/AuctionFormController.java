@@ -26,8 +26,9 @@ import dongduk.cs.ssd.service.impl.AuctionServiceImpl;
  */
 @RequestMapping("/auction")
 public class AuctionFormController {
+	
 	private static final String ACUTION_LIST = "auction/auction_list";
-
+	private static final String ACUTION_FORM = "auction/auction_form";
 	/*
 	@Autowired
 	private AuctionService auctionService;
@@ -55,10 +56,16 @@ public class AuctionFormController {
 	}
 	*/
 	
+	@RequestMapping(value="/form.do")
+	public String auctionForm() {
+		return ACUTION_FORM;
+	}
+	
 	@RequestMapping(value="/list.do", method=RequestMethod.GET)
 	public String auctionList(){
 		return ACUTION_LIST;
 	}
+	
 	/*
 	@RequestMapping(method = RequestMethod.POST)
 	public String updateOrSubmit(HttpServletRequest request,
