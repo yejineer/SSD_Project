@@ -11,8 +11,6 @@
 <html lang="en">
 
 <head>
-
-<head>
 <title>Goodsom &mdash; SSD Final Project</title>
 <meta charset="utf-8">
 <meta name="viewport"
@@ -36,7 +34,13 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/style.css">
 
 </head>
-
+<script>
+function createAuction() {
+	
+	auctionForm.submit();
+	alert("경매를 등록합니다.");
+}
+</script>
 <body data-spy="scroll" data-target=".site-navbar-target"
 	data-offset="300">
 
@@ -113,46 +117,45 @@
 			<div class="container">
 				<div class="row" >
 					<div class="col-lg-8 mb-5">
-						<form action="#" method="post">
+						<form id="auctionForm" method="post" action="<c:url value='/auction/detail.do' />">
 						
 							<div class="form-group row">
 								<div class="col-md-12">
-									<label for="name">Title</label> 
-									<input type="text" class="form-control" placeholder="Title">
+									<label for="title">제목</label> 
+									<input type="text" id="auction.title" class="form-control" placeholder="Title">
 								</div>
 							</div>
-							
 							<div class="form-group row">
 								<div class="col-md-12">
-									<label for="name">Image</label> </br>
-                					<input type="file" value="input file" name="image"/>
+									<label for="img">대표 이미지</label> </br>
+                					<input type="file" id="auction.img" value="input file" name="image"/>
               					</div>
               				</div>
 							
 							<div class="form-group row">
 								<div class="col-md-12">
-									<label for="name">Description</label> 
-									<textarea name="" id="" class="form-control"
+									<label for="content">상세 설명</label> 
+									<textarea id="auction.content" class="form-control"
 										placeholder="Write description." cols="30" rows="10"></textarea>
 								</div>
 							</div>
 							
 							<div class="form-group row">
 								<div class="col-md-12">
-									<label for="name">Start price</label> 
+									<label for="startPrice">최소 입찰 금액</label> 
 									<div class="d-flex">
 										<div class="form-group mr-2">
-										<input type="text" class="form-control" id="" name = "" placeholder="Price">
+										<input type="text" class="form-control" id="auction.startPrice" placeholder="Price">
 										</div>
 									</div>
 								</div>
 							</div>
 							
 							<div class="form-group">
-			              	<label for="name">End Date</label>
+			              	<label for="endDate">마감일</label>
 				                <div class="d-flex">
 					    		  <div class="form-group mr-2">
-					                <input type="text" class="form-control" id="" name = "" placeholder="Date">
+					                <input type="text" class="form-control" id="auction.endDate" placeholder="ex) 2020-12-31">
 					              </div>
 			              		</div>
 			              	</div>
@@ -160,7 +163,7 @@
 							
 							<div class="form-group" align="right">
 								<a class="btn btn-primary py-3 px-5" href="<c:url value='/auction/list.do'></c:url>">Cancel</a> &nbsp;
-								<input type="button" value="Save" onClick="" class="btn btn-primary py-3 px-5">
+								<input type="button" value="Save" onClick="createAuction()" class="btn btn-primary py-3 px-5">
 							</div>
 						</form>
 					</div>

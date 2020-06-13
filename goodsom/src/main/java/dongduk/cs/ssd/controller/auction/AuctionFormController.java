@@ -69,7 +69,7 @@ public class AuctionFormController {
 	}
 	
 	
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(value="/detail.do", method = RequestMethod.POST)
 	public String updateOrSubmit(HttpServletRequest request,
 			AuctionForm auctionForm) {
 //		String reqPage = request.getServletPath();

@@ -107,10 +107,10 @@
 			</div>
 		</div>
 		
-		<a class="btn btn-primary py-3 px-5" href="<c:url value='/auction/form.do'></c:url>">경매 등록</a> <br/> <br/>
 		
 		<div class="site-section">
 			<div class="container">
+			<a class="btn btn-primary py-3 px-5" href="<c:url value='/auction/form.do'></c:url>">경매 등록</a> <br/> <br/>
 				<div class="row">
 					<div class="col-lg-4 col-md-6 mb-4">
 						<div class="post-entry-1 h-100">
