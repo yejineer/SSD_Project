@@ -1,16 +1,21 @@
 package dongduk.cs.ssd.dao.mybatis;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
+import dongduk.cs.ssd.domain.Auction;
+import dongduk.cs.ssd.domain.GroupBuy;
+import dongduk.cs.ssd.domain.Order;
 import dongduk.cs.ssd.domain.User;
 import dongduk.cs.ssd.dao.UserDao;
 import dongduk.cs.ssd.dao.mybatis.mapper.UserMapper;
 
 /**
- * @author kimdahyee
- * @since 2020.06.12
+ * @author kimdahyee	/ Seonmi-Hwang
+ * @since 2020.06.12	/ 2020.06.13
  */
 
 @Repository
@@ -39,4 +44,15 @@ public class MybatisUserDao implements UserDao {
 		userMapper.deleteUser(emailId);
 	}
 	
+	public List<Order> getOrderList(int orderId) throws DataAccessException { // 마이페이지 결제 목록 보기
+		return userMapper.getOrderList(orderId);
+	}
+	
+	public List<GroupBuy> getGroupBuyList(int orderId) throws DataAccessException { // 마이페이지 결제 목록 보기
+		return userMapper.getGroupBuyList(orderId);
+	}
+	
+	public List<Auction> getAuctionList(int orderId) throws DataAccessException { // 마이페이지 결제 목록 보기
+		return userMapper.getAuctionList(orderId);
+	}
 }

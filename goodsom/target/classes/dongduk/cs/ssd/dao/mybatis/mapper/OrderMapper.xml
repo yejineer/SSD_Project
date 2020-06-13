@@ -14,13 +14,6 @@
   	userId
   </sql>
   
-  <select id="getOrderList" parameterType="int"
-  		resultType="Order">
-  	SELECT <include refid="BaseColumns" /> 
-  	FROM orders
-  	WHERE userId = #{userId}
-  </select> <!-- OrderList를 가져옴 -->
-  
   <select id="getOrder" parameterType="int"
   		resultType="Order">
   	SELECT <include refid="BaseColumns" /> 

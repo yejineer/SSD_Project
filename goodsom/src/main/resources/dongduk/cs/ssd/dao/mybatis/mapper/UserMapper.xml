@@ -42,4 +42,27 @@
   	WHERE USERID = #{userId}
   </delete>
   
+  <select id="getOrderList" parameterType="int"
+  		resultType="Order">
+  	SELECT orderId, cardBank, cardNo, validDate, cvc,
+  		address1, address2, address3, phone, refundBank, 
+  		refundAccount, totalPrice, orderDate, userId
+  	FROM orders
+  	WHERE userId = #{userId}
+  </select> <!-- user의 OrderList를 가져옴 for 마이페이지 결제 목록 보기 -->
+
+  <select id="getGroupBuyList" parameterType="int"
+  		resultType="GroupBuy">
+  	SELECT groupBuyId, title, img, uploadDate, userId, menuId
+  	FROM groupBuys
+  	WHERE userId = #{userId}
+  </select> <!-- user가 등록한 GroupBuyList를 가져옴 for 마이페이지 공동구매 등록 목록 보기 -->
+  
+    <select id="getAuctionList" parameterType="int"
+  		resultType="Auction">
+  	SELECT auctionId, title, img, uploadDate, userId, menuId
+  	FROM auctions
+  	WHERE userId = #{userId}
+  </select> <!-- user가 등록한 AuctionList를 가져옴 for 마이페이지 경매 등록 목록 보기 -->
+  
 </mapper>

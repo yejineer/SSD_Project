@@ -14,8 +14,6 @@ import dongduk.cs.ssd.domain.Order;
  */
 
 public interface OrderMapper { // xml과 method 이름이 일치해야함!
-	
-	  List<Order> getOrderList(int userId) throws DataAccessException;
 
 	  Order getOrder(int orderId) throws DataAccessException;
 

@@ -1,10 +1,15 @@
 package dongduk.cs.ssd.dao.mybatis.mapper;
 
+import java.util.List;
+
+import dongduk.cs.ssd.domain.Auction;
+import dongduk.cs.ssd.domain.GroupBuy;
+import dongduk.cs.ssd.domain.Order;
 import dongduk.cs.ssd.domain.User;
 
 /**
- * @author kimdahyee
- * @since 2020.06.12
+ * @author kimdahyee 	/ Seonmi-Hwang
+ * @since 2020.06.12	/ 2020.06.13
  */
 
 public interface UserMapper {
@@ -18,4 +23,10 @@ public interface UserMapper {
 	void updateUser(User user);
 
 	void deleteUser(String emailId);
+	
+	List<Order> getOrderList(int userId); // 마이페이지 결제 목록 보기
+	
+	List<GroupBuy> getGroupBuyList(int userId); // 마이페이지 공동구매 등록 목록 보기
+	
+	List<Auction> getAuctionList(int userId); // 마이페이지 경매 등록 목록 보기
 }
