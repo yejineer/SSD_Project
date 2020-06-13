@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 	
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -8,13 +9,11 @@
 	
 
 <!doctype html>
-<html lang="en">
-
-<head>
+<html lang="ko">
 
 <head>
 <title>Goodsom &mdash; SSD Final Project</title>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -77,7 +76,7 @@
 						<nav class="site-navigation text-right ml-auto d-none d-lg-block"
 							role="navigation">
 							<ul class="site-menu main-menu js-clone-nav ml-auto ">
-								<li><a href="/home.do" class="nav-link">Home</a></li>
+								<li><a href="<%=request.getContextPath()%>/home.do" class="nav-link">Home</a></li>
 								<li><a href="<%=request.getContextPath()%>/groupBuy/list.do" class="nav-link">GroupBuy</a></li>
 								<li><a href="<%=request.getContextPath()%>/auction/list.do" class="nav-link"">Auction</a></li>
 								<li><a href="#">Community</a></li>
@@ -93,16 +92,13 @@
 
 		</header>
 
-
 		<div class="site-section-cover">
 			<div class="container">
 				<div
 					class="row align-items-center text-center justify-content-center">
 					<div class="col-lg-6">
 						<h1 class="text-white mb-4">My Page</h1>
-						<p class="lead">Lorem ipsum dolor sit amet, consectetur
-							adipisicing elit maxime nemo placeat dolor est.</p>
-
+						<p class="lead">회원 정보 조회 및 수정, 공동구매 및 경매에 등록한 목록이나 결제한 목록, 스크랩한 목록을 볼 수 있는 페이지입니다.</p>
 					</div>
 				</div>
 			</div>
@@ -112,114 +108,76 @@
 		<div class="site-section">
 			<div class="container">
 				<div class="row">
-					<div class="col-lg-4 col-md-6 mb-4">
-						<div class="post-entry-1 h-100">
-							<a href="single.html"> <img src="<%=request.getContextPath()%>/resources/images/img_1.jpg"
-								alt="Image" class="img-fluid">
-							</a>
-							<div class="post-entry-1-contents">
+				
+				<!-- 구현 시작 -->
+					<!-- Auction일 경우 (menuId는 단독으로 넘겨주기) -->
+					<c:forEach var="order" items="${orderList}" varStatus="status">
+						<div class="col-lg-4 col-md-6 mb-4">
+							<div class="post-entry-1 h-100">
+								<h3>${order.orderId}</h3> <!-- 결제한 공동구매/경매의 이미지를 넣자. -->
+								<div class="post-entry-1-contents">
 
-								<h2>
-									<a href="single.html">Lorem ipsum dolor sit amet</a>
-								</h2>
-								<span class="meta d-inline-block mb-3">July 17, 2019 <span
-									class="mx-2">by</span> <a href="#">Admin</a></span>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-									Dolores eos soluta, dolore harum molestias consectetur.</p>
+									<h2>
+										<a href="order/detail.do">${order.totalPrice}</a>
+									</h2>
+									<span class="meta d-inline-block mb-3">${order.orderDate}
+									</span>
+									<!-- auction에서 얻은 userId로 user를 구하여 nickname 호출  -->
+									<p>${order.phone}</p> <!-- ??? -->
+									<!-- 요약할 방법을 찾아보자. -->
+								</div>
 							</div>
 						</div>
-					</div>
-					<div class="col-lg-4 col-md-6 mb-4">
-						<div class="post-entry-1 h-100">
-							<a href="single.html"> <img src="<%=request.getContextPath()%>/resources/images/img_2.jpg"
-								alt="Image" class="img-fluid">
-							</a>
-							<div class="post-entry-1-contents">
+					</c:forEach>
 
-								<h2>
-									<a href="single.html">Lorem ipsum dolor sit amet</a>
-								</h2>
-								<span class="meta d-inline-block mb-3">July 17, 2019 <span
-									class="mx-2">by</span> <a href="#">Admin</a></span>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-									Dolores eos soluta, dolore harum molestias consectetur.</p>
+
+
+					<c:if test="${menuId eq 1}"> <!-- Auction일 경우 (menuId는 단독으로 넘겨주기) -->
+						<h2>경매</h2>
+						<c:forEach var="auction" items="${auctionList}" varStatus="status">
+							<div class="col-lg-4 col-md-6 mb-4">
+								<div class="post-entry-1 h-100">
+									<a href="auction/detail.do"> <img src="${auction.img}"
+										alt="Image" class="img-fluid">
+									</a>
+									<div class="post-entry-1-contents">
+		
+										<h2>
+											<a href="auction/detail.do">${auction.title}</a>
+										</h2>
+										<span class="meta d-inline-block mb-3">${auction.uploadDate} <span
+											class="mx-2">by</span> <a href="#">${nickname}</a></span> <!-- auction에서 얻은 userId로 user를 구하여 nickname 호출  -->
+										<p>${auction.context}</p> <!-- 요약할 방법을 찾아보자. -->
+									</div>
+								</div>
 							</div>
-						</div>
-					</div>
-
-					<div class="col-lg-4 col-md-6 mb-4">
-						<div class="post-entry-1 h-100">
-							<a href="single.html"> <img src="<%=request.getContextPath()%>/resources/images/img_3.jpg"
-								alt="Image" class="img-fluid">
-							</a>
-							<div class="post-entry-1-contents">
-
-								<h2>
-									<a href="single.html">Lorem ipsum dolor sit amet</a>
-								</h2>
-								<span class="meta d-inline-block mb-3">July 17, 2019 <span
-									class="mx-2">by</span> <a href="#">Admin</a></span>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-									Dolores eos soluta, dolore harum molestias consectetur.</p>
+						</c:forEach>
+					</c:if>
+					
+					<c:if test="${menuId eq 2}"> <!-- GroupBuy일 경우 (menuId는 단독으로 넘겨주기) -->
+						<h2>공동구매</h2>
+						<c:forEach var="groupBuy" items="${groupBuyList}" varStatus="status">
+							<div class="col-lg-4 col-md-6 mb-4">
+								<div class="post-entry-1 h-100">
+									<a href="groupBuy/detail.do"> <img src="${groupBuy.img}"
+										alt="Image" class="img-fluid">
+									</a>
+									<div class="post-entry-1-contents">
+		
+										<h2>
+											<a href="groupBuy/detail.do">${groupBuy.title}</a>
+										</h2>
+										<span class="meta d-inline-block mb-3">${groupBuy.uploadDate} <span
+											class="mx-2">by</span> <a href="#">${nickname}</a></span> <!-- auction에서 얻은 userId로 user를 구하여 nickname 호출  -->
+										<p>${groupBuy.context}</p> <!-- 요약할 방법을 찾아보자. -->
+									</div>
+								</div>
 							</div>
-						</div>
-					</div>
-
-
-					<div class="col-lg-4 col-md-6 mb-4">
-						<div class="post-entry-1 h-100">
-							<a href="single.html"> <img src="<%=request.getContextPath()%>/resources/images/img_1.jpg"
-								alt="Image" class="img-fluid">
-							</a>
-							<div class="post-entry-1-contents">
-
-								<h2>
-									<a href="single.html">Lorem ipsum dolor sit amet</a>
-								</h2>
-								<span class="meta d-inline-block mb-3">July 17, 2019 <span
-									class="mx-2">by</span> <a href="#">Admin</a></span>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-									Dolores eos soluta, dolore harum molestias consectetur.</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-4 col-md-6 mb-4">
-						<div class="post-entry-1 h-100">
-							<a href="single.html"> <img src="<%=request.getContextPath()%>/resources/images/img_2.jpg"
-								alt="Image" class="img-fluid">
-							</a>
-							<div class="post-entry-1-contents">
-
-								<h2>
-									<a href="single.html">Lorem ipsum dolor sit amet</a>
-								</h2>
-								<span class="meta d-inline-block mb-3">July 17, 2019 <span
-									class="mx-2">by</span> <a href="#">Admin</a></span>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-									Dolores eos soluta, dolore harum molestias consectetur.</p>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-lg-4 col-md-6 mb-4">
-						<div class="post-entry-1 h-100">
-							<a href="single.html"> <img src="<%=request.getContextPath()%>/resources/images/img_3.jpg"
-								alt="Image" class="img-fluid">
-							</a>
-							<div class="post-entry-1-contents">
-
-								<h2>
-									<a href="single.html">Lorem ipsum dolor sit amet</a>
-								</h2>
-								<span class="meta d-inline-block mb-3">July 17, 2019 <span
-									class="mx-2">by</span> <a href="#">Admin</a></span>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-									Dolores eos soluta, dolore harum molestias consectetur.</p>
-							</div>
-						</div>
-					</div>
-
-
+						</c:forEach>
+					</c:if>
+					
+				<!-- 구현 끝 -->
+	
 					<div class="col-12 mt-5 text-center">
 						<span class="p-3">1</span> <a href="#" class="p-3">2</a> <a
 							href="#" class="p-3">3</a> <a href="#" class="p-3">4</a>
