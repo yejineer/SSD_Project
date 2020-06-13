@@ -1,9 +1,19 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+	pageEncoding="EUC-KR"%>
+	
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+	
 
 <!doctype html>
-<html lang="ko">
+<html lang="en">
 
 <head>
-<title>Approach &mdash; Website Template by Colorlib</title>
+
+<head>
+<title>Goodsom &mdash; SSD Final Project</title>
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -51,7 +61,7 @@
 
 					<div class="col-3">
 						<div class="site-logo">
-							<a href="index.html" class="font-weight-bold">Approach</a>
+							<a href="<%=request.getContextPath()%>/home.do" class="font-weight-bold">GoodSom</a>
 						</div>
 					</div>
 
@@ -71,7 +81,7 @@
 								<li><a href="<%=request.getContextPath()%>/groupBuy/list.do" class="nav-link">GroupBuy</a></li>
 								<li><a href="<%=request.getContextPath()%>/auction/list.do" class="nav-link"">Auction</a></li>
 								<li><a href="#">Community</a></li>
-								<li><a href="#"><img src="<%=request.getContextPath()%>/resources/images/mypage.jpg" alt="Image" 
+								<li><a href="<%=request.getContextPath()%>/mypage/list.do"><img src="<%=request.getContextPath()%>/resources/images/mypage.jpg" alt="Image" 
 								width="30px" height="20px" class="img-fluid"> ${userSession.user.nickname}</a></li>
 							</ul>
 						</nav>
@@ -89,7 +99,7 @@
 				<div
 					class="row align-items-center text-center justify-content-center">
 					<div class="col-lg-6">
-						<h1 class="text-white mb-4">Our Blog</h1>
+						<h1 class="text-white mb-4">My Page</h1>
 						<p class="lead">Lorem ipsum dolor sit amet, consectetur
 							adipisicing elit maxime nemo placeat dolor est.</p>
 
