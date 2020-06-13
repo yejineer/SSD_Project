@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 	
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -8,7 +8,7 @@
 	
 
 <!doctype html>
-<html lang="en">
+<html lang="ko">
 
 <head>
 <title>Goodsom &mdash; SSD Final Project</title>
@@ -38,7 +38,7 @@
 function createAuction() {
 	
 	auctionForm.submit();
-	alert("°æ¸Å¸¦ µî·ÏÇÕ´Ï´Ù.");
+	alert("ê²½ë§¤ë¥¼ ë“±ë¡í•©ë‹ˆë‹¤.");
 }
 </script>
 <body data-spy="scroll" data-target=".site-navbar-target"
@@ -65,7 +65,7 @@ function createAuction() {
 
 					<div class="col-3">
 						<div class="site-logo">
-							<a href="index.html" class="font-weight-bold">Goodsom</a>
+							<a href="<%=request.getContextPath()%>/home.do" class="font-weight-bold">Goodsom</a>
 						</div>
 					</div>
 
@@ -85,7 +85,7 @@ function createAuction() {
 								<li><a href="<%=request.getContextPath()%>/groupBuy/list.do" class="nav-link">GroupBuy</a></li>
 								<li><a href="<%=request.getContextPath()%>/auction/list.do" class="nav-link"">Auction</a></li>
 								<li><a href="#">Community</a></li>
-								<li><a href="#"><img src="<%=request.getContextPath()%>/resources/images/mypage.jpg" alt="Image" 
+								<li><a href="<%=request.getContextPath()%>/mypage/list.do"><img src="<%=request.getContextPath()%>/resources/images/mypage.jpg" alt="Image" 
 								width="30px" height="20px" class="img-fluid"></a></li>
 							</ul>
 						</nav>
@@ -121,20 +121,20 @@ function createAuction() {
 						
 							<div class="form-group row">
 								<div class="col-md-12">
-									<label for="title">Á¦¸ñ</label> 
+									<label for="title">ì œëª©</label> 
 									<input type="text" id="auction.title" class="form-control" placeholder="Title">
 								</div>
 							</div>
 							<div class="form-group row">
 								<div class="col-md-12">
-									<label for="img">´ëÇ¥ ÀÌ¹ÌÁö</label> </br>
+									<label for="img">ëŒ€í‘œ ì´ë¯¸ì§€</label> </br>
                 					<input type="file" id="auction.img" value="input file" name="image"/>
               					</div>
               				</div>
 							
 							<div class="form-group row">
 								<div class="col-md-12">
-									<label for="content">»ó¼¼ ¼³¸í</label> 
+									<label for="content">ìƒì„¸ ì„¤ëª…</label> 
 									<textarea id="auction.content" class="form-control"
 										placeholder="Write description." cols="30" rows="10"></textarea>
 								</div>
@@ -142,7 +142,7 @@ function createAuction() {
 							
 							<div class="form-group row">
 								<div class="col-md-12">
-									<label for="startPrice">ÃÖ¼Ò ÀÔÂû ±İ¾×</label> 
+									<label for="startPrice">ìµœì†Œ ì…ì°° ê¸ˆì•¡</label> 
 									<div class="d-flex">
 										<div class="form-group mr-2">
 										<input type="text" class="form-control" id="auction.startPrice" placeholder="Price">
@@ -152,7 +152,7 @@ function createAuction() {
 							</div>
 							
 							<div class="form-group">
-			              	<label for="endDate">¸¶°¨ÀÏ</label>
+			              	<label for="endDate">ë§ˆê°ì¼</label>
 				                <div class="d-flex">
 					    		  <div class="form-group mr-2">
 					                <input type="text" class="form-control" id="auction.endDate" placeholder="ex) 2020-12-31">
