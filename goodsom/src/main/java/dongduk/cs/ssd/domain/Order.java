@@ -20,12 +20,30 @@ public class Order {
 	String refundAccount;
 	int userId;
 	List<LineGroupBuy> lineGroupBuys = new ArrayList<LineGroupBuy>();
+	GroupBuy groupBuy;
 	Bid successBidder = new Bid();
+	Auction auction;
 	User user = new User();
 	int totalPrice;
 	Date orderDate;
 	String title; // 공동구매 또는 경매의 제목 for 결제내역 목록보기
 	String img; // 미리보기 사진 for 결제내역 목록보기
+	
+	public GroupBuy getGroupBuy() {
+		return groupBuy;
+	}
+
+	public void setGroupBuy(GroupBuy groupBuy) {
+		this.groupBuy = groupBuy;
+	}
+
+	public Auction getAuction() {
+		return auction;
+	}
+
+	public void setAuction(Auction auction) {
+		this.auction = auction;
+	}
 	
 	public String getTitle() {
 		return title;
@@ -199,24 +217,25 @@ public class Order {
 		// order한 날짜
 		orderDate = new Date();
 		
-		// GroupBuy를 결제하는 경우
-		if (lineGroupBuyCommand != null) {
-			//lineGroupBuys = lineGroupBuyCommand.getLineGroupBuyList();
-			//totalPrice = lineGroupBuyCommand.getTotalPrice();
-		}
-
-		// Auction을 결제하는 경우
-		if (auction != null) {
-			List<Bid> bids = auction.getBids();
-			totalPrice = auction.getMaxPrice();
-			
-			for (Bid bid : bids) {
-				if (bid.getBidPrice() == totalPrice) {
-					successBidder = bid;
-					break;
-				}
-			}
-		}
+		// 아래 사항들은 service에서 해주면 안되나?
+//		// GroupBuy를 결제하는 경우
+//		if (lineGroupBuyCommand != null) {
+//			//lineGroupBuys = lineGroupBuyCommand.getLineGroupBuyList();
+//			//totalPrice = lineGroupBuyCommand.getTotalPrice();
+//		}
+//
+//		// Auction을 결제하는 경우
+//		if (auction != null) {
+//			List<Bid> bids = auction.getBids();
+//			totalPrice = auction.getMaxPrice();
+//			
+//			for (Bid bid : bids) {
+//				if (bid.getBidPrice() == totalPrice) {
+//					successBidder = bid;
+//					break;
+//				}
+//			}
+//		}
 
 	}
 

@@ -22,43 +22,66 @@ import dongduk.cs.ssd.service.OrderService;
  */
 
 @Service
-public class OrderServiceImpl {//implements OrderService {
+public class OrderServiceImpl implements OrderService {
 
-//	@Autowired
-//	private OrderDao orderDao;
-//	@Autowired
-//	private GroupBuyDao groupBuyDao;
-//	@Autowired
-//	private AuctionDao auctionDao;
-//	@Autowired
-//	private UserDao userDao;
-//
-//	public User getUser(String emailId) {
-//		return userDao.getUserByEmailId(emailId);
-//	}
-//
-//	public GroupBuy getGroupBuy(int groupBuyId) {
-//		return groupBuyDao.getGroupBuy(groupBuyId);
-//	}
-//
-//	public Auction getAuction(int auctionId) {
-//		return auctionDao.getAuction(auctionId);
-//	}
-//
-//	public Order getOrder(int orderId) {
-//		return orderDao.getOrder(orderId);
-//	}
-//
-//	public void createOrder(Order order) {
-//		orderDao.createOrder(order);
-//	}
-//
-//	public List<Order> getOrderList(int userId) {
-//		return orderDao.getOrderList(userId);
-//	}
-//	
-//	public LineGroupBuy getLineGroupBuy(int orderId) {
-//		return orderDao.getLineGroupBuy(orderId);
-//	}
+	@Autowired
+	private OrderDao orderDao;
+	@Autowired
+	private GroupBuyDao groupBuyDao;
+	@Autowired
+	private AuctionDao auctionDao;
+	@Autowired
+	private UserDao userDao;
 
+	@Override
+	public User getUser(String emailId) {
+		return userDao.getUserByEmailId(emailId);
+	}
+
+	@Override
+	public Order getOrder(int orderId) {
+		return orderDao.getOrder(orderId);
+	}
+
+	@Override
+	public void createOrder(Order order) {
+		orderDao.createOrder(order);
+	}
+	
+	@Override
+	public List<LineGroupBuy> getLineGroupBuys(int orderId) {
+		return orderDao.getLineGroupBuys(orderId);
+	}
+	
+	
+	/* 추가 메소드 */
+	
+	public GroupBuy getGroupBuy(int orderId) {
+		int groupBuyId = orderDao.getGroupBuyId(orderId);
+		return groupBuyDao.getGroupBuy(groupBuyId);
+	}
+	
+	public Auction getAuction(int orderId) {
+		int auctionId = orderDao.getAuctionId(orderId);
+		return auctionDao.getAuction(auctionId);
+	}
+	
+	
+	/* Business Logic (?) */
+	
+	public List<Order> setInfo(List<Order> orderList) {
+		if (orderList == null) {
+			return null;
+		}
+		
+		for (Order order : orderList) {
+			int orderId = order.getOrderId();
+			order.setGroupBuy(getGroupBuy(orderId));
+			order.setAuction(getAuction(orderId));
+		}
+		return orderList;
+	}
+	
+
+	
 }
