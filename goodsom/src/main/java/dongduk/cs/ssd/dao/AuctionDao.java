@@ -12,12 +12,17 @@ import dongduk.cs.ssd.domain.Bid;
  * @author Hyekyung Kim
  * @since 2020.05.05
  */
+/**
+ * @author Yejin Lee
+ * @since 2020.06.12
+ */
 
 public interface AuctionDao {
 	Auction getAuction(int auctionId) throws DataAccessException;
 	
+//	Return auctionID
 	int createAuction(Auction auction) throws DataAccessException;
-	
+//	Return auctionID
 	int updateAuction(Auction auction) throws DataAccessException;
 	
 	void deleteAuction(int auctionId) throws DataAccessException;
@@ -26,7 +31,7 @@ public interface AuctionDao {
 	
 	List<Auction> getAuctionListByKeyword(String keyword) throws DataAccessException;
 	
-	List<Bid> getBidByAuctionId(int auctionId) throws DataAccessException;
+//	List<Bid> getBidByAuctionId(int auctionId) throws DataAccessException;
 	
-	boolean isAuctionClosed(int auctionId, Date endDate) throws DataAccessException;
+	boolean isAuctionClosed(int auctionId, Date currentTime) throws DataAccessException;
 }
