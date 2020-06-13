@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="dao.mybatis.mapper.GroupBuy">
+<mapper namespace="dongduk.cs.ssd.dao.mybatis.mapper.GroupBuyMapper">
   <cache />
   
-  <select id="getGroupBuy" resultType="GroupBuy">
+  <select id="getGroupBuy" resultType="GroupBuy" parameterType="java.lang.Integer">
     SELECT * FROM GROUPBUYS
     WHERE AUCTIONID = #{groupBuyId}
   </select>
   
   <insert id="createGroupBuy" parameterType="GroupBuy">
   	INSERT INTO GROUPBUYS
-	VALUES (#{groupBuyId}, #{title}, #{content}, #{img}, ${minNo}, #{uploadDate}, 
+	VALUES (#{groupBuyId}, #{title}, #{content}, #{img}, #{minNo}, #{uploadDate}, 
 			#{endDate}, #{count}, #{state}, #{rate}, #{participants}, 2, #{catId})
   </insert>
   

@@ -22,8 +22,9 @@ import dongduk.cs.ssd.service.GroupBuyService;
  */
 
 
-/*
+
 @Controller
+/*
 @SessionAttributes("groupBuySession")
 @RequestMapping({"/groupBuy/create.do", "/groupBuy/update.do"})
 */
@@ -34,10 +35,10 @@ public class GroupBuyFormController {
 	private static final String GROUPBUY_FORM = "groupBuy/groupBuy_form";
 	private static final String GROUPBUY_DETAIL = "groupBuy/groupBuy_detail";
 	
-	/*
+	
 	@Autowired
 	private GroupBuyService groupBuyService;
-	
+	/*
 	private final String formViewName = "groupBuy/groupBuy_form";
 	private final String detailViewName = "groupBuy/groupBuy_detail";
 

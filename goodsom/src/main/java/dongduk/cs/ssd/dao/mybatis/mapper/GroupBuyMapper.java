@@ -1,12 +1,17 @@
-package dongduk.cs.ssd.dao;
+package dongduk.cs.ssd.dao.mybatis.mapper;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.dao.DataAccessException;
 
 import dongduk.cs.ssd.domain.GroupBuy;
 
-public interface GroupBuyDao {
+/**
+ * @author hk
+ * @since 2020.06.13
+ */
+public interface GroupBuyMapper { // GroupBuyMapper.xml에서 구현한 method 이름과 일치해야함!
 	
 	GroupBuy getGroupBuy(int groupBuyId) throws DataAccessException;
 
@@ -15,8 +20,5 @@ public interface GroupBuyDao {
 	void updateGroupBuy(GroupBuy groupBuy) throws DataAccessException;
 	
 	void deleteGroupBuy(int groupBuyId) throws DataAccessException;
-
-//	List<GroupBuy> getGroupBuyList() throws DataAccessException;
-//	
-//	List<GroupBuy> getGroupBuyListByKeyword(String keyword) throws DataAccessException;
+	
 }

@@ -16,11 +16,12 @@ import dongduk.cs.ssd.service.GroupBuyService;
 
 @Service
 public class GroupBuyServiceImpl implements GroupBuyService {
-	/*
+	
 	@Autowired
 	private GroupBuyDao groupBuyDao;
 	
 	public GroupBuy getGroupBuy(int groupBuyId) {
+		System.out.println("here's serviceImpl");
 		return groupBuyDao.getGroupBuy(groupBuyId);
 	}
 	
@@ -35,7 +36,7 @@ public class GroupBuyServiceImpl implements GroupBuyService {
 	public void deleteGroupBuy(int groupBuyId) {
 		groupBuyDao.deleteGroupBuy(groupBuyId);
 	}
-	
+	/*
 	public List<GroupBuy> getGroupBuyList() {
 		return groupBuyDao.getGroupBuyList();
 	}
