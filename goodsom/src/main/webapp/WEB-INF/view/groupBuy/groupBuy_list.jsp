@@ -61,7 +61,7 @@
 
 					<div class="col-3">
 						<div class="site-logo">
-							<a href="index.html" class="font-weight-bold">Goodsom</a>
+							<a href="<%=request.getContextPath()%>/home.do" class="font-weight-bold">Goodsom</a>
 						</div>
 					</div>
 
@@ -81,7 +81,7 @@
 								<li><a href="<%=request.getContextPath()%>/groupBuy/list.do" class="nav-link">GroupBuy</a></li>
 								<li><a href="<%=request.getContextPath()%>/auction/list.do" class="nav-link"">Auction</a></li>
 								<li><a href="#">Community</a></li>
-								<li><a href="#"><img src="<%=request.getContextPath()%>/resources/images/mypage.jpg" alt="Image" 
+								<li><a href="<%=request.getContextPath()%>/mypage/list.do"><img src="<%=request.getContextPath()%>/resources/images/mypage.jpg" alt="Image" 
 								width="30px" height="20px" class="img-fluid"> ${userSession.user.nickname}</a></li>
 							</ul>
 						</nav>

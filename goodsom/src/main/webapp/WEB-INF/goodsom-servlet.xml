@@ -30,6 +30,7 @@
 	<mvc:view-controller path="/groupBuy/list.do" view-name="groupBuy/groupBuy_list"/>
 	<mvc:view-controller path="/groupBuy/form.do" view-name="groupBuy/groupBuy_form"/>
 	<mvc:view-controller path="/groupBuy/detail.do" view-name="groupBuy/groupBuy_detail"/>
+	<mvc:view-controller path="/mypage/list.do" view-name="user/mypage_list"/>
 	
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
