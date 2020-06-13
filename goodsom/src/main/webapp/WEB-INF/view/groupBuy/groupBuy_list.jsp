@@ -99,7 +99,7 @@
 				<div
 					class="row align-items-center text-center justify-content-center">
 					<div class="col-lg-6">
-						<h1 class="text-white mb-4">Our Blog</h1>
+						<h1 class="text-white mb-4">GroupBuy</h1>
 						<p class="lead">Lorem ipsum dolor sit amet, consectetur
 							adipisicing elit maxime nemo placeat dolor est.</p>
 
@@ -107,11 +107,12 @@
 				</div>
 			</div>
 		</div>
-
-		<a class="btn btn-primary py-3 px-5" href="<c:url value='/groupBuy/form.do'></c:url>">공동구매 등록</a>
 				
 		<div class="site-section">
 			<div class="container">
+			
+			<a class="btn btn-primary py-3 px-5" href="<c:url value='/groupBuy/form.do'></c:url>">공동구매 등록</a> <br/><br/>
+			
 				<div class="row">
 					<div class="col-lg-4 col-md-6 mb-4">
 						<div class="post-entry-1 h-100">
@@ -121,7 +122,7 @@
 							<div class="post-entry-1-contents">
 
 								<h2>
-									<a href="single.html">Lorem ipsum dolor sit amet</a>
+									<a href="/groupbuy/detail.do">Lorem ipsum dolor sit amet</a>
 								</h2>
 								<span class="meta d-inline-block mb-3">July 17, 2019 <span
 									class="mx-2">by</span> <a href="#">Admin</a></span>

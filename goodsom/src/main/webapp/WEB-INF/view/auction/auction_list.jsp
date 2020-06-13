@@ -98,7 +98,7 @@
 				<div
 					class="row align-items-center text-center justify-content-center">
 					<div class="col-lg-6">
-						<h1 class="text-white mb-4">Our Blog</h1>
+						<h1 class="text-white mb-4">Auction</h1>
 						<p class="lead">Lorem ipsum dolor sit amet, consectetur
 							adipisicing elit maxime nemo placeat dolor est.</p>
 
@@ -106,8 +106,8 @@
 				</div>
 			</div>
 		</div>
-
-		<a class="btn btn-primary py-3 px-5" href="<c:url value='/auction/form.do'></c:url>">경매 등록</a>
+		
+		<a class="btn btn-primary py-3 px-5" href="<c:url value='/auction/form.do'></c:url>">경매 등록</a> <br/> <br/>
 		
 		<div class="site-section">
 			<div class="container">

@@ -98,7 +98,7 @@
       <div class="container">
         <div class="row align-items-center text-center justify-content-center">
           <div class="col-lg-6">
-            <h1 class="text-white mb-4">About Us</h1>
+            <h1 class="text-white mb-4">About GroupBuy</h1>
             <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit maxime nemo placeat dolor est.</p>
             
           </div>
