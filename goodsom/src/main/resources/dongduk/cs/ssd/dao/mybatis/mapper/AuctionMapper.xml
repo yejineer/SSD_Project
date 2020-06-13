@@ -13,14 +13,14 @@
   </select>
   
   <insert id="createAuction" parameterType="Auction">
-  	INSERT INTO AUCTIONS
+  	INSERT INTO auctions
 	VALUES (#{auctionId}, #{title}, #{content}, #{img}, #{startPrice}, 
 			#{uploadDate}, #{endDate}, #{count}, #{maxPrice}, #{state}, 1);
   </insert>
   
   <update id="updateAuction" parameterType="Auction">
-   	UPDATE AUCTIONS
-    SET TITLE=#{title}, CONTENT=#{content}, IMG=#{img}, STARTPRICE=#{startPrice}, 
+   	UPDATE auctions
+    SET title=#{title}, content=#{content}, img=#{img}, startPrice=#{startPrice}, 
  		UPLOADDATE=#{uploadDate}, ENDDATE=#{endDate}, COUNT=#{count}, MAXPRICE=#{maxPrice}, STATE=#{state}
   	WHERE  AUCTIONID=#{auctionId};
   </update>
@@ -33,15 +33,14 @@
   
   <!-- Get all auctions -->
   <select id="getAuctionList" resultType="Auction">
-    SELECT * FROM AUCTIONS
+    SELECT * FROM auctions
   </select>
   
   <!-- Search auctions by Keyword -->
   <select id="getAuctionListByKeyword" resultType="Auction">
   	<bind name="pattern" value="'%' + _parameter + '%'" />
 	  	SELECT * 
-	  	FROM AUCTIONS
+	  	FROM auctions
 	  	WHERE title LIKE #{pattern}
   </select>
-  
 </mapper>

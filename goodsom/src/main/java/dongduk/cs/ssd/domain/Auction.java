@@ -14,10 +14,9 @@ public class Auction {
 	Date endDate;
 	int count;
 	int maxPrice;
-	int state;
+	String state;
 	int menuId;
 	int userId;
-	
 
 	List<Bid> bids = new ArrayList<Bid>();
 	
@@ -120,11 +119,11 @@ public class Auction {
 		this.maxPrice = max;
 	}
 
-	public int getState() {
+	public String getState() {
 		return state;
 	}
 
-	public void setState(int state) {
+	public void setState(String state) {
 		this.state = state;
 	}
 	

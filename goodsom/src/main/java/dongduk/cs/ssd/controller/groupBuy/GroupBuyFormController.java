@@ -1,5 +1,9 @@
 package dongduk.cs.ssd.controller.groupBuy;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -84,7 +88,18 @@ public class GroupBuyFormController {
 //			return GROUPBUY_FORM;
 //		} else { // show after create
 			System.out.println("groupBuyController");
-			//groupBuyService.createGroupBuy(groupBuyForm.getGroupBuy());
+			Calendar calendar = Calendar.getInstance();
+            java.util.Date date = calendar.getTime();
+            System.out.println(date);
+            
+			groupBuyForm.getGroupBuy().setUploadDate(date);
+			groupBuyForm.getGroupBuy().setCount(0);
+			groupBuyForm.getGroupBuy().setState(0);
+			groupBuyForm.getGroupBuy().setRate(0);
+			groupBuyForm.getGroupBuy().setParticipants(0);
+			groupBuyForm.getGroupBuy().setMenuId(2);
+			
+			groupBuyService.createGroupBuy(groupBuyForm.getGroupBuy());
 			return GROUPBUY_DETAIL;
 		//}
 	}

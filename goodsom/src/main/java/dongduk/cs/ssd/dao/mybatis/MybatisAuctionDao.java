@@ -19,6 +19,9 @@ import dongduk.cs.ssd.domain.Bid;
 @Repository
 public class MybatisAuctionDao implements AuctionDao {
 
+	private static final String proceeding = "proceeding";
+	private static final String closed = "closed";
+	
 	protected AuctionMapper auctionMapper;
 
 	@Override
@@ -28,14 +31,11 @@ public class MybatisAuctionDao implements AuctionDao {
 
 	@Override
 	public int createAuction(Auction auction) throws DataAccessException {
-//		ReturnType : int (auctionId) 주는것이 어떨까? 생성하고 상세보기 보여주니까
 		return auctionMapper.createAuction(auction);
-		
 	}
 
 	@Override
 	public int updateAuction(Auction auction) throws DataAccessException {
-//		ReturnType : int (auctionId) 주는것이 어떨까? 수정하고 상세보기 보여주니까
 		return auctionMapper.updateAuction(auction);
 	}
 
@@ -54,16 +54,21 @@ public class MybatisAuctionDao implements AuctionDao {
 		return auctionMapper.getAuctionListByKeyword(keyword);
 	}
 
-	@Override
-	public List<Bid> getBidByAuctionId(int auctionId) throws DataAccessException {
-		// TODO Auto-generated method stub
-		return null;
-	}
+//	@Override
+//	public List<Bid> getBidByAuctionId(int auctionId) throws DataAccessException {
+//		return null;
+//	}
 
 	@Override
-	public boolean isAuctionClosed(int auctionId, Date endDate) throws DataAccessException {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean isAuctionClosed(int auctionId, Date currentTime) throws DataAccessException {
+		Auction auction = auctionMapper.getAuction(auctionId);
+		if (auction.getEndDate().compareTo(currentTime) == 0) {
+			auction.setState(closed);
+			updateAuction(auction);
+			return true;
+		}
+		else
+			return false;
 	}
 	
 }

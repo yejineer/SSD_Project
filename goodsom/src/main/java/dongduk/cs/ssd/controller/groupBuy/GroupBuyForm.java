@@ -30,7 +30,7 @@ public class GroupBuyForm implements Serializable {
 	}
 	
 	public GroupBuy getGroupBuy() {
-		System.out.println("GroupBuyForm");
+		System.out.println("groupBuy 객체: " + groupBuy.toString());
 		return groupBuy;
 	}
 	/*
