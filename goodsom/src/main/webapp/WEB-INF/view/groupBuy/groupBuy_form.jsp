@@ -113,7 +113,6 @@ function createGroupBuy() {
 			</div>
 		</div>
 
-
 		<!-- start form -->
 		<div class="site-section bg-left-half">
 			<div class="container">

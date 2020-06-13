@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import dongduk.cs.ssd.controller.user.UserSession;
 import dongduk.cs.ssd.service.GroupBuyService;
 
 /**
@@ -81,6 +83,11 @@ public class GroupBuyFormController {
 	@RequestMapping(value="/detail.do", method={RequestMethod.GET, RequestMethod.POST})
 	public String updateOrSubmit(HttpServletRequest request,
 								@ModelAttribute("groupBuyForm") GroupBuyForm groupBuyForm) {
+		
+		HttpSession session = request.getSession();
+		UserSession user  = (UserSession)session.getAttribute("userSession");
+		int userId = user.getUser().getUserId();
+		
 //		String reqPage = request.getServletPath();
 //		
 //		if (reqPage.trim().equals("groupBuy_form")) { // update
@@ -93,11 +100,7 @@ public class GroupBuyFormController {
             System.out.println(date);
             
 			groupBuyForm.getGroupBuy().setUploadDate(date);
-			groupBuyForm.getGroupBuy().setCount(0);
-			groupBuyForm.getGroupBuy().setState(0);
-			groupBuyForm.getGroupBuy().setRate(0);
-			groupBuyForm.getGroupBuy().setParticipants(0);
-			groupBuyForm.getGroupBuy().setMenuId(2);
+			groupBuyForm.getGroupBuy().setUserId(userId);
 			
 			groupBuyService.createGroupBuy(groupBuyForm.getGroupBuy());
 			return GROUPBUY_DETAIL;

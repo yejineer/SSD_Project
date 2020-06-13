@@ -11,9 +11,9 @@
   
   <insert id="createGroupBuy" parameterType="GroupBuy">
   	INSERT INTO GROUPBUYS (GROUPBUYID, TITLE, CONTENT, IMG, MINNO, UPLOADDATE, 
-  							ENDDATE, COUNT, STATE, RATE, PARTICIPANTS, MENUID, CATID, USERID)
+  			ENDDATE, COUNT, STATE, RATE, PARTICIPANTS, MENUID, CATID, USERID)
 	VALUES (#{groupBuyId}, #{title}, #{content}, #{img}, #{minNo}, #{uploadDate}, 
-			#{endDate}, #{count}, #{state}, #{rate}, #{participants}, #{menuId}, #{catId}, 1)
+			#{endDate}, 0, 'proceeding', 0, 0, 2, #{catId}, #{userId})
   </insert>
   
   <update id="updateGroupBuy" parameterType="GroupBuy">
