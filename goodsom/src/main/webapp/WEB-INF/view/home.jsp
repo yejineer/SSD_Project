@@ -82,7 +82,7 @@
 								<li><a href="<%=request.getContextPath()%>/auction/list.do" class="nav-link">Auction</a></li>
 								<li><a href="#">Community</a></li>
 								<li><a href="#"><img src="<%=request.getContextPath()%>/resources/images/mypage.jpg" alt="Image" 
-								width="30px" height="20px" class="img-fluid"></a></li>
+								width="30px" height="20px" class="img-fluid"> ${userSession.user.nickname}</a></li>
 							</ul>
 						</nav>
 					</div>
