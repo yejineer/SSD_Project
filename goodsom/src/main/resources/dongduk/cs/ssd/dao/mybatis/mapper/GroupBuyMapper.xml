@@ -10,15 +10,16 @@
   </select>
   
   <insert id="createGroupBuy" parameterType="GroupBuy">
-  	INSERT INTO GROUPBUYS
-	VALUES (#{groupBuyId}, #{title}, #{content}, #{img}, #{minNo}, to_char(sysdate,'yyyy-mm-dd'), 
-			#{endDate}, 0, 0, 0, 0, 2, #{catId})
+  	INSERT INTO GROUPBUYS (GROUPBUYID, TITLE, CONTENT, IMG, MINNO, UPLOADDATE, 
+  							ENDDATE, COUNT, STATE, RATE, PARTICIPANTS, MENUID, CATID, USERID)
+	VALUES (#{groupBuyId}, #{title}, #{content}, #{img}, #{minNo}, #{uploadDate}, 
+			#{endDate}, #{count}, #{state}, #{rate}, #{participants}, #{menuId}, #{catId}, 1)
   </insert>
   
   <update id="updateGroupBuy" parameterType="GroupBuy">
    	UPDATE GROUPBUYS
     SET TITLE=#{title}, CONTENT=#{content}, IMG=#{img}, MINNO=#{minNo}, UPLOADDATE=to_char(sysdate,'yyyy-mm-dd'), 
-    	ENDDATE=#{endDate}, COUNT=#{count}, STATE=#{state}, RATE=#{rate}, PARTICIPANTS=#{state}, CATID=#{catId}
+    	ENDDATE=#{endDate}, COUNT=#{count}, STATE=#{state}, RATE=#{rate}, PARTICIPANTS=#{participants}, CATID=#{catId}
   	WHERE  GROUPBUYID=#{groupBuyId}
   </update>
    

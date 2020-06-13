@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class GroupBuy {
 	int groupBuyId;
 	String title;
@@ -11,8 +13,15 @@ public class GroupBuy {
 	String img;
 	int minNo;
 	String[] options;
+	
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	Date uploadDate;
+	
+
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	Date endDate;
+	
+	
 	int count;
 	int state;
 	int rate;
@@ -166,5 +175,9 @@ public class GroupBuy {
 	public GroupBuy() {
 	}
 
+	public String toString() {
+		return "groupBuyId: " + groupBuyId + ", title: " + title + ", content: " + content + ", img: " + img 
+				+ ", minNo: " + minNo + ", uploadDate: " + uploadDate + ", endDate: " + endDate + ", catId: " + catId;
+	}
 
 }
