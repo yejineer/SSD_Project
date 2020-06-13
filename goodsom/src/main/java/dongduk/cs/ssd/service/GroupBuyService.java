@@ -9,7 +9,7 @@ import dongduk.cs.ssd.domain.GroupBuy;
  */
 
 public interface GroupBuyService {
-	/*
+	
 	public GroupBuy getGroupBuy(int groupBuyId);
 	
 	public void createGroupBuy(GroupBuy groupBuy);
@@ -17,7 +17,7 @@ public interface GroupBuyService {
 	public void updateGroupBuy(GroupBuy groupBuy);
 	
 	public void deleteGroupBuy(int groupBuyId);
-	
+	/*
 	public List<GroupBuy> getGroupBuyList();
 	
 	public List<GroupBuy> getGroupBuyListByKeyword(String keyword);

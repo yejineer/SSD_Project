@@ -1,14 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+	pageEncoding="EUC-KR"%>
+	
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+	
+
 <!doctype html>
 <html lang="en">
 
 <head>
-<title>Approach &mdash; Website Template by Colorlib</title>
+
+<head>
+<title>Goodsom &mdash; SSD Final Project</title>
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -56,7 +61,7 @@
 
 					<div class="col-3">
 						<div class="site-logo">
-							<a href="index.html" class="font-weight-bold">Approach</a>
+							<a href="index.html" class="font-weight-bold">Goodsom</a>
 						</div>
 					</div>
 
@@ -72,12 +77,12 @@
 						<nav class="site-navigation text-right ml-auto d-none d-lg-block"
 							role="navigation">
 							<ul class="site-menu main-menu js-clone-nav ml-auto ">
-								<li><a href="index.html" class="nav-link">Home</a></li>
-								<li><a href="portfolio.html" class="nav-link">Portfolio</a></li>
-								<li><a href="about.html" class="nav-link">About</a></li>
-								<li><a href="services.html" class="nav-link">Services</a></li>
-								<li class="active"><a href="blog.html" class="nav-link">Blog</a></li>
-								<li><a href="contact.html" class="nav-link">Contact</a></li>
+								<li><a href="<%=request.getContextPath()%>/home.do" class="nav-link">Home</a></li>
+								<li><a href="<%=request.getContextPath()%>/groupBuy/list.do" class="nav-link">GroupBuy</a></li>
+								<li><a href="<%=request.getContextPath()%>/auction/list.do" class="nav-link"">Auction</a></li>
+								<li><a href="#">Community</a></li>
+								<li><a href="#"><img src="<%=request.getContextPath()%>/resources/images/mypage.jpg" alt="Image" 
+								width="30px" height="20px" class="img-fluid"></a></li>
 							</ul>
 						</nav>
 					</div>
@@ -87,14 +92,13 @@
 			</div>
 
 		</header>
-
-
+		
 		<div class="site-section-cover">
 			<div class="container">
 				<div
 					class="row align-items-center text-center justify-content-center">
 					<div class="col-lg-6">
-						<h1 class="text-white mb-4">Our Blog</h1>
+						<h1 class="text-white mb-4">Auction</h1>
 						<p class="lead">Lorem ipsum dolor sit amet, consectetur
 							adipisicing elit maxime nemo placeat dolor est.</p>
 
@@ -102,8 +106,9 @@
 				</div>
 			</div>
 		</div>
-
-
+		
+		<a class="btn btn-primary py-3 px-5" href="<c:url value='/auction/form.do'></c:url>">경매 등록</a> <br/> <br/>
+		
 		<div class="site-section">
 			<div class="container">
 				<div class="row">

@@ -1,94 +1,104 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
-
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+	pageEncoding="EUC-KR"%>
+	
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-    
+	
+
 <!doctype html>
 <html lang="en">
 
-  <head>
-    <title>Approach &mdash; Website Template by Colorlib</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<head>
 
-    <link href="https://fonts.googleapis.com/css?family=Poppins:400,900|Source+Serif+Pro&display=swap" rel="stylesheet">
+<head>
+<title>Goodsom &mdash; SSD Final Project</title>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="fonts/icomoon/style.css">
+<link
+	href="https://fonts.googleapis.com/css?family=Poppins:400,900|Source+Serif+Pro&display=swap"
+	rel="stylesheet">
 
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
-    <link rel="stylesheet" href="css/jquery.fancybox.min.css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
-    <link rel="stylesheet" href="css/aos.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/fonts/icomoon/style.css">
 
-    <!-- MAIN CSS -->
-    <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/bootstrap.min.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/bootstrap-datepicker.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/jquery.fancybox.min.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/owl.carousel.min.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/owl.theme.default.min.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/fonts/flaticon/font/flaticon.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/aos.css">
 
-  </head>
+<!-- MAIN CSS -->
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/style.css">
 
-  <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+</head>
 
-    
-    <div class="site-wrap" id="home-section">
-
-      <div class="site-mobile-menu site-navbar-target">
-        <div class="site-mobile-menu-header">
-          <div class="site-mobile-menu-close mt-3">
-            <span class="icon-close2 js-menu-toggle"></span>
-          </div>
-        </div>
-        <div class="site-mobile-menu-body"></div>
-      </div>
+<body data-spy="scroll" data-target=".site-navbar-target"
+	data-offset="300">
 
 
+	<div class="site-wrap" id="home-section">
 
-      <header class="site-navbar site-navbar-target" role="banner">
+		<div class="site-mobile-menu site-navbar-target">
+			<div class="site-mobile-menu-header">
+				<div class="site-mobile-menu-close mt-3">
+					<span class="icon-close2 js-menu-toggle"></span>
+				</div>
+			</div>
+			<div class="site-mobile-menu-body"></div>
+		</div>
 
-        <div class="container">
-          <div class="row align-items-center position-relative">
 
-            <div class="col-3">
-              <div class="site-logo">
-                <a href="index.html" class="font-weight-bold">Approach</a>
-              </div>
-            </div>
 
-            <div class="col-9  text-right">
-              
+		<header class="site-navbar site-navbar-target" role="banner">
 
-              <span class="d-inline-block d-lg-none"><a href="#" class="text-primary site-menu-toggle js-menu-toggle py-5"><span class="icon-menu h3 text-primary"></span></a></span>
+			<div class="container">
+				<div class="row align-items-center position-relative">
 
-              
+					<div class="col-3">
+						<div class="site-logo">
+							<a href="index.html" class="font-weight-bold">Goodsom</a>
+						</div>
+					</div>
 
-              <nav class="site-navigation text-right ml-auto d-none d-lg-block" role="navigation">
-                <ul class="site-menu main-menu js-clone-nav ml-auto ">
-                  <li><a href="index.html" class="nav-link">Home</a></li>
-                  <li><a href="portfolio.html" class="nav-link">Portfolio</a></li>
-                  <li class="active"><a href="about.html" class="nav-link">About</a></li>
-                  <li><a href="services.html" class="nav-link">Services</a></li>
-                  <li><a href="blog.html" class="nav-link">Blog</a></li>
-                  <li><a href="contact.html" class="nav-link">Contact</a></li>
-                </ul>
-              </nav>
-            </div>
+					<div class="col-9  text-right">
 
-            
-          </div>
-        </div>
 
-      </header>
+						<span class="d-inline-block d-lg-none"><a href="#"
+							class="text-primary site-menu-toggle js-menu-toggle py-5"><span
+								class="icon-menu h3 text-primary"></span></a></span>
+
+
+
+						<nav class="site-navigation text-right ml-auto d-none d-lg-block"
+							role="navigation">
+							<ul class="site-menu main-menu js-clone-nav ml-auto ">
+								<li><a href="<%=request.getContextPath()%>/home.do" class="nav-link">Home</a></li>
+								<li><a href="<%=request.getContextPath()%>/groupBuy/list.do" class="nav-link">GroupBuy</a></li>
+								<li><a href="<%=request.getContextPath()%>/auction/list.do" class="nav-link"">Auction</a></li>
+								<li><a href="#">Community</a></li>
+								<li><a href="#"><img src="<%=request.getContextPath()%>/resources/images/mypage.jpg" alt="Image" 
+								width="30px" height="20px" class="img-fluid"></a></li>
+							</ul>
+						</nav>
+					</div>
+
+
+				</div>
+			</div>
+
+		</header>
 
     
     <div class="site-section-cover">
       <div class="container">
         <div class="row align-items-center text-center justify-content-center">
           <div class="col-lg-6">
-            <h1 class="text-white mb-4">About Us</h1>
+            <h1 class="text-white mb-4">About GroupBuy</h1>
             <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit maxime nemo placeat dolor est.</p>
             
           </div>

@@ -18,12 +18,30 @@ public class Order {
 	String phone;
 	String refundBank;
 	String refundAccount;
-	Date orderDate;
 	int userId;
 	List<LineGroupBuy> lineGroupBuys = new ArrayList<LineGroupBuy>();
 	Bid successBidder = new Bid();
 	User user = new User();
 	int totalPrice;
+	Date orderDate;
+	String title; // 공동구매 또는 경매의 제목 for 결제내역 목록보기
+	String img; // 미리보기 사진 for 결제내역 목록보기
+	
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
+	}
 	
 	public int getTotalPrice() {
 		return totalPrice;

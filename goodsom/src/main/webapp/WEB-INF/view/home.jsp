@@ -11,7 +11,9 @@
 <html lang="en">
 
 <head>
-<title>Goodsom &mdash; 동덕여대 굿즈 상품</title>
+
+<head>
+<title>Goodsom &mdash; SSD Final Project</title>
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -35,7 +37,8 @@
 
 </head>
 
-<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+<body data-spy="scroll" data-target=".site-navbar-target"
+	data-offset="300">
 
 
 	<div class="site-wrap" id="home-section">
@@ -75,10 +78,11 @@
 							role="navigation">
 							<ul class="site-menu main-menu js-clone-nav ml-auto ">
 								<li><a href="<%=request.getContextPath()%>/home.do" class="nav-link">Home</a></li>
-								<li><a href="<%=request.getContextPath()%>/groupBuy/list.do"  class="nav-link">GroupBuy</a></li>
-								<li><a href="<%=request.getContextPath()%>/auction/list.do"  class="nav-link">Auction</a></li>
+								<li><a href="<%=request.getContextPath()%>/groupBuy/list.do" class="nav-link">GroupBuy</a></li>
+								<li><a href="<%=request.getContextPath()%>/auction/list.do" class="nav-link">Auction</a></li>
 								<li><a href="#">Community</a></li>
-								<!-- 로그인 회원 이름 출력 -->
+								<li><a href="#"><img src="<%=request.getContextPath()%>/resources/images/mypage.jpg" alt="Image" 
+								width="30px" height="20px" class="img-fluid"></a></li>
 							</ul>
 						</nav>
 					</div>
@@ -98,7 +102,7 @@
 						<h1 class="text-white mb-4">Don’t worry if it doesn’t work right. If everything did, you’d be out of a job.</h1>
 						<p class="lead">올바로 동작하지 않더라도 걱정말아라. 모든 것이 그랬다면, 넌 직업을 잃었을테니까.</p>
 						<p>
-							<a href="<c:url value='/user/register.do' />" data-fancybox
+							<a href="<c:url value='/order/list.do' />" data-fancybox
 								class="btn-video_38929"><span class="icon-play"></span></a>
 						</p>
 					</div>
