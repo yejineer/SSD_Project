@@ -21,7 +21,6 @@ public class GroupBuyServiceImpl implements GroupBuyService {
 	private GroupBuyDao groupBuyDao;
 	
 	public GroupBuy getGroupBuy(int groupBuyId) {
-		System.out.println("here's serviceImpl");
 		return groupBuyDao.getGroupBuy(groupBuyId);
 	}
 	

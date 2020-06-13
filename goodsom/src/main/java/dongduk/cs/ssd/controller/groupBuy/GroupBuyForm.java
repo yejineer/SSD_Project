@@ -2,6 +2,8 @@ package dongduk.cs.ssd.controller.groupBuy;
 
 import java.io.Serializable;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import dongduk.cs.ssd.domain.GroupBuy;
 
 /**
@@ -9,9 +11,10 @@ import dongduk.cs.ssd.domain.GroupBuy;
  * @since 2020.05.06
  */
 
-//@SuppressWarnings("serial")
+@SuppressWarnings("serial")
 public class GroupBuyForm implements Serializable {
-	/*
+	
+	@Autowired
 	private GroupBuy groupBuy;
 	
 	private boolean newGroupBuy;
@@ -27,9 +30,10 @@ public class GroupBuyForm implements Serializable {
 	}
 	
 	public GroupBuy getGroupBuy() {
+		System.out.println("GroupBuyForm");
 		return groupBuy;
 	}
-
+	/*
 	public boolean isNewGroupBuy() {
 		return newGroupBuy;
 	}

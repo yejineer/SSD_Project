@@ -38,7 +38,9 @@
 </head>
 <script>
 function createGroupBuy() {
-	form.submit();
+	
+	groupBuyForm.submit();
+	alert();
 }
 </script>
 <body data-spy="scroll" data-target=".site-navbar-target"
@@ -118,59 +120,71 @@ function createGroupBuy() {
 			<div class="container">
 				<div class="row" >
 					<div class="col-lg-8 mb-5">
-						<form action="/groupBuy/detail.do" method="post">
+					
+						<form id="groupBuyForm" method="post" action="<c:url value='/groupBuy/detail.do' />" >
 						
 							<div class="form-group row">
 								<div class="col-md-12">
-									<label for="name">제목</label> 
-									<input type="text" class="form-control" placeholder="제목">
+									<label for="title">제목</label> 
+									<input type="text" id="groupBuy.title" class="form-control" placeholder="제목">
 								</div>
 							</div>
 							
 							<div class="form-group row">
 								<div class="col-md-12">
-									<label for="name">대표 이미지</label> </br>
-                					<input type="file" value="input file" name="image"/>
+									<label for="img">대표 이미지</label> </br>
+									<input type="text" id="groupBuy.img" class="form-control">
+									<!--
+                					<input type="file" id="img" value="input file" name="image"/>
+                					-->
               					</div>
               				</div>
 							
 							<div class="form-group row">
 								<div class="col-md-12">
-									<label for="name">상세설명</label> 
-									<textarea name="" id="" class="form-control"
+									<label for="content">상세설명</label> 
+									<textarea name="" id="groupBuy.content" class="form-control"
 										placeholder="상세설명을 입력하세요" cols="30" rows="10"></textarea>
+									
 								</div>
 							</div>
 							
 							<div class="form-group">
-								<label for="name">옵션</label> <br/>
+								<label for="option">옵션</label> <br/>
+								<input type="text" id="groupBuy.option" class="form-control">
+								<!--
+								<input type="text" id="title" class="form-control" placeholder="제목">
 								<input type="button" onClick="" value="Add" /> &nbsp; ** 추가 버튼을 클릭해보세요 <br/>
-								<input name="" id="" type="text" style="width:150px;" />
+								<input name="" id="iption" type="text" style="width:150px;" />
+								  -->
 							</div>
 							
 							<div class="form-group">
-								<label for="name">태그</label> <br/>
+								<label for="catId">태그</label> <br/>
+								<input type="text" id="groupBuy.catId" class="form-control">
+								<!--
 								<input type="button" onClick="" value="Tag1" /> &nbsp; <input type="button" onClick="" value="Tag2" />
 								 &nbsp; <input type="button" onClick="" value="Tag3" />  &nbsp; <input type="button" onClick="" value="Tag4" />
 								 &nbsp; <input type="button" onClick="" value="Tag5" />
+								   -->
 							</div>
 							
 							<div class="form-group row">
 								<div class="col-md-12">
-									<label for="name">최소수량</label> 
+									<label for="minNo">최소수량</label> 
 									<div class="d-flex">
 										<div class="form-group mr-2">
-										<input type="text" class="form-control" id="" name = "" placeholder="ex) 40">
+										<input type="text" class="form-control" id="groupBuy.minNo" name = "" placeholder="ex) 40">
 										</div>
 									</div>
 								</div>
 							</div>
 							
 							<div class="form-group">
-			              	<label for="name">마감 기한</label>
+			              	<label for="endDate">마감 기한</label>
 				                <div class="d-flex">
 					    		  <div class="form-group mr-2">
-					                <input type="text" class="form-control" id="" name = "" placeholder="ex) 2020년 10월 22일">
+					                <input type="text" class="form-control" id="groupBuy.endDate" name = "" placeholder="ex) 2020-10-22">
 					              </div>
 			              		</div>
 			              	</div>

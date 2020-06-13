@@ -76,17 +76,17 @@ public class GroupBuyFormController {
 	
 	@RequestMapping(value="/detail.do", method={RequestMethod.GET, RequestMethod.POST})
 	public String updateOrSubmit(HttpServletRequest request,
-						GroupBuyForm groupBuyForm) {
+								@ModelAttribute("groupBuyForm") GroupBuyForm groupBuyForm) {
 //		String reqPage = request.getServletPath();
 //		
 //		if (reqPage.trim().equals("groupBuy_form")) { // update
 //			groupBuyService.updateGroupBuy(groupBuyForm.getGroupBuy());
-//			return formViewName;
+//			return GROUPBUY_FORM;
 //		} else { // show after create
-//			groupBuyService.createGroupBuy(groupBuyForm.getGroupBuy());
-//			return detailViewName;
-//		}
-		return GROUPBUY_DETAIL;
+			System.out.println("groupBuyController");
+			//groupBuyService.createGroupBuy(groupBuyForm.getGroupBuy());
+			return GROUPBUY_DETAIL;
+		//}
 	}
 	
 	/*
