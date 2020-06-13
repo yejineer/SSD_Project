@@ -4,6 +4,7 @@ import java.util.List;
 
 import dongduk.cs.ssd.domain.Auction;
 import dongduk.cs.ssd.domain.GroupBuy;
+import dongduk.cs.ssd.domain.LineGroupBuy;
 import dongduk.cs.ssd.domain.Order;
 import dongduk.cs.ssd.domain.User;
 
@@ -26,4 +27,5 @@ public interface OrderService {
 	
 	public List<Order> getOrderList(int userId); // ListOrderController에서 사용
 	
+	public LineGroupBuy getLineGroupBuy(int orderId);
 }
