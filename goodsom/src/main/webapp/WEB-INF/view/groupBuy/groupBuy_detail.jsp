@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 	
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -8,9 +8,7 @@
 	
 
 <!doctype html>
-<html lang="en">
-
-<head>
+<html lang="ko">
 
 <head>
 <title>Goodsom &mdash; SSD Final Project</title>
@@ -61,7 +59,7 @@
 
 					<div class="col-3">
 						<div class="site-logo">
-							<a href="index.html" class="font-weight-bold">Goodsom</a>
+							<a href="<%=request.getContextPath()%>/home.do" class="font-weight-bold">Goodsom</a>
 						</div>
 					</div>
 
@@ -81,7 +79,7 @@
 								<li><a href="<%=request.getContextPath()%>/groupBuy/list.do" class="nav-link">GroupBuy</a></li>
 								<li><a href="<%=request.getContextPath()%>/auction/list.do" class="nav-link"">Auction</a></li>
 								<li><a href="#">Community</a></li>
-								<li><a href="#"><img src="<%=request.getContextPath()%>/resources/images/mypage.jpg" alt="Image" 
+								<li><a href="<%=request.getContextPath()%>/mypage/list.do"><img src="<%=request.getContextPath()%>/resources/images/mypage.jpg" alt="Image" 
 								width="30px" height="20px" class="img-fluid"></a></li>
 							</ul>
 						</nav>
@@ -107,27 +105,66 @@
     </div>
 
 
-    <div class="site-section about-me">
+    <!-- start groupBuy detail -->
+	<br/>    
+    <div align="center">
+    	<br/><h2 class="text-primary mb-5 font-weight-bold">Title of GroupBuy</h2><br/>
+    </div>
+         	
      <div class="container">
        <div class="row align-items-center">
          <div class="col-md-6 mb-5 mb-md-0">
-           <img src="images/img_5.jpg" alt="Image" class="img-fluid">
+         	<img src="<%=request.getContextPath()%>/resources/images/img_5.jpg" alt="Image" class="img-fluid">
          </div>
+         
          <div class="col-md-5 ml-auto">
-           <h2 class="text-primary mb-5 font-weight-bold">Who We Are</h2>
-           
-           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem officia nesciunt quas, laudantium ex rem voluptas quod, distinctio eum tenetur. Placeat, quisquam, consequatur. Quam expedita neque nostrum iusto commodi minima!</p>
-           <p>Omnis, aspernatur, incidunt cum quo, nisi harum ea earum suscipit delectus explicabo unde saepe commodi modi fugiat nihil sint nam. Ullam, esse totam mollitia molestias ipsum odio aperiam, officiis nesciunt.</p>
-           
-
-           <div class="social_29128 mt-5">
-            <a href="#"><span class="icon-facebook"></span></a>  
-            <a href="#"><span class="icon-instagram"></span></a>  
-            <a href="#"><span class="icon-twitter"></span></a>  
-           </div>
+         	
+         	<p>작성자 : &nbsp; &nbsp; 누군가 <br/> 작성일 : &nbsp; &nbsp; 언젠가</p>
+         	<h2 align="center">$36,500</h2><br/>
+         	<h5>참여자 수 : &nbsp; &nbsp; 60명 / 30명</h5>
+           	<h5>남은 시간  : &nbsp; &nbsp; 3일</h5> <br/>
+           	
+           	<div class="alert alert-primary" role="alert">
+           		<div class="d-flex">
+	           		<h5>옵션</h5>&nbsp;&nbsp;
+	           		<select name="option" id="option">
+	           			<option value="s">S</option>
+						<option value="m">M</option>
+						<option value="l">L</option>
+						<option value="free">Free</option>
+					</select><br/>
+				</div>
+				<div class="d-flex">
+					<h5>수량</h5>&nbsp;&nbsp;
+					<form>
+						<input type="button" onClick="" value="--">
+						<input type="text" id="" placeholder="1">
+						<input type="button" onClick="" value="+">
+					</form>
+				</div>
+			</div>
+			
+			<br/><br/>
+			<div class="d-flex">
+		   		<h5>배탱 금액</h5>
+				<input type="text" id="" class="form-control" placeholder="$30">
+				<input type="button" onClick="" value="신청하기" />
+			</div>
+  
          </div>
+       </div> 
+       
+       <br/><br/>
+       <div>
+	       <h3>상세정보</h3><br/>
+		   <h5>여기는 상세 정보를 입력하는 자리입니다.</h5>       
        </div>
-     </div>
+	   
+	   <br/><br/><br/>
+	   <div class="form-group" align="right">
+	   		<input type="button" value="수정" onClick="" class="btn btn-primary py-3 px-5">  &nbsp;
+	   		<a class="btn btn-primary py-3 px-5" href="<c:url value=''></c:url>">삭제</a>	
+	   </div>							
    </div>
 
     
@@ -164,73 +201,6 @@
               </span>
               <h3 class="mb-3">Quality Results</h3>
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti voluptatem reiciendis minus, a dolores.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    
-    <div class="site-section bg-light">
-      
-      <div class="container">
-        <div class="row mb-5 text-center">
-          <div class="col">
-            <h2 class="text-primary font-weight-bold">Our Clients</h2>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-3">
-            <img src="images/client_google.png" alt="Image" class="img-fluid">
-          </div>
-          <div class="col-md-3">
-            <img src="images/client_invision.png" alt="Image" class="img-fluid">
-          </div>
-          <div class="col-md-3">
-            <img src="images/client_nike.png" alt="Image" class="img-fluid">
-          </div>
-          <div class="col-md-3">
-            <img src="images/client_microsoft.png" alt="Image" class="img-fluid">
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    
-    <div class="footer site-section bg-white">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-3">
-            <div class="site-logo-footer">
-              <a href="index.html">Approach</a>
-            </div> 
-          </div>
-          <div class="col-md-8 ml-auto">
-            <div class="row">
-              <div class="col-md-4 ml-auto">
-                <ul class="list-unstyled links">
-                  <li><a href="#">Contact Us</a></li>
-                  <li><a href="#">hello@mydomain.com</a></li>
-                  <li><a href="#">+1 829 2293 382</a></li>
-                  <li><a href="#">Support</a></li>
-                </ul>
-              </div>
-              <div class="col-md-4">
-                <ul class="list-unstyled links">
-                  <li><a href="#">Home</a></li>
-                  <li><a href="#">Blog</a></li>
-                  <li><a href="#">Services</a></li>
-                  <li><a href="#">About Us</a></li>
-                </ul>
-              </div>
-              <div class="col-md-4">
-                <ul class="list-unstyled links">
-                  <li><a href="#">Home</a></li>
-                  <li><a href="#">Blog</a></li>
-                  <li><a href="#">Services</a></li>
-                  <li><a href="#">About Us</a></li>
-                </ul>
-              </div>
             </div>
           </div>
         </div>

@@ -14,19 +14,20 @@
   	userId
   </sql>
   
-  <select id="getOrderList" parameterType="int"
-  		resultType="Order">
-  	SELECT <include refid="BaseColumns" /> 
-  	FROM orders
-  	WHERE userId = #{userId}
-  </select> <!-- OrderList를 가져옴 -->
-  
   <select id="getOrder" parameterType="int"
   		resultType="Order">
   	SELECT <include refid="BaseColumns" /> 
   	FROM orders
   	WHERE orderId = #{orderId}
   </select> <!-- Order를 가져옴 -->
+  
+   <insert id="createOrder" parameterType="Order">
+  	INSERT INTO orders (<include refid="BaseColumns" />)
+  	VALUES (#{orderId}, #{cardBank}, #{cardNo}, #{validDate}, #{cvc},
+  		#{address1}, #{address2}, #{address3}, #{phone},
+  		#{refundBank}, #{refundAccount}, #{totalPrice}, 
+  		#{orderDate}, #{userId})
+  </insert>
   
   <select id="getLineGroupBuys" parameterType="int"
   		resultType="LineGroupBuy">
@@ -35,12 +36,18 @@
   	WHERE orderId = #{orderId}	
   </select> <!-- orderId에 해당하는 LineGroupBuy list를 가져옴 -->
   
-  <insert id="createOrder" parameterType="Order">
-  	INSERT INTO orders (<include refid="BaseColumns" />)
-  	VALUES (#{orderId}, #{cardBank}, #{cardNo}, #{validDate}, #{cvc},
-  		#{address1}, #{address2}, #{address3}, #{phone},
-  		#{refundBank}, #{refundAccount}, #{totalPrice}, 
-  		#{orderDate}, #{userId})
-  </insert>
+  <select id="getGroupBuyId" parameterType="int"
+  		resultType="int">
+  	SELECT DISTINCT groupBuyId
+	FROM lineGroupBuys
+	WHERE orderId = #{orderId};	
+  </select>
+  
+  <select id="getAuctionId" parameterType="int"
+  		resultType="int">
+  	SELECT auctionId
+	FROM successBidders
+	WHERE orderId = #{orderId};	
+  </select>
   
  </mapper>

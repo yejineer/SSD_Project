@@ -8,9 +8,7 @@
 	
 
 <!doctype html>
-<html lang="en">
-
-<head>
+<html lang="ko">
 
 <head>
 <title>Goodsom &mdash; SSD Final Project</title>
@@ -66,7 +64,7 @@ function createGroupBuy() {
 
 					<div class="col-3">
 						<div class="site-logo">
-							<a href="index.html" class="font-weight-bold">Goodsom</a>
+							<a href="<%=request.getContextPath()%>/home.do" class="font-weight-bold">Goodsom</a>
 						</div>
 					</div>
 
@@ -86,7 +84,7 @@ function createGroupBuy() {
 								<li><a href="<%=request.getContextPath()%>/groupBuy/list.do" class="nav-link">GroupBuy</a></li>
 								<li><a href="<%=request.getContextPath()%>/auction/list.do" class="nav-link"">Auction</a></li>
 								<li><a href="#">Community</a></li>
-								<li><a href="#"><img src="<%=request.getContextPath()%>/resources/images/mypage.jpg" alt="Image" 
+								<li><a href="<%=request.getContextPath()%>/mypage/list.do"><img src="<%=request.getContextPath()%>/resources/images/mypage.jpg" alt="Image" 
 								width="30px" height="20px" class="img-fluid"></a></li>
 							</ul>
 						</nav>
@@ -124,7 +122,7 @@ function createGroupBuy() {
 							<div class="form-group row">
 								<div class="col-md-12">
 									<label for="title">제목</label> 
-									<input type="text" id="groupBuy.title" name="groupBuy.title" class="form-control" placeholder="제목">
+									<input type="text" id="groupBuy.title" name="groupBuy.title" class="form-control" placeholder="Title">
 								</div>
 							</div>
 							
@@ -142,14 +140,14 @@ function createGroupBuy() {
 								<div class="col-md-12">
 									<label for="content">상세설명</label> 
 									<textarea name="groupBuy.content" id="groupBuy.content" class="form-control"
-										placeholder="상세설명을 입력하세요" cols="30" rows="10"></textarea>
+										placeholder="Write description" cols="30" rows="10"></textarea>
 									
 								</div>
 							</div>
 							
 							<div class="form-group">
 								<label for="option">옵션</label> <br/>
-								<input type="text" id="groupBuy.option" name="groupBuy.option" class="form-control">
+								<input type="text" id="groupBuy.option" name="groupBuy.option" class="form-control" placeholder="Options">
 								<!--
 								<input type="text" id="title" class="form-control" placeholder="제목">
 								<input type="button" onClick="" value="Add" /> &nbsp; ** 추가 버튼을 클릭해보세요 <br/>
@@ -159,7 +157,7 @@ function createGroupBuy() {
 							
 							<div class="form-group">
 								<label for="catId">태그</label> <br/>
-								<input type="text" id="groupBuy.catId" name="groupBuy.catId" class="form-control">
+								<input type="text" id="groupBuy.catId" name="groupBuy.catId" class="form-control" placeholder="Tags">
 								<!--
 								<input type="button" onClick="" value="Tag1" /> &nbsp; <input type="button" onClick="" value="Tag2" />
 								 &nbsp; <input type="button" onClick="" value="Tag3" />  &nbsp; <input type="button" onClick="" value="Tag4" />

@@ -13,9 +13,7 @@ import dongduk.cs.ssd.domain.Order;
  * @since 2020.06.11
  */
 
-public interface OrderMapper { // xml과 method 이름이 일치해야함!
-	
-	  List<Order> getOrderList(int userId) throws DataAccessException;
+public interface OrderMapper {
 
 	  Order getOrder(int orderId) throws DataAccessException;
 
@@ -23,5 +21,9 @@ public interface OrderMapper { // xml과 method 이름이 일치해야함!
 	  
 	  List<LineGroupBuy> getLineGroupBuys(int orderId) throws DataAccessException; 
 
-	  // 추가할 메소드 있나?
+	// orderList에서 공동구매 정보 출력을 위해서 필요
+	  int getGroupBuyId(int orderId) throws DataAccessException; // From LineGroupBuys
+
+	// orderList에서 경매 정보 출력을 위해서 필요
+	  int getAuctionId(int orderId) throws DataAccessException; // From SuccessBidders
 }

@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 	
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -8,7 +8,7 @@
 	
 
 <!doctype html>
-<html lang="en">
+<html lang="ko">
 
 <head>
 
@@ -80,7 +80,7 @@
 								<li><a href="<%=request.getContextPath()%>/home.do" class="nav-link">Home</a></li>
 								<li><a href="<%=request.getContextPath()%>/groupBuy/list.do" class="nav-link">GroupBuy</a></li>
 								<li><a href="<%=request.getContextPath()%>/auction/list.do" class="nav-link">Auction</a></li>
-								<li><a href="#">Community</a></li>
+								<li><a href="<%=request.getContextPath()%>/about.do">Community</a></li>
 								<li><a href="<%=request.getContextPath()%>/mypage/list.do"><img src="<%=request.getContextPath()%>/resources/images/mypage.jpg" alt="Image" 
 								width="30px" height="20px" class="img-fluid"> ${userSession.user.nickname}</a></li>
 							</ul>
@@ -99,8 +99,8 @@
 				<div
 					class="row align-items-center text-center justify-content-center">
 					<div class="col-lg-10">
-						<h1 class="text-white mb-4">Don¡¯t worry if it doesn¡¯t work right. If everything did, you¡¯d be out of a job.</h1>
-						<p class="lead">¿Ã¹Ù·Î µ¿ÀÛÇÏÁö ¾Ê´õ¶óµµ °ÆÁ¤¸»¾Æ¶ó. ¸ğµç °ÍÀÌ ±×·¨´Ù¸é, ³Í Á÷¾÷À» ÀÒ¾úÀ»Å×´Ï±î.</p>
+						<h1 class="text-white mb-4">Donâ€™t worry if it doesnâ€™t work right. If everything did, youâ€™d be out of a job.</h1>
+						<p class="lead">ì˜¬ë°”ë¡œ ë™ì‘í•˜ì§€ ì•Šë”ë¼ë„ ê±±ì •ë§ì•„ë¼. ëª¨ë“  ê²ƒì´ ê·¸ë¬ë‹¤ë©´, ë„Œ ì§ì—…ì„ ìƒì—ˆì„í…Œë‹ˆê¹Œ.</p>
 						<p>
 							<a href="<c:url value='/order/list.do' />" data-fancybox
 								class="btn-video_38929"><span class="icon-play"></span></a>
@@ -112,7 +112,7 @@
 
 		<div class="container-fluid portfolio-wrap bg-light pt-0 site-section">
 			<div class="col-md-6 mr-auto">
-				<a href="<c:url value='/groupBuy/list.do'></c:url>" class="nav-link">°øµ¿±¸¸Å ´õº¸±â</a>
+				<a href="<c:url value='/groupBuy/list.do'></c:url>" class="nav-link">ê³µë™êµ¬ë§¤ ë”ë³´ê¸°</a>
 			</div>
 			<div class="row align-items-end mb-4">
 				<div class="col-md-3">
@@ -130,7 +130,7 @@
 			</div>
 			
 			<div class="col-md-6 mr-auto">
-				<a href="<c:url value='/auction/list.do'></c:url>">°æ¸Å ´õº¸±â</a>
+				<a href="<c:url value='/auction/list.do'></c:url>">ê²½ë§¤ ë”ë³´ê¸°</a>
 			</div>
 			<div class="row align-items-start">
 				<div class="col-md-4">

@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 	
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -8,9 +8,7 @@
 	
 
 <!doctype html>
-<html lang="en">
-
-<head>
+<html lang="ko">
 
 <head>
 <title>Goodsom &mdash; SSD Final Project</title>
@@ -110,7 +108,7 @@
 		
 		<div class="site-section">
 			<div class="container">
-			<a class="btn btn-primary py-3 px-5" href="<c:url value='/auction/form.do'></c:url>">∞Ê∏≈ µÓ∑œ</a> <br/> <br/>
+			<a class="btn btn-primary py-3 px-5" href="<c:url value='/auction/form.do'></c:url>">Í≤ΩÎß§ Îì±Î°ù</a> <br/> <br/>
 				<div class="row">
 					<div class="col-lg-4 col-md-6 mb-4">
 						<div class="post-entry-1 h-100">

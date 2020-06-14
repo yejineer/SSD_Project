@@ -17,15 +17,11 @@ public interface OrderService {
 	
 	public User getUser(String emailId);
 	
-	public GroupBuy getGroupBuy(int groupBuyId);
-	
-	public Auction getAuction(int auctionId);
-	
 	public Order getOrder(int orderId); // DetailOrderController에서 사용
 	
 	public void createOrder(Order order);
+
+	public List<LineGroupBuy> getLineGroupBuys(int orderId);
 	
-	public List<Order> getOrderList(int userId); // ListOrderController에서 사용
-	
-	public LineGroupBuy getLineGroupBuy(int orderId);
+	public List<Order> setInfo(List<Order> orderList);
 }
