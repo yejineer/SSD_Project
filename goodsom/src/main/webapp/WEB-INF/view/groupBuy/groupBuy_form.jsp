@@ -39,7 +39,93 @@ function createGroupBuy() {
 	
 	groupBuyForm.submit();
 }
+
+function hasClass(target, className) {
+    if( (' ' + target.className + ' ').replace(/[\n\t]/g, ' ').indexOf(' ' + className + ' ') > -1 ) return true;
+    return false;
+}
+function removeClass(target, className){
+    var elClass = ' ' + target.className + ' ';
+    while(elClass.indexOf(' ' + className + ' ') !== -1){
+         elClass = elClass.replace(' ' + className + ' ', '');
+    }
+    target.className = elClass;
+}
+function addClass(target, className){
+    target.className += ' ' + className;   
+}
+
+if( hasClass( document.getElementsByTagName('html')[0], 'ie8' ) ) { // ie8 일 경우
+    var radios = document.querySelectorAll('input[type="radio"]'),
+        i,
+        len = radios.length;
+　
+    for( i = 0; i < len; i++ ) {
+        radios[i].attachEvent('onchange', function(e) {
+            var siblingsChecked = this.parentNode.parentNode.querySelector('.checked'); // 이전 checked 버튼
+            
+            removeClass(siblingsChecked, 'checked'); // checked 삭제
+            addClass(this, 'checked'); // checked 부여
+        });
+    }
+}
 </script>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  padding: 20px;
+}
+
+/* temp grid */
+
+.only-sr {
+  overflow: hidden !important;
+  position: absolute !important;
+  left: -9999px !important;
+  width: 1px;
+  height: 1px;
+}
+
+/* form | radio */
+.radio-items {
+  display: table;
+  width: 100%;
+  border: 1px solid #454a60;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.radio-items > div {
+  display: table-cell;
+  line-height: 1.5;
+  width:100px;
+  border-left: 1px solid #454a60;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.radio-items label {
+  display: block;
+  width: 100%;
+  height: 100%;
+  color: #454a60;
+  vertical-align: middle;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+.radio-items > div input[type="radio"]:checked + label {
+  background-color: #454a60;
+  color: #fff;
+}
+
+.ie8 .radio-items input[type="radio"].checked + label {
+  background-color: #454a60;
+  color: #fff;
+}
+</style>
 <body data-spy="scroll" data-target=".site-navbar-target"
 	data-offset="300">
 
@@ -122,7 +208,7 @@ function createGroupBuy() {
 							<div class="form-group row">
 								<div class="col-md-12">
 									<label for="title">제목</label> 
-									<input type="text" id="groupBuy.title" name="groupBuy.title" class="form-control" placeholder="Title">
+									<input type="text" id="groupBuy.title" name="groupBuy.title" class="form-control" placeholder="ex) 학잠 공동구매">
 								</div>
 							</div>
 							
@@ -157,12 +243,38 @@ function createGroupBuy() {
 							
 							<div class="form-group">
 								<label for="catId">태그</label> <br/>
-								<input type="text" id="groupBuy.catId" name="groupBuy.catId" class="form-control" placeholder="Tags">
-								<!--
-								<input type="button" onClick="" value="Tag1" /> &nbsp; <input type="button" onClick="" value="Tag2" />
-								 &nbsp; <input type="button" onClick="" value="Tag3" />  &nbsp; <input type="button" onClick="" value="Tag4" />
-								 &nbsp; <input type="button" onClick="" value="Tag5" />
-								   -->
+
+							    <div class="radio-items">
+							        <div class="col-2">  <!-- width auto important, 소수점 백그라운드 이슈로 인해 auto 설정 -->
+							            <input type="radio" id="clothing" name="groupBuy.catId" class="only-sr" value="1">
+							            <label for="clothing">의류</label>
+							        </div>
+							        <div class="col-2">
+							        	<input type="radio" id="schoolUniform" name="groupBuy.catId" class="only-sr" value="2">
+										<label for="schoolUniform">학잠</label>
+							        </div>
+							        <div class="col-2">
+							            <input type="radio" id="writing" name="groupBuy.catId" class="only-sr" value="3">
+							            <label for="writing">필기구</label>
+							        </div>
+							        <div class="col-2">
+							            <input type="radio" id="tumbler" name="groupBuy.catId" class="only-sr" value="4">
+										<label for="tumbler">텀블러</label>
+							        </div>
+							        <div class="col-2">
+							            <input type="radio" id="sticker" name="groupBuy.catId" class="only-sr" value="5">
+										<label for="sticker">스티커</label>
+							        </div>
+							        <div class="col-2">
+							            <input type="radio" id="bagAndPouch" name="groupBuy.catId" class="only-sr" value="6">
+										<label for="bagAndPouch">에코백/파우치</label>
+							        </div>
+							        <div class="col-2">
+							            <input type="radio" id="etc" name="groupBuy.catId" class="only-sr" value="7">
+										<label for="etc">기타</label>
+							        </div>
+							    </div>
+								   
 							</div>
 							
 							<div class="form-group row">

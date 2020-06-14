@@ -26,7 +26,11 @@
   <delete id="deleteGroupBuy" parameterType="java.lang.Integer">
     DELETE FROM GROUPBUYS
     WHERE  GROUPBUYID=#{groupBuyId}
-  	
   </delete>
+  
+  <insert id="createOptions" parameterType="GroupBuy">
+	  INSERT INTO OPTIONS (OPTIONID, GROUPBUYID, CONTENT)
+	  VALUES (OPTIONID_SEQ.nextval, #{groupBuyId}, #{content}) 
+  </insert>
   
 </mapper>

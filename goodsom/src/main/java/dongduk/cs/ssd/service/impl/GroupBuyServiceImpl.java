@@ -35,6 +35,10 @@ public class GroupBuyServiceImpl implements GroupBuyService {
 	public void deleteGroupBuy(int groupBuyId) {
 		groupBuyDao.deleteGroupBuy(groupBuyId);
 	}
+	
+	public void createOptions(GroupBuy groupBuy) {
+		groupBuyDao.createOptions(groupBuy);
+	}
 	/*
 	public List<GroupBuy> getGroupBuyList() {
 		return groupBuyDao.getGroupBuyList();

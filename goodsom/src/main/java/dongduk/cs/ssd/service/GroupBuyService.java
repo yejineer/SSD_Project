@@ -17,6 +17,8 @@ public interface GroupBuyService {
 	public void updateGroupBuy(GroupBuy groupBuy);
 	
 	public void deleteGroupBuy(int groupBuyId);
+	
+	public void createOptions(GroupBuy groupBuy);
 	/*
 	public List<GroupBuy> getGroupBuyList();
 	

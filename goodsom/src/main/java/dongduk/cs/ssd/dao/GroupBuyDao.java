@@ -16,6 +16,7 @@ public interface GroupBuyDao {
 	
 	void deleteGroupBuy(int groupBuyId) throws DataAccessException;
 
+	void createOptions(GroupBuy groupBuy) throws DataAccessException;
 //	List<GroupBuy> getGroupBuyList() throws DataAccessException;
 //	
 //	List<GroupBuy> getGroupBuyListByKeyword(String keyword) throws DataAccessException;
