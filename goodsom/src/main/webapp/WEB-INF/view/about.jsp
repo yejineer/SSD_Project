@@ -1,27 +1,39 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
+	
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+	
+
 <!doctype html>
-<html lang="en">
+<html lang="ko">
 
-  <head>
-    <title>Approach &mdash; Website Template by Colorlib</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<head>
+<title>Goodsom &mdash; SSD Final Project</title>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link href="https://fonts.googleapis.com/css?family=Poppins:400,900|Source+Serif+Pro&display=swap" rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css?family=Poppins:400,900|Source+Serif+Pro&display=swap"
+	rel="stylesheet">
+	
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/fonts/icomoon/style.css">
 
-    <link rel="stylesheet" href="fonts/icomoon/style.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/bootstrap.min.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/bootstrap-datepicker.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/jquery.fancybox.min.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/owl.carousel.min.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/owl.theme.default.min.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/fonts/flaticon/font/flaticon.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/aos.css">
 
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
-    <link rel="stylesheet" href="css/jquery.fancybox.min.css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
-    <link rel="stylesheet" href="css/aos.css">
+<!-- MAIN CSS -->
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/style.css">
 
-    <!-- MAIN CSS -->
-    <link rel="stylesheet" href="css/style.css">
-
-  </head>
+</head>
 
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 
@@ -88,28 +100,54 @@
       </div>
     </div>
 
-
-    <div class="site-section about-me">
+	<!-- start auction detail -->
+	<br/>    
+    <div align="center">
+    	<br/><h2 class="text-primary mb-5 font-weight-bold">Title of Auction</h2><br/>
+    </div>
+         	
      <div class="container">
        <div class="row align-items-center">
          <div class="col-md-6 mb-5 mb-md-0">
-           <img src="images/img_5.jpg" alt="Image" class="img-fluid">
+         	<img src="<%=request.getContextPath()%>/resources/images/img_5.jpg" alt="Image" class="img-fluid">
          </div>
+         
          <div class="col-md-5 ml-auto">
-           <h2 class="text-primary mb-5 font-weight-bold">Who We Are</h2>
-           
-           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem officia nesciunt quas, laudantium ex rem voluptas quod, distinctio eum tenetur. Placeat, quisquam, consequatur. Quam expedita neque nostrum iusto commodi minima!</p>
-           <p>Omnis, aspernatur, incidunt cum quo, nisi harum ea earum suscipit delectus explicabo unde saepe commodi modi fugiat nihil sint nam. Ullam, esse totam mollitia molestias ipsum odio aperiam, officiis nesciunt.</p>
-           
-
-           <div class="social_29128 mt-5">
-            <a href="#"><span class="icon-facebook"></span></a>  
-            <a href="#"><span class="icon-instagram"></span></a>  
-            <a href="#"><span class="icon-twitter"></span></a>  
-           </div>
+         	
+         	<h5>작성자 : &nbsp; &nbsp; 누군가</h5>
+         	<h5>작성일 : &nbsp; &nbsp; 언젠가</h5>
+         	<h5>시작 금액 : &nbsp; &nbsp; $300</h5>
+           	<h5>남은 시간  : &nbsp; &nbsp; 3일</h5> <br/>
+           	
+           	<h5 align="center"><b>현재 최고가</b></h5>
+           	
+           	<div class="alert alert-primary" role="alert">
+           		<h4 class="text-danger">$500</h4>
+ 				<p>2020-06-14 <br/> 22 : 02 : 13</p>
+			</div>
+			
+			<br/><br/>
+			<div class="d-flex">
+		   		<h5>배탱 금액</h5>
+				<input type="text" id="" class="form-control" placeholder="$30">
+				<input type="button" onClick="" value="신청하기" />
+			</div>
+  
          </div>
+       </div> 
+       
+       <br/><br/>
+       <div>
+       
+       	<h5>안녕하세요. 이번 경매는 ... 아아아아 이거슨 설명을 하는 자리요오오오오오오 졸리구만요</h5>
+       
        </div>
-     </div>
+	   
+	   <br/><br/><br/>
+	   <div class="form-group" align="right">
+	   		<input type="button" value="수정" onClick="" class="btn btn-primary py-3 px-5">  &nbsp;
+	   		<a class="btn btn-primary py-3 px-5" href="<c:url value=''></c:url>">삭제</a>	
+	   </div>							
    </div>
 
     

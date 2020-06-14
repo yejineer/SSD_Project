@@ -122,7 +122,7 @@ function createGroupBuy() {
 							<div class="form-group row">
 								<div class="col-md-12">
 									<label for="title">제목</label> 
-									<input type="text" id="groupBuy.title" name="groupBuy.title" class="form-control" placeholder="제목">
+									<input type="text" id="groupBuy.title" name="groupBuy.title" class="form-control" placeholder="Title">
 								</div>
 							</div>
 							
@@ -140,14 +140,14 @@ function createGroupBuy() {
 								<div class="col-md-12">
 									<label for="content">상세설명</label> 
 									<textarea name="groupBuy.content" id="groupBuy.content" class="form-control"
-										placeholder="상세설명을 입력하세요" cols="30" rows="10"></textarea>
+										placeholder="Write description" cols="30" rows="10"></textarea>
 									
 								</div>
 							</div>
 							
 							<div class="form-group">
 								<label for="option">옵션</label> <br/>
-								<input type="text" id="groupBuy.option" name="groupBuy.option" class="form-control">
+								<input type="text" id="groupBuy.option" name="groupBuy.option" class="form-control" placeholder="Options">
 								<!--
 								<input type="text" id="title" class="form-control" placeholder="제목">
 								<input type="button" onClick="" value="Add" /> &nbsp; ** 추가 버튼을 클릭해보세요 <br/>
@@ -157,7 +157,7 @@ function createGroupBuy() {
 							
 							<div class="form-group">
 								<label for="catId">태그</label> <br/>
-								<input type="text" id="groupBuy.catId" name="groupBuy.catId" class="form-control">
+								<input type="text" id="groupBuy.catId" name="groupBuy.catId" class="form-control" placeholder="Tags">
 								<!--
 								<input type="button" onClick="" value="Tag1" /> &nbsp; <input type="button" onClick="" value="Tag2" />
 								 &nbsp; <input type="button" onClick="" value="Tag3" />  &nbsp; <input type="button" onClick="" value="Tag4" />

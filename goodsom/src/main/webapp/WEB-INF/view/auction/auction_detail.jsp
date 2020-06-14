@@ -96,7 +96,7 @@
       <div class="container">
         <div class="row align-items-center text-center justify-content-center">
           <div class="col-lg-6">
-            <h1 class="text-white mb-4">About Us</h1>
+            <h1 class="text-white mb-4">About Auction</h1>
             <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit maxime nemo placeat dolor est.</p>
             
           </div>
@@ -105,27 +105,53 @@
     </div>
 
 
-    <div class="site-section about-me">
+    <br/>    
+    <div align="center">
+    	<br/><h2 class="text-primary mb-5 font-weight-bold">Title of Auction</h2><br/>
+    </div>
+         	
      <div class="container">
        <div class="row align-items-center">
          <div class="col-md-6 mb-5 mb-md-0">
-           <img src="images/img_5.jpg" alt="Image" class="img-fluid">
+         	<img src="<%=request.getContextPath()%>/resources/images/img_5.jpg" alt="Image" class="img-fluid">
          </div>
+         
          <div class="col-md-5 ml-auto">
-           <h2 class="text-primary mb-5 font-weight-bold">Who We Are</h2>
-           
-           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem officia nesciunt quas, laudantium ex rem voluptas quod, distinctio eum tenetur. Placeat, quisquam, consequatur. Quam expedita neque nostrum iusto commodi minima!</p>
-           <p>Omnis, aspernatur, incidunt cum quo, nisi harum ea earum suscipit delectus explicabo unde saepe commodi modi fugiat nihil sint nam. Ullam, esse totam mollitia molestias ipsum odio aperiam, officiis nesciunt.</p>
-           
-
-           <div class="social_29128 mt-5">
-            <a href="#"><span class="icon-facebook"></span></a>  
-            <a href="#"><span class="icon-instagram"></span></a>  
-            <a href="#"><span class="icon-twitter"></span></a>  
-           </div>
+         	
+         	<h5>작성자 : &nbsp; &nbsp; 누군가</h5>
+         	<h5>작성일 : &nbsp; &nbsp; 언젠가</h5>
+         	<h5>시작 금액 : &nbsp; &nbsp; $300</h5>
+           	<h5>남은 시간  : &nbsp; &nbsp; 3일</h5> <br/>
+           	
+           	<h5 align="center"><b>현재 최고가</b></h5>
+           	
+           	<div class="alert alert-primary" role="alert">
+           		<h4 class="text-danger">$500</h4>
+ 				<p>2020-06-14 <br/> 22 : 02 : 13</p>
+			</div>
+			
+			<br/><br/>
+			<div class="d-flex">
+		   		<h5>배탱 금액</h5>
+				<input type="text" id="" class="form-control" placeholder="$30">
+				<input type="button" onClick="" value="신청하기" />
+			</div>
+  
          </div>
+       </div> 
+       
+       <br/><br/>
+       <div>
+       
+       	<h5>안녕하세요. 이번 경매는 ... 아아아아 이거슨 설명을 하는 자리요오오오오오오 졸리구만요</h5>
+       
        </div>
-     </div>
+	   
+	   <br/><br/><br/>
+	   <div class="form-group" align="right">
+	   		<input type="button" value="수정" onClick="" class="btn btn-primary py-3 px-5">  &nbsp;
+	   		<a class="btn btn-primary py-3 px-5" href="<c:url value=''></c:url>">삭제</a>	
+	   </div>							
    </div>
 
     
@@ -179,86 +205,20 @@
         </div>
         <div class="row">
           <div class="col-md-3">
-            <img src="images/client_google.png" alt="Image" class="img-fluid">
+            <img src="<%=request.getContextPath()%>/resources/images/client_google.png" alt="Image" class="img-fluid">
           </div>
           <div class="col-md-3">
-            <img src="images/client_invision.png" alt="Image" class="img-fluid">
+            <img src="<%=request.getContextPath()%>/resources/images/client_invision.png" alt="Image" class="img-fluid">
           </div>
           <div class="col-md-3">
-            <img src="images/client_nike.png" alt="Image" class="img-fluid">
+            <img src="<%=request.getContextPath()%>/resources/images/client_nike.png" alt="Image" class="img-fluid">
           </div>
           <div class="col-md-3">
-            <img src="images/client_microsoft.png" alt="Image" class="img-fluid">
+            <img src="<%=request.getContextPath()%>/resources/images/client_microsoft.png" alt="Image" class="img-fluid">
           </div>
         </div>
       </div>
-    </div>
-    
-    
-    <div class="footer site-section bg-white">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-3">
-            <div class="site-logo-footer">
-              <a href="index.html">Approach</a>
-            </div> 
-          </div>
-          <div class="col-md-8 ml-auto">
-            <div class="row">
-              <div class="col-md-4 ml-auto">
-                <ul class="list-unstyled links">
-                  <li><a href="#">Contact Us</a></li>
-                  <li><a href="#">hello@mydomain.com</a></li>
-                  <li><a href="#">+1 829 2293 382</a></li>
-                  <li><a href="#">Support</a></li>
-                </ul>
-              </div>
-              <div class="col-md-4">
-                <ul class="list-unstyled links">
-                  <li><a href="#">Home</a></li>
-                  <li><a href="#">Blog</a></li>
-                  <li><a href="#">Services</a></li>
-                  <li><a href="#">About Us</a></li>
-                </ul>
-              </div>
-              <div class="col-md-4">
-                <ul class="list-unstyled links">
-                  <li><a href="#">Home</a></li>
-                  <li><a href="#">Blog</a></li>
-                  <li><a href="#">Services</a></li>
-                  <li><a href="#">About Us</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="site-section">
-      <div class="container">
-        <div class="row mb-4 text-center">
-          <div class="col">
-            <a href="#"><span class="m-2 icon-facebook"></span></a>
-            <a href="#"><span class="m-2 icon-twitter"></span></a>
-            <a href="#"><span class="m-2 icon-linkedin"></span></a>
-            <a href="#"><span class="m-2 icon-instagram"></span></a>
-            <a href="#"><span class="m-2 icon-skype"></span></a>
-          </div>
-        </div>
-        <div class="row mt-5 justify-content-center">
-          <div class="col-md-7 text-center">
-            <p>
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    
+    </div>    
 
     </div>
 

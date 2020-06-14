@@ -109,7 +109,7 @@
      <div class="container">
        <div class="row align-items-center">
          <div class="col-md-6 mb-5 mb-md-0">
-           <img src="images/img_5.jpg" alt="Image" class="img-fluid">
+           <img src="<%=request.getContextPath()%>/resources/images/img_5.jpg" alt="Image" class="img-fluid">
          </div>
          <div class="col-md-5 ml-auto">
            <h2 class="text-primary mb-5 font-weight-bold">Who We Are</h2>
@@ -162,73 +162,6 @@
               </span>
               <h3 class="mb-3">Quality Results</h3>
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti voluptatem reiciendis minus, a dolores.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    
-    <div class="site-section bg-light">
-      
-      <div class="container">
-        <div class="row mb-5 text-center">
-          <div class="col">
-            <h2 class="text-primary font-weight-bold">Our Clients</h2>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-3">
-            <img src="images/client_google.png" alt="Image" class="img-fluid">
-          </div>
-          <div class="col-md-3">
-            <img src="images/client_invision.png" alt="Image" class="img-fluid">
-          </div>
-          <div class="col-md-3">
-            <img src="images/client_nike.png" alt="Image" class="img-fluid">
-          </div>
-          <div class="col-md-3">
-            <img src="images/client_microsoft.png" alt="Image" class="img-fluid">
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    
-    <div class="footer site-section bg-white">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-3">
-            <div class="site-logo-footer">
-              <a href="index.html">Approach</a>
-            </div> 
-          </div>
-          <div class="col-md-8 ml-auto">
-            <div class="row">
-              <div class="col-md-4 ml-auto">
-                <ul class="list-unstyled links">
-                  <li><a href="#">Contact Us</a></li>
-                  <li><a href="#">hello@mydomain.com</a></li>
-                  <li><a href="#">+1 829 2293 382</a></li>
-                  <li><a href="#">Support</a></li>
-                </ul>
-              </div>
-              <div class="col-md-4">
-                <ul class="list-unstyled links">
-                  <li><a href="#">Home</a></li>
-                  <li><a href="#">Blog</a></li>
-                  <li><a href="#">Services</a></li>
-                  <li><a href="#">About Us</a></li>
-                </ul>
-              </div>
-              <div class="col-md-4">
-                <ul class="list-unstyled links">
-                  <li><a href="#">Home</a></li>
-                  <li><a href="#">Blog</a></li>
-                  <li><a href="#">Services</a></li>
-                  <li><a href="#">About Us</a></li>
-                </ul>
-              </div>
             </div>
           </div>
         </div>

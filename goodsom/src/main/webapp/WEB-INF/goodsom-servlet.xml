@@ -24,6 +24,7 @@
   	<mvc:view-controller path="/index/login.do" view-name="user/login"/>
 	<mvc:view-controller path="/user/register.do" view-name="user/register"/>
 	<mvc:view-controller path="/home.do" view-name="home"/>
+	<mvc:view-controller path="/about.do" view-name="user/about"/>
 	
 	<mvc:view-controller path="/auction/list.do" view-name="auction/auction_list"/>
 
