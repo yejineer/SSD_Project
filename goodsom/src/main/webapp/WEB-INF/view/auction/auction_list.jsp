@@ -126,7 +126,9 @@
 									</h2>
 									<span class="meta d-inline-block mb-3">
 										~ <fmt:formatDate value="${auction.endDate}" pattern="yyyy-MM-dd" />
-									<span class="mx-2">현재 최고 금액</span> <a href="#">${auction.maxPrice}</a></span>
+									<span class="mx-2">현재 최고 금액</span> 
+										<a href="#"><fmt:formatNumber value="${auction.maxPrice}" pattern="#,###원"/></a>
+									</span>
 									<p>${auction.content}</p>
 								</div>
 							</div>

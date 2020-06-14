@@ -117,26 +117,44 @@ function createAuction() {
 			<div class="container">
 				<div class="row" >
 					<div class="col-lg-8 mb-5">
-						<form id="auctionForm" method="post" action="<c:url value='/auction/detail.do' />">
+						<form id="auctionForm" method="post" action="<c:choose>
+									<c:when test='${createAuction eq true}'><c:url value='/auction/create.do'/></c:when>
+									<c:otherwise><c:url value='/auction/update.do'/></c:otherwise></c:choose>">
 						
 							<div class="form-group row">
 								<div class="col-md-12">
-									<label for="auction.title">제목</label> 
-									<input type="text" id="auction.title" class="form-control" placeholder="Title">
+									<label for="auctionForm.auction.title">제목</label> 
+									<c:choose>
+										<c:when test="${createAuction eq true}">
+											<input type="text" name="auction.title" class="form-control" placeholder="Title" >
+										</c:when>
+										<c:otherwise>
+											<input type="text" name="auction.title" class="form-control" placeholder="${auctionForm.auction.title}" >
+										</c:otherwise>
+									</c:choose>
 								</div>
 							</div>
 							<div class="form-group row">
 								<div class="col-md-12">
 									<label for="auction.img">대표 이미지</label> </br>
-                					<input type="file" id="auction.img" value="input file" name="image"/>
+                					<input type="file" name="auction.img" value="input file" name="image"/>
               					</div>
               				</div>
 							
 							<div class="form-group row">
 								<div class="col-md-12">
 									<label for="auction.content">상세 설명</label> 
-									<textarea id="auction.content" class="form-control"
-										placeholder="Write description." cols="30" rows="10"></textarea>
+									<c:choose>
+										<c:when test="${createAuction eq true}">
+											<textarea name="auction.content" class="form-control"
+											placeholder="Write description." cols="30" rows="10"></textarea>
+										</c:when>
+										<c:otherwise>
+											<textarea name="auction.content" class="form-control"
+											placeholder="${auctionForm.auction.content}" cols="30" rows="10"></textarea>
+										</c:otherwise>
+									</c:choose>
+									
 								</div>
 							</div>
 							
@@ -145,20 +163,35 @@ function createAuction() {
 									<label for="auction.startPrice">최소 입찰 금액</label> 
 									<div class="d-flex">
 										<div class="form-group mr-2">
-										<input type="text" class="form-control" id="auction.startPrice" placeholder="Price">
+										<c:choose>
+											<c:when test="${createAuction eq true}">
+												<input type="text" class="form-control" name="auction.startPrice" placeholder="ex) 5000">
+											</c:when>
+											<c:otherwise>
+												<input type="text" class="form-control" name="auction.startPrice" placeholder="${auctionForm.auction.startPrice}">
+											</c:otherwise>
+										</c:choose>
 										</div>
 									</div>
 								</div>
 							</div>
 							
-							<div class="form-group">
+							<%-- <div class="form-group">
 			              	<label for="auction.endDate">마감일</label>
 				                <div class="d-flex">
 					    		  <div class="form-group mr-2">
-					                <input type="date" class="form-control" id="auction.endDate">
+					    		  	<c:choose>
+										<c:when test="${createAuction eq true}">
+							                <input type="date" class="form-control" name="auction.endDate">
+										</c:when>
+										<c:otherwise>
+											<input type="date" class="form-control" name="auction.endDate" 
+													value="<fmt:formatDate value='${auctionForm.auction.endDate}' pattern='yyyy-MM-dd'/>">
+										</c:otherwise>
+									</c:choose>
 					              </div>
 			              		</div>
-			              	</div>
+			              	</div> --%>
 
 							
 							<div class="form-group" align="right">

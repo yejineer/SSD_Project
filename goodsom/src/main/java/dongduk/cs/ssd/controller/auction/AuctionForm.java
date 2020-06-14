@@ -33,4 +33,8 @@ public class AuctionForm implements Serializable{
 	public boolean isNewAuction() {
 		return newAuction;
 	}
+	
+	public String toString() {
+		return auction.toString();
+	}
 }
