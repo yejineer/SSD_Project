@@ -17,6 +17,12 @@
     WHERE EMAIL = #{param1}
   </select>
   
+  <select id="getUserByUserId" resultType="User">
+  	SELECT USERID, EMAIL, PASSWD, USERNAME, NICKNAME, ADDRESS1, ADDRESS2, ADDRESS3, PHONE, REFUNDBANK, REFUNDACCOUNT
+    FROM USERS 
+    WHERE USERID = #{param1}
+  </select>
+  
   <insert id="createUser" parameterType="User">
   	INSERT INTO USERS 
   	(USERID, EMAIL, PASSWD, USERNAME, NICKNAME, ADDRESS1, ADDRESS2, ADDRESS3, PHONE, REFUNDBANK, REFUNDACCOUNT)

@@ -20,6 +20,8 @@ public interface UserDao {
 	
 	User getUserByEmailId(String emailId) throws DataAccessException; // email로 user객체 얻어와서
 	
+	User getUserByUserId(int userId) throws DataAccessException; // userId로 user객체 얻어와서
+	
 	void createUser(User user) throws DataAccessException;
 
 	void updateUser(User user) throws DataAccessException;

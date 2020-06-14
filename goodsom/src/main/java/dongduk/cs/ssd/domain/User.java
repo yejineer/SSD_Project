@@ -76,8 +76,6 @@ public class User implements Serializable {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	
-
 
 	public String getNickname() {
 		return nickname;

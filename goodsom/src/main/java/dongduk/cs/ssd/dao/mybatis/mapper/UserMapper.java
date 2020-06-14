@@ -18,6 +18,8 @@ public interface UserMapper {
 	
 	User getUserByEmailId(String emailId);
 	
+	User getUserByUserId(int userId);
+	
 	void createUser(User user);
 
 	void updateUser(User user);

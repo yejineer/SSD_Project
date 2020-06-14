@@ -32,6 +32,10 @@ public class MybatisUserDao implements UserDao {
 		return userMapper.getUserByEmailId(emailId);
 	}
 	
+	public User getUserByUserId(int userId) throws DataAccessException {
+		return userMapper.getUserByUserId(userId);
+	}
+	
 	public void createUser(User user) throws DataAccessException {
 		userMapper.createUser(user);
 	}
