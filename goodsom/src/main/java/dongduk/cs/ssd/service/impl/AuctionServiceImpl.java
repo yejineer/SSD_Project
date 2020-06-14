@@ -35,12 +35,12 @@ public class AuctionServiceImpl implements AuctionService{
 		return auctionDao.getAuctionListByKeyword(keyword);
 	}
 
-	public void createAuction(Auction auction) {
-		auctionDao.createAuction(auction);
+	public int createAuction(Auction auction) {
+		return auctionDao.createAuction(auction);
 	}
 
-	public void updateAuction(Auction auction) {
-		auctionDao.updateAuction(auction);
+	public int updateAuction(Auction auction) {
+		return auctionDao.updateAuction(auction);
 	}
 
 	public void deleteAuction(int auctionId) {
@@ -51,8 +51,8 @@ public class AuctionServiceImpl implements AuctionService{
 //		return auctionDao.getBidByAuctionId(auctionId);
 //	}
 //
-//	public boolean isAuctionClosed(int auctionId, Date endDate) {
-//		return auctionDao.isAuctionClosed(auctionId, endDate);
-//	}
+	public boolean isAuctionClosed(int auctionId, Date endDate) {
+		return auctionDao.isAuctionClosed(auctionId, endDate);
+	}
 	
 }

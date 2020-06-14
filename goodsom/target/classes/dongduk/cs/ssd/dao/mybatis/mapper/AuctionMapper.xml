@@ -13,6 +13,9 @@
   </select>
   
   <insert id="createAuction" parameterType="Auction">
+  	<selectKey keyProperty="orderId" resultType="int" order="BEFORE">
+  		SELECT auctionId_seq.nextval AS auctionId FROM DUAL
+     </selectKey>
   	INSERT INTO auctions
 	VALUES (#{auctionId}, #{title}, #{content}, #{img}, #{startPrice}, 
 			#{uploadDate}, #{endDate}, #{count}, #{maxPrice}, #{state}, 1);

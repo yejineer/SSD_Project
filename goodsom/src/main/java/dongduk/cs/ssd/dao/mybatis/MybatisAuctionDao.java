@@ -31,12 +31,14 @@ public class MybatisAuctionDao implements AuctionDao {
 
 	@Override
 	public int createAuction(Auction auction) throws DataAccessException {
-		return auctionMapper.createAuction(auction);
+		auctionMapper.createAuction(auction);
+		return auction.getAuctionId();
 	}
 
 	@Override
 	public int updateAuction(Auction auction) throws DataAccessException {
-		return auctionMapper.updateAuction(auction);
+		auctionMapper.updateAuction(auction);
+		return auction.getAuctionId();
 	}
 
 	@Override
