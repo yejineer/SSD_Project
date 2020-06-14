@@ -12,15 +12,13 @@ public class GroupBuy {
 	String content;
 	String img;
 	int minNo;
-	String[] options;
+	List<String> options = new ArrayList<String>();
 	
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	Date uploadDate;
-	
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	Date endDate;
-	
 	
 	int count;
 	int state;
@@ -116,11 +114,11 @@ public class GroupBuy {
 		this.minNo = minNo;
 	}
 
-	public String[] getOptions() {
+	public List<String> getOptions() {
 		return options;
 	}
 
-	public void setOptions(String[] options) {
+	public void setOptions(List<String> options) {
 		this.options = options;
 	}
 
@@ -176,8 +174,10 @@ public class GroupBuy {
 	}
 
 	public String toString() {
-		return "groupBuyId: " + groupBuyId + ", title: " + title + ", content: " + content + ", img: " + img 
+		String str = "groupBuyId: " + groupBuyId + ", title: " + title + ", content: " + content + ", img: " + img 
 				+ ", minNo: " + minNo + ", uploadDate: " + uploadDate + ", endDate: " + endDate + ", catId: " + catId;
+		
+		return str;
 	}
 
 }

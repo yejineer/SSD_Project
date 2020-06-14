@@ -103,6 +103,12 @@ public class GroupBuyFormController {
 			groupBuyForm.getGroupBuy().setUserId(userId);
 			
 			groupBuyService.createGroupBuy(groupBuyForm.getGroupBuy());
+			
+			// groupBuyId 가져오기
+			int groupBuyId = groupBuyForm.getGroupBuy().getGroupBuyId();
+			groupBuyForm.getGroupBuy().setGroupBuyId(groupBuyId);
+			groupBuyService.createOptions(groupBuyForm.getGroupBuy());
+			
 			return GROUPBUY_DETAIL;
 		//}
 	}

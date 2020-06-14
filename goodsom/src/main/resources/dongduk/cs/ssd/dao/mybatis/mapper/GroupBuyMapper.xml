@@ -10,10 +10,19 @@
   </select>
   
   <insert id="createGroupBuy" parameterType="GroupBuy">
+  
+
+  	
   	INSERT INTO GROUPBUYS (GROUPBUYID, TITLE, CONTENT, IMG, MINNO, UPLOADDATE, 
   			ENDDATE, COUNT, STATE, RATE, PARTICIPANTS, MENUID, CATID, USERID)
 	VALUES (GROUPBUYID_SEQ.nextval, #{title}, #{content}, #{img}, #{minNo}, #{uploadDate}, 
 			#{endDate}, 0, 'proceeding', 0, 0, 2, #{catId}, #{userId})
+		
+	<!-- 	
+  	<selectKey keyProperty="groupBuyId" resultType="long" order="AFTER">
+  		SELECT GROUPBUYID_SEQ.currval AS GROUPBUYID FROM DUAL
+  	</selectKey>	
+  	-->
   </insert>
   
   <update id="updateGroupBuy" parameterType="GroupBuy">
@@ -29,8 +38,14 @@
   </delete>
   
   <insert id="createOptions" parameterType="GroupBuy">
-	  INSERT INTO OPTIONS (OPTIONID, GROUPBUYID, CONTENT)
-	  VALUES (OPTIONID_SEQ.nextval, #{groupBuyId}, #{content}) 
+  
+  	INSERT INTO OPTIONS (OPTIONID, GROUPBUYID, CONTENT)
+  	SELECT OPTIONID_SEQ.nextval, A.* FROM (
+	  	<foreach collection="options" item="option" separator="UNION ALL">
+			SELECT  #{groupBuyId}, #{option}
+			FROM 	DUAL
+		</foreach>
+		) A
   </insert>
   
 </mapper>
