@@ -118,8 +118,7 @@
          
          <div class="col-md-5 ml-auto">
          	
-         	<h5>작성자 : &nbsp; &nbsp; 누군가</h5>
-         	<h5>작성일 : &nbsp; &nbsp; 언젠가</h5>
+         	<p>작성자 : &nbsp; &nbsp; 누군가 <br/> 작성일 : &nbsp; &nbsp; 언젠가</p>
          	<h5>시작 금액 : &nbsp; &nbsp; $300</h5>
            	<h5>남은 시간  : &nbsp; &nbsp; 3일</h5> <br/>
            	

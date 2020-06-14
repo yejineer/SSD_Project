@@ -100,10 +100,10 @@
       </div>
     </div>
 
-	<!-- start auction detail -->
+	<!-- start groupBuy detail -->
 	<br/>    
     <div align="center">
-    	<br/><h2 class="text-primary mb-5 font-weight-bold">Title of Auction</h2><br/>
+    	<br/><h2 class="text-primary mb-5 font-weight-bold">Title of GroupBuy</h2><br/>
     </div>
          	
      <div class="container">
@@ -114,16 +114,29 @@
          
          <div class="col-md-5 ml-auto">
          	
-         	<h5>작성자 : &nbsp; &nbsp; 누군가</h5>
-         	<h5>작성일 : &nbsp; &nbsp; 언젠가</h5>
-         	<h5>시작 금액 : &nbsp; &nbsp; $300</h5>
+         	<p>작성자 : &nbsp; &nbsp; 누군가 <br/> 작성일 : &nbsp; &nbsp; 언젠가</p>
+         	<h2 align="center">$36,500</h2><br/>
+         	<h5>참여자 수 : &nbsp; &nbsp; 60명 / 30명</h5>
            	<h5>남은 시간  : &nbsp; &nbsp; 3일</h5> <br/>
            	
-           	<h5 align="center"><b>현재 최고가</b></h5>
-           	
            	<div class="alert alert-primary" role="alert">
-           		<h4 class="text-danger">$500</h4>
- 				<p>2020-06-14 <br/> 22 : 02 : 13</p>
+           		<div class="d-flex">
+	           		<h5>옵션</h5>&nbsp;&nbsp;
+	           		<select name="option" id="option">
+	           			<option value="s">S</option>
+						<option value="m">M</option>
+						<option value="l">L</option>
+						<option value="free">Free</option>
+					</select><br/>
+				</div>
+				<div class="d-flex">
+					<h5>수량</h5>&nbsp;&nbsp;
+					<form>
+						<input type="button" onClick="" value="--">
+						<input type="text" id="" placeholder="1">
+						<input type="button" onClick="" value="+">
+					</form>
+				</div>
 			</div>
 			
 			<br/><br/>
@@ -138,9 +151,8 @@
        
        <br/><br/>
        <div>
-       
-       	<h5>안녕하세요. 이번 경매는 ... 아아아아 이거슨 설명을 하는 자리요오오오오오오 졸리구만요</h5>
-       
+	       <h3>상세정보</h3><br/>
+		   <h5>여기는 상세 정보를 입력하는 자리입니다.</h5>       
        </div>
 	   
 	   <br/><br/><br/>

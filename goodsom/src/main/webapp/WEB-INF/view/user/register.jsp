@@ -98,9 +98,9 @@ function home(targetUri) {
 					</div>
 
 					<div class="form-group">
-						<label for="name">Account</label> <input name="account"
-							id="account" type="text" class="form-control"
-							placeholder="Account"> <select name="bank" id="bank">
+						<label for="name">Account</label>
+						<input name="account" id="account" type="text" class="form-control" placeholder="Account"> 
+						<select name="bank" id="bank">
 							<option value="shinhan">신한은행</option>
 							<option value="woorie">우리은행</option>
 							<option value="hana">하나은행</option>
