@@ -3,6 +3,7 @@ package dongduk.cs.ssd.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import dongduk.cs.ssd.dao.GroupBuyDao;
@@ -12,6 +13,11 @@ import dongduk.cs.ssd.service.GroupBuyService;
 /**
  * @author Seonmi Hwang
  * @since 2020.05.06
+ */
+
+/**
+ * @author hk
+ * @since 2020.06.14
  */
 
 @Service

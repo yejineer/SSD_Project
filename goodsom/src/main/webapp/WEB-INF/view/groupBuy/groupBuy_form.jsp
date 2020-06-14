@@ -69,6 +69,13 @@ if( hasClass( document.getElementsByTagName('html')[0], 'ie8' ) ) { // ie8 일 �
         });
     }
 }
+
+
+function input_append(ff){
+  app = document.getElementById("optionBox");
+  app.innerHTML += "<input type=text id=groupBuy.options name=groupBuy.options class=form-control><br>";
+}
+
 </script>
 <style>
 * {
@@ -116,7 +123,7 @@ body {
   box-sizing: border-box;
   cursor: pointer;
 }
-.radio-items > div input[type="radio"]:checked + label {
+.radio-items input[type="radio"]:checked + label {
   background-color: #454a60;
   color: #fff;
 }
@@ -124,6 +131,15 @@ body {
 .ie8 .radio-items input[type="radio"].checked + label {
   background-color: #454a60;
   color: #fff;
+}
+
+#addOption{
+	width:100px;
+    background-color: #3a4bcf; border: none;
+    color:#fff; padding: 15px 0; text-align: center; text-decoration: none;
+    display: inline-block; font-size: 15px;
+    margin: 4px; border-radius:10px; float: right;
+    cursor: pointer;
 }
 </style>
 <body data-spy="scroll" data-target=".site-navbar-target"
@@ -232,13 +248,21 @@ body {
 							</div>
 							
 							<div class="form-group">
-								<label for="option">옵션</label> <br/>
-								<input type="text" id="groupBuy.option" name="groupBuy.option" class="form-control" placeholder="Options">
+								<label for="option">옵션</label>
 								<!--
+								<input type="text" id="groupBuy.option" name="groupBuy.option" class="form-control" placeholder="Options">
+								
 								<input type="text" id="title" class="form-control" placeholder="제목">
 								<input type="button" onClick="" value="Add" /> &nbsp; ** 추가 버튼을 클릭해보세요 <br/>
 								<input name="" id="iption" type="text" style="width:150px;" />
 								  -->
+							
+								<input type="button" id="addOption" value="추가" onclick="input_append(this.form)">
+
+								<div id="optionBox">
+									<input type="text" id="groupBuy.options" name="groupBuy.options" class="form-control"><br>
+								</div>
+								
 							</div>
 							
 							<div class="form-group">
