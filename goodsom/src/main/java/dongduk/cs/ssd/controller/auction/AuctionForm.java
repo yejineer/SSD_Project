@@ -1,6 +1,7 @@
 package dongduk.cs.ssd.controller.auction;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import dongduk.cs.ssd.domain.Auction;
 

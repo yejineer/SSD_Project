@@ -3,6 +3,7 @@ package dongduk.cs.ssd.dao.mybatis;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
@@ -22,6 +23,7 @@ public class MybatisAuctionDao implements AuctionDao {
 	private static final String proceeding = "proceeding";
 	private static final String closed = "closed";
 	
+	@Autowired
 	protected AuctionMapper auctionMapper;
 
 	@Override

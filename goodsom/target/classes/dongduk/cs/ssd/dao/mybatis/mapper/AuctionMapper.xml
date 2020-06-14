@@ -3,47 +3,51 @@
 
 <!-- AuctionMapper 인터페이스의 package이름과 같아야 함 -->
 <mapper namespace="dongduk.cs.ssd.dao.mybatis.mapper.AuctionMapper">
-  <cache />
-<!--   <sql id="BaseColumns">
 
-  </sql> -->
-  <select id="getAuction" parameterType="java.lang.Integer" resultType="Auction"> <!-- parameterType없이도 되남 -->
-    SELECT * FROM AUCTIONS
+  <sql id="BaseColumns_Auctions">
+  	auctionId, title, content, img, startPrice, uploadDate, endDate, count,
+  	maxPrice, state, menuId, userId 
+  </sql>
+  
+  <select id="getAuction" parameterType="java.lang.Integer" resultType="dongduk.cs.ssd.domain.Auction"> <!-- parameterType없이도 되남 -->
+    SELECT <include refid="BaseColumns_Auctions" />
+    FROM AUCTIONS
     WHERE AUCTIONID = #{auctionId}
   </select>
   
-  <insert id="createAuction" parameterType="Auction">
+  <insert id="createAuction" parameterType="dongduk.cs.ssd.domain.Auction">
   	<selectKey keyProperty="orderId" resultType="int" order="BEFORE">
   		SELECT auctionId_seq.nextval AS auctionId FROM DUAL
      </selectKey>
-  	INSERT INTO auctions
+  	INSERT INTO AUCTIONS
 	VALUES (#{auctionId}, #{title}, #{content}, #{img}, #{startPrice}, 
-			#{uploadDate}, #{endDate}, #{count}, #{maxPrice}, #{state}, 1);
+			#{uploadDate}, #{endDate}, #{count}, #{maxPrice}, #{state}, 1)
   </insert>
   
-  <update id="updateAuction" parameterType="Auction">
-   	UPDATE auctions
+  <update id="updateAuction" parameterType="dongduk.cs.ssd.domain.Auction">
+   	UPDATE AUCTIONS
     SET title=#{title}, content=#{content}, img=#{img}, startPrice=#{startPrice}, 
  		UPLOADDATE=#{uploadDate}, ENDDATE=#{endDate}, COUNT=#{count}, MAXPRICE=#{maxPrice}, STATE=#{state}
-  	WHERE  AUCTIONID=#{auctionId};
+  	WHERE  AUCTIONID=#{auctionId}
   </update>
    
   <delete id="deleteAuction" parameterType="java.lang.Integer">
     DELETE FROM AUCTIONS
-    WHERE  AUCTIONID=#{auctionId};
+    WHERE  AUCTIONID=#{auctionId}
   	
   </delete>
   
   <!-- Get all auctions -->
-  <select id="getAuctionList" resultType="Auction">
-    SELECT * FROM auctions
+  <select id="getAuctionList" resultType="dongduk.cs.ssd.domain.Auction">
+    SELECT <include refid="BaseColumns_Auctions" />
+    FROM AUCTIONS
   </select>
   
   <!-- Search auctions by Keyword -->
-  <select id="getAuctionListByKeyword" resultType="Auction">
+  <select id="getAuctionListByKeyword" resultType="dongduk.cs.ssd.domain.Auction">
   	<bind name="pattern" value="'%' + _parameter + '%'" />
-	  	SELECT * 
-	  	FROM auctions
+	  	SELECT <include refid="BaseColumns_Auctions" />
+	  	FROM AUCTIONS
 	  	WHERE title LIKE #{pattern}
   </select>
 </mapper>

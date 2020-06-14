@@ -121,20 +121,20 @@ function createAuction() {
 						
 							<div class="form-group row">
 								<div class="col-md-12">
-									<label for="title">제목</label> 
+									<label for="auction.title">제목</label> 
 									<input type="text" id="auction.title" class="form-control" placeholder="Title">
 								</div>
 							</div>
 							<div class="form-group row">
 								<div class="col-md-12">
-									<label for="img">대표 이미지</label> </br>
+									<label for="auction.img">대표 이미지</label> </br>
                 					<input type="file" id="auction.img" value="input file" name="image"/>
               					</div>
               				</div>
 							
 							<div class="form-group row">
 								<div class="col-md-12">
-									<label for="content">상세 설명</label> 
+									<label for="auction.content">상세 설명</label> 
 									<textarea id="auction.content" class="form-control"
 										placeholder="Write description." cols="30" rows="10"></textarea>
 								</div>
@@ -142,7 +142,7 @@ function createAuction() {
 							
 							<div class="form-group row">
 								<div class="col-md-12">
-									<label for="startPrice">최소 입찰 금액</label> 
+									<label for="auction.startPrice">최소 입찰 금액</label> 
 									<div class="d-flex">
 										<div class="form-group mr-2">
 										<input type="text" class="form-control" id="auction.startPrice" placeholder="Price">
@@ -152,10 +152,10 @@ function createAuction() {
 							</div>
 							
 							<div class="form-group">
-			              	<label for="endDate">마감일</label>
+			              	<label for="auction.endDate">마감일</label>
 				                <div class="d-flex">
 					    		  <div class="form-group mr-2">
-					                <input type="text" class="form-control" id="auction.endDate" placeholder="ex) 2020-12-31">
+					                <input type="date" class="form-control" id="auction.endDate">
 					              </div>
 			              		</div>
 			              	</div>

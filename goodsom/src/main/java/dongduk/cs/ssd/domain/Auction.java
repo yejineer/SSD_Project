@@ -1,10 +1,12 @@
 package dongduk.cs.ssd.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Auction {
+@SuppressWarnings("serial")
+public class Auction implements Serializable {
 	int auctionId;
 	String title;
 	String content;
