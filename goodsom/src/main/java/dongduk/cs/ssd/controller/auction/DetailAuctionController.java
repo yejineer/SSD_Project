@@ -18,8 +18,8 @@ import dongduk.cs.ssd.service.AuctionService;
 import dongduk.cs.ssd.service.UserService;
 
 /**
- * @author Hyekyung Kim
- * @since 2020.05.08
+ * @author Hyekyung Kim	& Yejin Lee
+ * @since 2020.05.08	& 2020.06.14
  */
 
 
@@ -51,9 +51,9 @@ public class DetailAuctionController {
 	
 	@RequestMapping("/auction/detail.do")
 	public ModelAndView auctionDetail(HttpServletRequest request,
-			@RequestParam("auctionId") String auctionId, Auction auction) {
-		ModelAndView mav = new ModelAndView("auction/auction_detail");
-		mav.addObject("auction", auctionService.getAuction(auction.getAuctionId()));
+			@RequestParam("auctionId") int auctionId) {
+		ModelAndView mav = new ModelAndView(AUCTION_DETAIL);
+		mav.addObject("auction", auctionService.getAuction(auctionId));
 		return mav;
 	}
 }

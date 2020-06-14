@@ -151,8 +151,12 @@
 	   
 	   <br/><br/><br/>
 	   <div class="form-group" align="right">
-	   		<input type="button" value="수정" onClick="" class="btn btn-primary py-3 px-5">  &nbsp;
-	   		<a class="btn btn-primary py-3 px-5" href="<c:url value=''></c:url>">삭제</a>	
+	   		<a class="btn btn-primary py-3 px-5" href="<c:url value='/auction/form.do'>
+											<c:param name="auctionId" value="${auction.auctionId}"/>
+										</c:url>">수정</a>
+	   		<a class="btn btn-primary py-3 px-5" href="<c:url value='/auction/delete.do'>
+											<c:param name="auctionId" value="${auction.auctionId}"/>
+										</c:url>">삭제</a>	
 	   </div>							
    </div>
 
