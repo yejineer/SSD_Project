@@ -97,8 +97,7 @@
 					class="row align-items-center text-center justify-content-center">
 					<div class="col-lg-6">
 						<h1 class="text-white mb-4">Auction</h1>
-						<p class="lead">Lorem ipsum dolor sit amet, consectetur
-							adipisicing elit maxime nemo placeat dolor est.</p>
+						<p class="lead">솜솜이들이 갖고 있던 학교 굿즈를 경매하는 공간</p>
 
 					</div>
 				</div>
@@ -110,9 +109,37 @@
 			<div class="container">
 			<a class="btn btn-primary py-3 px-5" href="<c:url value='/auction/form.do'></c:url>">경매 등록</a> <br/> <br/>
 				<div class="row">
-					<div class="col-lg-4 col-md-6 mb-4">
+					<c:forEach var="auction" items="${auctionList}" varStatus="status">
+						<div class="col-lg-4 col-md-6 mb-4">
+							<div class="post-entry-1 h-100">
+								<a href="<c:url value='/auction/detail.do'>
+											<c:param name="auctionId" value="${auction.auctionId}"/>
+										</c:url>">
+										<img src="<%=request.getContextPath()%>/resources/images/img_1.jpg" alt="Image" class="img-fluid">
+								</a>
+								<div class="post-entry-1-contents">
+	
+									<h2>
+										<a  href="<c:url value='/auction/detail.do'>
+													<c:param name="auctionId" value="${auction.auctionId}"/>
+												</c:url>">${auction.title}</a>
+									</h2>
+									<span class="meta d-inline-block mb-3">
+										~ <fmt:formatDate value="${auction.endDate}" pattern="yyyy-MM-dd" />
+									<span class="mx-2">현재 최고 금액</span> <a href="#">${auction.maxPrice}</a></span>
+									<p>${auction.content}</p>
+								</div>
+							</div>
+						</div>
+    				
+
+					</c:forEach>
+					<%-- <div class="col-lg-4 col-md-6 mb-4">
 						<div class="post-entry-1 h-100">
-							<a href="single.html"> <img src="<%=request.getContextPath()%>/resources/images/img_1.jpg"
+							<a href="<c:url value='/auction/detail.do'>
+										<c:param name="email" value="${member.email}"/>
+									</c:url>">
+									<img src="<%=request.getContextPath()%>/resources/images/img_1.jpg"
 								alt="Image" class="img-fluid">
 							</a>
 							<div class="post-entry-1-contents">
@@ -216,7 +243,7 @@
 							</div>
 						</div>
 					</div>
-
+ --%>
 
 					<div class="col-12 mt-5 text-center">
 						<span class="p-3">1</span> <a href="#" class="p-3">2</a> <a

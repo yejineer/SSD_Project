@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -29,12 +30,13 @@ import dongduk.cs.ssd.service.impl.AuctionServiceImpl;
 
 @Controller
 //@SessionAttributes("auction")
-@RequestMapping("/auction")
 public class AuctionFormController {
 	
-	private static final String AUCTION_LIST = "auction/auction_list";
 	private static final String AUCTION_FORM = "auction/auction_form";
 	private static final String AUCTION_DETAIL = "auction/auction_detail";
+	private static final String PROCEEDING = "proceeding";
+//	private static final String CLOSED = "closed";
+	private static final int MENUID_AUCTION = 1;
 	
 	@Autowired
 	private AuctionService auctionService;
@@ -56,20 +58,13 @@ public class AuctionFormController {
 //		
 //	}
 
-	@RequestMapping(value="/form.do")
+	@RequestMapping(value="/auction/form.do")
 	public String auctionForm() {
 		return AUCTION_FORM;
 	}
 	
-	@RequestMapping(value="/list.do", method=RequestMethod.GET)
-	public String auctionList(){
-		return AUCTION_LIST;
-	}
-	
-	
-	@RequestMapping(value="/detail.do", method = RequestMethod.POST)
-	public String updateOrSubmit(HttpServletRequest request,
-			@ModelAttribute("auctionForm") AuctionForm auctionForm) {
+	@RequestMapping(value="/auction/detail.do", method = RequestMethod.POST)
+	public String submit(HttpServletRequest request, AuctionForm auctionForm, Model model) {
 		String reqPage = request.getServletPath();
 		System.out.println(reqPage);
 		HttpSession session = request.getSession();
@@ -88,7 +83,13 @@ public class AuctionFormController {
             
 			auctionForm.getAuction().setUploadDate(date);
 			auctionForm.getAuction().setUserId(userId);
-			auctionService.createAuction(auctionForm.getAuction());
+			auctionForm.getAuction().setState(PROCEEDING);
+			auctionForm.getAuction().setCount(0);
+			auctionForm.getAuction().setMenuId(MENUID_AUCTION);
+			System.out.println(auctionForm.toString());
+//			auctionService.createAuction(auctionForm.getAuction());
+			model.addAttribute("writer", user.getUser().getNickname());
+			model.addAttribute("auction", auctionForm.getAuction()); 
 			return AUCTION_DETAIL;
 //		}
 	}

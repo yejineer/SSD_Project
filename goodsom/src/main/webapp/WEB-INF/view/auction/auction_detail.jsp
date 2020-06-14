@@ -107,7 +107,7 @@
 
     <br/>    
     <div align="center">
-    	<br/><h2 class="text-primary mb-5 font-weight-bold">Title of Auction</h2><br/>
+    	<br/><h2 class="text-primary mb-5 font-weight-bold">${auction.title}</h2><br/>
     </div>
          	
      <div class="container">
@@ -118,14 +118,17 @@
          
          <div class="col-md-5 ml-auto">
          	
-         	<p>작성자 : &nbsp; &nbsp; 누군가 <br/> 작성일 : &nbsp; &nbsp; 언젠가</p>
-         	<h5>시작 금액 : &nbsp; &nbsp; $300</h5>
-           	<h5>남은 시간  : &nbsp; &nbsp; 3일</h5> <br/>
+         	<p>작성자 : &nbsp; &nbsp; ${writer} <br/> 
+         		작성일 : &nbsp; &nbsp; <fmt:formatDate value="${auction.uploadDate}" pattern="yyyy-MM-dd" />
+         	</p>
+         	<h5>시작 금액 : &nbsp; &nbsp; <fmt:formatNumber value="${auction.startPrice}" pattern="#,###원"/></h5>
+           	<h5>마감 시각  : &nbsp; &nbsp; <fmt:formatDate value="${auction.endDate}" pattern="yyyy-MM-dd" /></h5>
+           	<br/>
            	
            	<h5 align="center"><b>현재 최고가</b></h5>
            	
            	<div class="alert alert-primary" role="alert">
-           		<h4 class="text-danger">$500</h4>
+           		<h4 class="text-danger">  <fmt:formatNumber value="${auction.maxPrice}" pattern="#,###원"/></h4>
  				<p>2020-06-14 <br/> 22 : 02 : 13</p>
 			</div>
 			
@@ -142,7 +145,7 @@
        <br/><br/>
        <div>
        
-       	<h5>안녕하세요. 이번 경매는 ... 아아아아 이거슨 설명을 하는 자리요오오오오오오 졸리구만요</h5>
+       	<h5>${auction.content}</h5>
        
        </div>
 	   
