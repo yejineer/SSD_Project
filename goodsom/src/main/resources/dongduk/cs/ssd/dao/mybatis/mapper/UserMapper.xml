@@ -19,9 +19,11 @@
   
   <insert id="createUser" parameterType="User">
   	INSERT INTO USERS 
-  	(EMAIL, PASSWD, USERNAME, NICKNAME, ADDRESS1, ADDRESS2, ADDRESS3, PHONE, REFUNDBANK, REFUNDACCOUNT)
+  	(USERID, EMAIL, PASSWD, USERNAME, NICKNAME, ADDRESS1, ADDRESS2, ADDRESS3, PHONE, REFUNDBANK, REFUNDACCOUNT)
   	VALUES 
-  	(#{emailId}, #{password}, #{userName}, #{nickname}, #{address1}, #{address2}, #{address3}, #{phone}, #{refundBank}, #{refundAccount})
+  	(USERID_SEQ.nextval, #{emailId}, #{password}, #{userName}, #{nickname}, 
+  	#{address1, jdbcType=VARCHAR}, #{address2, jdbcType=VARCHAR}, #{address3, jdbcType=VARCHAR}, #{phone, jdbcType=VARCHAR}, 
+  	#{refundBank, jdbcType=VARCHAR}, #{refundAccount, jdbcType=VARCHAR}) 
   </insert>
   
   <update id="updateUser" parameterType="User">

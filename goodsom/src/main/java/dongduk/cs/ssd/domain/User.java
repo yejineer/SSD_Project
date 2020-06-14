@@ -9,6 +9,7 @@ import java.io.Serializable;
 
 @SuppressWarnings("serial")
 public class User implements Serializable {
+	
 	int userId;
 	String emailId;
 	String password;

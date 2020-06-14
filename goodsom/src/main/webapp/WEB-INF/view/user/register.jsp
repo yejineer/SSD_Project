@@ -61,7 +61,7 @@ function home(targetUri) {
 				<form name="form" method="POST" action="<c:url value='/user/register.do' />" class="bg-light p-5 contact-form">
 
 					<div class="form-group">
-						<label for="name">ID</label> <input name="id" id="id" type="text"
+						<label for="name">ID</label> <input name="emailId" id="emailId" type="text"
 							class="form-control" placeholder="ID">
 					</div>
 
@@ -78,7 +78,7 @@ function home(targetUri) {
 					</div>
 
 					<div class="form-group">
-						<label for="name">Name</label> <input name="name" id="Name"
+						<label for="name">Name</label> <input name="userName" id="userName"
 							type="text" class="form-control" placeholder="Name">
 					</div>
 
@@ -89,8 +89,9 @@ function home(targetUri) {
 
 					<div class="form-group">
 						<label for="name">Address</label> <br/> 
-						<input id="postcode1" name="addr1" type="text" value="" style="width: 50px;" readonly />&nbsp;-&nbsp; 
-						<input id="postcode2" name="addr2" type="text" value="" style="width: 50px;" readonly /> &nbsp;&nbsp; 
+						<input id="address1" name="address1" type="text" value="" style="width: 50px;" />&nbsp;-&nbsp; 
+						<input id="address2" name="address2" type="text" value="" style="width: 50px;" /> &nbsp;&nbsp; 
+						<input id="address3" name="address3" type="text" value="" style="width: 50px;" />
 						<!-- <input id="zonecode" name="addr3" type="text" value="" style="width: 50px;" readonly /> &nbsp; 
 						<input type="button" onClick="openDaumZipAddress();" value="find address" /> <br/> 
 						<input type="text" name="addr4" id="address" value="" style="width: 240px;" readonly /> 
@@ -99,8 +100,8 @@ function home(targetUri) {
 
 					<div class="form-group">
 						<label for="name">Account</label>
-						<input name="account" id="account" type="text" class="form-control" placeholder="Account"> 
-						<select name="bank" id="bank">
+						<input name="refundAccount" id="refundAccount" type="text" class="form-control" placeholder="Account"> 
+						<select name="refundBbank" id="bank">
 							<option value="shinhan">신한은행</option>
 							<option value="woorie">우리은행</option>
 							<option value="hana">하나은행</option>

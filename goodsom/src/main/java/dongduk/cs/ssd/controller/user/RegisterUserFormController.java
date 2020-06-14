@@ -15,15 +15,44 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import dongduk.cs.ssd.service.UserService;
 
 /**
- * @author Yejin Lee
- * @since 2020.05.07
+ * @author kimdahyee
+ * @since 2020.06.14
  */
 
-/*
 @Controller
 @RequestMapping("/user/register.do")
-*/
 public class RegisterUserFormController {
+	
+	@Value("/user/register")
+	private String formViewName;
+	@Value("/user/login")
+	private String successViewName;
+	
+	@Autowired
+	private UserService userService;
+	public void setUserService(UserService userService) {
+		this.userService = userService;
+	}
+	
+	@RequestMapping(method = RequestMethod.GET)
+	public String showForm() {
+		return formViewName;
+	}
+	
+	@RequestMapping(method = RequestMethod.POST)
+	public String onSubmit(HttpServletRequest request, HttpSession session,
+			@ModelAttribute("userForm") UserForm userForm, BindingResult result) throws Exception {
+		
+		if (result.hasErrors()) {
+			return formViewName;
+		} else {
+			userService.createUser(userForm.getUser());
+			
+			UserSession userSession = new UserSession(userService.getUserByEmailId(userForm.getUser().getEmailId()));
+			session.setAttribute("userSession", userSession);
+			return successViewName;
+		}
+	}
 	
 	/*
 	@Value("register")
