@@ -45,6 +45,8 @@ public class GroupBuyServiceImpl implements GroupBuyService {
 	public void createOptions(GroupBuy groupBuy) {
 		groupBuyDao.createOptions(groupBuy);
 	}
+	
+	
 	/*
 	public List<GroupBuy> getGroupBuyList() {
 		return groupBuyDao.getGroupBuyList();
