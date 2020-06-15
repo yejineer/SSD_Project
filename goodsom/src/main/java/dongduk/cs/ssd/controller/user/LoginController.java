@@ -22,7 +22,7 @@ import dongduk.cs.ssd.service.UserService;
  */
 
 @Controller
-//@SessionAttributes("userSession")
+@SessionAttributes("userSession")
 public class LoginController {
 	
 	private UserService userService;

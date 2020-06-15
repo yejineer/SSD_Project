@@ -43,6 +43,16 @@
 
 <script>
 function login() {
+	if (form.emailId.value == "") {
+		alert("Input Your ID.");
+		form.id.focus();
+		return false;
+	} 
+	if (form.password.value == "") {
+		alert("Input Your Password.");
+		form.password.focus();
+		return false;
+	}		
 	form.submit();
 }
 </script>
