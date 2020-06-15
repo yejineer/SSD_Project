@@ -11,7 +11,7 @@
       AND PASSWD = #{param2}
   </select> 
   
-  <select id="getUserByEmailId" resultType="User">
+  <select id="getUserByEmail" resultType="User">
   	SELECT USERID, EMAIL, PASSWD, USERNAME, NICKNAME, ADDRESS1, ADDRESS2, ADDRESS3, PHONE, REFUNDBANK, REFUNDACCOUNT
     FROM USERS 
     WHERE EMAIL = #{param1}
@@ -33,14 +33,14 @@
   </insert>
   
   <update id="updateUser" parameterType="User">
-  	UPDATE SET
-  		PASSWD = #{password}
-  		NICKNAME = #{nickname}
-  		ADDRESS1 = #{address1}
-  		ADDRESS2 = #{address2}
-  		ADDRESS3 = #{address3}
-  		PHONE = #{phone}
-  		REFUNDBANK = #{refundBank}
+  	UPDATE USERS SET
+  		PASSWD = #{password},
+  		NICKNAME = #{nickname},
+  		ADDRESS1 = #{address1},
+  		ADDRESS2 = #{address2},
+  		ADDRESS3 = #{address3},
+  		PHONE = #{phone},
+  		REFUNDBANK = #{refundBank},
   		REFUNDACCOUNT = #{refundAccount}
   	WHERE USERID = #{userId}
   </update>

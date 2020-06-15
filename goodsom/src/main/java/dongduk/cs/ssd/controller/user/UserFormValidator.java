@@ -23,15 +23,14 @@ public class UserFormValidator implements Validator {
 		UserForm userForm = (UserForm)obj; 
 		User user = userForm.getUser();
 
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "user.emailId", "EMAIL_REQUIRED", "Email is required.");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "user.email", "EMAIL_REQUIRED", "Email is required.");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "user.userName", "USER_NAME_REQUIRED", "User name is required.");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "user.nickname", "NICKNAME_REQUIRED", "Nickname is required.");
 		
 		if (userForm.isNewUser()) {
 //			user.setStatus("OK");
 //			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "user.userName", "USER_ID_REQUIRED", "User ID is required.");
-			if (user.getPassword() == null || user.getPassword().length() < 1 ||
-					!user.getPassword().equals(userForm.getRepeatedPassword())) {
+			if (user.getPassword() == null || user.getPassword().length() < 1 || !user.getPassword().equals(userForm.getRepeatedPassword())) {
 				errors.reject("PASSWORD_MISMATCH",
 					 "Passwords did not match or were not provided. Matching passwords are required.");
 			}

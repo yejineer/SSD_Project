@@ -28,8 +28,8 @@ public class MybatisUserDao implements UserDao {
 		return userMapper.getUser(email, passwd);
 	}
 	
-	public User getUserByEmailId(String emailId) throws DataAccessException {
-		return userMapper.getUserByEmailId(emailId);
+	public User getUserByEmail(String emailId) throws DataAccessException {
+		return userMapper.getUserByEmail(emailId);
 	}
 	
 	public User getUserByUserId(int userId) throws DataAccessException {

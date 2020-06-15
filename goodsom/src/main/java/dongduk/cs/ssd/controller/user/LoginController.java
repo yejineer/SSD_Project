@@ -40,16 +40,16 @@ public class LoginController {
 			@RequestParam("emailId") String email,
 			@RequestParam("password") String password,
 			Model model) throws Exception {
-		
+		System.out.println("로긘" + userService.getUser(email, password).getEmail());
 		User user = userService.getUser(email, password);// 로그인 시도
 		
 		if (user == null) { // 해당 email과 password를 갖는 사용자가 존재하지 않을 시
 			return new ModelAndView("/user/login", "message", "Invalid email or password. Login failed.");
 		} else { // 로그인 성공 시
-			user.setEmailId(email);
+//			user.setEmailId(email);
 			UserSession userSession = new UserSession(user);
 			session.setAttribute("userSession", userSession);
-			model.addAttribute("userSession", userSession);
+			model.addAttribute("userSession", userSession); // 필요한가??
 			return new ModelAndView("home");
 		}
 	}

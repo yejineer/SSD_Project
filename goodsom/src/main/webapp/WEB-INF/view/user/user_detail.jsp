@@ -73,14 +73,13 @@
 
 
 
-						<nav class="site-navigation text-right ml-auto d-none d-lg-block"
-							role="navigation">
+						<nav class="site-navigation text-right ml-auto d-none d-lg-block" role="navigation">
 							<ul class="site-menu main-menu js-clone-nav ml-auto ">
 								<li><a href="<%=request.getContextPath()%>/home.do" class="nav-link">Home</a></li>
 								<li><a href="<%=request.getContextPath()%>/groupBuy/list.do" class="nav-link">GroupBuy</a></li>
 								<li><a href="<%=request.getContextPath()%>/auction/list.do" class="nav-link">Auction</a></li>
 								<li><a href="#">Community</a></li>
-								<li><a href="<%=request.getContextPath()%>/mypage/list.do"><img src="<%=request.getContextPath()%>/resources/images/mypage.jpg" alt="Image" 
+								<li><a href="<%=request.getContextPath()%>/user/detail.do"><img src="<%=request.getContextPath()%>/resources/images/mypage.jpg" alt="Image" 
 								width="30px" height="20px" class="img-fluid"> ${userSession.user.nickname}</a></li>
 							</ul>
 						</nav>
@@ -109,24 +108,24 @@
 			<div class="container">
 
 				<!-- 구현 시작 -->
+					<h2>회원 정보</h2>
 
-
-				<div class="col-lg-4 col-md-6 mb-4">
-						<h2>회원 정보</h2>
-						
-							<hr>
-							이메일 &emsp;${userSession.user.emailId}<br>
-							닉네임 &emsp;${userSession.user.nickname}<br>
-							이름 &emsp;${userSession.user.userName}<br>
-							전화번호 &emsp;${userSession.user.phone}<br>
-							주소 &emsp;${userSession.user.address1} ${userSession.user.address2} ${userSession.user.address3}<br>
-							환불계좌 &emsp;${userSession.user.refundBank} ${userSession.user.refundAccount}<br>
-							<hr>
-							<!-- 회원탈퇴, 수정, 확인 버튼 생성 -->
-							<a class="btn btn-primary py-3 px-5" href="<c:url value='/user/delete.do'></c:url>">회원탈퇴</a>
-							 &nbsp;
-							<a class="btn btn-primary py-3 px-5" href="<c:url value='/user/update.do'></c:url>">수정</a>
-				</div>
+					<hr>
+					이메일 &emsp;${userForm.user.email}<br> 
+					닉네임 &emsp;${userForm.user.nickname}<br> 
+					이름 &emsp;${userForm.user.userName}<br> 
+					전화번호 &emsp;${userForm.user.phone}<br> 
+					주소 &emsp;${userForm.user.address1} &nbsp; ${userForm.user.address2} &nbsp; ${userForm.user.address3}<br> 
+					환불계좌 &emsp;${userForm.user.refundBank} &nbsp; ${userForm.user.refundAccount}<br>
+					<hr>
+					
+					<!-- 회원탈퇴, 수정, 확인 버튼 생성 -->
+					<a class="btn btn-primary py-3 px-5"
+						href="<c:url value='/user/delete.do'></c:url>">회원탈퇴</a> &nbsp; 
+					<a class="btn btn-primary py-3 px-5"
+						href="<c:url value='/user/update.do'></c:url>">수정</a> &nbsp; 
+					<a class="btn btn-primary py-3 px-5"
+						href="<c:url value='/mypage/list.do'></c:url>">등록 목록 보기</a>
 
 				<!-- 구현 끝 -->
 

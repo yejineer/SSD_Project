@@ -63,7 +63,7 @@ public class RegisterUserFormController {
 			
 			System.out.println("은행 선택 값 출력 =======================" + userForm.getUser().getRefundBank());
 			
-			UserSession userSession = new UserSession(userService.getUserByEmailId(userForm.getUser().getEmailId()));
+			UserSession userSession = new UserSession(userService.getUserByEmail(userForm.getUser().getEmail()));
 			session.setAttribute("userSession", userSession);
 			return successViewName;
 		}
