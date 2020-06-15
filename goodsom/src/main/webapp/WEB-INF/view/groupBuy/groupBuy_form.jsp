@@ -311,9 +311,9 @@ body {
 									</div>
 								</div>
 							</div>
-							
-							<div class="form-group">
-			              	<label for="endDate">마감 기한</label>
+			              	
+			              	<div class="form-group">
+			              	<label for="endDate">마감일</label>
 				                <div class="d-flex">
 					    		  <div class="form-group mr-2">
 					                <input type="date" class="form-control" id="groupBuy.endDate" name = "groupBuy.endDate" placeholder="ex) 2020-10-22">
