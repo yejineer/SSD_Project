@@ -96,7 +96,7 @@
 
 					<div class="form-group">
 						<label for="name">ID</label> 
-						<input name="user.emailId" id="emailId" type="text" class="form-control" placeholder="ID">
+						<input name="user.email" id="emailId" type="text" class="form-control" placeholder="ID">
 					</div>
 
 					<div class="form-group">
@@ -139,10 +139,10 @@
 						<label for="name">Account</label>
 						<input name="user.refundAccount" id="refundAccount" type="text" class="form-control" placeholder="Account"> 
 						<select name="user.refundBank" id="refundBank">
-							<option value="shinhan">신한은행</option>
-							<option value="woorie">우리은행</option>
-							<option value="hana">하나은행</option>
-							<option value="kakao">카카오뱅크</option>
+							<option value="신한은행">신한은행</option>
+							<option value="우리은행">우리은행</option>
+							<option value="하나은행">하나은행</option>
+							<option value="카카오뱅크">카카오뱅크</option>
 						</select>
 					</div>
 					<br/>

@@ -60,9 +60,6 @@ public class RegisterUserFormController {
 			return formViewName;
 		} else {
 			userService.createUser(userForm.getUser());
-			
-			System.out.println("은행 선택 값 출력 =======================" + userForm.getUser().getRefundBank());
-			
 			UserSession userSession = new UserSession(userService.getUserByEmail(userForm.getUser().getEmail()));
 			session.setAttribute("userSession", userSession);
 			return successViewName;

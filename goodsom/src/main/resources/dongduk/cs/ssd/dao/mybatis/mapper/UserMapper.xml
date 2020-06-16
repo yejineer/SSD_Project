@@ -27,7 +27,7 @@
   	INSERT INTO USERS 
   	(USERID, EMAIL, PASSWD, USERNAME, NICKNAME, ADDRESS1, ADDRESS2, ADDRESS3, PHONE, REFUNDBANK, REFUNDACCOUNT)
   	VALUES 
-  	(USERID_SEQ.nextval, #{emailId}, #{password}, #{userName}, #{nickname}, 
+  	(USERID_SEQ.nextval, #{email}, #{password}, #{userName}, #{nickname}, 
   	#{address1, jdbcType=VARCHAR}, #{address2, jdbcType=VARCHAR}, #{address3, jdbcType=VARCHAR}, #{phone, jdbcType=VARCHAR}, 
   	#{refundBank, jdbcType=VARCHAR}, #{refundAccount, jdbcType=VARCHAR}) 
   </insert>

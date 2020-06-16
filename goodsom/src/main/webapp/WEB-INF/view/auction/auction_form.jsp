@@ -135,8 +135,7 @@ function createAuction() {
 							<div class="form-group row">
 								<div class="col-md-12">
 									<label for="auction.content">상세 설명</label> 
-									<textarea id="auction.content" class="form-control"
-										placeholder="Write description." cols="30" rows="10"></textarea>
+									<textarea id="auction.content" class="form-control" placeholder="Write description." cols="30" rows="10"></textarea>
 								</div>
 							</div>
 							
