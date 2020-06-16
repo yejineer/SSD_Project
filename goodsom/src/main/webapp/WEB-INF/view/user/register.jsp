@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+	
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
@@ -139,10 +140,10 @@
 						<label for="name">Account</label>
 						<input name="user.refundAccount" id="refundAccount" type="text" class="form-control" placeholder="Account"> 
 						<select name="user.refundBank" id="refundBank">
-							<option value="½ÅÇÑÀºÇà">½ÅÇÑÀºÇà</option>
-							<option value="¿ì¸®ÀºÇà">¿ì¸®ÀºÇà</option>
-							<option value="ÇÏ³ªÀºÇà">ÇÏ³ªÀºÇà</option>
-							<option value="Ä«Ä«¿À¹ðÅ©">Ä«Ä«¿À¹ðÅ©</option>
+							<option value="ì‹ í•œì€í–‰">ì‹ í•œì€í–‰</option>
+							<option value="ìš°ë¦¬ì€í–‰">ìš°ë¦¬ì€í–‰</option>
+							<option value="í•˜ë‚˜ì€í–‰">í•˜ë‚˜ì€í–‰</option>
+							<option value="ì¹´ì¹´ì˜¤ë±…í¬">ì¹´ì¹´ì˜¤ë±…í¬</option>
 						</select>
 					</div>
 					<br/>
