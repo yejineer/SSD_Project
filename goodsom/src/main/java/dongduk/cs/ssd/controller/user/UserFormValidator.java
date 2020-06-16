@@ -5,15 +5,16 @@ import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 import dongduk.cs.ssd.domain.User;
+import org.springframework.stereotype.Component;
 
 /**
  * @author Yejin Lee
  * @since 2020.05.07
  */
-public class UserFormValidator {
-					//implements Validator {
 
-	/*
+@Component
+public class UserFormValidator implements Validator {
+
 	public boolean supports(Class<?> clazz) {
 		return User.class.isAssignableFrom(clazz);
 	}
@@ -24,13 +25,12 @@ public class UserFormValidator {
 
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "user.email", "EMAIL_REQUIRED", "Email is required.");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "user.userName", "USER_NAME_REQUIRED", "User name is required.");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "user.nickName", "NICKNAME_REQUIRED", "Nickname is required.");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "user.nickname", "NICKNAME_REQUIRED", "Nickname is required.");
 		
 		if (userForm.isNewUser()) {
 //			user.setStatus("OK");
-			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "account.username", "USER_ID_REQUIRED", "User ID is required.");
-			if (user.getPassword() == null || user.getPassword().length() < 1 ||
-					!user.getPassword().equals(userForm.getRepeatedPassword())) {
+//			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "user.userName", "USER_ID_REQUIRED", "User ID is required.");
+			if (user.getPassword() == null || user.getPassword().length() < 1 || !user.getPassword().equals(userForm.getRepeatedPassword())) {
 				errors.reject("PASSWORD_MISMATCH",
 					 "Passwords did not match or were not provided. Matching passwords are required.");
 			}
@@ -41,5 +41,4 @@ public class UserFormValidator {
 			}
 		}
 	}
-	*/
 }

@@ -34,6 +34,17 @@ public class RegisterUserFormController {
 		this.userService = userService;
 	}
 	
+	/*@Autowired
+	private UserFormValidator validator;
+	public void setValidator(UserFormValidator validator) {
+		this.validator = validator;
+	}*/
+	
+	@ModelAttribute("userForm")
+	public UserForm formBackingObject(HttpServletRequest request) throws Exception {
+		return new UserForm();
+	}
+	
 	@RequestMapping(method = RequestMethod.GET)
 	public String showForm() {
 		return formViewName;
@@ -43,12 +54,13 @@ public class RegisterUserFormController {
 	public String onSubmit(HttpServletRequest request, HttpSession session,
 			@ModelAttribute("userForm") UserForm userForm, BindingResult result) throws Exception {
 		
+		//validator.validate(userForm, result);
+		
 		if (result.hasErrors()) {
 			return formViewName;
 		} else {
 			userService.createUser(userForm.getUser());
-			
-			UserSession userSession = new UserSession(userService.getUserByEmailId(userForm.getUser().getEmailId()));
+			UserSession userSession = new UserSession(userService.getUserByEmail(userForm.getUser().getEmail()));
 			session.setAttribute("userSession", userSession);
 			return successViewName;
 		}

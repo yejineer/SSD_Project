@@ -80,7 +80,7 @@
 								<li><a href="<%=request.getContextPath()%>/groupBuy/list.do" class="nav-link">GroupBuy</a></li>
 								<li><a href="<%=request.getContextPath()%>/auction/list.do" class="nav-link">Auction</a></li>
 								<li><a href="#">Community</a></li>
-								<li><a href="<%=request.getContextPath()%>/mypage/list.do"><img src="<%=request.getContextPath()%>/resources/images/mypage.jpg" alt="Image" 
+								<li><a href="<%=request.getContextPath()%>/user/detail.do"><img src="<%=request.getContextPath()%>/resources/images/mypage.jpg" alt="Image" 
 								width="30px" height="20px" class="img-fluid"> ${userSession.user.nickname}</a></li>
 							</ul>
 						</nav>
@@ -109,21 +109,28 @@
 			<div class="container">
 				
 				<!-- 구현 시작 -->
-				
-				<a href="<c:url value='list.do'>
+				<a class="btn btn-primary py-3 px-5" href="<c:url value='list.do'>
 							<c:param name="menuId" value ="1" />
-						</c:url>">경매 등록 목록보기</a> 
-				<a href="<c:url value='list.do'>
+						</c:url>">경매 등록 목록보기</a> &nbsp;&nbsp;
+				<a class="btn btn-primary py-3 px-5" href="<c:url value='list.do'>
 							<c:param name="menuId" value ="2" />
-						</c:url>">공동구매 등록 목록보기</a> 
-				<a href="<c:url value='list.do'>
+						</c:url>">공동구매 등록 목록보기</a> &nbsp;&nbsp;
+				<a class="btn btn-primary py-3 px-5" href="<c:url value='list.do'>
 							<c:param name="menuId" value ="0" />
 						</c:url>">결제 목록보기</a>
-				<br>
+				<br><br>
+				
+				<c:if test="${menuId eq 1}">
+						<h2>경매 등록 목록 보기</h2><br>
+				</c:if>
+				<c:if test="${menuId eq 2}">
+					<h2>공동구매 등록 목록 보기</h2><br>
+				</c:if>
 				<div class="row">
 					<!-- 결제 목록 보기 -->
 					<%-- 	
 					<c:if test="${menuId eq 0}">
+						<h2>결제 목록 보기</h2><br>
 						<c:forEach var="order" items="${orderList}" varStatus="status">
 						<div class="col-lg-4 col-md-6 mb-4">
 							<div class="post-entry-1 h-100">

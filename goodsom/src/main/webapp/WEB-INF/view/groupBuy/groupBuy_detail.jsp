@@ -108,7 +108,7 @@
     <!-- start groupBuy detail -->
 	<br/>    
     <div align="center">
-    	<br/><h2 class="text-primary mb-5 font-weight-bold">Title of GroupBuy</h2><br/>
+    	<br/><h2 class="text-primary mb-5 font-weight-bold">${groupBuy.title}</h2><br/>
     </div>
          	
      <div class="container">
@@ -119,20 +119,24 @@
          
          <div class="col-md-5 ml-auto">
          	
-         	<p>작성자 : &nbsp; &nbsp; 누군가 <br/> 작성일 : &nbsp; &nbsp; 언젠가</p>
+         	<p>작성자 : &nbsp; &nbsp; ${writer} <br/> 
+         	작성일 : &nbsp; &nbsp; <fmt:formatDate value="${groupBuy.uploadDate}" pattern="yyyy-MM-dd" />
+      		</p>
          	<h2 align="center">$36,500</h2><br/>
-         	<h5>참여자 수 : &nbsp; &nbsp; 60명 / 30명</h5>
-           	<h5>남은 시간  : &nbsp; &nbsp; 3일</h5> <br/>
+         	<h5>참여자 수 : &nbsp; &nbsp; ${groupBuy.participants} / ${groupBuy.minNo}</h5>
+           	<h5>남은 시간  : &nbsp; &nbsp; ${dDay}</h5> <br/>
            	
            	<div class="alert alert-primary" role="alert">
            		<div class="d-flex">
 	           		<h5>옵션</h5>&nbsp;&nbsp;
-	           		<select name="option" id="option">
-	           			<option value="s">S</option>
-						<option value="m">M</option>
-						<option value="l">L</option>
-						<option value="free">Free</option>
+	           		<!-- 
+	           		<select name="groupBuy.options" id="options">
+	           			<option value="">옵션 선택</option>
+		           		<c:forEach var="option" items="${groupBuy.getOptions()}" varStatus="status">
+		           			<option>   <c:out value="${option}"/> </option>
+						</c:forEach>
 					</select><br/>
+					 -->
 				</div>
 				<div class="d-flex">
 					<h5>수량</h5>&nbsp;&nbsp;
@@ -140,16 +144,13 @@
 						<input type="button" onClick="" value="--">
 						<input type="text" id="" placeholder="1">
 						<input type="button" onClick="" value="+">
+						&nbsp; &nbsp;
+						<input type="button" onClick="" value="신청하기" />
 					</form>
 				</div>
 			</div>
 			
 			<br/><br/>
-			<div class="d-flex">
-		   		<h5>배탱 금액</h5>
-				<input type="text" id="" class="form-control" placeholder="$30">
-				<input type="button" onClick="" value="신청하기" />
-			</div>
   
          </div>
        </div> 
@@ -157,7 +158,7 @@
        <br/><br/>
        <div>
 	       <h3>상세정보</h3><br/>
-		   <h5>여기는 상세 정보를 입력하는 자리입니다.</h5>       
+		   <h5>${groupBuy.content}</h5>       
        </div>
 	   
 	   <br/><br/><br/>

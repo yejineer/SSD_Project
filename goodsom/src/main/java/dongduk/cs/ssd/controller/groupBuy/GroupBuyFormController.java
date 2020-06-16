@@ -9,12 +9,14 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import dongduk.cs.ssd.controller.user.UserSession;
+import dongduk.cs.ssd.domain.GroupBuy;
 import dongduk.cs.ssd.service.GroupBuyService;
 
 /**
@@ -82,7 +84,8 @@ public class GroupBuyFormController {
 	
 	@RequestMapping(value="/detail.do", method={RequestMethod.GET, RequestMethod.POST})
 	public String updateOrSubmit(HttpServletRequest request,
-								@ModelAttribute("groupBuyForm") GroupBuyForm groupBuyForm) {
+								@ModelAttribute("groupBuyForm") GroupBuyForm groupBuyForm, 
+								Model model) {
 		
 		HttpSession session = request.getSession();
 		UserSession user  = (UserSession)session.getAttribute("userSession");
@@ -103,11 +106,20 @@ public class GroupBuyFormController {
 			groupBuyForm.getGroupBuy().setUserId(userId);
 			
 			groupBuyService.createGroupBuy(groupBuyForm.getGroupBuy());
-			
-			// groupBuyId 가져오기
-			int groupBuyId = groupBuyForm.getGroupBuy().getGroupBuyId();
-			groupBuyForm.getGroupBuy().setGroupBuyId(groupBuyId);
 			groupBuyService.createOptions(groupBuyForm.getGroupBuy());
+			
+			
+			int groupBuyId = groupBuyForm.getGroupBuy().getGroupBuyId();
+			GroupBuy groupBuy = groupBuyService.getGroupBuy(groupBuyId);
+			model.addAttribute("groupBuy", groupBuy);
+			model.addAttribute("writer", user.getUser().getNickname());
+			
+			long timeLength = groupBuy.getEndDate().getTime() - groupBuy.getUploadDate().getTime();
+			long dDay = timeLength / ( 24*60*60*1000); 
+			dDay = Math.abs(dDay);
+			model.addAttribute("dDay", dDay);
+	       
+
 			
 			return GROUPBUY_DETAIL;
 		//}

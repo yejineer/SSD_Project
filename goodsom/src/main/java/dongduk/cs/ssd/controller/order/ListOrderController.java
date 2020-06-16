@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import dongduk.cs.ssd.controller.user.UserSession;
+import dongduk.cs.ssd.domain.LineGroupBuy;
 import dongduk.cs.ssd.service.OrderService;
 
 /**
@@ -15,21 +16,19 @@ import dongduk.cs.ssd.service.OrderService;
  * @since 2020.05.04
  */
 
-/*
+
 @Controller
 @SessionAttributes("userSession")
-*/
 public class ListOrderController {
-	/*
-	@Autowired
-	OrderService orderService;
 	
-	@RequestMapping("/order/list.do")
-	public ModelAndView handleRequest(
-			@ModelAttribute("userSession") UserSession userSession) {
-		ModelAndView mav = new ModelAndView("order/payment_list");
-		mav.addObject("orderList", orderService.getOrderList(userSession.getUser().getUserId()));
-		return mav;
-	}
-	*/
+//	@Autowired
+//	OrderService orderService;
+//	
+//	@RequestMapping("/order/list.do")
+//	public ModelAndView handleRequest(
+//			@ModelAttribute("userSession") UserSession userSession) {
+//		ModelAndView mav = new ModelAndView("order/payment_list");
+//		mav.addObject("orderList", orderService.getOrderList(userSession.getUser().getUserId()));
+//		return mav;
+//	}
 }

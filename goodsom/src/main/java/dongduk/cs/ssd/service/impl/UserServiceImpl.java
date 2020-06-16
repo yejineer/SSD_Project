@@ -29,8 +29,8 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public User getUserByEmailId(String emailId) {
-		return userDao.getUserByEmailId(emailId);
+	public User getUserByEmail(String email) {
+		return userDao.getUserByEmail(email);
 	}
 
 	@Override
@@ -44,8 +44,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void deleteUser(String emailId) {
-		userDao.deleteUser(emailId);
+	public void deleteUser(String email) {
+		userDao.deleteUser(email);
 	}
 	
 	@Override

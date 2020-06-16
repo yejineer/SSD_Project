@@ -21,7 +21,7 @@ public class GroupBuy {
 	Date endDate;
 	
 	int count;
-	int state;
+	String state;
 	int rate;
 	int participants;
 	List<User> groupBuyUsers = new ArrayList<User>();
@@ -146,11 +146,11 @@ public class GroupBuy {
 		this.count = count;
 	}
 
-	public int getState() {
+	public String getState() {
 		return state;
 	}
 
-	public void setState(int state) {
+	public void setState(String state) {
 		this.state = state;
 	}
 
