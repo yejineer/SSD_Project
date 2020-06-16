@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+	
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
@@ -43,6 +44,16 @@
 
 <script>
 function login() {
+	if (form.emailId.value == "") {
+		alert("Input Your ID.");
+		form.id.focus();
+		return false;
+	} 
+	if (form.password.value == "") {
+		alert("Input Your Password.");
+		form.password.focus();
+		return false;
+	}		
 	form.submit();
 }
 </script>

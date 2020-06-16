@@ -9,7 +9,7 @@ import dongduk.cs.ssd.domain.User;
  * @since 2020.05.01
  */
 
-//@SuppressWarnings("serial")
+@SuppressWarnings("serial")
 public class UserSession implements Serializable {
 	
 	private User user;

@@ -11,28 +11,36 @@
       AND PASSWD = #{param2}
   </select> 
   
-  <select id="getUserByEmailId" resultType="User">
+  <select id="getUserByEmail" resultType="User">
   	SELECT USERID, EMAIL, PASSWD, USERNAME, NICKNAME, ADDRESS1, ADDRESS2, ADDRESS3, PHONE, REFUNDBANK, REFUNDACCOUNT
     FROM USERS 
     WHERE EMAIL = #{param1}
   </select>
   
+  <select id="getUserByUserId" resultType="User">
+  	SELECT USERID, EMAIL, PASSWD, USERNAME, NICKNAME, ADDRESS1, ADDRESS2, ADDRESS3, PHONE, REFUNDBANK, REFUNDACCOUNT
+    FROM USERS 
+    WHERE USERID = #{param1}
+  </select>
+  
   <insert id="createUser" parameterType="User">
   	INSERT INTO USERS 
-  	(EMAIL, PASSWD, USERNAME, NICKNAME, ADDRESS1, ADDRESS2, ADDRESS3, PHONE, REFUNDBANK, REFUNDACCOUNT)
+  	(USERID, EMAIL, PASSWD, USERNAME, NICKNAME, ADDRESS1, ADDRESS2, ADDRESS3, PHONE, REFUNDBANK, REFUNDACCOUNT)
   	VALUES 
-  	(#{emailId}, #{password}, #{userName}, #{nickname}, #{address1}, #{address2}, #{address3}, #{phone}, #{refundBank}, #{refundAccount})
+  	(USERID_SEQ.nextval, #{email}, #{password}, #{userName}, #{nickname}, 
+  	#{address1, jdbcType=VARCHAR}, #{address2, jdbcType=VARCHAR}, #{address3, jdbcType=VARCHAR}, #{phone, jdbcType=VARCHAR}, 
+  	#{refundBank, jdbcType=VARCHAR}, #{refundAccount, jdbcType=VARCHAR}) 
   </insert>
   
   <update id="updateUser" parameterType="User">
-  	UPDATE SET
-  		PASSWD = #{password}
-  		NICKNAME = #{nickname}
-  		ADDRESS1 = #{address1}
-  		ADDRESS2 = #{address2}
-  		ADDRESS3 = #{address3}
-  		PHONE = #{phone}
-  		REFUNDBANK = #{refundBank}
+  	UPDATE USERS SET
+  		PASSWD = #{password},
+  		NICKNAME = #{nickname},
+  		ADDRESS1 = #{address1},
+  		ADDRESS2 = #{address2},
+  		ADDRESS3 = #{address3},
+  		PHONE = #{phone},
+  		REFUNDBANK = #{refundBank},
   		REFUNDACCOUNT = #{refundAccount}
   	WHERE USERID = #{userId}
   </update>
@@ -53,7 +61,7 @@
 
   <select id="getGroupBuyList" parameterType="int"
   		resultType="GroupBuy">
-  	SELECT groupBuyId, title, img, uploadDate, userId, menuId
+  	SELECT groupBuyId, title, img, uploadDate, userId, menuId <!-- TO_CHAR(uploadDate, 'YYYY-MM-DD HH24:MI:SS') -->
   	FROM groupBuys
   	WHERE userId = #{userId}
   </select> <!-- user가 등록한 GroupBuyList를 가져옴 for 마이페이지 공동구매 등록 목록 보기 -->

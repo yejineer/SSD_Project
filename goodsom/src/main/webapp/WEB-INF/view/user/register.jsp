@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+	
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
@@ -41,13 +42,48 @@
 </head>
 
 <script>
-function userCreate() {
-	form.submit();
-}
-function home(targetUri) {
-	form.action = targetUri;
-	form.submit();
-}
+
+	function userCreate() {
+		var emailExp = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
+		if (emailExp.test(form.emailId.value) == false) {
+			alert("Check your email");
+			form.email.focus();
+			return false;
+		}
+		if (form.password.value == "") {
+			alert("Input password");
+			form.password.focus();
+			return false;
+		}
+		if (form.password.value != form.password2.value) {
+			alert("Not correct password");
+			form.name.focus();
+			return false;
+		}
+		if (form.userName.value == "") {
+			alert("Input name");
+			form.name.focus();
+			return false;
+		}
+		if (form.nickname.value == "") {
+			alert("Input nickname");
+			form.nickname.focus();
+			return false;
+		}
+		/*var phoneExp = /^\d{2,3}-\d{3,4}-\d{4}$/;
+		if(phoneExp.test(form.phone.value)==false) {
+			alert("check your phone number");
+			form.phone.focus();
+			return false;
+		}*/
+		form.submit();
+	}
+	
+	function home(targetUri) {
+		form.action = targetUri;
+		form.submit();
+	}
+	
 </script>
 
 <body bgcolor="black">
@@ -55,42 +91,45 @@ function home(targetUri) {
 		<div class="row block-9 justify-content-center mb-5">
 			<div class="col-md-8 mb-md-5">
 
-				<h2 class="text-center">Register</h2>
-				<br/>
+				<h2 class="text-center">Register</h2><br/>
 
 				<form name="form" method="POST" action="<c:url value='/user/register.do' />" class="bg-light p-5 contact-form">
 
 					<div class="form-group">
-						<label for="name">ID</label> <input name="id" id="id" type="text"
-							class="form-control" placeholder="ID">
+						<label for="name">ID</label> 
+						<input name="user.email" id="emailId" type="text" class="form-control" placeholder="ID">
 					</div>
 
 					<div class="form-group">
-						<label for="name">Password</label> <input name="password"
-							id="password" type="password" class="form-control"
-							placeholder="Password">
+						<label for="name">Password</label> 
+						<input name="user.password" id="password" type="password" class="form-control" placeholder="Password">
 					</div>
 
 					<div class="form-group">
-						<label for="name">Check Password</label> <input name="password2"
-							id="password2" type="password" class="form-control"
-							placeholder="Password">
+						<label for="name">Check Password</label> 
+						<input name="user.password2" id="password2" type="password" class="form-control" placeholder="Password">
 					</div>
 
 					<div class="form-group">
-						<label for="name">Name</label> <input name="name" id="Name"
+						<label for="name">Name</label> <input name="user.userName" id="userName"
 							type="text" class="form-control" placeholder="Name">
 					</div>
+					
+					<div class="form-group">
+						<label for="name">Nickname</label>
+						<input name="user.nickname" id="nickname" type="text" class="form-control" placeholder="Nickname">
+					</div>
 
 					<div class="form-group">
-						<label for="name">Phone</label> <input name="phone" id="phone"
-							type="text" class="form-control" placeholder="Phone">
+						<label for="name">Phone</label> 
+						<input name="user.phone" id="phone" type="text" class="form-control" placeholder="Phone">
 					</div>
 
 					<div class="form-group">
 						<label for="name">Address</label> <br/> 
-						<input id="postcode1" name="addr1" type="text" value="" style="width: 50px;" readonly />&nbsp;-&nbsp; 
-						<input id="postcode2" name="addr2" type="text" value="" style="width: 50px;" readonly /> &nbsp;&nbsp; 
+						<input id="address1" name="user.address1" type="text" value="" style="width:70px;" />&nbsp;-&nbsp; 
+						<input id="address2" name="user.address2" type="text" value="" style="width:70px;" /> &nbsp;&nbsp; 
+						<input id="address3" name="user.address3" type="text" value="" style="width:70px;" />
 						<!-- <input id="zonecode" name="addr3" type="text" value="" style="width: 50px;" readonly /> &nbsp; 
 						<input type="button" onClick="openDaumZipAddress();" value="find address" /> <br/> 
 						<input type="text" name="addr4" id="address" value="" style="width: 240px;" readonly /> 
@@ -99,19 +138,18 @@ function home(targetUri) {
 
 					<div class="form-group">
 						<label for="name">Account</label>
-						<input name="account" id="account" type="text" class="form-control" placeholder="Account"> 
-						<select name="bank" id="bank">
-							<option value="shinhan">Ω≈«—¿∫«‡</option>
-							<option value="woorie">øÏ∏Æ¿∫«‡</option>
-							<option value="hana">«œ≥™¿∫«‡</option>
-							<option value="kakao">ƒ´ƒ´ø¿π≈©</option>
+						<input name="user.refundAccount" id="refundAccount" type="text" class="form-control" placeholder="Account"> 
+						<select name="user.refundBank" id="refundBank">
+							<option value="Ïã†ÌïúÏùÄÌñâ">Ïã†ÌïúÏùÄÌñâ</option>
+							<option value="Ïö∞Î¶¨ÏùÄÌñâ">Ïö∞Î¶¨ÏùÄÌñâ</option>
+							<option value="ÌïòÎÇòÏùÄÌñâ">ÌïòÎÇòÏùÄÌñâ</option>
+							<option value="Ïπ¥Ïπ¥Ïò§Î±ÖÌÅ¨">Ïπ¥Ïπ¥Ïò§Î±ÖÌÅ¨</option>
 						</select>
 					</div>
 					<br/>
 
 					<div class="form-group" align="center">
-						<input type="button" value="Register" onClick="userCreate()" class="btn btn-primary py-3 px-5"> &nbsp;
-				        <a class="btn btn-primary py-3 px-5" href="<c:url value='/user/login.do'></c:url>">Login</a>
+						<input type="button" value="Register" onClick="userCreate()" class="btn btn-primary py-3 px-5"> 
 					</div>
 					
 				</form>

@@ -6,14 +6,21 @@
   
   <select id="getGroupBuy" resultType="GroupBuy" parameterType="java.lang.Integer">
     SELECT * FROM GROUPBUYS
-    WHERE AUCTIONID = #{groupBuyId}
+    WHERE GROUPBUYID = #{groupBuyId}
   </select>
   
   <insert id="createGroupBuy" parameterType="GroupBuy">
+  	
   	INSERT INTO GROUPBUYS (GROUPBUYID, TITLE, CONTENT, IMG, MINNO, UPLOADDATE, 
   			ENDDATE, COUNT, STATE, RATE, PARTICIPANTS, MENUID, CATID, USERID)
 	VALUES (GROUPBUYID_SEQ.nextval, #{title}, #{content}, #{img}, #{minNo}, #{uploadDate}, 
 			#{endDate}, 0, 'proceeding', 0, 0, 2, #{catId}, #{userId})
+		
+
+  	<selectKey keyProperty="groupBuyId" resultType="int" order="AFTER">
+  		SELECT GROUPBUYID_SEQ.currval AS groupBuyId FROM DUAL
+  	</selectKey>	
+
   </insert>
   
   <update id="updateGroupBuy" parameterType="GroupBuy">
@@ -26,7 +33,17 @@
   <delete id="deleteGroupBuy" parameterType="java.lang.Integer">
     DELETE FROM GROUPBUYS
     WHERE  GROUPBUYID=#{groupBuyId}
-  	
   </delete>
+  
+  <insert id="createOptions" parameterType="GroupBuy">
+  
+  	INSERT INTO OPTIONS (OPTIONID, GROUPBUYID, CONTENT)
+  	SELECT OPTIONID_SEQ.nextval, A.* FROM (
+	  	<foreach collection="options" item="option" separator="UNION ALL">
+			SELECT  #{groupBuyId}, #{option}
+			FROM 	DUAL
+		</foreach>
+		) A
+  </insert>
   
 </mapper>

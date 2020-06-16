@@ -16,7 +16,7 @@ public interface UserService {
 
 	User getUser(String emailId, String password); // 로그인 시 사용
 	
-	User getUserByEmailId(String emailId);
+	User getUserByEmail(String email);
 	
 	void createUser(User user);
 

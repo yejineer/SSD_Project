@@ -16,7 +16,9 @@ public interface UserMapper {
 
 	User getUser(String email, String passwd);
 	
-	User getUserByEmailId(String emailId);
+	User getUserByEmail(String email);
+	
+	User getUserByUserId(int userId);
 	
 	void createUser(User user);
 

@@ -9,8 +9,9 @@ import java.io.Serializable;
 
 @SuppressWarnings("serial")
 public class User implements Serializable {
+	
 	int userId;
-	String emailId;
+	String email;
 	String password;
 	String userName;
 	String nickname;
@@ -60,12 +61,12 @@ public class User implements Serializable {
 		this.password = password;
 	}
 	
-	public String getEmailId() {
-		return emailId;
+	public String getEmail() {
+		return email;
 	}
 	
-	public void setEmailId(String emailId) {
-		this.emailId = emailId;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
 	public String getUserName() {
@@ -75,8 +76,6 @@ public class User implements Serializable {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	
-
 
 	public String getNickname() {
 		return nickname;

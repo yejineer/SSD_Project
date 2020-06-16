@@ -6,8 +6,8 @@ import dongduk.cs.ssd.domain.User;
  * @author Yejin Lee
  * @since 2020.05.07
  */
-public class UserForm {
-	/*
+public class UserForm { // 필요 없는 듯
+	
 	private User user;
 	private boolean newUser;
 	private String repeatedPassword;
@@ -37,5 +37,4 @@ public class UserForm {
 	public String getRepeatedPassword() {
 		return repeatedPassword;
 	}
-	*/
 }

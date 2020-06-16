@@ -35,7 +35,7 @@ public class OrderServiceImpl implements OrderService {
 
 	@Override
 	public User getUser(String emailId) {
-		return userDao.getUserByEmailId(emailId);
+		return userDao.getUserByEmail(emailId);
 	}
 
 	@Override

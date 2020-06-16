@@ -78,9 +78,9 @@
 							<ul class="site-menu main-menu js-clone-nav ml-auto ">
 								<li><a href="<%=request.getContextPath()%>/home.do" class="nav-link">Home</a></li>
 								<li><a href="<%=request.getContextPath()%>/groupBuy/list.do" class="nav-link">GroupBuy</a></li>
-								<li><a href="<%=request.getContextPath()%>/auction/list.do" class="nav-link"">Auction</a></li>
+								<li><a href="<%=request.getContextPath()%>/auction/list.do" class="nav-link">Auction</a></li>
 								<li><a href="#">Community</a></li>
-								<li><a href="<%=request.getContextPath()%>/mypage/list.do"><img src="<%=request.getContextPath()%>/resources/images/mypage.jpg" alt="Image" 
+								<li><a href="<%=request.getContextPath()%>/user/detail.do"><img src="<%=request.getContextPath()%>/resources/images/mypage.jpg" alt="Image" 
 								width="30px" height="20px" class="img-fluid"> ${userSession.user.nickname}</a></li>
 							</ul>
 						</nav>
@@ -107,11 +107,31 @@
 
 		<div class="site-section">
 			<div class="container">
-				<div class="row">
 				
 				<!-- 구현 시작 -->
-					<!-- Auction일 경우 (menuId는 단독으로 넘겨주기) -->
-					<c:forEach var="order" items="${orderList}" varStatus="status">
+				<a class="btn btn-primary py-3 px-5" href="<c:url value='list.do'>
+							<c:param name="menuId" value ="1" />
+						</c:url>">경매 등록 목록보기</a> &nbsp;&nbsp;
+				<a class="btn btn-primary py-3 px-5" href="<c:url value='list.do'>
+							<c:param name="menuId" value ="2" />
+						</c:url>">공동구매 등록 목록보기</a> &nbsp;&nbsp;
+				<a class="btn btn-primary py-3 px-5" href="<c:url value='list.do'>
+							<c:param name="menuId" value ="0" />
+						</c:url>">결제 목록보기</a>
+				<br><br>
+				
+				<c:if test="${menuId eq 1}">
+						<h2>경매 등록 목록 보기</h2><br>
+				</c:if>
+				<c:if test="${menuId eq 2}">
+					<h2>공동구매 등록 목록 보기</h2><br>
+				</c:if>
+				<div class="row">
+					<!-- 결제 목록 보기 -->
+					<%-- 	
+					<c:if test="${menuId eq 0}">
+						<h2>결제 목록 보기</h2><br>
+						<c:forEach var="order" items="${orderList}" varStatus="status">
 						<div class="col-lg-4 col-md-6 mb-4">
 							<div class="post-entry-1 h-100">
 								<h3>${order.orderId}</h3> <!-- 결제한 공동구매/경매의 이미지를 넣자. -->
@@ -129,11 +149,10 @@
 							</div>
 						</div>
 					</c:forEach>
+					</c:if>
+ 				--%>
 
-
-
-					<c:if test="${menuId eq 1}"> <!-- Auction일 경우 (menuId는 단독으로 넘겨주기) -->
-						<h2>경매</h2>
+					<c:if test="${menuId eq 1}">
 						<c:forEach var="auction" items="${auctionList}" varStatus="status">
 							<div class="col-lg-4 col-md-6 mb-4">
 								<div class="post-entry-1 h-100">
@@ -141,49 +160,57 @@
 										alt="Image" class="img-fluid">
 									</a>
 									<div class="post-entry-1-contents">
-		
+
 										<h2>
 											<a href="auction/detail.do">${auction.title}</a>
 										</h2>
-										<span class="meta d-inline-block mb-3">${auction.uploadDate} <span
-											class="mx-2">by</span> <a href="#">${nickname}</a></span> <!-- auction에서 얻은 userId로 user를 구하여 nickname 호출  -->
-										<p>${auction.context}</p> <!-- 요약할 방법을 찾아보자. -->
+										<span class="meta d-inline-block mb-3">${auction.uploadDate}
+											<br>
+										<span class="mx-2">by</span> <a href="#">
+												${userSession.user.nickname}</a>
+										</span>
+										<p>${auction.content}</p>
+										<!-- 요약할 방법을 찾아보자. -->
 									</div>
 								</div>
 							</div>
 						</c:forEach>
 					</c:if>
-					
-					<c:if test="${menuId eq 2}"> <!-- GroupBuy일 경우 (menuId는 단독으로 넘겨주기) -->
-						<h2>공동구매</h2>
-						<c:forEach var="groupBuy" items="${groupBuyList}" varStatus="status">
-							<div class="col-lg-4 col-md-6 mb-4">
-								<div class="post-entry-1 h-100">
-									<a href="groupBuy/detail.do"> <img src="${groupBuy.img}"
-										alt="Image" class="img-fluid">
-									</a>
-									<div class="post-entry-1-contents">
-		
-										<h2>
-											<a href="groupBuy/detail.do">${groupBuy.title}</a>
-										</h2>
-										<span class="meta d-inline-block mb-3">${groupBuy.uploadDate} <span
-											class="mx-2">by</span> <a href="#">${nickname}</a></span> <!-- auction에서 얻은 userId로 user를 구하여 nickname 호출  -->
-										<p>${groupBuy.context}</p> <!-- 요약할 방법을 찾아보자. -->
-									</div>
-								</div>
-							</div>
-						</c:forEach>
-					</c:if>
-					
-				<!-- 구현 끝 -->
-	
-					<div class="col-12 mt-5 text-center">
-						<span class="p-3">1</span> <a href="#" class="p-3">2</a> <a
-							href="#" class="p-3">3</a> <a href="#" class="p-3">4</a>
-					</div>
+				
 
+
+				<c:if test="${menuId eq 2}">
+					<c:forEach var="groupBuy" items="${groupBuyList}"
+						varStatus="status">
+						<div class="col-lg-4 col-md-6 mb-4">
+							<div class="post-entry-1 h-100">
+								<a href="groupBuy/detail.do"> <img src="${groupBuy.img}"
+									alt="Image" class="img-fluid">
+								</a>
+								<div class="post-entry-1-contents">
+
+									<h2>
+										<a href="groupBuy/detail.do">${groupBuy.title}</a>
+									</h2>
+									<span class="meta d-inline-block mb-3">${groupBuy.uploadDate}
+										<br> <span class="mx-2">by</span> <a href="#">
+											${userSession.user.nickname}</a>
+									</span>
+									<p>${groupBuy.content}</p>
+									<!-- 요약할 방법을 찾아보자. -->
+								</div>
+							</div>
+						</div>
+					</c:forEach>
+				</c:if>
+				<!-- 구현 끝 -->
+
+				<div class="col-12 mt-5 text-center">
+					<span class="p-3">1</span> <a href="#" class="p-3">2</a> <a
+						href="#" class="p-3">3</a> <a href="#" class="p-3">4</a>
 				</div>
+
+			</div>
 			</div>
 		</div>
 

@@ -28,8 +28,12 @@ public class MybatisUserDao implements UserDao {
 		return userMapper.getUser(email, passwd);
 	}
 	
-	public User getUserByEmailId(String emailId) throws DataAccessException {
-		return userMapper.getUserByEmailId(emailId);
+	public User getUserByEmail(String emailId) throws DataAccessException {
+		return userMapper.getUserByEmail(emailId);
+	}
+	
+	public User getUserByUserId(int userId) throws DataAccessException {
+		return userMapper.getUserByUserId(userId);
 	}
 	
 	public void createUser(User user) throws DataAccessException {
@@ -48,11 +52,11 @@ public class MybatisUserDao implements UserDao {
 		return userMapper.getOrderList(orderId);
 	}
 	
-	public List<GroupBuy> getGroupBuyList(int orderId) throws DataAccessException { // 마이페이지 결제 목록 보기
+	public List<GroupBuy> getGroupBuyList(int orderId) throws DataAccessException { // 마이페이지 공동구매 등록 목록 보기
 		return userMapper.getGroupBuyList(orderId);
 	}
 	
-	public List<Auction> getAuctionList(int orderId) throws DataAccessException { // 마이페이지 결제 목록 보기
+	public List<Auction> getAuctionList(int orderId) throws DataAccessException { // 마이페이지 경매 등록 목록 보기
 		return userMapper.getAuctionList(orderId);
 	}
 }
