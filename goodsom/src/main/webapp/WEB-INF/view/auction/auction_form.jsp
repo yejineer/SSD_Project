@@ -144,6 +144,8 @@ function createAuction() {
 							<div class="form-group row">
 								<div class="col-md-12">
 									<label for="auction.content">상세 설명</label>
+									<label for="auction.content">상세 설명</label> 
+
 									<c:choose>
 										<c:when test="${createAuction eq true}">
 											<textarea name="auction.content" class="form-control"
@@ -154,7 +156,6 @@ function createAuction() {
 											placeholder="${auctionForm.auction.content}" cols="30" rows="10"></textarea>
 										</c:otherwise>
 									</c:choose>
-									
 								</div>
 							</div>
 							
