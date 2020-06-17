@@ -48,8 +48,16 @@ public class MybatisUserDao implements UserDao {
 		userMapper.deleteUser(emailId);
 	}
 	
-	public List<Order> getOrderList(int orderId) throws DataAccessException { // 마이페이지 결제 목록 보기
-		return userMapper.getOrderList(orderId);
+//	public List<Order> getOrderList(int orderId) throws DataAccessException { // 마이페이지 결제 목록 보기
+//		return userMapper.getOrderList(orderId);
+//	}
+
+	public List<Order> getAuctionOrderList(int orderId) throws DataAccessException { // 마이페이지 결제 목록 보기
+		return userMapper.getAuctionOrderList(orderId);
+	}
+	
+	public List<Order> getGroupBuyOrderList(int orderId) throws DataAccessException { // 마이페이지 결제 목록 보기
+		return userMapper.getGroupBuyOrderList(orderId);
 	}
 	
 	public List<GroupBuy> getGroupBuyList(int orderId) throws DataAccessException { // 마이페이지 공동구매 등록 목록 보기

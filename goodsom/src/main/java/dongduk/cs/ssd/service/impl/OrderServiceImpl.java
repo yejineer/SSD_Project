@@ -69,19 +69,34 @@ public class OrderServiceImpl implements OrderService {
 	
 	/* Business Logic (?) */
 	
-	public List<Order> setInfo(List<Order> orderList) {
-		if (orderList == null) {
+	public List<Order> setAuctionInfo(List<Order> auctionOrderList) {
+		
+		if (auctionOrderList == null) {
 			return null;
 		}
 		
-		for (Order order : orderList) {
-			int orderId = order.getOrderId();
-			order.setGroupBuy(getGroupBuy(orderId));
-			order.setAuction(getAuction(orderId));
+		for (Order order : auctionOrderList) {
+			int auctionId = order.getAuctionId();
+			order.setAuction(auctionDao.getAuction(auctionId));
+			order.setMenuId(1);
+			order.setQuantity(1);
 		}
-		return orderList;
+		return auctionOrderList;
 	}
 	
+	public List<Order> setGroupBuyInfo(List<Order> groupBuyOrderList) {
+		
+		if (groupBuyOrderList == null) {
+			return null;
+		}
+		
+		for (Order order : groupBuyOrderList) {
+			int groupBuyId = order.getGroupBuyId();
+			order.setGroupBuy(groupBuyDao.getGroupBuy(groupBuyId));
+			order.setMenuId(2);
+		}
+		return groupBuyOrderList;
+	}
 
 	
 }
