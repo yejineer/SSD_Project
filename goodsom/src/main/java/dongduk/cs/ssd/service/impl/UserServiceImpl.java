@@ -48,9 +48,19 @@ public class UserServiceImpl implements UserService {
 		userDao.deleteUser(email);
 	}
 	
+//	@Override
+//	public List<Order> getOrderList(int userId) { // 마이페이지 결제 목록 보기
+//		return userDao.getOrderList(userId);
+//	}
+
 	@Override
-	public List<Order> getOrderList(int userId) { // 마이페이지 결제 목록 보기
-		return userDao.getOrderList(userId);
+	public List<Order> getAuctionOrderList(int userId) { // 마이페이지 결제 목록 보기
+		return userDao.getAuctionOrderList(userId);
+	}
+	
+	@Override
+	public List<Order> getGroupBuyOrderList(int userId) { // 마이페이지 결제 목록 보기
+		return userDao.getGroupBuyOrderList(userId);
 	}
 	
 	@Override	

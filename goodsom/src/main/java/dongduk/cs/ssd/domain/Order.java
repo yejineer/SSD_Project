@@ -23,12 +23,45 @@ public class Order {
 	GroupBuy groupBuy;
 	Bid successBidder = new Bid();
 	Auction auction;
-	User user = new User();
 	int totalPrice;
 	Date orderDate;
-	String title; // 공동구매 또는 경매의 제목 for 결제내역 목록보기
-	String img; // 미리보기 사진 for 결제내역 목록보기
+	int menuId;
+	int quantity;
+	int groupBuyId;
+	int auctionId;
 	
+	public int getGroupBuyId() {
+		return groupBuyId;
+	}
+
+	public void setGroupBuyId(int groupBuyId) {
+		this.groupBuyId = groupBuyId;
+	}
+
+	public int getAuctionId() {
+		return auctionId;
+	}
+
+	public void setAuctionId(int auctionId) {
+		this.auctionId = auctionId;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+	public int getMenuId() {
+		return menuId;
+	}
+
+	public void setMenuId(int menuId) {
+		this.menuId = menuId;
+	}
+
 	public GroupBuy getGroupBuy() {
 		return groupBuy;
 	}
@@ -43,22 +76,6 @@ public class Order {
 
 	public void setAuction(Auction auction) {
 		this.auction = auction;
-	}
-	
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public String getImg() {
-		return img;
-	}
-
-	public void setImg(String img) {
-		this.img = img;
 	}
 	
 	public int getTotalPrice() {
@@ -92,15 +109,6 @@ public class Order {
 	public void setSuccessBidder(Bid successBidder) {
 		this.successBidder = successBidder;
 	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
 
 	public Order() {
 	}

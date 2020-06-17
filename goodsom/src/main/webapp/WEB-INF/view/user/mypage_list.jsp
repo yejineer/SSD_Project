@@ -111,68 +111,114 @@
 				<!-- 구현 시작 -->
 				<a class="btn btn-primary py-3 px-5" href="<c:url value='list.do'>
 							<c:param name="menuId" value ="1" />
-						</c:url>">경매 등록 목록보기</a> &nbsp;&nbsp;
+						</c:url>">경매 등록 목록 보기</a> &nbsp;&nbsp;
 				<a class="btn btn-primary py-3 px-5" href="<c:url value='list.do'>
 							<c:param name="menuId" value ="2" />
-						</c:url>">공동구매 등록 목록보기</a> &nbsp;&nbsp;
+						</c:url>">공동구매 등록 목록 보기</a> &nbsp;&nbsp;
 				<a class="btn btn-primary py-3 px-5" href="<c:url value='list.do'>
 							<c:param name="menuId" value ="0" />
-						</c:url>">결제 목록보기</a>
+						</c:url>">결제 목록 보기</a>
 				<br><br>
 				
+				<c:if test="${menuId eq 0}">
+					<h2>결제 목록 보기</h2><br>
+				</c:if>
 				<c:if test="${menuId eq 1}">
-						<h2>경매 등록 목록 보기</h2><br>
+					<h2>경매 등록 목록 보기</h2><br>
 				</c:if>
 				<c:if test="${menuId eq 2}">
 					<h2>공동구매 등록 목록 보기</h2><br>
 				</c:if>
+				
 				<div class="row">
+				
 					<!-- 결제 목록 보기 -->
-					<%-- 	
 					<c:if test="${menuId eq 0}">
-						<h2>결제 목록 보기</h2><br>
-						<c:forEach var="order" items="${orderList}" varStatus="status">
-						<div class="col-lg-4 col-md-6 mb-4">
-							<div class="post-entry-1 h-100">
-								<h3>${order.orderId}</h3> <!-- 결제한 공동구매/경매의 이미지를 넣자. -->
-								<div class="post-entry-1-contents">
+						<h3>경매 결제 목록</h3>
+						<c:forEach var="order" items="${auctionOrderList}" varStatus="status">
+							<div class="col-lg-4 col-md-6 mb-4">
+								<div class="post-entry-1 h-100">
+									<!-- 이미지 출력 -->
+									<a href="<c:url value='../auction/detail.do'>
+												<c:param name="auctionId" value="${order.auctionId}" />
+											</c:url>">
+										<img src="${order.auction.img}" alt="Image" class="img-fluid">
+									</a>
+									<div class="post-entry-1-contents">
 
-									<h2>
-										<a href="order/detail.do">${order.totalPrice}</a>
-									</h2>
-									<span class="meta d-inline-block mb-3">${order.orderDate}
-									</span>
-									<!-- auction에서 얻은 userId로 user를 구하여 nickname 호출  -->
-									<p>${order.phone}</p> <!-- ??? -->
-									<!-- 요약할 방법을 찾아보자. -->
+										<!-- 제목 출력 -->
+										<h2>
+											<a href="<c:url value='../auction/detail.do'>
+														<c:param name="auctionId" value="${order.auctionId}" />
+													</c:url>"> ${order.auction.title}</a>
+										</h2>
+										
+										<!-- date, totalPrice, quantity, 상세보기 출력 -->
+										<span class="meta d-inline-block mb-3">
+											<fmt:formatDate value="${order.orderDate}" pattern="yyyy-MM-dd" /> 
+											<span class="mx-2"> 총액 : ${order.totalPrice}원</span>
+											<span class="mx-2"> 수량 : ${order.quantity}</span> <br>
+											<a style="text-align : right;" href="<c:url value='../order/detail.do'>
+												<c:param name="orderId" value ="${order.orderId}" />
+											</c:url>"> 상세보기 > </a>
+										</span>
+									</div>
 								</div>
 							</div>
-						</div>
-					</c:forEach>
+						</c:forEach>
+						
+						<h3>공동구매 결제 목록</h3>
+						<c:forEach var="order" items="${groupBuyOrderList}" varStatus="status">
+							<div class="col-lg-4 col-md-6 mb-4">
+								<div class="post-entry-1 h-100">
+									<a href="<c:url value='../groupBuy/detail.do'>
+												<c:param name="groupBuyId" value="${order.groupBuyId}" />
+											</c:url>">
+										<img src="${order.groupBuy.img}" alt="Image" class="img-fluid">
+									</a>
+									<div class="post-entry-1-contents">
+										<h2>
+											<a href="<c:url value='../groupBuy/detail.do'>
+														<c:param name="groupBuyId" value="${order.groupBuyId}" />
+													</c:url>"> ${order.groupBuy.title}</a>
+										</h2>
+										
+										<span class="meta d-inline-block mb-3"><fmt:formatDate
+												value="${order.orderDate}" pattern="yyyy-MM-dd" /> 
+											<span class="mx-2"> 총액 : ${order.totalPrice}원</span>
+											<span class="mx-2"> 수량 : ${order.quantity}</span> <br>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+											<span class="mx-2"> <a href="<c:url value='../order/detail.do'>
+												<c:param name="orderId" value="${order.orderId}" />
+											</c:url>"> 상세보기 > </a></span>
+										</span>
+									</div>
+								</div>
+							</div>
+						</c:forEach>
 					</c:if>
- 				--%>
 
+					<!-- 경매 목록 보기 -->
 					<c:if test="${menuId eq 1}">
 						<c:forEach var="auction" items="${auctionList}" varStatus="status">
 							<div class="col-lg-4 col-md-6 mb-4">
 								<div class="post-entry-1 h-100">
 									<a href="<c:url value='../auction/detail.do'>
 												<c:param name="auctionId" value ="${auction.auctionId}" />
-											</c:url>"> <img src="${auction.img}"
-										alt="Image" class="img-fluid">
+											</c:url>">
+										<img src="${auction.img}" alt="Image" class="img-fluid">
 									</a>
 									<div class="post-entry-1-contents">
 
 										<h2>
 											<a href="<c:url value='../auction/detail.do'>
 														<c:param name="auctionId" value ="${auction.auctionId}" />
-													</c:url>"> ${auction.title}
-											</a>
+													</c:url>">
+												${auction.title} </a>
 										</h2>
-										<span class="meta d-inline-block mb-3"><fmt:formatDate value="${auction.uploadDate}" pattern="yyyy-MM-dd" />
-										<span class="mx-2"> by</span>
-												${userSession.user.nickname}</a>
-										</span>
+										<span class="meta d-inline-block mb-3"><fmt:formatDate
+												value="${auction.uploadDate}" pattern="yyyy-MM-dd" /> <span
+											class="mx-2"> by</span> ${userSession.user.nickname}</a> </span>
 										<p>${auction.content}</p>
 										<!-- 요약할 방법을 찾아보자. -->
 									</div>
@@ -180,41 +226,41 @@
 							</div>
 						</c:forEach>
 					</c:if>
-				
 
-
-				<c:if test="${menuId eq 2}">
-					<c:forEach var="groupBuy" items="${groupBuyList}"
-						varStatus="status">
-						<div class="col-lg-4 col-md-6 mb-4">
-							<div class="post-entry-1 h-100">
-								<a href="<c:url value='../groupBuy/detail.do'>
+					<!-- 공동구매 목록 보기 -->
+					<c:if test="${menuId eq 2}">
+						<c:forEach var="groupBuy" items="${groupBuyList}"
+							varStatus="status">
+							<div class="col-lg-4 col-md-6 mb-4">
+								<div class="post-entry-1 h-100">
+									<a
+										href="<c:url value='../groupBuy/detail.do'>
 												<c:param name="groupBuyId" value ="${groupBuy.groupBuyId}" />
-											</c:url>"> <img src="${groupBuy.img}"
-										alt="Image" class="img-fluid">
-								</a>
-								<div class="post-entry-1-contents">
+											</c:url>">
+										<img src="${groupBuy.img}" alt="Image" class="img-fluid">
+									</a>
+									<div class="post-entry-1-contents">
 
-									<h2>
-										<a href="<c:url value='../groupBuy/detail.do'>
+										<h2>
+											<a
+												href="<c:url value='../groupBuy/detail.do'>
 												<c:param name="groupBuyId" value ="${groupBuy.groupBuyId}" />
-											</c:url>"> ${groupBuy.title}
-										</a>
-									</h2>
-									<span class="meta d-inline-block mb-3"><fmt:formatDate value="${groupBuy.uploadDate}" pattern="yyyy-MM-dd" />
-										<span class="mx-2"> by</span>
-											${userSession.user.nickname}</a>
-									</span>
-									<p>${groupBuy.content}</p>
-									<!-- 요약할 방법을 찾아보자. -->
+											</c:url>">
+												${groupBuy.title} </a>
+										</h2>
+										<span class="meta d-inline-block mb-3"><fmt:formatDate
+												value="${groupBuy.uploadDate}" pattern="yyyy-MM-dd" /> <span
+											class="mx-2"> by</span> ${userSession.user.nickname}</a> </span>
+										<p>${groupBuy.content}</p>
+										<!-- 요약할 방법을 찾아보자. -->
+									</div>
 								</div>
 							</div>
-						</div>
-					</c:forEach>
-				</c:if>
-				<!-- 구현 끝 -->
+						</c:forEach>
+					</c:if>
+					<!-- 구현 끝 -->
 
-				<div class="col-12 mt-5 text-center">
+					<div class="col-12 mt-5 text-center">
 					<span class="p-3">1</span> <a href="#" class="p-3">2</a> <a
 						href="#" class="p-3">3</a> <a href="#" class="p-3">4</a>
 				</div>

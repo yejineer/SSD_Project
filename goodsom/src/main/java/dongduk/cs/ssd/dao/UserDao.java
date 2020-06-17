@@ -28,7 +28,11 @@ public interface UserDao {
 
 	void deleteUser(String emailId) throws DataAccessException;
 	
-	List<Order> getOrderList(int userId); // 마이페이지 결제 목록 보기
+//	List<Order> getOrderList(int userId); // 마이페이지 결제 목록 보기
+	
+	List<Order> getAuctionOrderList(int userId);
+	
+	List<Order> getGroupBuyOrderList(int userId);
 	
 	List<GroupBuy> getGroupBuyList(int userId); // 마이페이지 공동구매 등록 목록 보기
 	

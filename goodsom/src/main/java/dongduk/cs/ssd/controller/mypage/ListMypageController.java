@@ -39,6 +39,7 @@ public class ListMypageController {
 	public ModelAndView handleRequest(
 			@ModelAttribute("userSession") UserSession userSession,
 			@RequestParam(required = false) Integer menuId) {
+		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("user/mypage_list");
 		int userId = userSession.getUser().getUserId();
@@ -47,11 +48,17 @@ public class ListMypageController {
 			menuId = 1;
 		}
 		mav.addObject("menuId", menuId);
-		mav.addObject("groupBuyList", userService.getGroupBuyList(userId));
-		mav.addObject("auctionList", userService.getAuctionList(userId));
 		
-//		List<Order> orderList =  userService.getOrderList(userId);
-//		mav.addObject("orderList", orderService.setInfo(orderList));
+//		경매 등록 목록
+		mav.addObject("auctionList", userService.getAuctionList(userId));
+//		공동구매 등록 목록
+		mav.addObject("groupBuyList", userService.getGroupBuyList(userId));
+		
+		List<Order> auctionOrderList =  userService.getAuctionOrderList(userId);
+		List<Order> groupBuyOrderList =  userService.getGroupBuyOrderList(userId);
+		
+		mav.addObject("auctionOrderList", orderService.setAuctionInfo(auctionOrderList));
+		mav.addObject("groupBuyOrderList", orderService.setGroupBuyInfo(groupBuyOrderList));
 		
 //		mav.addObject("scrap_aList", scrapService.getScrap_aList());
 //		mav.addObject("scrap_gList", scrapService.getScrap_gList());
