@@ -32,15 +32,9 @@ public class AuctionFormController {
 	
 	private static final String AUCTION_FORM = "auction/auction_form";
 	private static final String AUCTION_DETAIL = "auction/auction_detail";
-	private static final String PROCEEDING = "proceeding";
-//	private static final String CLOSED = "closed";
-	private static final int MENUID_AUCTION = 1;
 	
 	@Autowired
 	private AuctionService auctionService;
-	
-//	private final String formViewName = "auction/form";
-//	private final String detailViewName = "auction/detail";
 
 	@ModelAttribute("auctionForm")
 	public AuctionForm formBacking(HttpServletRequest request, Model model) throws Exception{
@@ -69,26 +63,20 @@ public class AuctionFormController {
 			@ModelAttribute("auctionForm") AuctionForm auctionForm, Model model) {
 		String reqPage = request.getServletPath();
 		System.out.println(reqPage);
-		HttpSession session = request.getSession();
-		UserSession user  = (UserSession)session.getAttribute("userSession");
-		int userId = user.getUser().getUserId();
+		UserSession user  = (UserSession)request.getSession().getAttribute("userSession");
 		if(reqPage.trim().equals("/auction/update.do")) { // update
 //			auctionService.updateAuction(auctionForm.getAuction());
 			return AUCTION_DETAIL;
 //			return AUCTION_FORM;
 		}else { // show after create
 			System.out.println("[AuctionFormController]-submit()");
-			Calendar calendar = Calendar.getInstance();
-            java.util.Date date = calendar.getTime();
-            System.out.println(date);
-            
-			auctionForm.getAuction().setUploadDate(date);
-			auctionForm.getAuction().setUserId(userId);
-			auctionForm.getAuction().setState(PROCEEDING);
-			auctionForm.getAuction().setCount(0);
-			auctionForm.getAuction().setMenuId(MENUID_AUCTION);
-			System.out.println(auctionForm.toString());
-//			int auctionId = auctionService.createAuction(auctionForm.getAuction());
+
+            auctionForm.getAuction().initAuction(user.getUser());
+            if (auctionForm.getAuction().getImg().trim() == "") {
+            	auctionForm.getAuction().initImg(request.getContextPath());
+            }
+			System.out.println("[AuctionFormController] auctionForm 값: " + auctionForm.toString());
+			int auctionId = auctionService.createAuction(auctionForm.getAuction());
 			model.addAttribute("writer", user.getUser().getNickname());
 			model.addAttribute("auction", auctionForm.getAuction()); 
 //			return "rediect:/auction/detail.do?auctionId="+auctionId;

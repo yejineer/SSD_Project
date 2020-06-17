@@ -123,36 +123,34 @@ function createAuction() {
 						
 							<div class="form-group row">
 								<div class="col-md-12">
-									<label for="auctionForm.auction.title">제목</label> 
+									<label for="title">제목</label> 
 									<c:choose>
 										<c:when test="${createAuction eq true}">
-											<input type="text" name="auction.title" class="form-control" placeholder="Title" >
+											<input type="text" id="title" name="auction.title" class="form-control" placeholder="Title" >
 										</c:when>
 										<c:otherwise>
-											<input type="text" name="auction.title" class="form-control" placeholder="${auctionForm.auction.title}" >
+											<input type="text" id="title" name="auction.title" class="form-control" placeholder="${auctionForm.auction.title}" >
 										</c:otherwise>
 									</c:choose>
 								</div>
 							</div>
 							<div class="form-group row">
 								<div class="col-md-12">
-									<label for="auction.img">대표 이미지</label> </br>
-                					<input type="file" name="auction.img" value="input file" name="image"/>
+									<label for="img">대표 이미지</label>
+                					<input type="file" id="img" name="auction.img" value="input file" />
               					</div>
               				</div>
 							
 							<div class="form-group row">
 								<div class="col-md-12">
-									<label for="auction.content">상세 설명</label>
-									<label for="auction.content">상세 설명</label> 
-
+									<label for="content">상세 설명</label>
 									<c:choose>
 										<c:when test="${createAuction eq true}">
-											<textarea name="auction.content" class="form-control"
+											<textarea id="content" name="auction.content" class="form-control"
 											placeholder="Write description." cols="30" rows="10"></textarea>
 										</c:when>
 										<c:otherwise>
-											<textarea name="auction.content" class="form-control"
+											<textarea id="content" name="auction.content" class="form-control"
 											placeholder="${auctionForm.auction.content}" cols="30" rows="10"></textarea>
 										</c:otherwise>
 									</c:choose>
@@ -161,15 +159,15 @@ function createAuction() {
 							
 							<div class="form-group row">
 								<div class="col-md-12">
-									<label for="auction.startPrice">최소 입찰 금액</label> 
+									<label for="startPrice">최소 입찰 금액</label> 
 									<div class="d-flex">
 										<div class="form-group mr-2">
 										<c:choose>
 											<c:when test="${createAuction eq true}">
-												<input type="text" class="form-control" name="auction.startPrice" placeholder="ex) 5000">
+												<input type="text" id="startPrice" class="form-control" name="auction.startPrice" placeholder="ex) 5000">
 											</c:when>
 											<c:otherwise>
-												<input type="text" class="form-control" name="auction.startPrice" placeholder="${auctionForm.auction.startPrice}">
+												<input type="text" id="startPrice" class="form-control" name="auction.startPrice" placeholder="${auctionForm.auction.startPrice}">
 											</c:otherwise>
 										</c:choose>
 										</div>
@@ -177,22 +175,22 @@ function createAuction() {
 								</div>
 							</div>
 							
-							<%-- <div class="form-group">
-			              	<label for="auction.endDate">마감일</label>
+							<div class="form-group">
+			              	<label for="endDate">마감일</label>
 				                <div class="d-flex">
 					    		  <div class="form-group mr-2">
 					    		  	<c:choose>
 										<c:when test="${createAuction eq true}">
-							                <input type="date" class="form-control" name="auction.endDate">
+							                <input type="date" id="endDate" class="form-control" name="auction.endDate">
 										</c:when>
 										<c:otherwise>
-											<input type="date" class="form-control" name="auction.endDate" 
+											<input type="date" id="endDate" class="form-control" name="auction.endDate" 
 													value="<fmt:formatDate value='${auctionForm.auction.endDate}' pattern='yyyy-MM-dd'/>">
 										</c:otherwise>
 									</c:choose>
 					              </div>
 			              		</div>
-			              	</div> --%>
+			              	</div>
 
 							
 							<div class="form-group" align="right">

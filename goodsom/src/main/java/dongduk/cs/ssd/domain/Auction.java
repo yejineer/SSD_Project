@@ -2,17 +2,29 @@ package dongduk.cs.ssd.domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import dongduk.cs.ssd.controller.auction.AuctionForm;
+import dongduk.cs.ssd.controller.user.UserSession;
+
 @SuppressWarnings("serial")
 public class Auction implements Serializable {
+	private static final String PROCEEDING = "proceeding";
+	private static final int MENUID_AUCTION = 1;
+//	private static final String CLOSED = "closed";
+	
 	int auctionId;
 	String title;
 	String content;
 	String img;
 	int startPrice;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	Date uploadDate;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	Date endDate;
 	int count;
 	int maxPrice;
@@ -127,6 +139,23 @@ public class Auction implements Serializable {
 
 	public void setState(String state) {
 		this.state = state;
+	}
+	
+	public void initAuction(User user) {
+		Calendar calendar = Calendar.getInstance();
+        java.util.Date date = calendar.getTime();
+        System.out.println(date);
+        
+        uploadDate = date;
+        userId = user.getUserId();
+        state = PROCEEDING;
+        count = 0;
+        menuId = MENUID_AUCTION;
+	}
+	
+//	기본 이미지 지정하는 메서드
+	public void initImg(String contextPath) {
+		img = contextPath + "/resources/images/somsom.jpg";
 	}
 	
 	public String toString() {

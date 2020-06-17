@@ -14,8 +14,8 @@ import dongduk.cs.ssd.domain.User;
 import dongduk.cs.ssd.service.UserService;
 
 /**
- * @author kimdahyee	/ Seonmi-Hwang
- * @since 2020.06.12	/ 2020.06.13
+ * @author Yejin Lee / kimdahyee	/ Seonmi-Hwang
+ * @since 2020.05.03 / 2020.06.12	/ 2020.06.13
  */
 
 @Service("userServiceImpl")

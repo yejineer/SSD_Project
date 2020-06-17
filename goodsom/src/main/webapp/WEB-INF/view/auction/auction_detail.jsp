@@ -113,7 +113,7 @@
      <div class="container">
        <div class="row align-items-center">
          <div class="col-md-6 mb-5 mb-md-0">
-         	<img src="<%=request.getContextPath()%>/resources/images/img_5.jpg" alt="Image" class="img-fluid">
+         	<img src="${auction.img}" alt="Image" class="img-fluid">
          </div>
          
          <div class="col-md-5 ml-auto">
@@ -122,7 +122,7 @@
          		작성일 : &nbsp; &nbsp; <fmt:formatDate value="${auction.uploadDate}" pattern="yyyy-MM-dd" />
          	</p>
          	<h5>시작 금액 : &nbsp; &nbsp; <fmt:formatNumber value="${auction.startPrice}" pattern="#,###원"/></h5>
-           	<h5>마감 시각  : &nbsp; &nbsp; <fmt:formatDate value="${auction.endDate}" pattern="yyyy-MM-dd" /></h5>
+           	<h5>마감일  : &nbsp; &nbsp; <fmt:formatDate value="${auction.endDate}" pattern="yyyy-MM-dd" /></h5>
            	<br/>
            	
            	<h5 align="center"><b>현재 최고가</b></h5>

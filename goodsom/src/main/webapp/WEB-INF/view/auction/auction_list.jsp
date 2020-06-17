@@ -115,7 +115,7 @@
 								<a href="<c:url value='/auction/detail.do'>
 											<c:param name="auctionId" value="${auction.auctionId}"/>
 										</c:url>">
-										<img src="<%=request.getContextPath()%>/resources/images/img_1.jpg" alt="Image" class="img-fluid">
+										<img src="${auction.img}" alt="Image" class="img-fluid">
 								</a>
 								<div class="post-entry-1-contents">
 	

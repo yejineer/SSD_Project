@@ -9,6 +9,10 @@ import dongduk.cs.ssd.dao.NotificationDao;
 import dongduk.cs.ssd.domain.Notification;
 import dongduk.cs.ssd.service.NotiService;
 
+/**
+ * @author Yejin Lee
+ * @since  2020.05.03
+ */
 //@Service
 public class NotiServiceImpl implements NotiService {
 	/*
