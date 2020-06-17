@@ -156,17 +156,21 @@
 						<c:forEach var="auction" items="${auctionList}" varStatus="status">
 							<div class="col-lg-4 col-md-6 mb-4">
 								<div class="post-entry-1 h-100">
-									<a href="auction/detail.do"> <img src="${auction.img}"
+									<a href="<c:url value='../auction/detail.do'>
+												<c:param name="auctionId" value ="${auction.auctionId}" />
+											</c:url>"> <img src="${auction.img}"
 										alt="Image" class="img-fluid">
 									</a>
 									<div class="post-entry-1-contents">
 
 										<h2>
-											<a href="auction/detail.do">${auction.title}</a>
+											<a href="<c:url value='../auction/detail.do'>
+														<c:param name="auctionId" value ="${auction.auctionId}" />
+													</c:url>"> ${auction.title}
+											</a>
 										</h2>
-										<span class="meta d-inline-block mb-3">${auction.uploadDate}
-											<br>
-										<span class="mx-2">by</span> <a href="#">
+										<span class="meta d-inline-block mb-3"><fmt:formatDate value="${auction.uploadDate}" pattern="yyyy-MM-dd" />
+										<span class="mx-2"> by</span>
 												${userSession.user.nickname}</a>
 										</span>
 										<p>${auction.content}</p>
@@ -184,16 +188,21 @@
 						varStatus="status">
 						<div class="col-lg-4 col-md-6 mb-4">
 							<div class="post-entry-1 h-100">
-								<a href="groupBuy/detail.do"> <img src="${groupBuy.img}"
-									alt="Image" class="img-fluid">
+								<a href="<c:url value='../groupBuy/detail.do'>
+												<c:param name="groupBuyId" value ="${groupBuy.groupBuyId}" />
+											</c:url>"> <img src="${groupBuy.img}"
+										alt="Image" class="img-fluid">
 								</a>
 								<div class="post-entry-1-contents">
 
 									<h2>
-										<a href="groupBuy/detail.do">${groupBuy.title}</a>
+										<a href="<c:url value='../groupBuy/detail.do'>
+												<c:param name="groupBuyId" value ="${groupBuy.groupBuyId}" />
+											</c:url>"> ${groupBuy.title}
+										</a>
 									</h2>
-									<span class="meta d-inline-block mb-3">${groupBuy.uploadDate}
-										<br> <span class="mx-2">by</span> <a href="#">
+									<span class="meta d-inline-block mb-3"><fmt:formatDate value="${groupBuy.uploadDate}" pattern="yyyy-MM-dd" />
+										<span class="mx-2"> by</span>
 											${userSession.user.nickname}</a>
 									</span>
 									<p>${groupBuy.content}</p>
