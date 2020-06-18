@@ -237,6 +237,13 @@ body {
                 					-->
               					</div>
               				</div>
+              				
+							<div class="form-group row">
+								<div class="col-md-12">
+									<label for="price">가격</label> 
+									<input type="number" id="groupBuy.price" name="groupBuy.price" class="form-control" placeholder="ex) 10000">
+								</div>
+							</div>
 							
 							<div class="form-group row">
 								<div class="col-md-12">
