@@ -17,7 +17,7 @@ public class GroupBuy {
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	Date uploadDate;
 
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@DateTimeFormat(pattern ="yyyy-MM-dd")
 	Date endDate;
 	
 	int count;
@@ -29,6 +29,8 @@ public class GroupBuy {
 	int catId;
 	int menuId;
 	int userId;
+	int price;
+
 
 	public int getUserId() {
 		return userId;
@@ -168,6 +170,13 @@ public class GroupBuy {
 
 	public void setParticipants(int participants) {
 		this.participants = participants;
+	}
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
 	}
 
 	public GroupBuy() {

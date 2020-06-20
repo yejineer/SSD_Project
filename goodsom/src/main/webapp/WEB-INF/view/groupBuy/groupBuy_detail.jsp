@@ -122,7 +122,7 @@
          	<p>작성자 : &nbsp; &nbsp; ${writer} <br/> 
          	작성일 : &nbsp; &nbsp; <fmt:formatDate value="${groupBuy.uploadDate}" pattern="yyyy-MM-dd" />
       		</p>
-         	<h2 align="center">$36,500</h2><br/>
+         	<h2 align="center">$ ${groupBuy.price}</h2><br/>
          	<h5>참여자 수 : &nbsp; &nbsp; ${groupBuy.participants} / ${groupBuy.minNo}</h5>
            	<h5>남은 시간  : &nbsp; &nbsp; ${dDay}</h5> <br/>
            	

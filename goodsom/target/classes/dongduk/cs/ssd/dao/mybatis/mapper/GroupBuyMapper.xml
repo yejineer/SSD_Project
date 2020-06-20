@@ -12,9 +12,9 @@
   <insert id="createGroupBuy" parameterType="GroupBuy">
   	
   	INSERT INTO GROUPBUYS (GROUPBUYID, TITLE, CONTENT, IMG, MINNO, UPLOADDATE, 
-  			ENDDATE, COUNT, STATE, RATE, PARTICIPANTS, MENUID, CATID, USERID)
+  			ENDDATE, COUNT, STATE, RATE, PARTICIPANTS, MENUID, CATID, USERID, PRICE)
 	VALUES (GROUPBUYID_SEQ.nextval, #{title}, #{content}, #{img}, #{minNo}, #{uploadDate}, 
-			#{endDate}, 0, 'proceeding', 0, 0, 2, #{catId}, #{userId})
+			#{endDate}, 0, 'proceeding', 0, 0, 2, #{catId}, #{userId}, #{price})
 		
 
   	<selectKey keyProperty="groupBuyId" resultType="int" order="AFTER">
@@ -26,7 +26,7 @@
   <update id="updateGroupBuy" parameterType="GroupBuy">
    	UPDATE GROUPBUYS
     SET TITLE=#{title}, CONTENT=#{content}, IMG=#{img}, MINNO=#{minNo}, UPLOADDATE=to_char(sysdate,'yyyy-mm-dd'), 
-    	ENDDATE=#{endDate}, COUNT=#{count}, STATE=#{state}, RATE=#{rate}, PARTICIPANTS=#{participants}, CATID=#{catId}
+    	ENDDATE=#{endDate}, COUNT=#{count}, STATE=#{state}, RATE=#{rate}, PARTICIPANTS=#{participants}, CATID=#{catId}, PRICE=#{price}
   	WHERE  GROUPBUYID=#{groupBuyId}
   </update>
    
