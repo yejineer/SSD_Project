@@ -218,7 +218,7 @@
 										</h2>
 										<span class="meta d-inline-block mb-3"><fmt:formatDate
 												value="${auction.uploadDate}" pattern="yyyy-MM-dd" /> <span
-											class="mx-2"> by</span> ${userSession.user.nickname}</a> </span>
+											class="mx-2"> by</span> ${userSession.user.nickname} </span>
 										<p>${auction.content}</p>
 										<!-- 요약할 방법을 찾아보자. -->
 									</div>
@@ -250,7 +250,7 @@
 										</h2>
 										<span class="meta d-inline-block mb-3"><fmt:formatDate
 												value="${groupBuy.uploadDate}" pattern="yyyy-MM-dd" /> <span
-											class="mx-2"> by</span> ${userSession.user.nickname}</a> </span>
+											class="mx-2"> by</span> ${userSession.user.nickname} </span>
 										<p>${groupBuy.content}</p>
 										<!-- 요약할 방법을 찾아보자. -->
 									</div>
