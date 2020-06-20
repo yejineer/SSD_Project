@@ -36,6 +36,12 @@
 
 </head>
 
+<script>
+	function removeCheck() {
+		return confirm("정말 탈퇴하시겠습니까?");
+	}
+</script>
+
 <body data-spy="scroll" data-target=".site-navbar-target"
 	data-offset="300">
 
@@ -121,7 +127,7 @@
 					
 					<!-- 회원탈퇴, 수정, 확인 버튼 생성 -->
 					<a class="btn btn-primary py-3 px-5"
-						href="<c:url value='/user/delete.do'></c:url>">회원탈퇴</a> &nbsp; 
+						href="<c:url value='/user/delete.do'></c:url>" onclick="removeCheck()">회원탈퇴</a> &nbsp; 
 					<a class="btn btn-primary py-3 px-5"
 						href="<c:url value='/user/update.do'></c:url>">수정</a> &nbsp; 
 					<a class="btn btn-primary py-3 px-5"

@@ -58,6 +58,18 @@ function login() {
 }
 </script>
 
+<c:choose>
+	<c:when test="${deleteComplete == 1}">
+		<body onLoad="alert('회원탈퇴가 완료되었습니다.')">
+	</c:when>
+	<c:when test="${deleteComplete == 0}">
+		<body onLoad="alert('회원탈퇴에 실패했습니다.')">
+	</c:when>
+	<c:otherwise>
+		<body>
+	</c:otherwise>
+</c:choose>
+
 <body bgcolor="black">
 	<div class="container" style="padding: 100px">
 		<div class="row block-9 justify-content-center mb-5">

@@ -24,7 +24,7 @@ public interface UserMapper {
 
 	void updateUser(User user);
 
-	void deleteUser(String emailId);
+	int deleteUser(int userId);
 	
 //	List<Order> getOrderList(int userId); // 마이페이지 결제 목록 보기
 	

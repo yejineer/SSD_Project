@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 	
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -8,13 +8,11 @@
 	
 
 <!doctype html>
-<html lang="en">
-
-<head>
+<html lang="ko">
 
 <head>
 <title>Goodsom &mdash; SSD Final Project</title>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -61,7 +59,7 @@
 
 					<div class="col-3">
 						<div class="site-logo">
-							<a href="index.html" class="font-weight-bold">Goodsom</a>
+							<a href="<%=request.getContextPath()%>/home.do" class="font-weight-bold">GoodSom</a>
 						</div>
 					</div>
 
@@ -79,10 +77,10 @@
 							<ul class="site-menu main-menu js-clone-nav ml-auto ">
 								<li><a href="<%=request.getContextPath()%>/home.do" class="nav-link">Home</a></li>
 								<li><a href="<%=request.getContextPath()%>/groupBuy/list.do" class="nav-link">GroupBuy</a></li>
-								<li><a href="<%=request.getContextPath()%>/auction/list.do" class="nav-link"">Auction</a></li>
+								<li><a href="<%=request.getContextPath()%>/auction/list.do" class="nav-link">Auction</a></li>
 								<li><a href="#">Community</a></li>
-								<li><a href="#"><img src="<%=request.getContextPath()%>/resources/images/mypage.jpg" alt="Image" 
-								width="30px" height="20px" class="img-fluid"></a></li>
+								<li><a href="<%=request.getContextPath()%>/user/detail.do"><img src="<%=request.getContextPath()%>/resources/images/mypage.jpg" alt="Image" 
+								width="30px" height="20px" class="img-fluid"> ${userSession.user.nickname}</a></li>
 							</ul>
 						</nav>
 					</div>
@@ -92,24 +90,65 @@
 			</div>
 
 		</header>
+
+		<div class="site-section-cover">
+			<div class="container">
+				<div
+					class="row align-items-center text-center justify-content-center">
+					<div class="col-lg-6">
+						<h1 class="text-white mb-4">My Page</h1>
+						<p class="lead">회원 정보 조회 및 수정, 공동구매 및 경매에 등록한 목록이나 결제한 목록, 스크랩한 목록을 볼 수 있는 페이지입니다.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="site-section">
+			<div class="container">
+			
+			<!-- 구현 시작 -->
+				<a class="btn btn-primary py-3 px-5" href="<c:url value='<%=request.getContextPath()%>/mypage/list.do'>
+							<c:param name="menuId" value ="1" />
+						</c:url>">경매 등록 목록보기</a> &nbsp;&nbsp;
+				<a class="btn btn-primary py-3 px-5" href="<c:url value='<%=request.getContextPath()%>/mypage/list.do'>
+							<c:param name="menuId" value ="2" />
+						</c:url>">공동구매 등록 목록보기</a> &nbsp;&nbsp;
+				<a class="btn btn-primary py-3 px-5" href="<c:url value='<%=request.getContextPath()%>/mypage/list.do' />">
+					결제 목록보기</a>
+				<br><br>
+
+			</div>
+		</div>
+
 		
-		<!-- ���� ���� -->
-		
-		<h1>���� ���� ����</h1>
-		
-		<c:choose>
-			<c:when test="${order.successBidder eq null}"> 
-				<h3>��������</h3>
-			</c:when>
-			<c:otherwise> 
-				<h3>���</h3> 
-			</c:otherwise>
-		</c:choose>
+		<h2>세부 결제 내역</h2>
+
+		<br>
+		<c:forEach var="order" items="${orderList}" varStatus="status">
+			<div class="col-lg-4 col-md-6 mb-4">
+				<div class="post-entry-1 h-100">
+					<h3>${order.orderId}</h3>
+					<!-- 결제한 공동구매/경매의 이미지를 넣자. -->
+					<div class="post-entry-1-contents">
+
+						<h2>
+							<a href="order/detail.do">${order.totalPrice}</a>
+						</h2>
+						<span class="meta d-inline-block mb-3">${order.orderDate} </span>
+						<!-- auction에서 얻은 userId로 user를 구하여 nickname 호출  -->
+						<p>${order.phone}</p>
+						<!-- ??? -->
+						<!-- 요약할 방법을 찾아보자. -->
+					</div>
+				</div>
+			</div>
+		</c:forEach>
 		${order.title}
-		
-		
-		
-		<!-- ���� �� -->
+
+
+
+		<!-- 구현 끝 -->
 				
 				
 				<div class="site-section">
