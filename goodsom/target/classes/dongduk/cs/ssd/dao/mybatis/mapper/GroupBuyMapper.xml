@@ -3,7 +3,10 @@
 
 <mapper namespace="dongduk.cs.ssd.dao.mybatis.mapper.GroupBuyMapper">
   <cache />
-  
+  <sql id="BaseColumns_GroupBuys">
+  		GROUPBUYID, TITLE, CONTENT, IMG, MINNO, UPLOADDATE, ENDDATE, 
+  		COUNT, STATE, RATE, PARTICIPANTS, MENUID, CATID, USERID, PRICE
+  </sql>
   <select id="getGroupBuy" resultType="GroupBuy" parameterType="java.lang.Integer">
     SELECT * FROM GROUPBUYS
     WHERE GROUPBUYID = #{groupBuyId}
@@ -46,4 +49,9 @@
 		) A
   </insert>
   
+  <!-- Get all groupBuys -->
+  <select id="getGroupBuyList" resultType="dongduk.cs.ssd.domain.GroupBuy">
+    SELECT <include refid="BaseColumns_GroupBuys" />
+    FROM GROUPBUYS
+  </select>
 </mapper>

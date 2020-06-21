@@ -23,4 +23,5 @@ public interface GroupBuyMapper { // GroupBuyMapper.xml에서 구현한 method �
 	
 	void createOptions(GroupBuy groupBuy) throws DataAccessException;
 	
+	List<GroupBuy> getGroupBuyList() throws DataAccessException;
 }

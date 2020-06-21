@@ -1,5 +1,7 @@
 package dongduk.cs.ssd.controller.groupBuy;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import dongduk.cs.ssd.domain.Auction;
+import dongduk.cs.ssd.domain.GroupBuy;
 import dongduk.cs.ssd.service.GroupBuyService;
 
 /**
@@ -16,23 +20,27 @@ import dongduk.cs.ssd.service.GroupBuyService;
  * @since 2020.05.04
  */
 
-/*
+
 @Controller
-@SessionAttributes("groupBuySession")
-*/
+//@SessionAttributes("groupBuySession")
 public class DetailGroupBuyController {
-	
-	/*
+	private static final String GROUPBUY_LIST = "groupBuy/groupBuy_list";
+
 	@Autowired
 	GroupBuyService groupBuyService;
 	
-	@RequestMapping("/groupBuy/detail.do")
-	public ModelAndView groupBuyDetail(HttpServletRequest request, 
-									@ModelAttribute("groupBuySession") LineGroupBuyCommand groupBuySession) {
-		ModelAndView mav = new ModelAndView("groupBuy/groupBuy_detail");
-		mav.addObject("groupBuy", groupBuyService.getGroupBuy(groupBuySession.getGroupBuyId()));
+	@RequestMapping("/groupBuy/list.do")
+	public ModelAndView groupBuyDetail(){
+		ModelAndView mav = new ModelAndView(GROUPBUY_LIST);
+		List<GroupBuy> groupBuyList = null;
+		groupBuyList = groupBuyService.getGroupBuyList();
+		if (groupBuyList == null) {
+			System.out.println("[DetailGroupBuyController] groupBuyList가 null");
+		} else {
+			mav.addObject("groupBuyList", groupBuyList);			
+		}
 		return mav;
 	}
 	
-	*/
+	
 }

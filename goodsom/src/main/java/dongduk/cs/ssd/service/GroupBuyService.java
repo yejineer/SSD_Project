@@ -19,9 +19,9 @@ public interface GroupBuyService {
 	public void deleteGroupBuy(int groupBuyId);
 	
 	public void createOptions(GroupBuy groupBuy);
-	/*
-	public List<GroupBuy> getGroupBuyList();
 	
+	public List<GroupBuy> getGroupBuyList();
+	/*
 	public List<GroupBuy> getGroupBuyListByKeyword(String keyword);
 	*/
 }

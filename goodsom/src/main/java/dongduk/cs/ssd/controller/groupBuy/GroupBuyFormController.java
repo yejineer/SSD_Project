@@ -70,11 +70,6 @@ public class GroupBuyFormController {
 	*/
 	
 	
-	@RequestMapping(value="/list.do", method=RequestMethod.GET)
-	public String groupBuyList(){
-		return GROUPBUY_LIST;
-	}
-	
 	@RequestMapping(value="/form.do")
 	public String groupBuyForm(){
 		return GROUPBUY_FORM;

@@ -112,119 +112,38 @@
 			<a class="btn btn-primary py-3 px-5" href="<c:url value='/groupBuy/form.do'></c:url>">공동구매 등록</a> <br/><br/>
 			
 				<div class="row">
-					<div class="col-lg-4 col-md-6 mb-4">
-						<div class="post-entry-1 h-100">
-							<a href="single.html"> <img src="<%=request.getContextPath()%>/resources/images/img_1.jpg"
-								alt="Image" class="img-fluid">
-							</a>
-							<div class="post-entry-1-contents">
-
-								<h2>
-									<a href="/groupbuy/detail.do">Lorem ipsum dolor sit amet</a>
-								</h2>
-								<span class="meta d-inline-block mb-3">July 17, 2019 <span
-									class="mx-2">by</span> <a href="#">Admin</a></span>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-									Dolores eos soluta, dolore harum molestias consectetur.</p>
+					<c:forEach var="groupBuy" items="${groupBuyList}" varStatus="status">
+						<div class="col-lg-4 col-md-6 mb-4">
+							<div class="post-entry-1 h-100">
+								<a href="<c:url value='/groupBuy/detail.do'>
+								<c:param name="groupBuyId" value="${groupBuy.groupBuyId}"/>
+										</c:url>">
+										<img src="${groupBuy.img}" alt="Image" class="img-fluid">
+								</a>
+								
+								<div class="post-entry-1-contents">
+									<h2>
+										<a  href="<c:url value='/groupBuy/detail.do'>
+													<c:param name="groupBuyId" value="${groupBuy.groupBuyId}"/>
+												</c:url>">${groupBuy.title}</a>
+									</h2>
+									<span class="meta d-inline-block mb-3">
+										~ <fmt:formatDate value="${groupBuy.endDate}" pattern="yyyy-MM-dd" />
+									<span class="mx-2">가격</span> 
+										<a href="#"><fmt:formatNumber value="${groupBuy.price}" pattern="#,###원"/></a>
+									
+									<span class="mx-2">달성률</span> 
+										<a href="#"><fmt:formatNumber value="${groupBuy.participants}"/>명 / </a>
+										<a href="#"><fmt:formatNumber value="${groupBuy.minNo}"/>명</a> <br/><br/>
+										<a href="#"><fmt:formatNumber value="${groupBuy.rate}" pattern="###%"/></a>
+									</span>
+									<p>${groupBuy.content}</p>
+								</div>
 							</div>
 						</div>
-					</div>
-					<div class="col-lg-4 col-md-6 mb-4">
-						<div class="post-entry-1 h-100">
-							<a href="single.html"> <img src="<%=request.getContextPath()%>/resources/images/img_2.jpg"
-								alt="Image" class="img-fluid">
-							</a>
-							<div class="post-entry-1-contents">
+    				
 
-								<h2>
-									<a href="single.html">Lorem ipsum dolor sit amet</a>
-								</h2>
-								<span class="meta d-inline-block mb-3">July 17, 2019 <span
-									class="mx-2">by</span> <a href="#">Admin</a></span>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-									Dolores eos soluta, dolore harum molestias consectetur.</p>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-lg-4 col-md-6 mb-4">
-						<div class="post-entry-1 h-100">
-							<a href="single.html"> <img src="<%=request.getContextPath()%>/resources/images/img_3.jpg"
-								alt="Image" class="img-fluid">
-							</a>
-							<div class="post-entry-1-contents">
-
-								<h2>
-									<a href="single.html">Lorem ipsum dolor sit amet</a>
-								</h2>
-								<span class="meta d-inline-block mb-3">July 17, 2019 <span
-									class="mx-2">by</span> <a href="#">Admin</a></span>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-									Dolores eos soluta, dolore harum molestias consectetur.</p>
-							</div>
-						</div>
-					</div>
-
-
-					<div class="col-lg-4 col-md-6 mb-4">
-						<div class="post-entry-1 h-100">
-							<a href="single.html"> <img src="<%=request.getContextPath()%>/resources/images/img_1.jpg"
-								alt="Image" class="img-fluid">
-							</a>
-							<div class="post-entry-1-contents">
-
-								<h2>
-									<a href="single.html">Lorem ipsum dolor sit amet</a>
-								</h2>
-								<span class="meta d-inline-block mb-3">July 17, 2019 <span
-									class="mx-2">by</span> <a href="#">Admin</a></span>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-									Dolores eos soluta, dolore harum molestias consectetur.</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-4 col-md-6 mb-4">
-						<div class="post-entry-1 h-100">
-							<a href="single.html"> <img src="<%=request.getContextPath()%>/resources/images/img_2.jpg"
-								alt="Image" class="img-fluid">
-							</a>
-							<div class="post-entry-1-contents">
-
-								<h2>
-									<a href="single.html">Lorem ipsum dolor sit amet</a>
-								</h2>
-								<span class="meta d-inline-block mb-3">July 17, 2019 <span
-									class="mx-2">by</span> <a href="#">Admin</a></span>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-									Dolores eos soluta, dolore harum molestias consectetur.</p>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-lg-4 col-md-6 mb-4">
-						<div class="post-entry-1 h-100">
-							<a href="single.html"> <img src="<%=request.getContextPath()%>/resources/images/img_3.jpg"
-								alt="Image" class="img-fluid">
-							</a>
-							<div class="post-entry-1-contents">
-
-								<h2>
-									<a href="single.html">Lorem ipsum dolor sit amet</a>
-								</h2>
-								<span class="meta d-inline-block mb-3">July 17, 2019 <span
-									class="mx-2">by</span> <a href="#">Admin</a></span>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-									Dolores eos soluta, dolore harum molestias consectetur.</p>
-							</div>
-						</div>
-					</div>
-
-
-					<div class="col-12 mt-5 text-center">
-						<span class="p-3">1</span> <a href="#" class="p-3">2</a> <a
-							href="#" class="p-3">3</a> <a href="#" class="p-3">4</a>
-					</div>
-
+					</c:forEach>
 				</div>
 			</div>
 		</div>

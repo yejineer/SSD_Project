@@ -83,10 +83,6 @@ function input_append(ff){
   padding: 0;
 }
 
-body {
-  padding: 20px;
-}
-
 /* temp grid */
 
 .only-sr {

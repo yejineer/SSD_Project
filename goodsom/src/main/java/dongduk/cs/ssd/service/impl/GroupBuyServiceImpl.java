@@ -46,12 +46,10 @@ public class GroupBuyServiceImpl implements GroupBuyService {
 		groupBuyDao.createOptions(groupBuy);
 	}
 	
-	
-	/*
 	public List<GroupBuy> getGroupBuyList() {
 		return groupBuyDao.getGroupBuyList();
 	}
-	
+	/*
 	public List<GroupBuy> getGroupBuyListByKeyword(String keyword) {
 		return groupBuyDao.getGroupBuyListByKeyword(keyword);
 	}
