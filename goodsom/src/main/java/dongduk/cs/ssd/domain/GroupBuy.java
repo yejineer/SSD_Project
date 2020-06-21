@@ -1,12 +1,16 @@
 package dongduk.cs.ssd.domain;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 public class GroupBuy {
+	private static final String PROCEEDING = "proceeding";
+	private static final int MENUID_GROUPBUY = 2;
+	
 	int groupBuyId;
 	String title;
 	String content;
@@ -182,6 +186,29 @@ public class GroupBuy {
 	public GroupBuy() {
 	}
 
+//	기본 이미지 지정하는 메서드
+	public void initImg(String contextPath) {
+		img = contextPath + "/resources/images/somsom.jpg";
+	}
+	
+	public void initGroupBuy(User user) {
+		Calendar calendar = Calendar.getInstance();
+        java.util.Date date = calendar.getTime();
+        System.out.println(date);
+        
+        uploadDate = date;
+        userId = user.getUserId();
+        count = 0;					// 조회수
+        state = PROCEEDING;			// 게시물 상태
+        rate = 0;					// 참여 달성률
+        participants = 0;			// 참여자 수
+        menuId = MENUID_GROUPBUY;	// 메뉴
+        
+        System.out.println("[initGroupBuy] uploadDate: " + uploadDate + ", userId: " + userId
+        		 + ", count: " + count  + ", state: " + state  + ", rate: " + rate  
+        		 + ", participants: " + participants  + ", menuId: " + menuId );
+	}
+	
 	public String toString() {
 		String str = "groupBuyId: " + groupBuyId + ", title: " + title + ", content: " + content + ", img: " + img 
 				+ ", minNo: " + minNo + ", uploadDate: " + uploadDate + ", endDate: " + endDate + ", catId: " + catId;

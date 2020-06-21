@@ -14,10 +14,9 @@
   
   <insert id="createGroupBuy" parameterType="GroupBuy">
   	
-  	INSERT INTO GROUPBUYS (GROUPBUYID, TITLE, CONTENT, IMG, MINNO, UPLOADDATE, 
-  			ENDDATE, COUNT, STATE, RATE, PARTICIPANTS, MENUID, CATID, USERID, PRICE)
-	VALUES (GROUPBUYID_SEQ.nextval, #{title}, #{content}, #{img}, #{minNo}, #{uploadDate}, 
-			#{endDate}, 0, 'proceeding', 0, 0, 2, #{catId}, #{userId}, #{price})
+  	INSERT INTO GROUPBUYS (<include refid="BaseColumns_GroupBuys" />)
+	VALUES (GROUPBUYID_SEQ.nextval, #{title}, #{content}, #{img}, #{minNo}, #{uploadDate}, #{endDate}, 
+			#{count}, #{state}, #{rate}, #{participants}, #{menuId}, #{catId}, #{userId}, #{price})
 		
 
   	<selectKey keyProperty="groupBuyId" resultType="int" order="AFTER">

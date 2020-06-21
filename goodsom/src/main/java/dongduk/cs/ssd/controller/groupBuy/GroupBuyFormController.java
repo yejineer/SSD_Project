@@ -84,25 +84,21 @@ public class GroupBuyFormController {
 		
 		HttpSession session = request.getSession();
 		UserSession user  = (UserSession)session.getAttribute("userSession");
-		int userId = user.getUser().getUserId();
 		
-//		String reqPage = request.getServletPath();
-//		
-//		if (reqPage.trim().equals("groupBuy_form")) { // update
-//			groupBuyService.updateGroupBuy(groupBuyForm.getGroupBuy());
-//			return GROUPBUY_FORM;
-//		} else { // show after create
-			System.out.println("groupBuyController");
-			Calendar calendar = Calendar.getInstance();
-            java.util.Date date = calendar.getTime();
-            System.out.println(date);
-            
-			groupBuyForm.getGroupBuy().setUploadDate(date);
-			groupBuyForm.getGroupBuy().setUserId(userId);
+		String reqPage = request.getServletPath();
+		
+		if (reqPage.trim().equals("groupBuy_form")) { // update
+			groupBuyService.updateGroupBuy(groupBuyForm.getGroupBuy());
+			return GROUPBUY_FORM;
+		} else { // show after create
+
+			groupBuyForm.getGroupBuy().initGroupBuy(user.getUser());
+			if (groupBuyForm.getGroupBuy().getImg().trim() == "") {
+				groupBuyForm.getGroupBuy().initImg(request.getContextPath());
+            }
 			
 			groupBuyService.createGroupBuy(groupBuyForm.getGroupBuy());
 			groupBuyService.createOptions(groupBuyForm.getGroupBuy());
-			
 			
 			int groupBuyId = groupBuyForm.getGroupBuy().getGroupBuyId();
 			GroupBuy groupBuy = groupBuyService.getGroupBuy(groupBuyId);
@@ -117,7 +113,7 @@ public class GroupBuyFormController {
 
 			
 			return GROUPBUY_DETAIL;
-		//}
+		}
 	}
 	
 	/*
