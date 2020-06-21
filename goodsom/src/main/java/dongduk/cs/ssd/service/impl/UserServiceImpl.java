@@ -3,6 +3,7 @@ package dongduk.cs.ssd.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.stereotype.Repository;
 
@@ -31,6 +32,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User getUserByEmail(String email) {
 		return userDao.getUserByEmail(email);
+	}
+
+	@Override
+	public User getUserByUserId(int userId) throws DataAccessException {
+		return userDao.getUserByUserId(userId);
 	}
 
 	@Override
@@ -72,4 +78,5 @@ public class UserServiceImpl implements UserService {
 	public List<Auction> getAuctionList(int userId) { // 마이페이지 경매 등록 목록 보기
 		return userDao.getAuctionList(userId);
 	}
+
 }

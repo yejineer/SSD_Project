@@ -53,7 +53,9 @@ public class DetailAuctionController {
 	public ModelAndView auctionDetail(HttpServletRequest request,
 			@RequestParam("auctionId") int auctionId) {
 		ModelAndView mav = new ModelAndView(AUCTION_DETAIL);
-		mav.addObject("auction", auctionService.getAuction(auctionId));
+		Auction auction = auctionService.getAuction(auctionId);
+		mav.addObject("auction", auction);
+		mav.addObject("writer", userService.getUserByUserId(auction.getUserId()).getNickname());
 		return mav;
 	}
 }

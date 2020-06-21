@@ -66,6 +66,8 @@ public class AuctionFormController {
 		UserSession user  = (UserSession)request.getSession().getAttribute("userSession");
 		if(reqPage.trim().equals("/auction/update.do")) { // update
 //			auctionService.updateAuction(auctionForm.getAuction());
+			model.addAttribute("writer", user.getUser().getNickname());
+			model.addAttribute("auction", auctionForm.getAuction()); 
 			return AUCTION_DETAIL;
 //			return AUCTION_FORM;
 		}else { // show after create
