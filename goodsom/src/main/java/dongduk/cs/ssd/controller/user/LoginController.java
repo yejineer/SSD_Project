@@ -25,6 +25,9 @@ import dongduk.cs.ssd.service.UserService;
 @SessionAttributes("userSession")
 public class LoginController {
 	
+	@Value("login")
+	private String formViewName;
+	
 	private UserService userService;
 	
 	@Autowired
@@ -32,59 +35,33 @@ public class LoginController {
 		this.userService = userService;
 	}
 	
+	@RequestMapping(value="/user/login.do", method=RequestMethod.GET)
+	public String form() {
+		return formViewName;
+	}
+	
 	//forward : 주소 변경 X, 화면 전환, 대량의 데이터 전달
 	//redirect : 주소 변경 O, 화면 전환, 소량의 데이터 전달 (get 방식만 가능)
-	@RequestMapping("/user/login.do")
+	@RequestMapping(value="/user/login.do", method=RequestMethod.POST)
 	public ModelAndView handleRequest(HttpServletRequest request,
 			HttpSession session,
 			@RequestParam("emailId") String email,
 			@RequestParam("password") String password,
 			Model model) throws Exception {
-		System.out.println("로긘" + userService.getUser(email, password).getEmail());
+		
 		User user = userService.getUser(email, password);// 로그인 시도
 		
 		if (user == null) { // 해당 email과 password를 갖는 사용자가 존재하지 않을 시
+			
 			return new ModelAndView("/user/login", "message", "Invalid email or password. Login failed.");
-		} else { // 로그인 성공 시
-//			user.setEmailId(email);
+		
+		} else {
+			
 			UserSession userSession = new UserSession(user);
 			session.setAttribute("userSession", userSession);
 			model.addAttribute("userSession", userSession); // 필요한가??
 			return new ModelAndView("home");
+			
 		}
 	}
-	
-	/*
-	@Value("login")
-	private String formViewName;
-	
-	@Autowired
-	private UserService userService;
-	
-	@Autowired
-	public void setUserService(UserService userService) {
-		this.userService = userService;
-	}
-	
-	@RequestMapping(method=RequestMethod.GET)
-	public String form() {
-		return formViewName;
-	}
-	
-	@RequestMapping(method=RequestMethod.POST)
-	public ModelAndView handleRequest(HttpServletRequest request,
-			HttpSession session,
-			@RequestParam("email") String email,
-			@RequestParam("password") String password,
-			Model model) throws Exception {
-		User user = userService.getUser(email, password); // 로그인 시도
-		if (user == null) { // 해당 email과 password를 갖는 사용자가 존재하지 않을 시
-			return new ModelAndView("login", "message", "Invalid email or password. Login failed.");
-		} else { // 로그인 성공 시
-			UserSession userSession = new UserSession(user);
-			session.setAttribute("userSession", userSession);
-			return new ModelAndView("home");
-		}
-	}
-	*/
 }

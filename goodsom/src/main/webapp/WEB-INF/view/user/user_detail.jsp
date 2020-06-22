@@ -125,6 +125,8 @@
 					환불계좌 &emsp;${userForm.user.refundBank} &nbsp; ${userForm.user.refundAccount}<br>
 					<hr>
 					
+					<a class="btn btn-primary py-3 px-5"
+						href="<c:url value='/user/logout.do'></c:url>" onclick="logoutCheck()">로그아웃</a> &nbsp; 
 					<!-- 회원탈퇴, 수정, 확인 버튼 생성 -->
 					<a class="btn btn-primary py-3 px-5"
 						href="<c:url value='/user/delete.do'></c:url>" onclick="removeCheck()">회원탈퇴</a> &nbsp; 
