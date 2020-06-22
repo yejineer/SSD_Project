@@ -39,7 +39,7 @@ import dongduk.cs.ssd.service.GroupBuyService;
 @RequestMapping("/groupBuy")
 public class GroupBuyFormController {
 	
-	private static final String GROUPBUY_LIST = "groupBuy/groupBuy_list";
+
 	private static final String GROUPBUY_FORM = "groupBuy/groupBuy_form";
 	private static final String GROUPBUY_DETAIL = "groupBuy/groupBuy_detail";
 	
@@ -77,7 +77,7 @@ public class GroupBuyFormController {
 	
 	
 	
-	@RequestMapping(value="/detail.do", method={RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value="/detail.do", method=RequestMethod.POST)
 	public String updateOrSubmit(HttpServletRequest request,
 								@ModelAttribute("groupBuyForm") GroupBuyForm groupBuyForm, 
 								Model model) {

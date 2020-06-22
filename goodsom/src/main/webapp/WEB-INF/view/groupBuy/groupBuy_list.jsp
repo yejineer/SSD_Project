@@ -130,11 +130,11 @@
 									<span class="meta d-inline-block mb-3">
 										~ <fmt:formatDate value="${groupBuy.endDate}" pattern="yyyy-MM-dd" />
 									<span class="mx-2">가격</span> 
-										<a href="#"><fmt:formatNumber value="${groupBuy.price}" pattern="#,###원"/></a>
+										<a href="#"><fmt:formatNumber value="${groupBuy.price}" pattern="#,###원"/></a> <br/><br/>
 									
 									<span class="mx-2">달성률</span> 
 										<a href="#"><fmt:formatNumber value="${groupBuy.participants}"/>명 / </a>
-										<a href="#"><fmt:formatNumber value="${groupBuy.minNo}"/>명</a> <br/><br/>
+										<a href="#"><fmt:formatNumber value="${groupBuy.minNo}"/>명</a>
 										<a href="#"><fmt:formatNumber value="${groupBuy.rate}" pattern="###%"/></a>
 									</span>
 									<p>${groupBuy.content}</p>
