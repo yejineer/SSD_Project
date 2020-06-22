@@ -21,7 +21,10 @@ import dongduk.cs.ssd.service.UserService;
  * @author Seonmi Hwang
  * @since 2020.05.04
  */
-
+/**
+ * @author HK
+ * @since 2020.06.22
+ */
 
 @Controller
 //@SessionAttributes("groupBuySession")
@@ -34,6 +37,7 @@ public class DetailGroupBuyController {
 	@Autowired
 	UserService userService;
 	
+	// home -> list
 	@RequestMapping("/groupBuy/list.do")
 	public ModelAndView groupBuyDetail(){
 		ModelAndView mav = new ModelAndView(GROUPBUY_LIST);
@@ -47,6 +51,7 @@ public class DetailGroupBuyController {
 		return mav;
 	}
 	
+	// list -> detail
 	@RequestMapping("/groupBuy/detail.do")
 	public ModelAndView groupBuyDetail(HttpServletRequest request,
 										@RequestParam("groupBuyId") int groupBuyId)	{

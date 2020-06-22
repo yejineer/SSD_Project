@@ -34,7 +34,13 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/style.css">
 
 </head>
-
+<script>
+function deleteGroupBuy(url) {
+	
+	var deleteCheck = confirm("등록하신 공동구매를 삭제하시겠습니까?")
+	return deleteCheck;
+}
+</script>
 <body data-spy="scroll" data-target=".site-navbar-target"
 	data-offset="300">
 
@@ -132,7 +138,7 @@
 	           		<!-- 
 	           		<select name="groupBuy.options" id="options">
 	           			<option value="">옵션 선택</option>
-		           		<c:forEach var="option" items="${groupBuy.getOptions()}" varStatus="status">
+		           		<c:forEach var="option" items="${groupBuy.options}" varStatus="status">
 		           			<option>   <c:out value="${option}"/> </option>
 						</c:forEach>
 					</select><br/>
@@ -163,8 +169,10 @@
 	   
 	   <br/><br/><br/>
 	   <div class="form-group" align="right">
-	   		<input type="button" value="수정" onClick="" class="btn btn-primary py-3 px-5">  &nbsp;
-	   		<a class="btn btn-primary py-3 px-5" href="<c:url value=''></c:url>">삭제</a>	
+	   		<input type="button" value="수정" onClick="" class="btn btn-primary py-3 px-5">  &nbsp; 
+	   		<a class="btn btn-primary py-3 px-5" 
+	   		   href="<c:url value='/groupBuy/delete.do'><c:param name="groupBuyId" value="${groupBuy.groupBuyId}"/></c:url>" 
+			   onClick="return deleteGroupBuy();">삭제</a>	
 	   </div>							
    </div>
 

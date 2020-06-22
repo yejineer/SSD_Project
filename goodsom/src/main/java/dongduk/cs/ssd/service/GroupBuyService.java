@@ -7,6 +7,11 @@ import dongduk.cs.ssd.domain.GroupBuy;
  * @author Seonmi Hwang
  * @since 2020.05.06
  */
+/**
+ * @author HK
+ * @since 2020.06.22
+ */
+
 
 public interface GroupBuyService {
 	
@@ -16,8 +21,10 @@ public interface GroupBuyService {
 	
 	public void updateGroupBuy(GroupBuy groupBuy);
 	
-	public void deleteGroupBuy(int groupBuyId);
+	public void deleteOptions(int groupBuyId);
 	
+	public void deleteGroupBuy(int groupBuyId);
+
 	public void createOptions(GroupBuy groupBuy);
 	
 	public List<GroupBuy> getGroupBuyList();

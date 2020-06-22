@@ -76,7 +76,7 @@ public class GroupBuyFormController {
 	}
 	
 	
-	
+	// form -> detail
 	@RequestMapping(value="/detail.do", method=RequestMethod.POST)
 	public String updateOrSubmit(HttpServletRequest request,
 								@ModelAttribute("groupBuyForm") GroupBuyForm groupBuyForm, 

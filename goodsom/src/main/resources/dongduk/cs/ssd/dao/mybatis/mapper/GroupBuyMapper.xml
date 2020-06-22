@@ -32,6 +32,11 @@
   	WHERE  GROUPBUYID=#{groupBuyId}
   </update>
    
+   <delete id="deleteOptions" parameterType="java.lang.Integer">
+    DELETE FROM OPTIONS
+    WHERE  GROUPBUYID=#{groupBuyId}
+  </delete>
+   
   <delete id="deleteGroupBuy" parameterType="java.lang.Integer">
     DELETE FROM GROUPBUYS
     WHERE  GROUPBUYID=#{groupBuyId}

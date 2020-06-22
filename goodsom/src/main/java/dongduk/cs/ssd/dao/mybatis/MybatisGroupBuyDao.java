@@ -34,6 +34,10 @@ public class MybatisGroupBuyDao implements GroupBuyDao {
 		groupBuyMapper.updateGroupBuy(groupBuy);
 	}
 	
+	public void deleteOptions(int groupBuyId) throws DataAccessException{
+		groupBuyMapper.deleteOptions(groupBuyId);
+	}
+	
 	public void deleteGroupBuy(int groupBuyId) throws DataAccessException{
 		groupBuyMapper.deleteGroupBuy(groupBuyId);
 	}

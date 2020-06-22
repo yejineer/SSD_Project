@@ -38,6 +38,10 @@ public class GroupBuyServiceImpl implements GroupBuyService {
 		groupBuyDao.updateGroupBuy(groupBuy);
 	}
 	
+	public void deleteOptions(int groupBuyId) {
+		groupBuyDao.deleteOptions(groupBuyId);
+	}
+	
 	public void deleteGroupBuy(int groupBuyId) {
 		groupBuyDao.deleteGroupBuy(groupBuyId);
 	}
@@ -49,6 +53,7 @@ public class GroupBuyServiceImpl implements GroupBuyService {
 	public List<GroupBuy> getGroupBuyList() {
 		return groupBuyDao.getGroupBuyList();
 	}
+
 	/*
 	public List<GroupBuy> getGroupBuyListByKeyword(String keyword) {
 		return groupBuyDao.getGroupBuyListByKeyword(keyword);
