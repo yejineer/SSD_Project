@@ -58,4 +58,10 @@
     SELECT <include refid="BaseColumns_GroupBuys" />
     FROM GROUPBUYS
   </select>
+  
+  <select id="getOptions" resultType="dongduk.cs.ssd.domain.Option" parameterType="java.lang.Integer">
+    SELECT OPTIONID, CONTENT
+    FROM OPTIONS
+    WHERE GROUPBUYID=#{groupBuyId}
+  </select>
 </mapper>

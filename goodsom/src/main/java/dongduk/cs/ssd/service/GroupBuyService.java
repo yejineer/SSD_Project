@@ -1,7 +1,11 @@
 package dongduk.cs.ssd.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import dongduk.cs.ssd.domain.GroupBuy;
+import dongduk.cs.ssd.domain.Option;
 
 /**
  * @author Seonmi Hwang
@@ -28,6 +32,8 @@ public interface GroupBuyService {
 	public void createOptions(GroupBuy groupBuy);
 	
 	public List<GroupBuy> getGroupBuyList();
+	
+	public List<Option> getOptions(int groupBuyId);
 	/*
 	public List<GroupBuy> getGroupBuyListByKeyword(String keyword);
 	*/

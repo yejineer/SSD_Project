@@ -42,11 +42,14 @@ public class DetailGroupBuyController {
 	public ModelAndView groupBuyDetail(){
 		ModelAndView mav = new ModelAndView(GROUPBUY_LIST);
 		List<GroupBuy> groupBuyList = null;
+		
+		// db
 		groupBuyList = groupBuyService.getGroupBuyList();
+		
 		if (groupBuyList == null) {
 			System.out.println("[DetailGroupBuyController] groupBuyList가 null");
 		} else {
-			mav.addObject("groupBuyList", groupBuyList);			
+			mav.addObject("groupBuyList", groupBuyList);		
 		}
 		return mav;
 	}
@@ -56,7 +59,11 @@ public class DetailGroupBuyController {
 	public ModelAndView groupBuyDetail(HttpServletRequest request,
 										@RequestParam("groupBuyId") int groupBuyId)	{
 		ModelAndView mav = new ModelAndView(GROUPBUY_DETAIL);
+		
+		// db
 		GroupBuy groupBuy = groupBuyService.getGroupBuy(groupBuyId);
+		groupBuy.setOptions(groupBuyService.getOptions(groupBuyId));
+		
 		mav.addObject("groupBuy", groupBuy);
 		mav.addObject("writer", userService.getUserByUserId(groupBuy.getUserId()).getNickname());
 		return mav;

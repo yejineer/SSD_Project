@@ -88,6 +88,7 @@ public class GroupBuyFormController {
 		String reqPage = request.getServletPath();
 		
 		if (reqPage.trim().equals("groupBuy_form")) { // update
+			// db
 			groupBuyService.updateGroupBuy(groupBuyForm.getGroupBuy());
 			return GROUPBUY_FORM;
 		} else { // show after create
@@ -97,14 +98,17 @@ public class GroupBuyFormController {
 				groupBuyForm.getGroupBuy().initImg(request.getContextPath());
             }
 			
+			// db
 			groupBuyService.createGroupBuy(groupBuyForm.getGroupBuy());
 			groupBuyService.createOptions(groupBuyForm.getGroupBuy());
+//			groupBuy.setOptions(groupBuyService.getOptions(groupBuyId));
 			
 			int groupBuyId = groupBuyForm.getGroupBuy().getGroupBuyId();
 			GroupBuy groupBuy = groupBuyService.getGroupBuy(groupBuyId);
 			model.addAttribute("groupBuy", groupBuy);
 			model.addAttribute("writer", user.getUser().getNickname());
 			
+			// D-day 계산: 더 좋은 위치 없나..
 			long timeLength = groupBuy.getEndDate().getTime() - groupBuy.getUploadDate().getTime();
 			long dDay = timeLength / ( 24*60*60*1000); 
 			dDay = Math.abs(dDay);

@@ -245,7 +245,7 @@ function input_append(ff){
 								<div class="col-md-12">
 									<label for="content">상세설명</label> 
 									<textarea name="groupBuy.content" id="groupBuy.content" class="form-control"
-										placeholder="Write description" cols="30" rows="10"></textarea>
+										placeholder="상세 설명을 작성해주세요." cols="30" rows="10"></textarea>
 									
 								</div>
 							</div>

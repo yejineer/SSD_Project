@@ -1,6 +1,8 @@
 package dongduk.cs.ssd.dao.mybatis;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import dongduk.cs.ssd.dao.GroupBuyDao;
 import dongduk.cs.ssd.dao.mybatis.mapper.GroupBuyMapper;
 import dongduk.cs.ssd.domain.GroupBuy;
+import dongduk.cs.ssd.domain.Option;
 
 
 /**
@@ -48,5 +51,9 @@ public class MybatisGroupBuyDao implements GroupBuyDao {
 	
 	public List<GroupBuy> getGroupBuyList() throws DataAccessException{
 		return groupBuyMapper.getGroupBuyList();
+	}
+	
+	public List<Option> getOptions(int groupBuyId) throws DataAccessException{
+		return groupBuyMapper.getOptions(groupBuyId);
 	}
 }

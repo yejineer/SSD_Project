@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 public class GroupBuy {
@@ -16,7 +17,7 @@ public class GroupBuy {
 	String content;
 	String img;
 	int minNo;
-	List<String> options = new ArrayList<String>();
+	List<Option> options = new ArrayList<Option>();
 	
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	Date uploadDate;
@@ -120,11 +121,11 @@ public class GroupBuy {
 		this.minNo = minNo;
 	}
 
-	public List<String> getOptions() {
+	public List<Option> getOptions() {
 		return options;
 	}
 
-	public void setOptions(List<String> options) {
+	public void setOptions(List<Option> options) {
 		this.options = options;
 	}
 
@@ -209,10 +210,10 @@ public class GroupBuy {
         		 + ", participants: " + participants  + ", menuId: " + menuId );
 	}
 	
+	
 	public String toString() {
 		String str = "groupBuyId: " + groupBuyId + ", title: " + title + ", content: " + content + ", img: " + img 
 				+ ", minNo: " + minNo + ", uploadDate: " + uploadDate + ", endDate: " + endDate + ", catId: " + catId;
-		
 		return str;
 	}
 

@@ -135,14 +135,17 @@ function deleteGroupBuy(url) {
            	<div class="alert alert-primary" role="alert">
            		<div class="d-flex">
 	           		<h5>옵션</h5>&nbsp;&nbsp;
-	           		<!-- 
+	           		
 	           		<select name="groupBuy.options" id="options">
 	           			<option value="">옵션 선택</option>
+	           			
+	           			
 		           		<c:forEach var="option" items="${groupBuy.options}" varStatus="status">
-		           			<option>   <c:out value="${option}"/> </option>
+		           			<option value="${option.optionId}">${option.content}</option>
 						</c:forEach>
+						
 					</select><br/>
-					 -->
+					
 				</div>
 				<div class="d-flex">
 					<h5>수량</h5>&nbsp;&nbsp;
@@ -168,6 +171,7 @@ function deleteGroupBuy(url) {
        </div>
 	   
 	   <br/><br/><br/>
+	   
 	   <div class="form-group" align="right">
 	   		<input type="button" value="수정" onClick="" class="btn btn-primary py-3 px-5">  &nbsp; 
 	   		<a class="btn btn-primary py-3 px-5" 
