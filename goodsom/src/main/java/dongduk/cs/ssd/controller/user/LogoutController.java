@@ -6,8 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
- * @author Yejin Lee
- * @since 2020.05.08
+ * @author Yejin Lee  | kimdahyee
+ * @since 2020.05.08  | 2020.06.22
  */
 
 @Controller
