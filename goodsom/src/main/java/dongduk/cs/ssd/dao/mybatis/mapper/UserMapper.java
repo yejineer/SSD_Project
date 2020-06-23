@@ -8,8 +8,8 @@ import dongduk.cs.ssd.domain.Order;
 import dongduk.cs.ssd.domain.User;
 
 /**
- * @author kimdahyee 	/ Seonmi-Hwang
- * @since 2020.06.12	/ 2020.06.13
+ * @author kimdahyee | Seonmi-Hwang
+ * @since 2020.06.12 | 2020.06.13
  */
 
 public interface UserMapper {
