@@ -47,7 +47,7 @@ public class GroupBuyFormController {
 	@Autowired
 	private GroupBuyService groupBuyService;
 	
-	/*
+
 	@ModelAttribute("groupBuyForm")
 	public GroupBuyForm formBacking(HttpServletRequest request,
 									@ModelAttribute("groupBuySession") LineGroupBuyCommand groupBuySession,
@@ -55,18 +55,23 @@ public class GroupBuyFormController {
 			throws Exception {
 		String reqPage = request.getServletPath();
 		String groupBuyId = request.getParameter("groupBuyId");
+		System.out.println("reqPage: " + reqPage);
 		
-		if (reqPage.trim().equals("/groupBuy_form") && request.getMethod().equals("GET")) { // create
-
+//		list -> form : create
+		if (reqPage.trim().equals("/groupBuy/form.do") && request.getMethod().equals("GET")) { 
+			GroupBuyForm groupBuyForm = new GroupBuyForm();
 //			newGroupBuy 이용
-//			model.addAttribute("createGroupBuy", true);
-			return new GroupBuyForm(); // create a new GroupBuy
-		} else { // update or show(after create) GroupBuy
-//			model.addAttribute("createGroupBuy", false);
-			return new GroupBuyForm(groupBuyService.getGroupBuy(Integer.valueOf(groupBuyId)));
+			model.addAttribute("createGroupBuy", groupBuyForm.getNewGroupBuy());
+			return groupBuyForm; // create a new GroupBuy
+			
+//		detail -> form :  update or show(after create) GroupBuy
+		} else {
+			GroupBuyForm groupBuyForm = new GroupBuyForm(groupBuyService.getGroupBuy(Integer.valueOf(groupBuyId)));
+			model.addAttribute("createGroupBuy", groupBuyForm.getNewGroupBuy());
+			return groupBuyForm;
 		}
 	}
-	*/
+
 	
 	/*
 	@RequestMapping(method = RequestMethod.GET)
@@ -81,8 +86,8 @@ public class GroupBuyFormController {
 	}
 	
 	
-	// form -> detail
-	@RequestMapping(value="/detail.do", method=RequestMethod.POST)
+	// form -> detail : create & update
+	@RequestMapping(method=RequestMethod.POST)
 	public String updateOrSubmit(HttpServletRequest request,
 								@ModelAttribute("groupBuyForm") GroupBuyForm groupBuyForm, 
 								Model model) {
@@ -92,11 +97,19 @@ public class GroupBuyFormController {
 		
 		String reqPage = request.getServletPath();
 		
-		if (reqPage.trim().equals("groupBuy_form")) { // update
+		if(user.getUser().getUserId() == groupBuyForm.getGroupBuy().getUserId()) {
+			model.addAttribute("isWriter", true);
+		}else {
+			model.addAttribute("isWriter", false);
+		}
+		
+//		update
+		if (reqPage.trim().equals("/groupBuy/update.do")) {
 			// db
 			groupBuyService.updateGroupBuy(groupBuyForm.getGroupBuy());
-			return GROUPBUY_FORM;
-		} else { // show after create
+			
+//		create	
+		} else {
 
 			groupBuyForm.getGroupBuy().initGroupBuy(user.getUser());
 			if (groupBuyForm.getGroupBuy().getImg().trim() == "") {
@@ -118,16 +131,14 @@ public class GroupBuyFormController {
 			dDay = Math.abs(dDay);
 			model.addAttribute("dDay", dDay);
 	       
-
-			
-			return GROUPBUY_DETAIL;
 		}
+		return GROUPBUY_DETAIL;
 	}
-	
+		
 	/*
 	public void setGroupBuyService(GroupBuyService groupBuyService) {
 		this.groupBuyService = groupBuyService;
 	}
 	*/
-
+		
 }

@@ -17,7 +17,7 @@ public class GroupBuyForm implements Serializable {
 	@Autowired
 	private GroupBuy groupBuy;
 	
-	private boolean newGroupBuy;
+	public boolean newGroupBuy;
 	
 	public GroupBuyForm() {
 		this.groupBuy = new GroupBuy();
@@ -33,6 +33,15 @@ public class GroupBuyForm implements Serializable {
 		System.out.println("groupBuy 객체: " + groupBuy.toString());
 		return groupBuy;
 	}
+
+	public boolean getNewGroupBuy() {
+		return newGroupBuy;
+	}
+
+	public void setNewGroupBuy(boolean newGroupBuy) {
+		this.newGroupBuy = newGroupBuy;
+	}
+	
 	/*
 	public boolean isNewGroupBuy() {
 		return newGroupBuy;
