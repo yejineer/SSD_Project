@@ -14,12 +14,17 @@
 <head>
 <title>Goodsom &mdash; SSD Final Project</title>
 <meta charset="UTF-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<link
-	href="https://fonts.googleapis.com/css?family=Poppins:400,900|Source+Serif+Pro&display=swap"
-	rel="stylesheet">
+<!-- CSS only -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+<!-- JS, Popper.js, and jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,900|Source+Serif+Pro&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/fonts/icomoon/style.css">
 
@@ -37,9 +42,15 @@
 </head>
 
 <script>
+
+	function logoutCheck() {
+		return confirm("로그아웃 하시겠습니까?")
+	}
+	
 	function removeCheck() {
 		return confirm("정말 탈퇴하시겠습니까?");
 	}
+
 </script>
 
 <body data-spy="scroll" data-target=".site-navbar-target"
@@ -111,37 +122,63 @@
 
 
 		<div class="site-section">
-			<div class="container">
+			<section class="ftco-section ftco-car-details">
+				<div class="container">
+					<div class="row justify-content-center">
+						<div class="col-md-12">
+							<div class="car-details">
+								<div class="text text-left">
+									<span class="subheading">회원 정보</span>
+									<h1>
+										<b>${userForm.user.userName}</b>
+									</h1>
+								</div>
+								<br>
 
-				<!-- 구현 시작 -->
-					<h2>회원 정보</h2>
-
-					<hr>
-					이메일 &emsp;${userForm.user.email}<br> 
-					닉네임 &emsp;${userForm.user.nickname}<br> 
-					이름 &emsp;${userForm.user.userName}<br> 
-					전화번호 &emsp;${userForm.user.phone}<br> 
-					주소 &emsp;${userForm.user.address1} &nbsp; ${userForm.user.address2} &nbsp; ${userForm.user.address3}<br> 
-					환불계좌 &emsp;${userForm.user.refundBank} &nbsp; ${userForm.user.refundAccount}<br>
-					<hr>
-					
-					<a class="btn btn-primary py-3 px-5"
-						href="<c:url value='/user/logout.do'></c:url>" onclick="logoutCheck()">로그아웃</a> &nbsp; 
-					<!-- 회원탈퇴, 수정, 확인 버튼 생성 -->
-					<a class="btn btn-primary py-3 px-5"
-						href="<c:url value='/user/delete.do'></c:url>" onclick="removeCheck()">회원탈퇴</a> &nbsp; 
-					<a class="btn btn-primary py-3 px-5"
-						href="<c:url value='/user/update.do'></c:url>">수정</a> &nbsp; 
-					<a class="btn btn-primary py-3 px-5"
-						href="<c:url value='/mypage/list.do'></c:url>">등록 목록 보기</a>
-
-				<!-- 구현 끝 -->
-
-			</div>
+								<div class="text text-left">
+									<table class="table table-striped">
+										<tbody>
+											<tr>
+												<th scope="row">Email</th>
+												<td>${userForm.user.email}</td>
+											</tr>
+											<tr>
+												<th scope="row">Nickname</th>
+												<td>${userForm.user.nickname}</td>
+											</tr>
+											<tr>
+												<th scope="row">Phone</th>
+												<td>${userForm.user.phone}</td>
+											</tr>
+											<tr>
+												<th scope="row">Address</th>
+												<td>${userForm.user.address1} - ${userForm.user.address2} - ${userForm.user.address3}</td>
+											</tr>
+											<tr>
+												<th scope="row">Account</th>
+												<td>${userForm.user.refundBank} &nbsp; ${userForm.user.refundAccount}</td>
+											</tr>
+										</tbody>
+									</table>
+								</div><br><br>
+								
+								<div class="container">
+									<a class="btn btn-primary py-3 px-5"href="<c:url value='/mypage/list.do'></c:url>">목록 보기</a> &nbsp;
+									<a class="btn btn-primary py-3 px-5"href="<c:url value='/user/update.do'></c:url>">회원 정보 수정</a> &nbsp; 
+									<a class="btn btn-primary py-3 px-5"href="<c:url value='/user/logout.do'></c:url>" onclick="logoutCheck()">로그아웃</a> &nbsp; 
+									<a class="btn btn-primary py-3 px-5"href="<c:url value='/user/delete.do'></c:url>" onclick="removeCheck()">회원 탈퇴</a> 
+								</div>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
 		</div>
-
-
-		<div class="footer site-section bg-white">
+	</div>
+	
+	
+	<div class="footer site-section bg-white">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-3">
@@ -207,10 +244,7 @@
 				</div>
 			</div>
 		</div>
-
-
-
-	</div>
+		
 
 	<script src="js/jquery-3.3.1.min.js"></script>
 	<script src="js/jquery-migrate-3.0.0.js"></script>

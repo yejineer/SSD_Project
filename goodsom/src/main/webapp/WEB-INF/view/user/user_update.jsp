@@ -14,12 +14,9 @@
 <head>
 <title>Goodsom &mdash; SSD Final Project</title>
 <meta charset="UTF-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<link
-	href="https://fonts.googleapis.com/css?family=Poppins:400,900|Source+Serif+Pro&display=swap"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,900|Source+Serif+Pro&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/fonts/icomoon/style.css">
 
@@ -36,10 +33,15 @@
 
 </head>
 
-<body data-spy="scroll" data-target=".site-navbar-target"
-	data-offset="300">
+<script>
 
+function update() {		
+	form.submit();
+}
 
+</script>
+
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 	<div class="site-wrap" id="home-section">
 
 		<div class="site-mobile-menu site-navbar-target">
@@ -105,62 +107,75 @@
 
 
 		<div class="site-section">
-			<div class="container">
-
-				<!-- 구현 시작 -->
-					<h2>회원 정보 수정</h2>
-
-					<hr>
-					<form:form modelAttribute="userForm" method="POST" action="update.do">
-						<label for="email">이메일</label> &emsp;
-						<form:input path="user.email"/>
-						<br />
-						<label for="password">비밀번호</label> &emsp;
-						<form:input path="user.password" type="password" />
-						<br />
-						<label for="password">비밀번호 확인</label> &emsp;
-						<form:input path="repeatedPassword" type="password" />
-						<br />
-						<label for="nickname">닉네임</label> &emsp;
-						<form:input path="user.nickname" />
-						<form:errors path="user.nickname" />
-						<br />
-						<label for="userName">이름</label> &emsp;
-						<form:input path="user.userName" />
-						<br />
-						<label for="phone">전화번호</label> &emsp;
-						<form:input path="user.phone" />
-						<form:errors path="user.phone" />
-						<br />
-						<label>주소1</label> &emsp;
-						<form:input path="user.address1" />
-						<form:errors path="user.address1" />
-						
-						<form:input path="user.address2" />
-						<form:errors path="user.address2" />
-						
-						<form:input path="user.address3" />
-						<form:errors path="user.address3" />
-						<br />
-						
-						<label>환불 계좌</label> &emsp;
-						<form:input path="user.refundBank" />
-						<form:errors path="user.refundBank" />
-
-						<form:input path="user.refundAccount" />
-						<form:errors path="user.refundAccount" />
-						<br />
-						
-						<!-- 회원탈퇴, 수정, 확인 버튼 생성 -->
-						<a class="btn btn-primary py-3 px-5"
-							href="<c:url value='/user/detail.do'></c:url>">취소</a> &nbsp; 
-						<input type="submit" value="확인" />
-						
-					</form:form>
-					<hr>
-
-				<!-- 구현 끝 -->
-
+			<div class="container" style="padding: 100px">
+				<div class="row block-9 justify-content-center mb-5">
+					<div class="col-md-8 mb-md-5">
+		
+						<h2 class="text-center">Update</h2><br/>
+		
+							<form:form modelAttribute="userForm" method="POST" action="update.do" class="bg-light p-5 contact-form">
+								
+								<div class="form-group">
+									<label for="email">Email</label> &emsp;
+									<form:input path="user.email" class="form-control" /><br/>
+								</div>
+								
+						        <div class="form-group">
+									<label for="password">Password</label> &emsp;
+									<form:input path="user.password" type="password" class="form-control" /><br/>
+								</div>
+								
+								<div class="form-group">	
+									<label for="password">Check Password</label> &emsp;
+									<form:input path="repeatedPassword" type="password" class="form-control" /><br/>
+								</div>
+								
+								<div class="form-group">	
+									<label for="nickname">Nickname</label> &emsp;
+									<form:input path="user.nickname" class="form-control" />
+									<form:errors path="user.nickname" /><br/>
+								</div>
+								
+								<div class="form-group">	
+									<label for="userName">Name</label> &emsp;
+									<form:input path="user.userName" class="form-control" /><br/>
+								</div>
+								
+								<div class="form-group">
+									<label for="phone">Phone</label> &emsp;
+									<form:input path="user.phone" class="form-control" />
+									<form:errors path="user.phone" /><br/>
+								</div>
+								
+								<div class="form-group">	
+									<label>Address</label> &emsp;
+									<form:input path="user.address1" class="form-control"/>
+									<form:errors path="user.address1" />
+									
+									<form:input path="user.address2" class="form-control"/>
+									<form:errors path="user.address2" />
+									
+									<form:input path="user.address3" class="form-control"/>
+									<form:errors path="user.address3" /><br/>
+								</div>
+								
+								<div class="form-group">
+									<label>Account</label> &emsp;
+									<form:input path="user.refundBank" class="form-control" />
+									<form:errors path="user.refundBank" />
+			
+									<form:input path="user.refundAccount" class="form-control" />
+									<form:errors path="user.refundAccount" /><br/>
+								</div>
+		
+								<div class="form-group" align="center">
+									<input type="submit" value="Save" onClick="update()" class="btn btn-primary py-3 px-5"> &nbsp;
+									<a class="btn btn-primary py-3 px-5" href="<c:url value='/user/detail.do'></c:url>">Cancel</a> 
+								</div>
+							
+						</form:form>
+					</div>
+				</div>
 			</div>
 		</div>
 

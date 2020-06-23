@@ -114,7 +114,7 @@
 						</c:url>">경매 등록 목록 보기</a> &nbsp;&nbsp;
 				<a class="btn btn-primary py-3 px-5" href="<c:url value='list.do'>
 							<c:param name="menuId" value ="2" />
-						</c:url>">공동구매 등록 목록 보기</a> &nbsp;&nbsp;
+						</c:url>">공동 구매 등록 목록 보기</a> &nbsp;&nbsp;
 				<a class="btn btn-primary py-3 px-5" href="<c:url value='list.do'>
 							<c:param name="menuId" value ="0" />
 						</c:url>">결제 목록 보기</a>
@@ -127,7 +127,7 @@
 					<h2>경매 등록 목록 보기</h2><br>
 				</c:if>
 				<c:if test="${menuId eq 2}">
-					<h2>공동구매 등록 목록 보기</h2><br>
+					<h2>공동 구매 등록 목록 보기</h2><br>
 				</c:if>
 				
 				<div class="row">
