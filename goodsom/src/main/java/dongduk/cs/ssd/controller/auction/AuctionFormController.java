@@ -21,7 +21,7 @@ import dongduk.cs.ssd.service.AuctionService;
 import dongduk.cs.ssd.service.impl.AuctionServiceImpl;
 
 /**
- * @author Hyekyung Kim &
+ * @author Hyekyung Kim & Yejin Lee
  * @since 2020.05.08	& 2020.06.13
  */
 
@@ -61,27 +61,24 @@ public class AuctionFormController {
 	@RequestMapping(method = RequestMethod.POST)
 	public String submit(HttpServletRequest request, 
 			@ModelAttribute("auctionForm") AuctionForm auctionForm, Model model) {
+		System.out.println("[AuctionFormController]-submit()");
 		String reqPage = request.getServletPath();
 		System.out.println(reqPage);
 		UserSession user  = (UserSession)request.getSession().getAttribute("userSession");
+		model.addAttribute("isWriter", true);
+		model.addAttribute("writer", user.getUser().getNickname());
+		model.addAttribute("auction", auctionForm.getAuction()); 
+		
 		if(reqPage.trim().equals("/auction/update.do")) { // update
-//			auctionService.updateAuction(auctionForm.getAuction());
-			model.addAttribute("writer", user.getUser().getNickname());
-			model.addAttribute("auction", auctionForm.getAuction()); 
+			auctionService.updateAuction(auctionForm.getAuction());
 			return AUCTION_DETAIL;
-//			return AUCTION_FORM;
-		}else { // show after create
-			System.out.println("[AuctionFormController]-submit()");
-
+		} else { // show after create
             auctionForm.getAuction().initAuction(user.getUser());
             if (auctionForm.getAuction().getImg().trim() == "") {
             	auctionForm.getAuction().initImg(request.getContextPath());
             }
 			System.out.println("[AuctionFormController] auctionForm 값: " + auctionForm.toString());
-			int auctionId = auctionService.createAuction(auctionForm.getAuction());
-			model.addAttribute("writer", user.getUser().getNickname());
-			model.addAttribute("auction", auctionForm.getAuction()); 
-//			return "rediect:/auction/detail.do?auctionId="+auctionId;
+			auctionService.createAuction(auctionForm.getAuction());
 			return AUCTION_DETAIL;
 		}
 	}

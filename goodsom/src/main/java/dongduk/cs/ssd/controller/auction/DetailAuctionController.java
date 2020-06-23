@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import dongduk.cs.ssd.controller.user.UserSession;
 import dongduk.cs.ssd.domain.Auction;
 import dongduk.cs.ssd.service.AuctionService;
 import dongduk.cs.ssd.service.UserService;
@@ -54,6 +55,15 @@ public class DetailAuctionController {
 			@RequestParam("auctionId") int auctionId) {
 		ModelAndView mav = new ModelAndView(AUCTION_DETAIL);
 		Auction auction = auctionService.getAuction(auctionId);
+
+		UserSession user  = (UserSession)request.getSession().getAttribute("userSession");
+		if (user.getUser().getUserId() == auction.getUserId()) {
+			mav.addObject("isWriter", true);
+		} else {
+			auction.setCount(auction.getCount()+1);
+			auctionService.increaseCount(auction);
+			mav.addObject("isWriter", false);
+		}
 		mav.addObject("auction", auction);
 		mav.addObject("writer", userService.getUserByUserId(auction.getUserId()).getNickname());
 		return mav;

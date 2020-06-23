@@ -34,4 +34,6 @@ public interface AuctionDao {
 //	List<Bid> getBidByAuctionId(int auctionId) throws DataAccessException;
 	
 	boolean isAuctionClosed(int auctionId, Date currentTime) throws DataAccessException;
+	
+	void increaseCount(Auction auction) throws DataAccessException;
 }

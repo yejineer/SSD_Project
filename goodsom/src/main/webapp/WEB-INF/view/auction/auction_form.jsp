@@ -112,7 +112,6 @@ function createAuction() {
 			</div>
 		</div>
 
-
 		<div class="site-section bg-left-half">
 			<div class="container">
 				<div class="row" >
@@ -121,6 +120,9 @@ function createAuction() {
 									<c:when test='${createAuction eq true}'><c:url value='/auction/create.do'/></c:when>
 									<c:otherwise><c:url value='/auction/update.do'/></c:otherwise></c:choose>">
 						
+							<c:if test='${createAuction eq true}'>
+								<input hidden="originalAuction" value='${auction}'>
+							</c:if>
 							<div class="form-group row">
 								<div class="col-md-12">
 									<label for="title">제목</label> 
@@ -129,7 +131,7 @@ function createAuction() {
 											<input type="text" id="title" name="auction.title" class="form-control" placeholder="Title" >
 										</c:when>
 										<c:otherwise>
-											<input type="text" id="title" name="auction.title" class="form-control" placeholder="${auctionForm.auction.title}" >
+											<input type="text" id="title" name="auction.title" class="form-control" value="${auctionForm.auction.title}" >
 										</c:otherwise>
 									</c:choose>
 								</div>
@@ -151,7 +153,7 @@ function createAuction() {
 										</c:when>
 										<c:otherwise>
 											<textarea id="content" name="auction.content" class="form-control"
-											placeholder="${auctionForm.auction.content}" cols="30" rows="10"></textarea>
+											placeholder="${auctionForm.auction.content}" cols="30" rows="10">${auctionForm.auction.content}</textarea>
 										</c:otherwise>
 									</c:choose>
 								</div>
@@ -167,7 +169,7 @@ function createAuction() {
 												<input type="text" id="startPrice" class="form-control" name="auction.startPrice" placeholder="ex) 5000">
 											</c:when>
 											<c:otherwise>
-												<input type="text" id="startPrice" class="form-control" name="auction.startPrice" placeholder="${auctionForm.auction.startPrice}">
+												<input type="text" id="startPrice" class="form-control" name="auction.startPrice" value="${auctionForm.auction.startPrice}">
 											</c:otherwise>
 										</c:choose>
 										</div>

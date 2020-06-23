@@ -27,7 +27,7 @@
   <update id="updateAuction" parameterType="dongduk.cs.ssd.domain.Auction">
    	UPDATE AUCTIONS
     SET title=#{title}, content=#{content}, img=#{img}, startPrice=#{startPrice}, 
- 		UPLOADDATE=#{uploadDate}, ENDDATE=#{endDate}, COUNT=#{count}, MAXPRICE=#{maxPrice}, STATE=#{state}
+ 		ENDDATE=#{endDate}, MAXPRICE=#{maxPrice}
   	WHERE  AUCTIONID=#{auctionId}
   </update>
    
@@ -38,9 +38,10 @@
   </delete>
   
   <!-- Get all auctions -->
-  <select id="getAuctionList" resultType="dongduk.cs.ssd.domain.Auction">
+  <select id="getAuctionList" resultType="Auction">
     SELECT <include refid="BaseColumns_Auctions" />
     FROM AUCTIONS
+    ORDER BY UPLOADDATE DESC
   </select>
   
   <!-- Search auctions by Keyword -->
@@ -50,4 +51,10 @@
 	  	FROM AUCTIONS
 	  	WHERE title LIKE #{pattern}
   </select>
+  
+  <update id="increaseCount" parameterType="dongduk.cs.ssd.domain.Auction">
+  	UPDATE AUCTIONS
+  	SET  COUNT=#{count}
+  	WHERE AUCTIONID=#{auctionId}
+  </update>
 </mapper>

@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository;
 import dongduk.cs.ssd.dao.AuctionDao;
 import dongduk.cs.ssd.dao.mybatis.mapper.AuctionMapper;
 import dongduk.cs.ssd.domain.Auction;
-import dongduk.cs.ssd.domain.Bid;
 
 /**
  * @author Yejin Lee
@@ -20,7 +19,6 @@ import dongduk.cs.ssd.domain.Bid;
 @Repository
 public class MybatisAuctionDao implements AuctionDao {
 
-	private static final String proceeding = "proceeding";
 	private static final String closed = "closed";
 	
 	@Autowired
@@ -74,5 +72,10 @@ public class MybatisAuctionDao implements AuctionDao {
 		else
 			return false;
 	}
-	
+
+	@Override
+	public void increaseCount(Auction auction) throws DataAccessException {
+		auctionMapper.increaseCount(auction);
+	}
+		
 }
