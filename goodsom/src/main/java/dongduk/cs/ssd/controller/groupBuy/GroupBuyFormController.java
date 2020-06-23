@@ -46,29 +46,34 @@ public class GroupBuyFormController {
 	
 	@Autowired
 	private GroupBuyService groupBuyService;
+	
 	/*
-	private final String formViewName = "groupBuy/groupBuy_form";
-	private final String detailViewName = "groupBuy/groupBuy_detail";
-
 	@ModelAttribute("groupBuyForm")
 	public GroupBuyForm formBacking(HttpServletRequest request,
-									@ModelAttribute("groupBuySession") LineGroupBuyCommand groupBuySession) // 없으면 null?
+									@ModelAttribute("groupBuySession") LineGroupBuyCommand groupBuySession,
+									Model model) // 없으면 null?
 			throws Exception {
 		String reqPage = request.getServletPath();
-
+		String groupBuyId = request.getParameter("groupBuyId");
+		
 		if (reqPage.trim().equals("/groupBuy_form") && request.getMethod().equals("GET")) { // create
+
+//			newGroupBuy 이용
+//			model.addAttribute("createGroupBuy", true);
 			return new GroupBuyForm(); // create a new GroupBuy
 		} else { // update or show(after create) GroupBuy
-			return new GroupBuyForm(groupBuyService.getGroupBuy(groupBuySession.getGroupBuyId()));
+//			model.addAttribute("createGroupBuy", false);
+			return new GroupBuyForm(groupBuyService.getGroupBuy(Integer.valueOf(groupBuyId)));
 		}
-	}
-	
-	@RequestMapping(method = RequestMethod.GET)
-	public String form() {
-		return formViewName;
 	}
 	*/
 	
+	/*
+	@RequestMapping(method = RequestMethod.GET)
+	public String form() {
+		return GROUPBUY_FORM;
+	}
+	*/
 	
 	@RequestMapping(value="/form.do")
 	public String groupBuyForm(){
@@ -101,7 +106,6 @@ public class GroupBuyFormController {
 			// db
 			groupBuyService.createGroupBuy(groupBuyForm.getGroupBuy());
 			groupBuyService.createOptions(groupBuyForm.getGroupBuy());
-//			groupBuy.setOptions(groupBuyService.getOptions(groupBuyId));
 			
 			int groupBuyId = groupBuyForm.getGroupBuy().getGroupBuyId();
 			GroupBuy groupBuy = groupBuyService.getGroupBuy(groupBuyId);

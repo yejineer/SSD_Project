@@ -2,7 +2,9 @@ package dongduk.cs.ssd.domain;
 
 public class Option {
 	int optionId;
-	String content;
+	int groupBuyId;
+	String name;
+	
 	
 	public int getOptionId() {
 		return optionId;
@@ -10,11 +12,17 @@ public class Option {
 	public void setOptionId(int optionId) {
 		this.optionId = optionId;
 	}
-	public String getContent() {
-		return content;
+	public String getName() {
+		return name;
 	}
-	public void setContent(String content) {
-		this.content = content;
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getGroupBuyId() {
+		return groupBuyId;
+	}
+	public void setGroupBuyId(int groupBuyId) {
+		this.groupBuyId = groupBuyId;
 	}
 	
 	

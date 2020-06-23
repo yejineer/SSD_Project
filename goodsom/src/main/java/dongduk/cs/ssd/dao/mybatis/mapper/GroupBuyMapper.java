@@ -30,5 +30,4 @@ public interface GroupBuyMapper { // GroupBuyMapper.xml에서 구현한 method �
 	
 	List<GroupBuy> getGroupBuyList() throws DataAccessException;
 	
-	List<Option> getOptions(int groupBuyId) throws DataAccessException;
 }

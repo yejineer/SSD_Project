@@ -33,7 +33,6 @@ public interface GroupBuyService {
 	
 	public List<GroupBuy> getGroupBuyList();
 	
-	public List<Option> getOptions(int groupBuyId);
 	/*
 	public List<GroupBuy> getGroupBuyListByKeyword(String keyword);
 	*/

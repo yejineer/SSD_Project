@@ -56,10 +56,6 @@ public class GroupBuyServiceImpl implements GroupBuyService {
 	public List<GroupBuy> getGroupBuyList() {
 		return groupBuyDao.getGroupBuyList();
 	}
-	
-	public List<Option> getOptions(int groupBuyId){
-		return groupBuyDao.getOptions(groupBuyId);
-	}
 
 	/*
 	public List<GroupBuy> getGroupBuyListByKeyword(String keyword) {

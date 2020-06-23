@@ -60,9 +60,8 @@ public class DetailGroupBuyController {
 										@RequestParam("groupBuyId") int groupBuyId)	{
 		ModelAndView mav = new ModelAndView(GROUPBUY_DETAIL);
 		
-		// db
+		// db : option & groupBuy
 		GroupBuy groupBuy = groupBuyService.getGroupBuy(groupBuyId);
-		groupBuy.setOptions(groupBuyService.getOptions(groupBuyId));
 		
 		mav.addObject("groupBuy", groupBuy);
 		mav.addObject("writer", userService.getUserByUserId(groupBuy.getUserId()).getNickname());

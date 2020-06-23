@@ -25,7 +25,5 @@ public interface GroupBuyDao {
 	
 	List<GroupBuy> getGroupBuyList() throws DataAccessException;
 	
-	List<Option> getOptions(int groupBuyId) throws DataAccessException;
-	
 //	List<GroupBuy> getGroupBuyListByKeyword(String keyword) throws DataAccessException;
 }

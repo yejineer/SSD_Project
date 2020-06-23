@@ -53,7 +53,4 @@ public class MybatisGroupBuyDao implements GroupBuyDao {
 		return groupBuyMapper.getGroupBuyList();
 	}
 	
-	public List<Option> getOptions(int groupBuyId) throws DataAccessException{
-		return groupBuyMapper.getOptions(groupBuyId);
-	}
 }

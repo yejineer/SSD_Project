@@ -141,7 +141,7 @@ function deleteGroupBuy(url) {
 	           			
 	           			
 		           		<c:forEach var="option" items="${groupBuy.options}" varStatus="status">
-		           			<option value="${option.optionId}">${option.content}</option>
+		           			<option value="${option.optionId}">${option.name}</option>
 						</c:forEach>
 						
 					</select><br/>
