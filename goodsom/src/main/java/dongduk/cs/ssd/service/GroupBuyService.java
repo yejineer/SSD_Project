@@ -23,7 +23,7 @@ public interface GroupBuyService {
 	
 	public void createGroupBuy(GroupBuy groupBuy);
 	
-	public void updateGroupBuy(GroupBuy groupBuy);
+	public int updateGroupBuy(GroupBuy groupBuy);
 	
 	public void deleteOptions(int groupBuyId);
 	

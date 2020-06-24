@@ -32,21 +32,16 @@ import dongduk.cs.ssd.service.GroupBuyService;
 
 
 @Controller
-/*
-@SessionAttributes("groupBuySession")
-@RequestMapping({"/groupBuy/create.do", "/groupBuy/update.do"})
-*/
+//@SessionAttributes("groupBuySession")
+@SessionAttributes("groupBuyForm")
 @RequestMapping("/groupBuy")
 public class GroupBuyFormController {
 	
-
 	private static final String GROUPBUY_FORM = "groupBuy/groupBuy_form";
 	private static final String GROUPBUY_DETAIL = "groupBuy/groupBuy_detail";
 	
-	
 	@Autowired
 	private GroupBuyService groupBuyService;
-	
 
 	@ModelAttribute("groupBuyForm")
 	public GroupBuyForm formBacking(HttpServletRequest request,
@@ -96,49 +91,49 @@ public class GroupBuyFormController {
 		UserSession user  = (UserSession)session.getAttribute("userSession");
 		
 		String reqPage = request.getServletPath();
-		
+		int groupBuyId;
 		
 		if(user.getUser().getUserId() == groupBuyForm.getGroupBuy().getUserId()) {
 			model.addAttribute("isWriter", true);
 		}else {
 			model.addAttribute("isWriter", false);
 		}
+		groupBuyForm.getGroupBuy().initGroupBuy(user.getUser());
+		if (groupBuyForm.getGroupBuy().getImg().trim() == "") {
+			groupBuyForm.getGroupBuy().initImg(request.getContextPath());
+        }
 		
 //		update
 		if (reqPage.trim().equals("/groupBuy/update.do")) {
 			// db
+			System.out.println("before: " + groupBuyForm.getGroupBuy().toString());
 			
-			groupBuyService.updateGroupBuy(groupBuyForm.getGroupBuy());
-			groupBuyService.deleteOptions(groupBuyForm.getGroupBuy().getGroupBuyId());
+			groupBuyId = groupBuyService.updateGroupBuy(groupBuyForm.getGroupBuy());
+			groupBuyService.deleteOptions(groupBuyId);
+			groupBuyForm.getGroupBuy().optionSetting(groupBuyId);
+			System.out.println("after: " + groupBuyForm.getGroupBuy().toString());
 			groupBuyService.createOptions(groupBuyForm.getGroupBuy());
 			
 //		create	
 		} else {
-			
-			groupBuyForm.getGroupBuy().initGroupBuy(user.getUser());
-			if (groupBuyForm.getGroupBuy().getImg().trim() == "") {
-				groupBuyForm.getGroupBuy().initImg(request.getContextPath());
-            }
-			
 			// db
 			groupBuyService.createGroupBuy(groupBuyForm.getGroupBuy());
 			
-			int groupBuyId = groupBuyForm.getGroupBuy().getGroupBuyId();
+			groupBuyId = groupBuyForm.getGroupBuy().getGroupBuyId();
 			
 			groupBuyForm.getGroupBuy().optionSetting(groupBuyId);
 			groupBuyService.createOptions(groupBuyForm.getGroupBuy());
 			
-			GroupBuy groupBuy = groupBuyService.getGroupBuy(groupBuyId);
-			model.addAttribute("groupBuy", groupBuy);
-			model.addAttribute("writer", user.getUser().getNickname());
-			
-			// D-day 계산: 더 좋은 위치 없나..
-//			long timeLength = groupBuy.getEndDate().getTime() - groupBuy.getUploadDate().getTime();
-//			long dDay = timeLength / ( 24*60*60*1000); 
-//			dDay = Math.abs(dDay);
-//			model.addAttribute("dDay", dDay);
-	       
 		}
+		GroupBuy groupBuy = groupBuyService.getGroupBuy(groupBuyId);
+		model.addAttribute("groupBuy", groupBuy);
+		model.addAttribute("writer", user.getUser().getNickname());
+		
+		// D-day 계산: 더 좋은 위치 없나..
+		long timeLength = groupBuy.getEndDate().getTime() - groupBuy.getUploadDate().getTime();
+		long dDay = timeLength / ( 24*60*60*1000); 
+		dDay = Math.abs(dDay);
+		model.addAttribute("dDay", dDay);
 		return GROUPBUY_DETAIL;
 	}
 		

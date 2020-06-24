@@ -37,8 +37,9 @@ public class GroupBuyServiceImpl implements GroupBuyService {
 		groupBuyDao.createGroupBuy(groupBuy);
 	}
 	
-	public void updateGroupBuy(GroupBuy groupBuy) {
+	public int updateGroupBuy(GroupBuy groupBuy) {
 		groupBuyDao.updateGroupBuy(groupBuy);
+		return groupBuy.getGroupBuyId();
 	}
 	
 	public void deleteOptions(int groupBuyId) {
