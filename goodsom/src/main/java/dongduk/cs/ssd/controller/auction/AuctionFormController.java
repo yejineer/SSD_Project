@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import dongduk.cs.ssd.controller.user.UserSession;
 import dongduk.cs.ssd.domain.Auction;
@@ -37,7 +38,7 @@ public class AuctionFormController {
 	private AuctionService auctionService;
 
 	@ModelAttribute("auctionForm")
-	public AuctionForm formBacking(HttpServletRequest request, Model model) throws Exception{
+	public AuctionForm formBacking(HttpServletRequest request, Model model, SessionStatus sessionStatus) throws Exception{
 		String reqPage = request.getServletPath();
 		System.out.println(reqPage);
 		String auctionId = request.getParameter("auctionId");
@@ -58,7 +59,7 @@ public class AuctionFormController {
 	
 	@RequestMapping(method = RequestMethod.POST)
 	public String submit(HttpServletRequest request, 
-			@ModelAttribute("auctionForm") AuctionForm auctionForm, Model model) {
+			@ModelAttribute("auctionForm") AuctionForm auctionForm, Model model, SessionStatus sessionStatus) {
 //		/auction/create.do인지 /auction/update.do인지 구분하기 위해 필요!
 		String reqPage = request.getServletPath();
 		
@@ -81,10 +82,11 @@ public class AuctionFormController {
 			auctionService.createAuction(auctionForm.getAuction());
 			model.addAttribute("auction", auctionForm.getAuction()); 
 		}
-		
+
 //		작성자만 수정/삭제 버튼 보이게 하기 위해 isWriter, 작성자 출력 위해 writer값을 넘겨준다.
 		model.addAttribute("isWriter", true);
 		model.addAttribute("writer", user.getUser().getNickname());
+		sessionStatus.setComplete();
 		return AUCTION_DETAIL;
 	}
 	

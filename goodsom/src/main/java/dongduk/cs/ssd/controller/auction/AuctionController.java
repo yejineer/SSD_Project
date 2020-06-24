@@ -25,9 +25,8 @@ import dongduk.cs.ssd.service.UserService;
 
 
 @Controller
-//@SessionAttributes("auction")
 
-public class DetailAuctionController {
+public class AuctionController {
 	
 	private static final String AUCTION_LIST = "auction/auction_list";
 	private static final String AUCTION_DETAIL = "auction/auction_detail";
@@ -66,6 +65,17 @@ public class DetailAuctionController {
 		}
 		mav.addObject("auction", auction);
 		mav.addObject("writer", userService.getUserByUserId(auction.getUserId()).getNickname());
+		return mav;
+	}
+	
+	@RequestMapping("/auction/delete.do")
+	public ModelAndView auctionDelete(HttpServletRequest request,
+			@RequestParam("auctionId") int auctionId){
+		
+		ModelAndView mav = new ModelAndView(AUCTION_LIST);
+		List<Auction> auctionList = auctionService.deleteAuction(auctionId);
+		mav.addObject("auctionList", auctionList);
+		
 		return mav;
 	}
 }

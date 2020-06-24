@@ -13,8 +13,8 @@ import dongduk.cs.ssd.service.AuctionService;
 
 
 /**
- * @author Hyekyung Kim
- * @since 2020.05.05
+ * @author Hyekyung Kim | Yejin Lee
+ * @since 2020.05.05	| 2020.06.13
  */
 
 @Service
@@ -43,8 +43,9 @@ public class AuctionServiceImpl implements AuctionService{
 		return auctionDao.updateAuction(auction);
 	}
 
-	public void deleteAuction(int auctionId) {
-		auctionDao.deleteAuction(auctionId);
+	public List<Auction> deleteAuction(int auctionId) {
+		auctionDao.deleteAuction(auctionId);			
+		return auctionDao.getAuctionList();
 	}
 
 //	public List<Bid> getBidByAuctionId(int auctionId) {
