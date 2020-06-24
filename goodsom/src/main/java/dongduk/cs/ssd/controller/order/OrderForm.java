@@ -24,7 +24,7 @@ public class OrderForm implements Serializable {
 		this.order = order;
 		this.newOrder = false;
 	}
-	
+
 	public Order getOrder() {
 		return order;
 	}
@@ -35,6 +35,11 @@ public class OrderForm implements Serializable {
 	
 	public void setOrder(Order order) {
 		this.order = order;
+	}
+	
+	@Override
+	public String toString() {
+		return "OrderForm [order=" + order + ", newOrder=" + newOrder + "]";
 	}
 	
 }
