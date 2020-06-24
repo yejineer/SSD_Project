@@ -63,6 +63,7 @@
   	<result column="state" jdbcType="VARCHAR" property="state"/>
   	<result column="rate" jdbcType="INTEGER" property="rate"/>
   	<result column="participants" jdbcType="INTEGER" property="participants"/>
+  	<result column="catId" jdbcType="INTEGER" property="catId"/>
   	<result column="menuId" jdbcType="INTEGER" property="menuId"/>
   	<result column="userId" jdbcType="INTEGER" property="userId"/>
   	<result column="price" jdbcType="INTEGER" property="price"/>
