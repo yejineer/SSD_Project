@@ -30,7 +30,7 @@ import dongduk.cs.ssd.service.UserService;
  */
 
 @Controller
-//@SessionAttributes("groupBuySession")
+@SessionAttributes("lineGroupBuyForm")
 public class DetailGroupBuyController {
 	private static final String GROUPBUY_LIST = "groupBuy/groupBuy_list";
 	private static final String GROUPBUY_DETAIL = "groupBuy/groupBuy_detail";
@@ -39,7 +39,7 @@ public class DetailGroupBuyController {
 	GroupBuyService groupBuyService;
 	@Autowired
 	UserService userService;
-	
+
 	// home -> list
 	// form -> list
 	@RequestMapping("/groupBuy/list.do")
@@ -70,11 +70,19 @@ public class DetailGroupBuyController {
 		// db : option & groupBuy
 		GroupBuy groupBuy = groupBuyService.getGroupBuy(groupBuyId);
 		
-		if(user.getUser().getUserId() == groupBuy.getUserId()) {
+		if (user.getUser().getUserId() == groupBuy.getUserId()) {
 			model.addAttribute("isWriter", true);
-		}else {
+		} else {
 			model.addAttribute("isWriter", false);
 		}
+		
+		// LineGroupBuyForm 생성 및 넘겨주기
+		LineGroupBuyForm lineGroupBuyForm = new LineGroupBuyForm();
+		lineGroupBuyForm.setGroupBuyId(groupBuyId);
+		lineGroupBuyForm.setGroupBuy(groupBuy);
+		session.setAttribute("lineGroupBuyForm", lineGroupBuyForm);
+		mav.addObject("lineGroupBuyForm", lineGroupBuyForm);
+		
 		mav.addObject("groupBuy", groupBuy);
 		mav.addObject("writer", userService.getUserByUserId(groupBuy.getUserId()).getNickname());
 		return mav;

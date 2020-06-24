@@ -3,14 +3,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<script>
-
-function update() {		
-	form.submit();
-}
-
-</script>
-
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 	<div class="site-wrap" id="home-section">
 
@@ -139,15 +131,14 @@ function update() {
 								</div>
 		
 								<div class="form-group" align="center">
-									<input type="submit" value="Save" onClick="update()" class="btn btn-primary py-3 px-5"> &nbsp;
+									<input type="submit" value="Save" class="btn btn-primary py-3 px-5"> &nbsp;
 									<a class="btn btn-primary py-3 px-5" href="<c:url value='/user/detail.do'></c:url>">Cancel</a> 
 								</div>
-							
 						</form:form>
 					</div>
 				</div>
 			</div>
 		</div>
-
+</div>
 
 <%@ include file="../IncludeBottom.jsp" %>
