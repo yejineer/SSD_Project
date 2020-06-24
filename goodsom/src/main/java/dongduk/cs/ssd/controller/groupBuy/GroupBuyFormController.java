@@ -58,11 +58,11 @@ public class GroupBuyFormController {
 		System.out.println("reqPage: " + reqPage);
 		
 //		list -> form : create
-		if (reqPage.trim().equals("/groupBuy/form.do") && request.getMethod().equals("GET")) { 
+		if(groupBuyId == null) { 
 			GroupBuyForm groupBuyForm = new GroupBuyForm();
 //			newGroupBuy 이용
 			model.addAttribute("createGroupBuy", groupBuyForm.getNewGroupBuy());
-			return groupBuyForm; // create a new GroupBuy
+			return groupBuyForm;
 			
 //		detail -> form :  update or show(after create) GroupBuy
 		} else {

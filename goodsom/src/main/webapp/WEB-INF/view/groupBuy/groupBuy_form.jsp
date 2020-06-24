@@ -249,7 +249,6 @@ function input_append(ff){
 							<div class="form-group row">
 								<div class="col-md-12">
 									<label for="price">가격</label> 
-									<input type="number" id="groupBuy.price" name="groupBuy.price" class="form-control" placeholder="ex) 10000">
 									<c:choose>
 										<c:when test="${createGroupBuy eq true}">
 											<input type="number" id="price" name="groupBuy.price" class="form-control" placeholder="price" >
@@ -352,7 +351,8 @@ function input_append(ff){
 												<input type="date" id="endDate" name="groupBuy.endDate" class="form-control" placeholder="ex) 2020-6-30" >
 											</c:when>
 											<c:otherwise>
-												<input type="date" id="endDate" name="groupBuy.endDate" class="form-control" value="${groupBuyForm.groupBuy.endDate}" >
+												<input type="date" id="endDate" name="groupBuy.endDate" class="form-control" 
+													   value="${groupBuyForm.groupBuy.endDate}" pattern='yyyy-MM-dd'>
 											</c:otherwise>
 										</c:choose>
 					              
