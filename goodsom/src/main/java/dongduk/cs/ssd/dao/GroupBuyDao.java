@@ -12,7 +12,7 @@ public interface GroupBuyDao {
 
 	void createGroupBuy(GroupBuy groupBuy) throws DataAccessException;
 
-	void updateGroupBuy(GroupBuy groupBuy) throws DataAccessException;
+	int updateGroupBuy(GroupBuy groupBuy) throws DataAccessException;
 	
 	void deleteOptions(int groupBuyId) throws DataAccessException;
 	

@@ -245,9 +245,9 @@ function input_append(ff){
 											<input type="text" id="groupBuy.options" name="groupBuy.optionList" class="form-control"><br>
 										</c:when>
 										<c:otherwise>
-											<c:forEach var="optionList" items="${groupBuyForm.groupBuy.optionList}" varStatus="status">
+											<c:forEach var="option" items="${groupBuyForm.groupBuy.options}" varStatus="status">
 												<input type="text" id="groupBuy.options" name="groupBuy.optionList" 
-														class="form-control" value="${optionList.name}"><br>
+														class="form-control" value="${option.name}"><br>
 											</c:forEach>
 										</c:otherwise>
 									</c:choose>

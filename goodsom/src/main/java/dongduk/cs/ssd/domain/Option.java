@@ -25,5 +25,8 @@ public class Option {
 		this.groupBuyId = groupBuyId;
 	}
 	
+	public String toString() {
+		return "[optionId: " + optionId + "groupBuyId: " + groupBuyId + "name: " + name + "]";
+	}
 	
 }

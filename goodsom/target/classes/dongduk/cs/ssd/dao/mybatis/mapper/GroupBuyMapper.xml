@@ -22,11 +22,12 @@
 
   </insert>
   
-  <update id="updateGroupBuy" parameterType="GroupBuy">
+  <update id="updateGroupBuy" parameterType="GroupBuy" >
    	UPDATE GROUPBUYS
     SET TITLE=#{title}, IMG=#{img}, PRICE=#{price}, CONTENT=#{content}, CATID=#{catId},
     	MINNO=#{minNo}, ENDDATE=#{endDate}
   	WHERE  GROUPBUYID=#{groupBuyId}
+	
   </update>
 
    
@@ -35,7 +36,7 @@
     WHERE  GROUPBUYID=#{groupBuyId}
   </delete>
   
-  <insert id="createOptions" parameterType="GroupBuy">
+  <insert id="createOptions" parameterType="dongduk.cs.ssd.domain.GroupBuy">
   
   	INSERT INTO OPTIONS (OPTIONID, GROUPBUYID, NAME)
   	SELECT OPTIONID_SEQ.nextval, A.* FROM (
