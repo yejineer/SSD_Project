@@ -26,7 +26,9 @@ public interface AuctionMapper { // AuctionMapper.xml에서 구현한 method 이
 	
 	List<Auction> getAuctionListByKeyword(String keyword) throws DataAccessException;
 	
+	
 //	List<Bid> getBidByAuctionId(int auctionId) throws DataAccessException;
 	
 //	boolean isAuctionClosed(int auctionId, Date endDate) throws DataAccessException;
+	void increaseCount(Auction auction) throws DataAccessException;
 }

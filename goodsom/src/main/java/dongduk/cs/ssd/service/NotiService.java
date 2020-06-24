@@ -4,6 +4,10 @@ import java.util.List;
 
 import dongduk.cs.ssd.domain.Notification;
 
+/**
+ * @author Yejin Lee
+ * @since 2020.05.06
+ */
 public interface NotiService {
 
 	/*

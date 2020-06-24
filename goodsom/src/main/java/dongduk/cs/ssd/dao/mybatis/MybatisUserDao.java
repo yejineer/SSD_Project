@@ -14,8 +14,8 @@ import dongduk.cs.ssd.dao.UserDao;
 import dongduk.cs.ssd.dao.mybatis.mapper.UserMapper;
 
 /**
- * @author kimdahyee	/ Seonmi-Hwang
- * @since 2020.06.12	/ 2020.06.13
+ * @author kimdahyee  | Seonmi-Hwang
+ * @since  2020.06.12 | 2020.06.13
  */
 
 @Repository

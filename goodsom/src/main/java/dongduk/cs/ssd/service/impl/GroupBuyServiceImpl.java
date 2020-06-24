@@ -1,6 +1,8 @@
 package dongduk.cs.ssd.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -8,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import dongduk.cs.ssd.dao.GroupBuyDao;
 import dongduk.cs.ssd.domain.GroupBuy;
+import dongduk.cs.ssd.domain.Option;
 import dongduk.cs.ssd.service.GroupBuyService;
 
 /**
@@ -38,6 +41,10 @@ public class GroupBuyServiceImpl implements GroupBuyService {
 		groupBuyDao.updateGroupBuy(groupBuy);
 	}
 	
+	public void deleteOptions(int groupBuyId) {
+		groupBuyDao.deleteOptions(groupBuyId);
+	}
+	
 	public void deleteGroupBuy(int groupBuyId) {
 		groupBuyDao.deleteGroupBuy(groupBuyId);
 	}
@@ -46,12 +53,11 @@ public class GroupBuyServiceImpl implements GroupBuyService {
 		groupBuyDao.createOptions(groupBuy);
 	}
 	
-	
-	/*
 	public List<GroupBuy> getGroupBuyList() {
 		return groupBuyDao.getGroupBuyList();
 	}
-	
+
+	/*
 	public List<GroupBuy> getGroupBuyListByKeyword(String keyword) {
 		return groupBuyDao.getGroupBuyListByKeyword(keyword);
 	}

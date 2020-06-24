@@ -31,4 +31,6 @@ public interface AuctionService {
 	
 	boolean isAuctionClosed(int auctionId, Date endDate);
 	
+	void increaseCount(Auction auction);
+	
 }

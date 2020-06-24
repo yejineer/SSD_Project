@@ -2,14 +2,16 @@ package dongduk.cs.ssd.service;
 
 import java.util.List;
 
+import org.springframework.dao.DataAccessException;
+
 import dongduk.cs.ssd.domain.Auction;
 import dongduk.cs.ssd.domain.GroupBuy;
 import dongduk.cs.ssd.domain.Order;
 import dongduk.cs.ssd.domain.User;
 
 /**
- * @author kimdahyee	/ Seonmi-Hwang
- * @since 2020.06.12	/2020.06.13
+ * @author Yejin Lee | kimdahyee	| Seonmi-Hwang
+ * @since 2020.05.06 | 2020.06.12	| 2020.06.13
  */
 
 public interface UserService {
@@ -17,6 +19,8 @@ public interface UserService {
 	User getUser(String emailId, String password); // 로그인 시 사용
 	
 	User getUserByEmail(String email);
+	
+	User getUserByUserId(int userId) throws DataAccessException;
 	
 	void createUser(User user);
 

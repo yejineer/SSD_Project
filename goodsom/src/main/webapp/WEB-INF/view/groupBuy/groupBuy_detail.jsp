@@ -34,7 +34,17 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/style.css">
 
 </head>
+<script>
 
+// delete
+function deleteGroupBuy(url) {
+	
+	var deleteCheck = confirm("등록하신 공동구매를 삭제하시겠습니까?")
+	return deleteCheck;
+}
+
+
+</script>
 <body data-spy="scroll" data-target=".site-navbar-target"
 	data-offset="300">
 
@@ -129,14 +139,17 @@
            	<div class="alert alert-primary" role="alert">
            		<div class="d-flex">
 	           		<h5>옵션</h5>&nbsp;&nbsp;
-	           		<!-- 
+	           		
 	           		<select name="groupBuy.options" id="options">
 	           			<option value="">옵션 선택</option>
-		           		<c:forEach var="option" items="${groupBuy.getOptions()}" varStatus="status">
-		           			<option>   <c:out value="${option}"/> </option>
+	           			
+	           			
+		           		<c:forEach var="option" items="${groupBuy.options}" varStatus="status">
+		           			<option value="${option.optionId}">${option.name}</option>
 						</c:forEach>
+						
 					</select><br/>
-					 -->
+					
 				</div>
 				<div class="d-flex">
 					<h5>수량</h5>&nbsp;&nbsp;
@@ -162,10 +175,18 @@
        </div>
 	   
 	   <br/><br/><br/>
-	   <div class="form-group" align="right">
-	   		<input type="button" value="수정" onClick="" class="btn btn-primary py-3 px-5">  &nbsp;
-	   		<a class="btn btn-primary py-3 px-5" href="<c:url value=''></c:url>">삭제</a>	
-	   </div>							
+	   
+	 
+	    <c:if test="${isWriter eq true}">
+		   <div class="form-group" align="right">
+		   		<a class="btn btn-primary py-3 px-5" href="<c:url value='/groupBuy/form.do'>
+					<c:param name="groupBuyId" value="${groupBuy.groupBuyId}"/>
+					</c:url>">수정</a>
+	   			<a class="btn btn-primary py-3 px-5" href="<c:url value='/groupBuy/delete.do'>
+	   				<c:param name="groupBuyId" value="${groupBuy.groupBuyId}"/></c:url>" 
+			   		onClick="return deleteGroupBuy();">삭제</a>	
+	   		</div>	
+	    </c:if>						
    </div>
 
     

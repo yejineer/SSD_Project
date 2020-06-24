@@ -119,7 +119,8 @@
          <div class="col-md-5 ml-auto">
          	
          	<p>작성자 : &nbsp; &nbsp; ${writer} <br/> 
-         		작성일 : &nbsp; &nbsp; <fmt:formatDate value="${auction.uploadDate}" pattern="yyyy-MM-dd" />
+         		작성일 : &nbsp; &nbsp; <fmt:formatDate value="${auction.uploadDate}" pattern="yyyy-MM-dd" /> <br/>
+         		조회수 : &nbsp; &nbsp; ${auction.count} <br/>
          	</p>
          	<h5>시작 금액 : &nbsp; &nbsp; <fmt:formatNumber value="${auction.startPrice}" pattern="#,###원"/></h5>
            	<h5>마감일  : &nbsp; &nbsp; <fmt:formatDate value="${auction.endDate}" pattern="yyyy-MM-dd" /></h5>
@@ -150,14 +151,16 @@
        </div>
 	   
 	   <br/><br/><br/>
-	   <div class="form-group" align="right">
-	   		<a class="btn btn-primary py-3 px-5" href="<c:url value='/auction/form.do'>
-											<c:param name="auctionId" value="${auction.auctionId}"/>
-										</c:url>">수정</a>
-	   		<a class="btn btn-primary py-3 px-5" href="<c:url value='/auction/delete.do'>
-											<c:param name="auctionId" value="${auction.auctionId}"/>
-										</c:url>">삭제</a>	
-	   </div>							
+	   <c:if test="${isWriter eq true}">
+		   <div class="form-group" align="right">
+		   		<a class="btn btn-primary py-3 px-5" href="<c:url value='/auction/form.do'>
+												<c:param name="auctionId" value="${auction.auctionId}"/>
+											</c:url>">수정</a>
+		   		<a class="btn btn-primary py-3 px-5" href="<c:url value='/auction/delete.do'>
+												<c:param name="auctionId" value="${auction.auctionId}"/>
+											</c:url>">삭제</a>	
+		   </div>
+	   </c:if>							
    </div>
 
     

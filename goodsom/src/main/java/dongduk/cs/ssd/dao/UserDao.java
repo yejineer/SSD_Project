@@ -10,8 +10,8 @@ import dongduk.cs.ssd.domain.Order;
 import dongduk.cs.ssd.domain.User;
 
 /**
- * @author Yejin Lee
- * @since 2020.05.06
+ * @author Yejin Lee | kimdahyee
+ * @since 2020.05.06 | 2020.06.12
  */
 
 public interface UserDao {

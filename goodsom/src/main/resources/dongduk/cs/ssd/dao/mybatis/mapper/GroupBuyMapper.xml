@@ -3,18 +3,17 @@
 
 <mapper namespace="dongduk.cs.ssd.dao.mybatis.mapper.GroupBuyMapper">
   <cache />
-  
-  <select id="getGroupBuy" resultType="GroupBuy" parameterType="java.lang.Integer">
-    SELECT * FROM GROUPBUYS
-    WHERE GROUPBUYID = #{groupBuyId}
-  </select>
+  <sql id="BaseColumns_GroupBuys">
+  		GROUPBUYID, TITLE, CONTENT, IMG, MINNO, UPLOADDATE, ENDDATE, 
+  		COUNT, STATE, RATE, PARTICIPANTS, MENUID, CATID, USERID, PRICE
+  </sql>
+
   
   <insert id="createGroupBuy" parameterType="GroupBuy">
   	
-  	INSERT INTO GROUPBUYS (GROUPBUYID, TITLE, CONTENT, IMG, MINNO, UPLOADDATE, 
-  			ENDDATE, COUNT, STATE, RATE, PARTICIPANTS, MENUID, CATID, USERID, PRICE)
-	VALUES (GROUPBUYID_SEQ.nextval, #{title}, #{content}, #{img}, #{minNo}, #{uploadDate}, 
-			#{endDate}, 0, 'proceeding', 0, 0, 2, #{catId}, #{userId}, #{price})
+  	INSERT INTO GROUPBUYS (<include refid="BaseColumns_GroupBuys" />)
+	VALUES (GROUPBUYID_SEQ.nextval, #{title}, #{content}, #{img}, #{minNo}, #{uploadDate}, #{endDate}, 
+			#{count}, #{state}, #{rate}, #{participants}, #{menuId}, #{catId}, #{userId}, #{price})
 		
 
   	<selectKey keyProperty="groupBuyId" resultType="int" order="AFTER">
@@ -30,6 +29,11 @@
   	WHERE  GROUPBUYID=#{groupBuyId}
   </update>
    
+   <delete id="deleteOptions" parameterType="java.lang.Integer">
+    DELETE FROM OPTIONS
+    WHERE  GROUPBUYID=#{groupBuyId}
+  </delete>
+   
   <delete id="deleteGroupBuy" parameterType="java.lang.Integer">
     DELETE FROM GROUPBUYS
     WHERE  GROUPBUYID=#{groupBuyId}
@@ -37,7 +41,7 @@
   
   <insert id="createOptions" parameterType="GroupBuy">
   
-  	INSERT INTO OPTIONS (OPTIONID, GROUPBUYID, CONTENT)
+  	INSERT INTO OPTIONS (OPTIONID, GROUPBUYID, NAME)
   	SELECT OPTIONID_SEQ.nextval, A.* FROM (
 	  	<foreach collection="options" item="option" separator="UNION ALL">
 			SELECT  #{groupBuyId}, #{option}
@@ -45,5 +49,50 @@
 		</foreach>
 		) A
   </insert>
+  
+  <!-- Get all groupBuys -->
+  <resultMap id="collectionResultMap" type="GroupBuy">
+  	<id column="groupBuyId" jdbcType="INTEGER" property="groupBuyId"/>
+  	<result column="title" jdbcType="VARCHAR" property="title"/>
+  	<result column="content" jdbcType="VARCHAR" property="content"/>
+  	<result column="img" jdbcType="VARCHAR" property="img"/>
+  	<result column="minNo" jdbcType="INTEGER" property="minNo"/>
+  	<result column="uploadDate" jdbcType="TIMESTAMP" property="uploadDate"/>
+  	<result column="endDate" jdbcType="TIMESTAMP" property="endDate"/>
+  	<result column="count" jdbcType="INTEGER" property="count"/>
+  	<result column="state" jdbcType="VARCHAR" property="state"/>
+  	<result column="rate" jdbcType="INTEGER" property="rate"/>
+  	<result column="participants" jdbcType="INTEGER" property="participants"/>
+  	<result column="catId" jdbcType="INTEGER" property="catId"/>
+  	<result column="menuId" jdbcType="INTEGER" property="menuId"/>
+  	<result column="userId" jdbcType="INTEGER" property="userId"/>
+  	<result column="price" jdbcType="INTEGER" property="price"/>
+  	
+  	<collection property="options" ofType="dongduk.cs.ssd.domain.Option">
+  		<id property="optionId" column="optionId"/>
+  		<result property="groupBuyId" column="groupBuyId"/>
+  		<result property="name" column="name"/>
+  	</collection>
+  </resultMap> 
+  <select id="getGroupBuy" parameterType="java.lang.Integer"
+  							resultMap="collectionResultMap">
+    SELECT g.GROUPBUYID, g.TITLE, g.CONTENT, g.IMG, g.MINNO, g.UPLOADDATE, g.ENDDATE, 
+  			g.COUNT, g.STATE, g.RATE, g.PARTICIPANTS, g.MENUID, g.CATID, g.USERID, g.PRICE,
+    		op.OPTIONID, op.GROUPBUYID, op.NAME
+    FROM GROUPBUYS g, OPTIONS op
+    WHERE g.GROUPBUYID = op.GROUPBUYID and g.GROUPBUYID = #{groupBuyId}
+  </select>
+  
+  <!-- 
+   <select id="getGroupBuy" resultType="GroupBuy" parameterType="java.lang.Integer">
+    SELECT * FROM GROUPBUYS
+    WHERE GROUPBUYID = #{groupBuyId}
+  </select>
+ -->
+ 
+  <select id="getGroupBuyList" resultType="dongduk.cs.ssd.domain.GroupBuy">
+    SELECT <include refid="BaseColumns_GroupBuys" />
+    FROM GROUPBUYS
+  </select>
   
 </mapper>

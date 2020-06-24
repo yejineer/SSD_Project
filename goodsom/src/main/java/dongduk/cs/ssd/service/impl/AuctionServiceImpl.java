@@ -54,5 +54,11 @@ public class AuctionServiceImpl implements AuctionService{
 	public boolean isAuctionClosed(int auctionId, Date endDate) {
 		return auctionDao.isAuctionClosed(auctionId, endDate);
 	}
+
+	public void increaseCount(Auction auction) {
+		auctionDao.increaseCount(auction);
+	}
+	
+	
 	
 }
