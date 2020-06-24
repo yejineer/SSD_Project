@@ -28,7 +28,7 @@
   		#{refundBank}, #{refundAccount}, #{totalPrice}, 
   		#{orderDate}, #{userId})
   </insert>
-  
+
   <select id="getLineGroupBuys" parameterType="int"
   		resultType="LineGroupBuy">
   	SELECT lineId, quantity, selectOption, unitPrice, groupBuyId, orderId

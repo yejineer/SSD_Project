@@ -49,8 +49,8 @@ public class OrderServiceImpl implements OrderService {
 	}
 	
 	@Override
-	public List<LineGroupBuy> getLineGroupBuys(int orderId) {
-		return orderDao.getLineGroupBuys(orderId);
+	public Order getOrderWithLineGroupBuys(int orderId) {
+		return orderDao.getOrderWithLineGroupBuys(orderId);
 	}
 	
 	

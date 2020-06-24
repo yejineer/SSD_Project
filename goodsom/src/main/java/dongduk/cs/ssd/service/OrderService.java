@@ -21,7 +21,7 @@ public interface OrderService {
 	
 	public void createOrder(Order order);
 
-	public List<LineGroupBuy> getLineGroupBuys(int orderId);
+	public Order getOrderWithLineGroupBuys(int orderId);
 	
 	public List<Order> setAuctionInfo(List<Order> orderList);
 	

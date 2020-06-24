@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import dongduk.cs.ssd.controller.groupBuy.LineGroupBuyCommand;
+import dongduk.cs.ssd.controller.groupBuy.LineGroupBuyForm;
 
 public class Order {
 	int orderId;
@@ -209,7 +209,7 @@ public class Order {
 		this.refundAccount = refundAccount;
 	}
 	
-	public void initOrder(User user, LineGroupBuyCommand lineGroupBuyCommand, Auction auction) {
+	public void initOrder(User user, LineGroupBuyForm lineGroupBuyForm, Auction auction) {
 		// 주소 불러오기
 		address1 = user.getAddress1();
 		address2 = user.getAddress2();
@@ -226,11 +226,13 @@ public class Order {
 		orderDate = new Date();
 		
 		// 아래 사항들은 service에서 해주면 안되나?
-//		// GroupBuy를 결제하는 경우
-//		if (lineGroupBuyCommand != null) {
-//			//lineGroupBuys = lineGroupBuyCommand.getLineGroupBuyList();
-//			//totalPrice = lineGroupBuyCommand.getTotalPrice();
-//		}
+		// GroupBuy를 결제하는 경우
+		if (lineGroupBuyForm != null) {
+			groupBuyId = lineGroupBuyForm.getGroupBuyId();
+			groupBuy = lineGroupBuyForm.getGroupBuy();
+//			lineGroupBuys = lineGroupBuyForm.getLineGroupBuyList();
+			totalPrice = lineGroupBuyForm.getUnitPrice(); // 여러 개일 경우 for문으로 unitPrice들 다 더해줌
+		}
 //
 //		// Auction을 결제하는 경우
 //		if (auction != null) {
