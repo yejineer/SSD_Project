@@ -58,19 +58,14 @@ function addClass(target, className){
     target.className += ' ' + className;   
 }
 
-var optionCount = 1;
 // option
 function input_append(ff){
-	optionCount++;
  	var list = document.getElementsByName("groupBuy.options");
 
  	for(var i = 0; i < list.length; i++){
 		list[i].setAttribute("value", list[i].value);
  	}
- 	//document.getElementById("groupBuy.options").setAttribute("value", document.getElementById("groupBuy.options").value);
-
-  //document.getElementById("groupBuy.options").setAttribute("value", document.getElementById("groupBuy.options").value);
-  	app = document.getElementById("optionBox")
+   	app = document.getElementById("optionBox")
   	app.innerHTML += "<input type='text' id='groupBuy.options' name='groupBuy.options' class='form-control'><br>";
 }
 
@@ -276,7 +271,17 @@ function input_append(ff){
 								<input type="button" id="addOption" value="추가" onclick="input_append(this.form)"> 
 								
 								<div id="optionBox">
-									<input type="text" id="groupBuy.options" name="groupBuy.options" class="form-control"><br>
+									<c:choose>
+										<c:when test="${createGroupBuy eq true}">
+											<input type="text" id="groupBuy.options" name="groupBuy.options" class="form-control"><br>
+										</c:when>
+										<c:otherwise>
+											<c:forEach var="optionList" items="${groupBuyForm.groupBuy.options}" varStatus="status">
+												<input type="text" id="groupBuy.options" name="groupBuy.options" 
+														class="form-control" value="${optionList.name}"><br>
+											</c:forEach>
+										</c:otherwise>
+									</c:choose>
 								</div>
 								
 							</div>
