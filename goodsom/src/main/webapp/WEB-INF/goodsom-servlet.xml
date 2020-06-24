@@ -33,8 +33,6 @@
 	<mvc:view-controller path="/groupBuy/form.do" view-name="groupBuy/groupBuy_form"/>
 	<mvc:view-controller path="/groupBuy/detail.do" view-name="groupBuy/groupBuy_detail"/>
 
-	
-	
 <!--	<mvc:view-controller path="/mypage/list.do" view-name="user/mypage_list"/>  -->
 	
 	<bean id="viewResolver"
