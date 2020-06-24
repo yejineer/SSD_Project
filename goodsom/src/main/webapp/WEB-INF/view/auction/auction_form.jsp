@@ -73,7 +73,7 @@ function submit() {
 			<div class="container">
 				<div class="row" >
 					<div class="col-lg-8 mb-5">
-						<form id="auctionForm" method="post" action="<c:choose>
+						<form id="auctionForm" method="post" enctype="multipart/form-data" action="<c:choose>
 									<c:when test='${auctionForm.newAuction}'><c:url value='/auction/create.do'/></c:when>
 									<c:otherwise><c:url value='/auction/update.do'/></c:otherwise></c:choose>">
 						
@@ -98,7 +98,7 @@ function submit() {
 							<div class="form-group row">
 								<div class="col-md-12">
 									<label for="img">대표 이미지</label>
-                					<input type="file" id="img" name="auction.img" value="input file" />
+                					<input type="file" id="img" name="report" value="input file" />
               					</div>
               				</div>
 							

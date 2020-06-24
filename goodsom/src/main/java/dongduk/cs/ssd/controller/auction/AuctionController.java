@@ -49,7 +49,7 @@ public class AuctionController {
 		return mav;
 	}
 	
-	@RequestMapping("/auction/detail.do")
+	@RequestMapping(value="/auction/detail.do")
 	public ModelAndView auctionDetail(HttpServletRequest request,
 			@RequestParam("auctionId") int auctionId) {
 		ModelAndView mav = new ModelAndView(AUCTION_DETAIL);
@@ -68,7 +68,7 @@ public class AuctionController {
 		return mav;
 	}
 	
-	@RequestMapping("/auction/delete.do")
+	@RequestMapping(value="/auction/delete.do")
 	public ModelAndView auctionDelete(HttpServletRequest request,
 			@RequestParam("auctionId") int auctionId){
 		

@@ -25,7 +25,7 @@ import dongduk.cs.ssd.service.BidService;
 */
 
 @Controller
-@RequestMapping("/auction/detail.do")
+@RequestMapping("/bid/*.do")
 public class BidFormController {
 
 	@Autowired

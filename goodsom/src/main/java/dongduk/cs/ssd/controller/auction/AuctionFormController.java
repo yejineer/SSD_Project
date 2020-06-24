@@ -1,11 +1,18 @@
 package dongduk.cs.ssd.controller.auction;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +22,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.multipart.MultipartFile;
 
 import dongduk.cs.ssd.controller.user.UserSession;
 import dongduk.cs.ssd.domain.Auction;
@@ -29,10 +38,19 @@ import dongduk.cs.ssd.service.impl.AuctionServiceImpl;
 @Controller
 @SessionAttributes("auctionForm")
 @RequestMapping("/auction/*.do")
-public class AuctionFormController {
+public class AuctionFormController implements ApplicationContextAware  {
 	
 	private static final String AUCTION_FORM = "auction/auction_form";
 	private static final String AUCTION_DETAIL = "auction/auction_detail";
+	private WebApplicationContext context;	
+	private String uploadDir;
+
+	@Override					// life-cycle callback method
+	public void setApplicationContext(ApplicationContext appContext)
+		throws BeansException {
+		this.context = (WebApplicationContext) appContext;
+		this.uploadDir = context.getServletContext().getRealPath("/resources/images/");
+	}
 	
 	@Autowired
 	private AuctionService auctionService;
@@ -59,24 +77,35 @@ public class AuctionFormController {
 	
 	@RequestMapping(method = RequestMethod.POST)
 	public String submit(HttpServletRequest request, 
-			@ModelAttribute("auctionForm") AuctionForm auctionForm, Model model, SessionStatus sessionStatus) {
+			@ModelAttribute("auctionForm") AuctionForm auctionForm, 
+			@RequestParam("report") MultipartFile report, 
+			Model model, SessionStatus sessionStatus) {
 //		/auction/create.do인지 /auction/update.do인지 구분하기 위해 필요!
 		String reqPage = request.getServletPath();
 		
 //		경매 create시 작성자 번호(userId)를 넣어야하고, view에서 작성자를 출력해야 하므로 현재 접속 중인 사용자의 정보를 Session에서 가져온다.
 		UserSession user  = (UserSession)request.getSession().getAttribute("userSession");
 		
-//		경매 이미지 파일 업로드를 하지 않았을 때 null로 들어오므로 SqlException이 나므로 기본 이미지 설정을 위한 작업을 한다.
-		if (auctionForm.getAuction().getImg().trim() == "") {
-			auctionForm.getAuction().initImg(request.getContextPath());
-		}
+//		파일 업로드 기능
+		System.out.println("uploadDir: " + uploadDir);
+		String savedFileName = uploadFile(report);
 
-		if(reqPage.trim().equals("/auction/update.do")) { // update
+//		경매 update/create 작업
+		if (reqPage.trim().equals("/auction/update.do")) { // update
 			System.out.println(auctionForm.getAuction().toString());
+			if (report.getSize() != 0) { // 파일 새로 업로드 안 하면 원래 이미지 사용
+				auctionForm.getAuction().setImg(request.getContextPath() + "/resources/images/" + savedFileName);
+			}
+
 			int auctionId = auctionService.updateAuction(auctionForm.getAuction());
 			model.addAttribute("auction", auctionService.getAuction(auctionId));
 //			System.out.println("update 하고 나서 가져온 auctionId: " + auctionId);
 		} else { // show after create
+			if (report.getSize() == 0) { // 파일 업로드 하지 않았을 때 SqlException이 나므로 기본 이미지 설정
+				auctionForm.getAuction().initImg(request.getContextPath());
+			} else {
+				auctionForm.getAuction().setImg(request.getContextPath() + "/resources/images/" + savedFileName);
+			}
             auctionForm.getAuction().initAuction(user.getUser());
 			System.out.println("[AuctionFormController] auctionForm 값: " + auctionForm.toString());
 			auctionService.createAuction(auctionForm.getAuction());
@@ -90,11 +119,24 @@ public class AuctionFormController {
 		return AUCTION_DETAIL;
 	}
 	
-	
 	public void setAuctionService(AuctionService auctionService) {
 		this.auctionService = auctionService;
 	}
 	
-	
+//	파일명 랜덤생성 메서드
+	private String uploadFile(MultipartFile report) {
+//		uuid 생성(Universal Unique IDentifier, 범용 고유 식별자)
+		UUID uuid = UUID.randomUUID();
+//		랜덤생성 + 파일이름 저장
+		String savedName = uuid.toString() + "_" + report.getOriginalFilename();
+//		임시디렉토리에 저장된 업로드된 파일을 지정된 디렉토리로 복사
+		File file = new File(uploadDir + savedName);
+		try {
+			report.transferTo(file);
+		} catch (IllegalStateException | IOException e) {
+			e.printStackTrace();
+		}
+		return savedName;
+	}
 	
 }
