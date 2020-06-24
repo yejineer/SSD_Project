@@ -8,8 +8,8 @@ import dongduk.cs.ssd.domain.User;
 import org.springframework.stereotype.Component;
 
 /**
- * @author Yejin Lee
- * @since 2020.05.07
+ * @author Yejin Lee  |  kimdahyee
+ * @since 2020.05.07  |  2020.06.12
  */
 
 @Component
