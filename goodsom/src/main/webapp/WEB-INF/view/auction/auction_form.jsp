@@ -35,7 +35,7 @@
 
 </head>
 <script>
-function createAuction() {
+function submit() {
 	
 	auctionForm.submit();
 	alert("경매를 등록합니다.");
@@ -117,7 +117,7 @@ function createAuction() {
 				<div class="row" >
 					<div class="col-lg-8 mb-5">
 						<form id="auctionForm" method="post" action="<c:choose>
-									<c:when test='${createAuction eq true}'><c:url value='/auction/create.do'/></c:when>
+									<c:when test='${auctionForm.newAuction}'><c:url value='/auction/create.do'/></c:when>
 									<c:otherwise><c:url value='/auction/update.do'/></c:otherwise></c:choose>">
 						
 							<c:if test='${createAuction eq true}'>
@@ -197,7 +197,7 @@ function createAuction() {
 							
 							<div class="form-group" align="right">
 								<a class="btn btn-primary py-3 px-5" href="<c:url value='/auction/list.do'></c:url>">Cancel</a> &nbsp;
-								<input type="button" value="Save" onClick="createAuction()" class="btn btn-primary py-3 px-5">
+								<input type="button" value="Save" onClick="submit()" class="btn btn-primary py-3 px-5">
 							</div>
 						</form>
 					</div>

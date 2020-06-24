@@ -159,7 +159,7 @@ public class Auction implements Serializable {
 	}
 	
 	public String toString() {
-		return "<<Auction객체의 값>" + "\ntitle : " + title + "\ncontent : " + content + "\nimg : " + img + 
+		return "<<Auction객체의 값>" + "\nid : " + auctionId + "\ntitle : " + title + "\ncontent : " + content + "\nimg : " + img + 
 				"\nstartPrice : " + startPrice + "\nendDate: " + endDate;
 	}
 	

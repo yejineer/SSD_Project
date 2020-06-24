@@ -67,10 +67,12 @@ public class AuctionFormController {
 		UserSession user  = (UserSession)request.getSession().getAttribute("userSession");
 		model.addAttribute("isWriter", true);
 		model.addAttribute("writer", user.getUser().getNickname());
-		model.addAttribute("auction", auctionForm.getAuction()); 
-		
 		if(reqPage.trim().equals("/auction/update.do")) { // update
-			auctionService.updateAuction(auctionForm.getAuction());
+			Auction auction = (Auction)model.getAttribute("originalAuction");
+			System.out.println(auctionForm.getAuction().toString());
+//			int auctionId = auctionService.updateAuction(auctionForm.getAuction());
+//			System.out.println("update 하고 나서 가져온 auctionId: " + auctionId);
+			model.addAttribute("auction", auctionService.getAuction(auction.getAuctionId()));
 			return AUCTION_DETAIL;
 		} else { // show after create
             auctionForm.getAuction().initAuction(user.getUser());
@@ -79,6 +81,7 @@ public class AuctionFormController {
             }
 			System.out.println("[AuctionFormController] auctionForm 값: " + auctionForm.toString());
 			auctionService.createAuction(auctionForm.getAuction());
+			model.addAttribute("auction", auctionForm.getAuction()); 
 			return AUCTION_DETAIL;
 		}
 	}

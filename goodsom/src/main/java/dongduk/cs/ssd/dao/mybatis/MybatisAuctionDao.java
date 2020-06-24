@@ -38,6 +38,7 @@ public class MybatisAuctionDao implements AuctionDao {
 	@Override
 	public int updateAuction(Auction auction) throws DataAccessException {
 		auctionMapper.updateAuction(auction);
+		System.out.println(auction.getAuctionId());
 		return auction.getAuctionId();
 	}
 
