@@ -50,7 +50,7 @@ public class GroupBuyFormController {
 
 	@ModelAttribute("groupBuyForm")
 	public GroupBuyForm formBacking(HttpServletRequest request,
-									@ModelAttribute("groupBuySession") LineGroupBuyCommand groupBuySession,
+									@ModelAttribute("groupBuySession") LineGroupBuyForm groupBuySession,
 									Model model) // 없으면 null?
 			throws Exception {
 		String reqPage = request.getServletPath();

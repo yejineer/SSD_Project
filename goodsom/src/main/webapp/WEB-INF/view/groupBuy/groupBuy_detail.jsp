@@ -2,9 +2,10 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
-<script>
 
+<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+<script>
+var optionStatus = 1;
 // delete
 function deleteGroupBuy(url) {
 	
@@ -12,7 +13,49 @@ function deleteGroupBuy(url) {
 	return deleteCheck;
 }
 
+// 수량 증감
+function change(num) {
+	var x = document.form;
+	var y = Number(x.quantity.value) + num;
+	if (y < 1)
+		y = 1;
+	x.quantity.value = y;
+}
 
+// (option, quantity) 선택
+function addItem() {
+	var list = document.getElementsByName("item");
+	var target = document.getElementById("options");
+	
+	var selectedOption = target.options[target.selectedIndex].text;
+	var selectedQuantity = document.getElementById("quantity").value;
+
+	var id = list.length;
+	
+ 	for(var i = 0; i < list.length; i++){
+		list[i].setAttribute("value", list[i].value);
+ 	}
+   	app = document.getElementById("itemBox")
+  	app.innerHTML += "<div id='itemDiv' class='d-flex'><input type='text' id='item' name='item' value='"
+  	  	+ selectedOption + ", " + selectedQuantity + "' class='form-control' readonly>" 
+  	  	+ "&nbsp;&nbsp;<input type='button' name='del_btn' id='" + id 
+  	  	+ "' value='X' onClick='javascript:delItem(this.id);'></div>";
+
+}
+
+// (option, quantity) 삭제(선택취소)
+function delItem(id) {
+	var oaqList = document.getElementsByName("item");
+	var btnList = document.getElementsByName("del_btn");
+
+	oaqList[id].outerHTML="";
+	btnList[id].outerHTML="";
+	
+	btnList = document.getElementsByName("del_btn");
+ 	for(var i = 0; i < btnList.length; i++){
+ 		btnList[i].id = i;
+ 	}  
+}
 </script>
 <body data-spy="scroll" data-target=".site-navbar-target"
 	data-offset="300">
@@ -28,7 +71,6 @@ function deleteGroupBuy(url) {
 			</div>
 			<div class="site-mobile-menu-body"></div>
 		</div>
-
 
 
 		<header class="site-navbar site-navbar-target" role="banner">
@@ -56,7 +98,7 @@ function deleteGroupBuy(url) {
 							<ul class="site-menu main-menu js-clone-nav ml-auto ">
 								<li><a href="<%=request.getContextPath()%>/home.do" class="nav-link">Home</a></li>
 								<li><a href="<%=request.getContextPath()%>/groupBuy/list.do" class="nav-link">GroupBuy</a></li>
-								<li><a href="<%=request.getContextPath()%>/auction/list.do" class="nav-link"">Auction</a></li>
+								<li><a href="<%=request.getContextPath()%>/auction/list.do" class="nav-link">Auction</a></li>
 								<li><a href="#">Community</a></li>
 								<li><a href="<%=request.getContextPath()%>/user/detail.do"><img src="<%=request.getContextPath()%>/resources/images/mypage.jpg" alt="Image" 
 								width="30px" height="20px" class="img-fluid"> ${userSession.user.nickname}</a></li>
@@ -103,36 +145,39 @@ function deleteGroupBuy(url) {
       		</p>
          	<h2 align="center">$ ${groupBuy.price}</h2><br/>
          	<h5>참여자 수 : &nbsp; &nbsp; ${groupBuy.participants} / ${groupBuy.minNo}</h5>
-           	<h5>남은 시간  : &nbsp; &nbsp; ${dDay}</h5> <br/>
-           	
-           	<div class="alert alert-primary" role="alert">
-           		<div class="d-flex">
-	           		<h5>옵션</h5>&nbsp;&nbsp;
-	           		
-	           		<select name="groupBuy.options" id="options">
-	           			<option value="">옵션 선택</option>
-	           			
-	           			
-		           		<c:forEach var="option" items="${groupBuy.options}" varStatus="status">
-		           			<option value="${option.optionId}">${option.name}</option>
-						</c:forEach>
-						
-					</select><br/>
+					<h5>남은 시간 : &nbsp; &nbsp; ${dDay}</h5>
+					<br />
 					
-				</div>
-				<div class="d-flex">
-					<h5>수량</h5>&nbsp;&nbsp;
-					<form>
-						<input type="button" onClick="" value="--">
-						<input type="text" id="" placeholder="1">
-						<input type="button" onClick="" value="+">
-						&nbsp; &nbsp;
-						<input type="button" onClick="" value="신청하기" />
-					</form>
-				</div>
-			</div>
-			
-			<br/><br/>
+					<form:form name="form" modelAttribute="lineGroupBuyForm" action="../order/groupBuy/create.do" method="GET">
+							
+					<div class="alert alert-primary" role="alert">
+							<div class="d-flex" style="margin-bottom: 10px;">
+								<h5>옵션</h5> &nbsp;&nbsp; 
+								<select name="option" id="options">
+									<option selected disabled>옵션 선택</option>
+									<c:forEach var="option" items="${groupBuy.options}"
+										varStatus="status">
+										<option value="${option.name}">${option.name}</option>
+									</c:forEach>
+
+								</select> <br />
+							</div>
+
+							<div class="d-flex">
+								<h5>수량</h5> &nbsp;&nbsp; 
+								<input type="button" name="minus" value="-"
+									onclick="change(-1)" /> &nbsp; 
+								<input type="text" id="quantity" name="quantity" value="1"
+									style="text-align: center; width: 50px;" readonly /> &nbsp; 
+								<input type="button" name="plus" value="+"
+									onclick="change(1)" /> &nbsp; &nbsp; 
+								<input type="button" value="추가하기" onclick="addItem()" />
+							</div>
+					</div>
+					<div id="itemBox"> </div>
+					<input type="submit" value="신청하기" />
+					</form:form>
+					<br/><br/>
   
          </div>
        </div> 
@@ -220,6 +265,6 @@ function deleteGroupBuy(url) {
         </div>
       </div>
     </div>
-
+</div>
     
 <%@ include file="../IncludeBottom.jsp" %>
