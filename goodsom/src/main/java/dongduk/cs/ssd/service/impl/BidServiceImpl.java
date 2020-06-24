@@ -9,13 +9,13 @@ import dongduk.cs.ssd.domain.User;
 import dongduk.cs.ssd.service.BidService;
 
 /**
- * @author Hyekyung Kim
- * @since 2020.05.08
+ * @author Hyekyung Kim | kimdahyee
+ * @since  2020.05.08   | 2020.06.24
  */
 
-//@Service
+@Service
 public class BidServiceImpl implements BidService{
-	/*
+
 	@Autowired
 	private BidDao bidDao;
 	
@@ -23,20 +23,18 @@ public class BidServiceImpl implements BidService{
 		return bidDao.getBid(bidId);
 	}
 
-	public Bid getBid(int bidId, int auctionId) {
-		return bidDao.getBid(bidId, auctionId);
+	public Bid getBidByAuctionId(int bidId, int auctionId) {
+		return bidDao.getBidByAuctionId(bidId, auctionId);
 	}
 
 	public void createBid(Bid bid) {
 		bidDao.createBid(bid);
 	}
 
-	public void updateBid(Bid bid) {
-		bidDao.updateBid(bid);
-	}
+	/*
+	 * public void updateBid(Bid bid) { bidDao.updateBid(bid); }
+	 * 
+	 * public User getUserById(int userId) { return bidDao.getUserById(userId); }
+	 */
 
-	public User getUserById(int userId) {
-		return bidDao.getUserById(userId);
-	}
-	*/
 }

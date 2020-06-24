@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dongduk.cs.ssd.dao.mybatis.mapper.BidMapper">
+  <cache />
+  
+  <select id="getBid" resultType="Bid">
+    SELECT BIDID, BIDPRICE, BIDDATE, USERID, AUCTIONID
+    FROM BIDS
+    WHERE BIDID = #{param1}
+  </select> 
+ 
+  <select id="getBidByAuctionId" resultType="Bid">
+    SELECT BIDID, BIDPRICE, BIDDATE, USERID, AUCTIONID
+    FROM BIDS
+    WHERE BIDID = #{param1} 
+      AND AUCTIONID = #{param2}
+  </select> 
+  
+  <insert id="createBid" parameterType="Bid">
+  	INSERT INTO BIDS
+  	  (BIDID, BIDPRICE, BIDDATE, USERID, AUCTIONID)
+  	VALUES 
+  	  (BIDID_SEQ.nextval, #{bidPrice}, #{bidDate}, #{userId}, #{auctionId}) 
+  </insert>
+  
+ <!--  <update id="updateBid" parameterType="Bid">
+  	UPDATE BIDS 
+  	SET
+  	WHERE  
+  </update> -->
+  
+</mapper>

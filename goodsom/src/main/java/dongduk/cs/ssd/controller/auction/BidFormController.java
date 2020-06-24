@@ -14,8 +14,8 @@ import dongduk.cs.ssd.domain.Bid;
 import dongduk.cs.ssd.service.BidService;
 
 /**
- * @author Hyekyung Kim
- * @since 2020.05.08
+ * @author Hyekyung Kim | kimdahyee
+ * @since  2020.05.08   | 2020.06.25
  */
 
 /*
@@ -23,8 +23,11 @@ import dongduk.cs.ssd.service.BidService;
 @SessionAttributes("bid")
 @RequestMapping("/auction/detail.do")
 */
+
+@Controller
+@RequestMapping("/auction/detail.do")
 public class BidFormController {
-	/*
+
 	@Autowired
 	BidService bidService;
 	
@@ -54,7 +57,7 @@ public class BidFormController {
 		if(bidForm.isNewBid()) { // create
 			bidService.createBid(bidForm.getBid());
 		} else { // update
-			bidService.updateBid(bidForm.getBid());
+			//bidService.updateBid(bidForm.getBid());
 		}
 	
 		return detailViewName;
@@ -63,5 +66,5 @@ public class BidFormController {
 	public void setBidService(BidService bidService) {
 		this.bidService = bidService;
 	}
-	*/
+
 }

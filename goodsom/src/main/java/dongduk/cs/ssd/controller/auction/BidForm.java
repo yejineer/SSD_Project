@@ -3,12 +3,12 @@ package dongduk.cs.ssd.controller.auction;
 import dongduk.cs.ssd.domain.Bid;
 
 /**
- * @author Hyekyung Kim
- * @since 2020.05.08
+ * @author Hyekyung Kim | kimdahyee
+ * @since  2020.05.08   | 2020.06.25
  */
 
 public class BidForm {
-	/*
+	
 	private Bid bid;
 	private boolean newBid;
 	
@@ -33,5 +33,5 @@ public class BidForm {
 	public boolean isNewBid() {
 		return newBid;
 	}
-	*/
+	
 }

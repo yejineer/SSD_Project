@@ -1,15 +1,15 @@
-package dongduk.cs.ssd.service;
+package dongduk.cs.ssd.dao.mybatis.mapper;
 
 import dongduk.cs.ssd.domain.Bid;
 import dongduk.cs.ssd.domain.User;
 
 /**
- * @author Hyekyung Kim | kimdahyee
- * @since  2020.05.08   | 2020.06.24
+ * @author kimdahyee
+ * @since  2020.06.24
  */
 
-public interface BidService {
-	
+public interface BidMapper {
+
 	Bid getBid(int bidId);
 	
 	Bid getBidByAuctionId(int bidId, int auctionId);
@@ -19,5 +19,5 @@ public interface BidService {
 	//void updateBid(Bid bid);
 	
 	//User getUserById(int userId);
-
+	
 }

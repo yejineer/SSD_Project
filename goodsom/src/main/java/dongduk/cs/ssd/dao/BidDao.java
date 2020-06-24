@@ -7,18 +7,20 @@ import dongduk.cs.ssd.domain.User;
 
 
 /**
- * @author Hyekyung Kim
- * @since 2020.05.08
+ * @author Hyekyung Kim | kimdahyee
+ * @since  2020.05.08   | 2020.06.24
  */
 
 public interface BidDao {
+	
 	Bid getBid(int bidId) throws DataAccessException;
 	
-	Bid getBid(int bidId, int auctionId) throws DataAccessException;
+	Bid getBidByAuctionId(int bidId, int auctionId) throws DataAccessException;
 	
 	void createBid(Bid bid) throws DataAccessException;
 	
-	void updateBid(Bid bid) throws DataAccessException;
+	//void updateBid(Bid bid) throws DataAccessException;
 	
-	User getUserById(int userId) throws DataAccessException;
+	//User getUserById(int userId) throws DataAccessException;
+	
 }

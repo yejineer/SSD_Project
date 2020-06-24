@@ -80,18 +80,29 @@
 					<c:forEach var="auction" items="${auctionList}" varStatus="status">
 						<div class="col-lg-4 col-md-6 mb-4">
 							<div class="post-entry-1 h-100">
+							
 								<a href="<c:url value='/auction/detail.do'>
-											<c:param name="auctionId" value="${auction.auctionId}"/>
-										</c:url>">
-										<img src="${auction.img}" alt="Image" class="img-fluid">
+									<c:param name="auctionId" value="${auction.auctionId}"/>
+									</c:url>">
+									<img src="${auction.img}" alt="Image" class="img-fluid">
 								</a>
+								
 								<div class="post-entry-1-contents">
-	
-									<h2>
-										<a  href="<c:url value='/auction/detail.do'>
-													<c:param name="auctionId" value="${auction.auctionId}"/>
-												</c:url>">${auction.title}</a>
+								
+									<div class="price-wrap d-flex" style="color:blue;">
+		    							<c:if test="${aution.state le '0'}"><span class="rate">Proceeding</span></c:if>
+		    							<c:if test="${aution.state le '1'}"><span class="rate">Completed</span></c:if>&nbsp;
+		    							<p class="from-day">
+		    								<span>End Date/ </span>
+		    								<span>${auction.endDate}</span>
+		    							</p>
+		    						</div>
+									
+									<h2><a  href="<c:url value='/auction/detail.do'>
+											<c:param name="auctionId" value="${auction.auctionId}"/>
+											</c:url>">${auction.title}</a>
 									</h2>
+									
 									<span class="meta d-inline-block mb-3">
 										~ <fmt:formatDate value="${auction.endDate}" pattern="yyyy-MM-dd" />
 									<span class="mx-2">현재 최고 금액</span> 
