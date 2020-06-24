@@ -160,10 +160,6 @@ function updateAuction(auctionId) {
 			<br />
 			<c:if test="${isWriter eq true}">
 				<div class="form-group" align="right">
-					<%-- <a class="btn btn-primary py-3 px-5"
-						href="<c:url value='/auction/form.do'>
-												<c:param name="auctionId" value="${auction.auctionId}"/>
-											</c:url>">수정</a> --%>
 					<a class="btn btn-primary py-3 px-5" href="javascript:updateAuction()" >수정</a>
 					<a class="btn btn-primary py-3 px-5" href="javascript:deleteAuction()" >삭제</a>
 				</div>
@@ -284,4 +280,6 @@ function updateAuction(auctionId) {
 </body>
 
 </html>
+   
+<%@ include file="../IncludeBottom.jsp" %>
 
