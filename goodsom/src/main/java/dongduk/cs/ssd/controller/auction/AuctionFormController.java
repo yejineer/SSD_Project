@@ -26,7 +26,7 @@ import dongduk.cs.ssd.service.impl.AuctionServiceImpl;
  */
 
 @Controller
-//@SessionAttributes("auction")
+@SessionAttributes("auctionForm")
 @RequestMapping("/auction/*.do")
 public class AuctionFormController {
 	
@@ -42,18 +42,16 @@ public class AuctionFormController {
 		System.out.println(reqPage);
 		String auctionId = request.getParameter("auctionId");
 		System.out.println(auctionId);
-		if(auctionId == null) { //create
-			model.addAttribute("createAuction", true);
+		if(auctionId == null) { //create: /auction/form.do
 			return new AuctionForm();
-		} else { // update
-			model.addAttribute("createAuction", false);
+		} else { // update: /auction/form.do?auctionId=
 			return new AuctionForm(auctionService.getAuction(Integer.valueOf(auctionId)));
 		}
 		
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
-	public String showAuctionForm() {
+	public String showAuctionForm(@ModelAttribute("auctionForm") AuctionForm auctionForm) {
 		return AUCTION_FORM;
 	}
 
@@ -61,29 +59,33 @@ public class AuctionFormController {
 	@RequestMapping(method = RequestMethod.POST)
 	public String submit(HttpServletRequest request, 
 			@ModelAttribute("auctionForm") AuctionForm auctionForm, Model model) {
-		System.out.println("[AuctionFormController]-submit()");
+//		/auction/create.do인지 /auction/update.do인지 구분하기 위해 필요!
 		String reqPage = request.getServletPath();
-		System.out.println(reqPage);
+		
+//		경매 create시 작성자 번호(userId)를 넣어야하고, view에서 작성자를 출력해야 하므로 현재 접속 중인 사용자의 정보를 Session에서 가져온다.
 		UserSession user  = (UserSession)request.getSession().getAttribute("userSession");
-		model.addAttribute("isWriter", true);
-		model.addAttribute("writer", user.getUser().getNickname());
+		
+//		경매 이미지 파일 업로드를 하지 않았을 때 null로 들어오므로 SqlException이 나므로 기본 이미지 설정을 위한 작업을 한다.
+		if (auctionForm.getAuction().getImg().trim() == "") {
+			auctionForm.getAuction().initImg(request.getContextPath());
+		}
+
 		if(reqPage.trim().equals("/auction/update.do")) { // update
-			Auction auction = (Auction)model.getAttribute("originalAuction");
 			System.out.println(auctionForm.getAuction().toString());
-//			int auctionId = auctionService.updateAuction(auctionForm.getAuction());
+			int auctionId = auctionService.updateAuction(auctionForm.getAuction());
+			model.addAttribute("auction", auctionService.getAuction(auctionId));
 //			System.out.println("update 하고 나서 가져온 auctionId: " + auctionId);
-			model.addAttribute("auction", auctionService.getAuction(auction.getAuctionId()));
-			return AUCTION_DETAIL;
 		} else { // show after create
             auctionForm.getAuction().initAuction(user.getUser());
-            if (auctionForm.getAuction().getImg().trim() == "") {
-            	auctionForm.getAuction().initImg(request.getContextPath());
-            }
 			System.out.println("[AuctionFormController] auctionForm 값: " + auctionForm.toString());
 			auctionService.createAuction(auctionForm.getAuction());
 			model.addAttribute("auction", auctionForm.getAuction()); 
-			return AUCTION_DETAIL;
 		}
+		
+//		작성자만 수정/삭제 버튼 보이게 하기 위해 isWriter, 작성자 출력 위해 writer값을 넘겨준다.
+		model.addAttribute("isWriter", true);
+		model.addAttribute("writer", user.getUser().getNickname());
+		return AUCTION_DETAIL;
 	}
 	
 	

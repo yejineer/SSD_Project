@@ -44,7 +44,7 @@ function submit() {
 							<ul class="site-menu main-menu js-clone-nav ml-auto ">
 								<li><a href="<%=request.getContextPath()%>/home.do" class="nav-link">Home</a></li>
 								<li><a href="<%=request.getContextPath()%>/groupBuy/list.do" class="nav-link">GroupBuy</a></li>
-								<li><a href="<%=request.getContextPath()%>/auction/list.do" class="nav-link"">Auction</a></li>
+								<li><a href="<%=request.getContextPath()%>/auction/list.do" class="nav-link">Auction</a></li>
 								<li><a href="#">Community</a></li>
 								<li><a href="<%=request.getContextPath()%>/user/detail.do"><img src="<%=request.getContextPath()%>/resources/images/mypage.jpg" alt="Image" width="30px" height="20px" class="img-fluid"> 
 								${userSession.user.nickname}</a></li>
@@ -77,7 +77,7 @@ function submit() {
 									<c:when test='${auctionForm.newAuction}'><c:url value='/auction/create.do'/></c:when>
 									<c:otherwise><c:url value='/auction/update.do'/></c:otherwise></c:choose>">
 						
-							<c:if test='${createAuction eq true}'>
+							<c:if test='${!auctionForm.newAuction}'>
 								<input hidden="originalAuction" value='${auction}'>
 							</c:if>
 							
@@ -85,7 +85,7 @@ function submit() {
 								<div class="col-md-12">
 									<label for="title">제목</label> 
 									<c:choose>
-										<c:when test="${createAuction eq true}">
+										<c:when test="${auctionForm.newAuction}">
 											<input type="text" id="title" name="auction.title" class="form-control" placeholder="Title" >
 										</c:when>
 										<c:otherwise>
@@ -164,6 +164,7 @@ function submit() {
 
 			</div>
 		</div>
+	</div>
 
 <%@ include file="../IncludeBottom.jsp" %>
 
