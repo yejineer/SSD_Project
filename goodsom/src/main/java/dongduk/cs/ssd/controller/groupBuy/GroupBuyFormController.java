@@ -87,7 +87,7 @@ public class GroupBuyFormController {
 	
 	
 	// form -> detail : create & update
-	@RequestMapping(method=RequestMethod.POST)
+	@RequestMapping(value= {"/create.do", "/update.do"}, method=RequestMethod.POST)
 	public String updateOrSubmit(HttpServletRequest request,
 								@ModelAttribute("groupBuyForm") GroupBuyForm groupBuyForm, 
 								Model model) {
@@ -96,6 +96,7 @@ public class GroupBuyFormController {
 		UserSession user  = (UserSession)session.getAttribute("userSession");
 		
 		String reqPage = request.getServletPath();
+		
 		
 		if(user.getUser().getUserId() == groupBuyForm.getGroupBuy().getUserId()) {
 			model.addAttribute("isWriter", true);
@@ -106,11 +107,14 @@ public class GroupBuyFormController {
 //		update
 		if (reqPage.trim().equals("/groupBuy/update.do")) {
 			// db
+			
 			groupBuyService.updateGroupBuy(groupBuyForm.getGroupBuy());
+			groupBuyService.deleteOptions(groupBuyForm.getGroupBuy().getGroupBuyId());
+			groupBuyService.createOptions(groupBuyForm.getGroupBuy());
 			
 //		create	
 		} else {
-
+			
 			groupBuyForm.getGroupBuy().initGroupBuy(user.getUser());
 			if (groupBuyForm.getGroupBuy().getImg().trim() == "") {
 				groupBuyForm.getGroupBuy().initImg(request.getContextPath());
@@ -118,18 +122,21 @@ public class GroupBuyFormController {
 			
 			// db
 			groupBuyService.createGroupBuy(groupBuyForm.getGroupBuy());
-			groupBuyService.createOptions(groupBuyForm.getGroupBuy());
 			
 			int groupBuyId = groupBuyForm.getGroupBuy().getGroupBuyId();
+			
+			groupBuyForm.getGroupBuy().optionSetting(groupBuyId);
+			groupBuyService.createOptions(groupBuyForm.getGroupBuy());
+			
 			GroupBuy groupBuy = groupBuyService.getGroupBuy(groupBuyId);
 			model.addAttribute("groupBuy", groupBuy);
 			model.addAttribute("writer", user.getUser().getNickname());
 			
 			// D-day 계산: 더 좋은 위치 없나..
-			long timeLength = groupBuy.getEndDate().getTime() - groupBuy.getUploadDate().getTime();
-			long dDay = timeLength / ( 24*60*60*1000); 
-			dDay = Math.abs(dDay);
-			model.addAttribute("dDay", dDay);
+//			long timeLength = groupBuy.getEndDate().getTime() - groupBuy.getUploadDate().getTime();
+//			long dDay = timeLength / ( 24*60*60*1000); 
+//			dDay = Math.abs(dDay);
+//			model.addAttribute("dDay", dDay);
 	       
 		}
 		return GROUPBUY_DETAIL;

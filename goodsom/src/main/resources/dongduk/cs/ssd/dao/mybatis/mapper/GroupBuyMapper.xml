@@ -24,15 +24,11 @@
   
   <update id="updateGroupBuy" parameterType="GroupBuy">
    	UPDATE GROUPBUYS
-    SET TITLE=#{title}, CONTENT=#{content}, IMG=#{img}, MINNO=#{minNo}, UPLOADDATE=to_char(sysdate,'yyyy-mm-dd'), 
-    	ENDDATE=#{endDate}, COUNT=#{count}, STATE=#{state}, RATE=#{rate}, PARTICIPANTS=#{participants}, CATID=#{catId}, PRICE=#{price}
+    SET TITLE=#{title}, IMG=#{img}, PRICE=#{price}, CONTENT=#{content}, CATID=#{catId},
+    	MINNO=#{minNo}, ENDDATE=#{endDate}
   	WHERE  GROUPBUYID=#{groupBuyId}
   </update>
-   
-   <delete id="deleteOptions" parameterType="java.lang.Integer">
-    DELETE FROM OPTIONS
-    WHERE  GROUPBUYID=#{groupBuyId}
-  </delete>
+
    
   <delete id="deleteGroupBuy" parameterType="java.lang.Integer">
     DELETE FROM GROUPBUYS
@@ -43,12 +39,18 @@
   
   	INSERT INTO OPTIONS (OPTIONID, GROUPBUYID, NAME)
   	SELECT OPTIONID_SEQ.nextval, A.* FROM (
-	  	<foreach collection="options" item="option" separator="UNION ALL">
+	  	<foreach collection="optionList" item="option" separator="UNION ALL">
 			SELECT  #{groupBuyId}, #{option}
 			FROM 	DUAL
 		</foreach>
 		) A
+
   </insert>
+     
+   <delete id="deleteOptions" parameterType="java.lang.Integer">
+    DELETE FROM OPTIONS
+    WHERE  GROUPBUYID=#{groupBuyId}
+  </delete>
   
   <!-- Get all groupBuys -->
   <resultMap id="collectionResultMap" type="GroupBuy">

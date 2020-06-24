@@ -18,6 +18,8 @@ public class GroupBuy {
 	String img;
 	int minNo;
 	List<Option> options = new ArrayList<Option>();
+	String[] optionList;
+	int tmpOptionId;
 	
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	Date uploadDate;
@@ -183,6 +185,22 @@ public class GroupBuy {
 	public void setPrice(int price) {
 		this.price = price;
 	}
+	
+	public String[] getOptionList() {
+		return optionList;
+	}
+
+	public void setOptionList(String[] optionList) {
+		this.optionList = optionList;
+	}
+	
+	public int getTmpOptionId() {
+		return tmpOptionId;
+	}
+
+	public void setTmpOptionId(int tmpOptionId) {
+		this.tmpOptionId = tmpOptionId;
+	}
 
 	public GroupBuy() {
 	}
@@ -210,6 +228,16 @@ public class GroupBuy {
         		 + ", participants: " + participants  + ", menuId: " + menuId );
 	}
 	
+	public void optionSetting(int groupBuyId) {
+		
+		for(int i = 0; i < optionList.length; i++) {
+			Option op = new Option();
+			op.setName(optionList[i]);
+			op.setGroupBuyId(groupBuyId);
+			//op.setOptionId(tmpOptionId);
+			options.add(i, op);
+		}
+	}
 	
 	public String toString() {
 		String str = "groupBuyId: " + groupBuyId + ", title: " + title + ", content: " + content + ", img: " + img 

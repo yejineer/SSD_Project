@@ -29,13 +29,13 @@ function addClass(target, className){
 
 // option
 function input_append(ff){
- 	var list = document.getElementsByName("groupBuy.options");
+ 	var list = document.getElementsByName("groupBuy.optionList");
 
  	for(var i = 0; i < list.length; i++){
 		list[i].setAttribute("value", list[i].value);
  	}
    	app = document.getElementById("optionBox")
-  	app.innerHTML += "<input type='text' id='groupBuy.options' name='groupBuy.options' class='form-control'><br>";
+  	app.innerHTML += "<input type='text' id='groupBuy.options' name='groupBuy.optionList' class='form-control'><br>";
 }
 
 </script>
@@ -179,7 +179,7 @@ function input_append(ff){
 					
 						<form id="groupBuyForm" method="post" 
 						      action="<c:choose><c:when test='${createGroupBuy eq true}'>
-						      					<c:url value='/groupBuy/detail.do' /></c:when>
+						      					<c:url value='/groupBuy/create.do' /></c:when>
 												<c:otherwise><c:url value='/groupBuy/update.do'/></c:otherwise></c:choose>">
 						
 							<div class="form-group row">
@@ -242,11 +242,11 @@ function input_append(ff){
 								<div id="optionBox">
 									<c:choose>
 										<c:when test="${createGroupBuy eq true}">
-											<input type="text" id="groupBuy.options" name="groupBuy.options" class="form-control"><br>
+											<input type="text" id="groupBuy.options" name="groupBuy.optionList" class="form-control"><br>
 										</c:when>
 										<c:otherwise>
-											<c:forEach var="optionList" items="${groupBuyForm.groupBuy.options}" varStatus="status">
-												<input type="text" id="groupBuy.options" name="groupBuy.options" 
+											<c:forEach var="optionList" items="${groupBuyForm.groupBuy.optionList}" varStatus="status">
+												<input type="text" id="groupBuy.options" name="groupBuy.optionList" 
 														class="form-control" value="${optionList.name}"><br>
 											</c:forEach>
 										</c:otherwise>
