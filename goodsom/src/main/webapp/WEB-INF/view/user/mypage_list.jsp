@@ -75,12 +75,12 @@
 										<span class="meta d-inline-block mb-3">
 											<fmt:formatDate value="${order.orderDate}" pattern="yyyy-MM-dd" /> 
 											<span class="mx-2"> 총액 : ${order.totalPrice}원</span>
-											<span class="mx-2"> 수량 : ${order.quantity}</span> <br>
-											<a style="text-align : right;" href="<c:url value='../order/detail.do'>
-												<c:param name="orderId" value ="${order.orderId}" />
-											</c:url>"> 상세보기 > </a>
-										</span>
+											<span class="mx-2"> 수량 : ${order.quantity}</span> 
+										</span><br /><br />
 									</div>
+									<p style="text-align : right; padding : 20px;"> <a href="<c:url value='../order/auction/detail.do'>
+												<c:param name="orderId" value ="${order.orderId}" />
+											</c:url>"> 상세보기 > </a></p>
 								</div>
 							</div>
 						</c:forEach>
@@ -103,17 +103,17 @@
 													</c:url>"> ${order.groupBuy.title}</a>
 										</h2>
 										
-										<span class="meta d-inline-block mb-3"><fmt:formatDate
-												value="${order.orderDate}" pattern="yyyy-MM-dd" /> 
+										<span class="meta d-inline-block mb-3">
+											<fmt:formatDate value="${order.orderDate}" pattern="yyyy-MM-dd" /> 
 											<span class="mx-2"> 총액 : ${order.totalPrice}원</span>
-											<span class="mx-2"> 수량 : ${order.quantity}</span> <br>
-											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-											<span class="mx-2"> <a href="<c:url value='../order/detail.do'>
-												<c:param name="orderId" value="${order.orderId}" />
-											</c:url>"> 상세보기 > </a></span>
+											<span class="mx-2"> 수량 : ${order.quantity}</span> 
 										</span>
 									</div>
+									<p style="text-align : right; padding : 20px;"> <a href="<c:url value='../order/groupBuy/detail.do'>
+												<c:param name="orderId" value ="${order.orderId}" />
+											</c:url>"> 상세보기 > </a></p>
 								</div>
+								
 							</div>
 						</c:forEach>
 						</div>
@@ -186,7 +186,6 @@
 						href="#" class="p-3">3</a> <a href="#" class="p-3">4</a>
 				</div>
 
-			</div>
 			</div>
 		</div>
 

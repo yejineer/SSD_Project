@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import dongduk.cs.ssd.controller.order.OrderForm;
 import dongduk.cs.ssd.controller.user.UserSession;
 import dongduk.cs.ssd.domain.Auction;
 import dongduk.cs.ssd.domain.GroupBuy;
@@ -39,7 +40,7 @@ public class DetailGroupBuyController {
 	GroupBuyService groupBuyService;
 	@Autowired
 	UserService userService;
-
+	
 	// home -> list
 	// form -> list : detail에서 취소 후 왔을 때 해당정보 유지
 	@RequestMapping("/groupBuy/list.do")
@@ -78,7 +79,7 @@ public class DetailGroupBuyController {
 			model.addAttribute("isWriter", false);
 		}
 		
-		// LineGroupBuyForm 생성 및 넘겨주기
+		// LineGroupBuyForm 값 지정
 		LineGroupBuyForm lineGroupBuyForm = new LineGroupBuyForm();
 		lineGroupBuyForm.setGroupBuyId(groupBuyId);
 		lineGroupBuyForm.setGroupBuy(groupBuy);

@@ -34,7 +34,6 @@ import dongduk.cs.ssd.validator.OrderFormValidator;
 
 @Controller
 @SessionAttributes({"lineGroupBuyForm", "orderForm"})
-
 public class OrderFormController {
 	
 	@Autowired
@@ -45,12 +44,7 @@ public class OrderFormController {
 	
 	@ModelAttribute("orderForm")
 	public OrderForm formBacking(HttpServletRequest request) {
-//		if (request.getMethod().equals("GET")) {
-			return new OrderForm();
-//		} else { // ?
-//			int orderId = (int)request.getAttribute("orderId");
-//			return new OrderForm(orderService.getOrder(orderId));
-//		}
+		return new OrderForm();
 	}
 	
 	@ModelAttribute("cardBanks")
@@ -77,10 +71,13 @@ public class OrderFormController {
 		
 //		lineGroupBuyForm.setLineGroupBuyListByItems();
 //		List<LineGroupBuy> lineGroupBuy = lineGroupBuyForm.getLineGroupBuyList();
+
 		int groupBuyId = lineGroupBuyForm.getGroupBuyId();
 		GroupBuy groupBuy = groupBuyService.getGroupBuy(groupBuyId);
 		int unitPrice = lineGroupBuyForm.getQuantity() * groupBuy.getPrice();
 		lineGroupBuyForm.setUnitPrice(unitPrice);
+		
+		System.out.println("LineGroupBuys : " + lineGroupBuyForm);
 		
 		mav.addObject("lineGroupBuyForm", lineGroupBuyForm);
 		
@@ -107,13 +104,12 @@ public class OrderFormController {
 			ModelAndView mav = new ModelAndView("order/order_create");
 			return mav;
 		}
-//		System.out.println("[controller] orderId = " + orderForm.getOrder().getOrderId());
+
 		orderService.createOrder(orderForm.getOrder());
 		
 		ModelAndView mav = new ModelAndView("order/payment_detail");
 		mav.addObject("order", orderForm.getOrder());
-		
-//		mav.addObject("message", "Thank you, your order has been submitted.");
+		mav.addObject("message", "결제가 성공적으로 완료되었습니다.");
 		status.setComplete();  // remove sessionLineGroupBuy and orderForm from session
 		return mav;
 	}
