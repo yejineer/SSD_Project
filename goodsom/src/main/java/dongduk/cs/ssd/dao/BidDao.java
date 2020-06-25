@@ -17,6 +17,8 @@ public interface BidDao {
 	
 	Bid getBidByAuctionId(int bidId, int auctionId) throws DataAccessException;
 	
+	int getMaxPrice(int auctionId);
+	
 	void createBid(Bid bid) throws DataAccessException;
 	
 	//void updateBid(Bid bid) throws DataAccessException;

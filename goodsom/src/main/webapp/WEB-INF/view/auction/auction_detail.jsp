@@ -22,18 +22,22 @@ function updateAuction(auctionId) {
 	}
 }
 
-</script>
-
-<script>
-function submit() {
+function bid() {
+	
 	if (form.bidPrice.value == "") {
 		alert("Input your bidPrice")
 		form.bidPrice.focus();
 		return false;
 	}
-	form.submit();
+
+	if (confirm("배팅 하시겠습니까?")) {
+		form.submit();
+	}
+	
 }
+
 </script>
+
 
 <%@ include file="../IncludeBanner.jsp" %> 
 
@@ -96,11 +100,12 @@ function submit() {
 					
 					<!-- betting -->
 					<div class="d-flex">
-						<form:form name="form" modelAttribute="bidForm" method="post" action="<c:url value='/bid/create.do'/>">
+						<form name="form" method="post" action="<c:url value='/auction/bid/create.do'/>">
 							<h5>베팅 금액</h5>
-							<input type="text" id="bidPrice" name="bid.bidPrice" class="form-control" placeholder="ex) 4000">
-							<input type="button" value="신청하기" onClick="submit()" > 
-						</form:form>
+							<input type="text" id="bidPrice" name="bidPrice" class="form-control" placeholder="ex) 4000">
+							<input type="hidden" id="auctionId" name="auctionId" value="${auction.auctionId}">
+							<input type="button" value="신청하기" onClick="bid()" > 
+						</form>
 					</div>
 
 				</div>

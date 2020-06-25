@@ -17,6 +17,15 @@
       AND AUCTIONID = #{param2}
   </select> 
   
+  <select id="getMaxPrice" resultType="int">
+    SELECT BIDPRICE
+	FROM ( SELECT BIDPRICE
+			FROM BIDS
+			WHERE AUCTIONID = #{param1}
+			ORDER BY BIDPRICE DESC )
+	WHERE ROWNUM = '1'
+  </select> 
+  
   <insert id="createBid" parameterType="Bid">
   	INSERT INTO BIDS
   	  (BIDID, BIDPRICE, BIDDATE, USERID, AUCTIONID)

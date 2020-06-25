@@ -9,8 +9,8 @@ import dongduk.cs.ssd.domain.Auction;
 import dongduk.cs.ssd.domain.Bid;
 
 /**
- * @author Yejin Lee
- * @since 2020.06.12
+ * @author Yejin Lee | kimdahyee
+ * @since 2020.06.12 | 2020.06.25
  */
 public interface AuctionMapper { // AuctionMapper.xml에서 구현한 method 이름과 일치해야함!
 	
@@ -19,6 +19,8 @@ public interface AuctionMapper { // AuctionMapper.xml에서 구현한 method 이
 	int createAuction(Auction auction) throws DataAccessException;
 	
 	int updateAuction(Auction auction) throws DataAccessException;
+	
+	void updateAuctionMaxPrice(int maxPrice, int auctionId) throws DataAccessException;
 	
 	void deleteAuction(int auctionId) throws DataAccessException;
 	

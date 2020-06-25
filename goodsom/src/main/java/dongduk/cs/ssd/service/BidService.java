@@ -14,6 +14,8 @@ public interface BidService {
 	
 	Bid getBidByAuctionId(int bidId, int auctionId);
 	
+	int getMaxPrice(int auctionId);
+	
 	void createBid(Bid bid);
 	
 	//void updateBid(Bid bid);

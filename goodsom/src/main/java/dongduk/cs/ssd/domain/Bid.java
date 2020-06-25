@@ -15,6 +15,13 @@ public class Bid {
 		
 	}
 	
+	public Bid(int userId, int auctionId, int bidPrice, Date bidDate) {
+		this.userId = userId;
+		this.auctionId = auctionId;
+		this.bidPrice = bidPrice;
+		this.bidDate = bidDate;
+	}
+	
 	public User getUser() {
 		return user;
 	}

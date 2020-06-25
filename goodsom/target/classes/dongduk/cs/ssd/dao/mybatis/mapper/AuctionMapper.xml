@@ -30,6 +30,12 @@
  		ENDDATE=#{endDate}, MAXPRICE=#{maxPrice}
   	WHERE  AUCTIONID=#{auctionId}
   </update>
+  
+  <update id="updateAuctionMaxPrice" parameterType="dongduk.cs.ssd.domain.Auction">
+  	UPDATE AUCTIONS
+	SET MAXPRICE = #{param1}
+	WHERE AUCTIONID = #{param2}
+  </update>
    
   <delete id="deleteAuction" parameterType="java.lang.Integer">
     DELETE FROM AUCTIONS

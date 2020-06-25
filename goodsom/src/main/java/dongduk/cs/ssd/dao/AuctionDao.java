@@ -9,12 +9,8 @@ import dongduk.cs.ssd.domain.Auction;
 import dongduk.cs.ssd.domain.Bid;
 
 /**
- * @author Hyekyung Kim
- * @since 2020.05.05
- */
-/**
- * @author Yejin Lee
- * @since 2020.06.12
+ * @author Hyekyung Kim | Yejin Lee  | kimdahyee
+ * @since  2020.05.05   | 2020.06.12 | 2020.06.25
  */
 
 public interface AuctionDao {
@@ -24,6 +20,8 @@ public interface AuctionDao {
 	int createAuction(Auction auction) throws DataAccessException;
 //	Return auctionID
 	int updateAuction(Auction auction) throws DataAccessException;
+	
+	void updateAuctionMaxPrice(int maxPrice, int auctionId) throws DataAccessException;
 	
 	void deleteAuction(int auctionId) throws DataAccessException;
 	

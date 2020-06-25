@@ -8,8 +8,8 @@ import dongduk.cs.ssd.domain.Bid;
 
 
 /**
- * @author Hyekyung Kim | Yejin Lee
- * @since 2020.05.05	| 2020.06.13
+ * @author Hyekyung Kim | Yejin Lee  | kimdahyee
+ * @since 2020.05.05	| 2020.06.13 | 2020.06.25
  */
 
 public interface AuctionService {
@@ -20,8 +20,9 @@ public interface AuctionService {
 	
 	int updateAuction(Auction auction);
 	
-	List<Auction> deleteAuction(int auctionId);
+	void updateAuctionMaxPrice(int maxPrice, int auctionId);
 	
+	List<Auction> deleteAuction(int auctionId);
 	
 	List<Auction> getAuctionList();
 	

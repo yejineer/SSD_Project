@@ -12,8 +12,8 @@ import dongduk.cs.ssd.dao.mybatis.mapper.AuctionMapper;
 import dongduk.cs.ssd.domain.Auction;
 
 /**
- * @author Yejin Lee
- * @since 2020.06.12
+ * @author Yejin Lee | kimdahyee
+ * @since 2020.06.12 | 2020.06.25
  */
 
 @Repository
@@ -40,6 +40,11 @@ public class MybatisAuctionDao implements AuctionDao {
 		auctionMapper.updateAuction(auction);
 		System.out.println(auction.getAuctionId());
 		return auction.getAuctionId();
+	}
+	
+	@Override
+	public void updateAuctionMaxPrice(int maxPrice, int auctionId) throws DataAccessException {
+		auctionMapper.updateAuctionMaxPrice(maxPrice, auctionId);
 	}
 
 	@Override

@@ -9,12 +9,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 import dongduk.cs.ssd.domain.Bid;
 import dongduk.cs.ssd.service.BidService;
 import dongduk.cs.ssd.domain.User;
 import dongduk.cs.ssd.service.UserService;
+import dongduk.cs.ssd.controller.user.UserSession;
 import dongduk.cs.ssd.domain.Auction;
 import dongduk.cs.ssd.service.AuctionService;
 
@@ -32,6 +34,8 @@ import dongduk.cs.ssd.service.AuctionService;
 @Controller
 @RequestMapping("/auction/bid/create.do")
 public class BidFormController {
+	
+	private final String detailViewName = "auction/auction_detail";
 
 	@Autowired
 	BidService bidService;
@@ -39,7 +43,8 @@ public class BidFormController {
 	@Autowired
 	UserService userService;
 	
-	private final String detailViewName = "auction/auction_detail";
+	@Autowired
+	AuctionService auctionService;
 	
 	@ModelAttribute("bidForm")
 	public BidForm formBacking(HttpServletRequest request,
@@ -58,22 +63,45 @@ public class BidFormController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public String create(HttpServletRequest request, BidForm bidForm) {
+	public ModelAndView create(HttpServletRequest request, BidForm bidForm, 
+			@RequestParam("bidPrice") int bidPrice, @RequestParam("auctionId") int auctionId) {
 		
-		if(bidForm.isNewBid()) { // create
-			//System.out.println("Betting price checking: " + bidPrice);
-			
-			HttpSession session = request.getSession();
-			int userId = (int) session.getAttribute("userId");
-			
-			bidService.createBid(bidForm.getBid());
-			
-		} else { 
-			//update bidService.updateBid(bidForm.getBid()); 
-		}
-	
-		return detailViewName;
-		//return "redirect:/view/auction/detail.do?autionId=" + auctionId;
+		System.out.println("Betting price checking: " + bidPrice);
+		System.out.println("Betting auctionId checking: " + auctionId);
+		
+		ModelAndView mav = new ModelAndView(detailViewName);
+		
+		HttpSession session = request.getSession(); 
+		UserSession userSession = (UserSession)session.getAttribute("userSession");
+		int userId = (int) userSession.getUser().getUserId();
+		
+		java.util.Date utilDate = new java.util.Date();
+		java.sql.Date bidDate = new java.sql.Date(utilDate.getTime());
+		
+		Bid bid = new Bid(userId, auctionId, bidPrice, bidDate);
+		bidService.createBid(bid);
+		
+		int maxPrice = bidService.getMaxPrice(auctionId);
+		auctionService.updateAuctionMaxPrice(maxPrice, auctionId); //auction table maxPrice update
+		
+		Auction auction = auctionService.getAuction(auctionId);
+		
+		/*
+		 * if(bidForm.isNewBid()) { // create
+		 * 
+		 * HttpSession session = request.getSession(); int userId = (int)
+		 * session.getAttribute("userId");
+		 * 
+		 * bidService.createBid(bidForm.getBid());
+		 * 
+		 * } else { //update bidService.updateBid(bidForm.getBid()); }
+		 */
+		//model.attribute(auction);
+		
+		session.setAttribute("auctionId", auctionId);
+		mav.addObject("auction", auction);
+		mav.addObject("writer", userService.getUserByUserId(auction.getUserId()).getNickname());
+		return mav;
 	}
 
 	public void setBidService(BidService bidService) {
