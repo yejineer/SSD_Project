@@ -1,7 +1,13 @@
-<%@ include file="../IncludeTop.jsp"%>
-
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 	
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
+<%@ include file="../IncludeTop.jsp" %> 
+
 <script type="text/javascript">
 
 function deleteAuction(auctionId) {
@@ -16,24 +22,17 @@ function updateAuction(auctionId) {
 	}
 }
 
-function submit() {
-	
-	form.submit();
-}
+</script>
 
-/* function insertBid(auctionId) {
-	
+<script>
+function submit() {
 	if (form.bidPrice.value == "") {
 		alert("Input your bidPrice")
 		form.bidPrice.focus();
 		return false;
 	}
-
-	if (confirm("배팅하시겠습니까?")) {
-		location.href= "bid/create.do?auctionId=${auction.auctionId}";
-	}
-} */
-
+	form.submit();
+}
 </script>
 
 <%@ include file="../IncludeBanner.jsp" %> 
@@ -51,7 +50,6 @@ function submit() {
 				</div>
 			</div>
 		</div>
-
 
 		<br />
 		<div align="center">
@@ -98,7 +96,7 @@ function submit() {
 					
 					<!-- betting -->
 					<div class="d-flex">
-						<form:form name="form" modelAttribute="bidForm" method="post" action="<c:url value='/auction/bid/create.do'/>">
+						<form:form name="form" modelAttribute="bidForm" method="post" action="<c:url value='/bid/create.do'/>">
 							<h5>베팅 금액</h5>
 							<input type="text" id="bidPrice" name="bid.bidPrice" class="form-control" placeholder="ex) 4000">
 							<input type="button" value="신청하기" onClick="submit()" > 
