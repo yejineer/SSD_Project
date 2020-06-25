@@ -8,6 +8,7 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -31,8 +33,8 @@ import dongduk.cs.ssd.service.AuctionService;
 import dongduk.cs.ssd.service.impl.AuctionServiceImpl;
 
 /**
- * @author Hyekyung Kim & Yejin Lee
- * @since 2020.05.08	& 2020.06.13
+ * @author Hyekyung Kim | Yejin Lee
+ * @since 2020.05.08	| 2020.06.13
  */
 
 @Controller
@@ -76,14 +78,23 @@ public class AuctionFormController implements ApplicationContextAware  {
 
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public String submit(HttpServletRequest request, 
-			@ModelAttribute("auctionForm") AuctionForm auctionForm, 
-			@RequestParam("report") MultipartFile report, 
+	public String submit(HttpServletRequest request, @RequestParam("report") MultipartFile report,
+			@Valid @ModelAttribute("auctionForm") AuctionForm auctionForm, BindingResult result,
 			Model model, SessionStatus sessionStatus) {
+		
 //		/auction/create.do인지 /auction/update.do인지 구분하기 위해 필요!
 		String reqPage = request.getServletPath();
-		
-//		경매 create시 작성자 번호(userId)를 넣어야하고, view에서 작성자를 출력해야 하므로 현재 접속 중인 사용자의 정보를 Session에서 가져온다.
+		String requestUrl = reqPage.trim();
+//		AuctionForm객체 validation
+		if (result.hasErrors()) {
+			if (requestUrl.equals("/auction/update.do")) {
+				return "redirect:form.do?auctionId=" + auctionForm.getAuction().getAuctionId();
+			} else {
+				return AUCTION_FORM;
+			}
+		}
+
+		//		경매 create시 작성자 번호(userId)를 넣어야하고, view에서 작성자를 출력해야 하므로 현재 접속 중인 사용자의 정보를 Session에서 가져온다.
 		UserSession user  = (UserSession)request.getSession().getAttribute("userSession");
 		
 //		파일 업로드 기능
@@ -91,7 +102,8 @@ public class AuctionFormController implements ApplicationContextAware  {
 		String savedFileName = uploadFile(report);
 
 //		경매 update/create 작업
-		if (reqPage.trim().equals("/auction/update.do")) { // update
+		auctionForm.getAuction().setStartPrice(Integer.valueOf(auctionForm.getPrice()));
+		if (requestUrl.equals("/auction/update.do")) { // update
 			System.out.println(auctionForm.getAuction().toString());
 			if (report.getSize() != 0) { // 파일 새로 업로드 안 하면 원래 이미지 사용
 				auctionForm.getAuction().setImg(request.getContextPath() + "/resources/images/" + savedFileName);

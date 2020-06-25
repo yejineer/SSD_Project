@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!--
-  - DispatcherServlet application context for the Spring web MVC
-  -->
+<!-- - DispatcherServlet application context for the Spring web MVC -->
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns="http://www.springframework.org/schema/beans"
-	xmlns:context="http://www.springframework.org/schema/context" 
+	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:p="http://www.springframework.org/schema/p"
-	xmlns:mvc="http://www.springframework.org/schema/mvc" 	
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xmlns:task="http://www.springframework.org/schema/task"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
        	http://www.springframework.org/schema/beans/spring-beans.xsd
@@ -15,40 +13,60 @@
        	http://www.springframework.org/schema/mvc 				
 		http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/task
-        http://www.springframework.org/schema/task/spring-task.xsd"> 
+        http://www.springframework.org/schema/task/spring-task.xsd">
 
-	<context:component-scan base-package="dongduk.cs.ssd.controller" /> 
+	<context:component-scan
+		base-package="dongduk.cs.ssd.controller" />
 	<!-- 위 패키지 내 controller 객체들을 Bean으로 등록 -->
 
-	<mvc:annotation-driven/>		<!-- create RequestMappingHandlerMapping -->
+	<mvc:annotation-driven />		<!-- create RequestMappingHandlerMapping -->
 
 	<mvc:default-servlet-handler />
-	
+
 	<task:scheduler id="scheduler" pool-size="10" />
-		
-  	<mvc:view-controller path="/index/login.do" view-name="user/login"/>
-	<mvc:view-controller path="/user/register.do" view-name="user/register"/>
-	
-	<mvc:view-controller path="/home.do" view-name="home"/>
-	<mvc:view-controller path="/about.do" view-name="about"/>
-	
-	<mvc:view-controller path="/auction/list.do" view-name="auction/auction_list"/>
 
-	<mvc:view-controller path="/groupBuy/list.do" view-name="groupBuy/groupBuy_list"/>
-	<mvc:view-controller path="/groupBuy/form.do" view-name="groupBuy/groupBuy_form"/>
-	<mvc:view-controller path="/groupBuy/detail.do" view-name="groupBuy/groupBuy_detail"/>
+	<mvc:view-controller path="/index/login.do"
+		view-name="user/login" />
+	<mvc:view-controller path="/user/register.do"
+		view-name="user/register" />
 
-<!--	<mvc:view-controller path="/mypage/list.do" view-name="user/mypage_list"/>  -->
-	
+	<mvc:view-controller path="/home.do"
+		view-name="home" />
+	<mvc:view-controller path="/about.do"
+		view-name="about" />
+
+	<mvc:view-controller path="/auction/list.do"
+		view-name="auction/auction_list" />
+
+	<mvc:view-controller path="/groupBuy/list.do"
+		view-name="groupBuy/groupBuy_list" />
+	<mvc:view-controller path="/groupBuy/form.do"
+		view-name="groupBuy/groupBuy_form" />
+	<mvc:view-controller path="/groupBuy/detail.do"
+		view-name="groupBuy/groupBuy_detail" />
+
+	<!-- <mvc:view-controller path="/mypage/list.do" view-name="user/mypage_list"/> -->
+
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
-		<property name="prefix" value="/WEB-INF/view/"/>
-		<property name="suffix" value=".jsp"/>
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView" />
+		<property name="prefix" value="/WEB-INF/view/" />
+		<property name="suffix" value=".jsp" />
 	</bean>
-	
+
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver"></bean>
 
-	
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basenames">
+			<list>
+				<value>messages.validation</value>
+			</list>
+		</property>
+		<property name="defaultEncoding" value="UTF-8" />
+	</bean>
+
+
 </beans>

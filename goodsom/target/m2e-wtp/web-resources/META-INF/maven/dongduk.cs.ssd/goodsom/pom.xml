@@ -32,6 +32,9 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.7</maven.compiler.source>
 		<maven.compiler.target>1.7</maven.compiler.target>
+		<validation.version>2.0.1.Final</validation.version>
+		<hibernate.version>6.0.7.Final</hibernate.version>
+		
 	</properties>
 
 	<dependencies>
@@ -153,6 +156,18 @@
 		<!-- for oracle jdbc driver -->
 		<!-- <dependency> <groupId>com.oracle</groupId> <artifactId>ojdbc6</artifactId> 
 			<version>11.1.0.7.0</version> </dependency> -->
+			
+		<!-- JavaBean Validation API -->
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>${validation.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate.validator</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>${hibernate.version}</version>
+		</dependency>
 	</dependencies>
 
 	<build>
