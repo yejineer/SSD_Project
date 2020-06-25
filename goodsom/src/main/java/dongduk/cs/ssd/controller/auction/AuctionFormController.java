@@ -62,11 +62,13 @@ public class AuctionFormController implements ApplicationContextAware  {
 		String reqPage = request.getServletPath();
 		System.out.println(reqPage);
 		String auctionId = request.getParameter("auctionId");
+		Auction auction = auctionService.getAuction(Integer.valueOf(auctionId));
+		System.out.println(auction.toString());
 		System.out.println(auctionId);
 		if(auctionId == null) { //create: /auction/form.do
 			return new AuctionForm();
 		} else { // update: /auction/form.do?auctionId=
-			return new AuctionForm(auctionService.getAuction(Integer.valueOf(auctionId)));
+			return new AuctionForm(auction);
 		}
 		
 	}

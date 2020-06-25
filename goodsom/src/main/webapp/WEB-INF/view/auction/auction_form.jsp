@@ -48,14 +48,11 @@ function submit(isNewAuction) {
 				<div class="row" >
 					<div class="col-lg-8 mb-5">
 						<form:form modelAttribute="auctionForm" method="post" enctype="multipart/form-data">
-							<c:if test='${!auctionForm.newAuction}'>
-								<input hidden="originalAuction" value='${auction}'>
-							</c:if>
 							
 							<div class="form-group row">
 								<div class="col-md-12">
 									<label for="auction.title">제목</label> &nbsp;&nbsp;&nbsp; <form:errors path="auction.title" cssClass="error"/> 
-										<form:input path="auction.title" class="form-control" placeholder="Title" />
+										<form:input path="auction.title" class="form-control" placeholder="Title"/>
 										
 									<%-- <c:choose>
 										<c:when test="${auctionForm.newAuction}">
