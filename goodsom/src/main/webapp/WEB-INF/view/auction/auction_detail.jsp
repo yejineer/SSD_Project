@@ -1,68 +1,30 @@
-<%@ include file="../IncludeBanner.jsp"%>
+<%@ include file="../IncludeTop.jsp"%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 	
 <script type="text/javascript">
+
 function deleteAuction(auctionId) {
 	if (confirm("경매를 삭제하시겠습니까?")) {
 		location.href= "delete.do?auctionId=${auction.auctionId}";
 	}
 }
+
 function updateAuction(auctionId) {
 	if (confirm("경매를 수정하시겠습니까?")) {
 		location.href= "update.do?auctionId=${auction.auctionId}";
 	}
 }
+
 </script>
 
-<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+<script >
+function insertBid() {
+	bidForm.submit();
+}
+</script>
 
-	<div class="site-wrap" id="home-section">
-
-		<div class="site-mobile-menu site-navbar-target">
-			<div class="site-mobile-menu-header">
-				<div class="site-mobile-menu-close mt-3">
-					<span class="icon-close2 js-menu-toggle"></span>
-				</div>
-			</div>
-			<div class="site-mobile-menu-body"></div>
-		</div>
-
-		<header class="site-navbar site-navbar-target" role="banner">
-
-			<div class="container">
-				<div class="row align-items-center position-relative">
-
-					<div class="col-3">
-						<div class="site-logo">
-							<a href="<%=request.getContextPath()%>/home.do" class="font-weight-bold">Goodsom</a>
-						</div>
-					</div>
-
-					<div class="col-9  text-right">
-						<span class="d-inline-block d-lg-none">
-							<a href="#" class="text-primary site-menu-toggle js-menu-toggle py-5">
-							<span class="icon-menu h3 text-primary"></span></a>
-						</span>
-
-						<nav class="site-navigation text-right ml-auto d-none d-lg-block" role="navigation">
-							<ul class="site-menu main-menu js-clone-nav ml-auto ">
-								<li><a href="<%=request.getContextPath()%>/home.do" class="nav-link">Home</a></li>
-								<li><a href="<%=request.getContextPath()%>/groupBuy/list.do" class="nav-link">GroupBuy</a></li>
-								<li><a href="<%=request.getContextPath()%>/auction/list.do" class="nav-link">Auction</a></li>
-								<li><a href="#">Community</a></li>
-								<li><a href="<%=request.getContextPath()%>/user/detail.do">
-									<img src="<%=request.getContextPath()%>/resources/images/mypage.jpg" alt="Image" width="30px" height="20px" class="img-fluid">
-										${userSession.user.nickname}</a>
-								</li>
-							</ul>
-						</nav>
-					</div>
-				</div>
-			</div>
-
-		</header>
-
+<%@ include file="../IncludeBanner.jsp" %> 
 
 		<div class="site-section-cover">
 			<div class="container">
@@ -120,30 +82,23 @@ function updateAuction(auctionId) {
 						<p>
 							2020-06-14 <br /> 22 : 02 : 13
 						</p>
-					</div>
-
-					<br />
-					<br />
+					</div><br/><br/>
+					
 					<div class="d-flex">
-						<h5>베팅 금액</h5>
-						<input type="text" id="" class="form-control" placeholder="$30">
-						<input type="button" onClick="" value="신청하기" />
+						<form:form modelAttribute="BidForm" method="POST" action="/bid/create.do">
+							<h5>베팅 금액</h5>
+							<input type="text" id="bidPrice" class="form-control" placeholder="Input Your Bid Price">
+							<input type="button" value="신청하기" onClick="insertBid()" > 
+						</form:form>
 					</div>
 
 				</div>
-			</div>
-
-			<br />
-			<br />
+			</div><br/><br/>
+			
 			<div>
-
-				<h5>${auction.content}</h5>
-
-			</div>
-
-			<br />
-			<br />
-			<br />
+ 				<h5>${auction.content}</h5>
+			</div><br/><br/><br/>
+			
 			<c:if test="${isWriter eq true}">
 				<div class="form-group" align="right">
 					<a class="btn btn-primary py-3 px-5" href="javascript:updateAuction()" >수정</a>
