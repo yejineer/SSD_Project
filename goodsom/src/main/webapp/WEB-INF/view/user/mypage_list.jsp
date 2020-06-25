@@ -34,20 +34,20 @@
 				<br><br>
 				
 				<c:if test="${menuId eq 0}">
-					<h2>결제 목록 보기</h2><br>
+					<h2><b>결제 목록 보기</b></h2><br>
 				</c:if>
 				<c:if test="${menuId eq 1}">
-					<h2>경매 등록 목록 보기</h2><br>
+					<h2><b>경매 등록 목록 보기</b></h2><br>
 				</c:if>
 				<c:if test="${menuId eq 2}">
-					<h2>공동 구매 등록 목록 보기</h2><br>
+					<h2><b>공동 구매 등록 목록 보기</b></h2><br>
 				</c:if>
 				
-				<div class="row">
 				
 					<!-- 결제 목록 보기 -->
 					<c:if test="${menuId eq 0}">
-						<h3>경매 결제 목록</h3>
+						<h3>경매 결제 목록</h3><br />
+						<div class="row">
 						<c:forEach var="order" items="${auctionOrderList}" varStatus="status">
 							<div class="col-lg-4 col-md-6 mb-4">
 								<div class="post-entry-1 h-100">
@@ -79,8 +79,10 @@
 								</div>
 							</div>
 						</c:forEach>
+						</div>
 						
-						<h3>공동구매 결제 목록</h3>
+						<h3>공동구매 결제 목록</h3><br />
+						<div class="row">
 						<c:forEach var="order" items="${groupBuyOrderList}" varStatus="status">
 							<div class="col-lg-4 col-md-6 mb-4">
 								<div class="post-entry-1 h-100">
@@ -109,6 +111,7 @@
 								</div>
 							</div>
 						</c:forEach>
+						</div>
 					</c:if>
 
 					<!-- 경매 목록 보기 -->
