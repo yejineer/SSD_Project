@@ -5,9 +5,9 @@
 	
 <script>
 // submit
-function createGroupBuy() {
-	
-	groupBuyForm.submit();
+function groupBuySubmit(url) {
+	document.groupBuyForm.action=url;
+	document.groupBuyForm.submit();
 }
 
 // radio
@@ -123,20 +123,17 @@ function input_append(ff){
 				<div class="row" >
 					<div class="col-lg-8 mb-5">
 					
-						<form id="groupBuyForm" method="post" 
-						      action="<c:choose><c:when test='${createGroupBuy eq true}'>
-						      					<c:url value='/groupBuy/create.do' /></c:when>
-												<c:otherwise><c:url value='/groupBuy/update.do'/></c:otherwise></c:choose>">
+						<form:form modelAttribute="groupBuyForm" method="post" name="groupBuyForm">
 						
 							<div class="form-group row">
 								<div class="col-md-12">
 									<label for="title">제목</label> 
 									<c:choose>
 										<c:when test="${createGroupBuy eq true}">
-											<input type="text" id="title" name="groupBuy.title" class="form-control" placeholder="Title" >
+											<form:input type="text" id="title" path="groupBuy.title" class="form-control" placeholder="Title" />
 										</c:when>
 										<c:otherwise>
-											<input type="text" id="title" name="groupBuy.title" class="form-control" value="${groupBuyForm.groupBuy.title}" >
+											<form:input type="text" id="title" path="groupBuy.title" class="form-control" value="${groupBuyForm.groupBuy.title}" />
 										</c:otherwise>
 									</c:choose>
 								
@@ -145,8 +142,8 @@ function input_append(ff){
 							
 							<div class="form-group row">
 								<div class="col-md-12">
-									<label for="img">대표 이미지</label> </br>
-									<input type="file" id="img" name="groupBuy.img" class="form-control" value="input file">
+									<label for="img">대표 이미지</label> <br>
+									<form:input type="file" id="img" path="groupBuy.img" class="form-control" value="input file"/>
               					</div>
               				</div>
               				
@@ -155,10 +152,10 @@ function input_append(ff){
 									<label for="price">가격</label> 
 									<c:choose>
 										<c:when test="${createGroupBuy eq true}">
-											<input type="number" id="price" name="groupBuy.price" class="form-control" placeholder="price" >
+											<form:input type="number" id="price" path="groupBuy.price" class="form-control" placeholder="price" />
 										</c:when>
 										<c:otherwise>
-											<input type="number" id="price" name="groupBuy.price" class="form-control" value="${groupBuyForm.groupBuy.price}" >
+											<form:input type="number" id="price" path="groupBuy.price" class="form-control" value="${groupBuyForm.groupBuy.price}" />
 										</c:otherwise>
 									</c:choose>
 								
@@ -170,12 +167,12 @@ function input_append(ff){
 									<label for="content">상세설명</label> 
 									<c:choose>
 										<c:when test="${createGroupBuy eq true}">
-											<textarea id="content" name="groupBuy.content" class="form-control"
-												placeholder="상세 설명을 작성해주세요." cols="30" rows="10"></textarea>
+											<form:textarea id="content" path="groupBuy.content" class="form-control"
+												placeholder="상세 설명을 작성해주세요." cols="30" rows="10"></form:textarea>
 										</c:when>
 										<c:otherwise>
-											<textarea id="content" name="groupBuy.content" class="form-control"
-												placeholder="상세 설명을 작성해주세요." cols="30" rows="10"  > ${groupBuyForm.groupBuy.content} </textarea>
+											<form:textarea id="content" path="groupBuy.content" class="form-control"
+												placeholder="상세 설명을 작성해주세요." cols="30" rows="10" items="${groupBuyForm.groupBuy.content}" ></form:textarea>
 										</c:otherwise>
 									</c:choose>
 								</div>
@@ -183,17 +180,17 @@ function input_append(ff){
 							
 							<div class="form-group">
 								<label for="option">옵션</label>
-								<input type="button" id="addOption" value="추가" onclick="input_append(this.form)"> 
+								<input type="button" id="addOption" value="추가" onclick="input_append(this.form)"/> 
 								
 								<div id="optionBox">
 									<c:choose>
 										<c:when test="${createGroupBuy eq true}">
-											<input type="text" id="groupBuy.options" name="groupBuy.optionList" class="form-control"><br>
+											<form:input type="text" id="groupBuy.options" path="groupBuy.optionList" class="form-control"/><br>
 										</c:when>
 										<c:otherwise>
 											<c:forEach var="option" items="${groupBuyForm.groupBuy.options}" varStatus="status">
-												<input type="text" id="groupBuy.options" name="groupBuy.optionList" 
-														class="form-control" value="${option.name}"><br>
+												<form:input type="text" id="groupBuy.options" path="groupBuy.optionList" 
+														class="form-control" value="${option.name}"/><br>
 											</c:forEach>
 										</c:otherwise>
 									</c:choose>
@@ -206,38 +203,31 @@ function input_append(ff){
 
 							    <div class="radio-items">
 							        <div class="col-2">  <!-- width auto important, 소수점 백그라운드 이슈로 인해 auto 설정 -->
-							            <input type="radio" id="clothing" name="groupBuy.catId" class="only-sr" value="1"
-							            <c:if test="${groupBuyForm.groupBuy.catId eq 1}">checked</c:if> />
+							            <input type="radio" id="clothing" name="groupBuy.catId" class="only-sr" value="1" <c:if test="${groupBuyForm.groupBuy.catId eq 1}">checked</c:if> />
 							            <label for="clothing">의류</label>
 							        </div>
 							        <div class="col-2">
-							        	<input type="radio" id="schoolUniform" name="groupBuy.catId" class="only-sr" value="2"
-							        	<c:if test="${groupBuyForm.groupBuy.catId eq 2}">checked</c:if> />
+							        	<input type="radio" id="schoolUniform" name="groupBuy.catId" class="only-sr" value="2" <c:if test="${groupBuyForm.groupBuy.catId eq 2}">checked</c:if> />
 										<label for="schoolUniform">학잠</label>
 							        </div>
 							        <div class="col-2">
-							            <input type="radio" id="writing" name="groupBuy.catId" class="only-sr" value="3"
-							            <c:if test="${groupBuyForm.groupBuy.catId eq 3}">checked</c:if> />
+							            <input type="radio" id="writing" name="groupBuy.catId" class="only-sr" value="3" <c:if test="${groupBuyForm.groupBuy.catId eq 3}">checked</c:if> />
 							            <label for="writing">필기구</label>
 							        </div>
 							        <div class="col-2">
-							            <input type="radio" id="tumbler" name="groupBuy.catId" class="only-sr" value="4"
-							            <c:if test="${groupBuyForm.groupBuy.catId eq 4}">checked</c:if> />
+							            <input type="radio" id="tumbler" name="groupBuy.catId" class="only-sr" value="4" <c:if test="${groupBuyForm.groupBuy.catId eq 4}">checked</c:if> />
 										<label for="tumbler">텀블러</label>
 							        </div>
 							        <div class="col-2">
-							            <input type="radio" id="sticker" name="groupBuy.catId" class="only-sr" value="5"
-							            <c:if test="${groupBuyForm.groupBuy.catId eq 5}">checked</c:if> />
+							            <input type="radio" id="sticker" name="groupBuy.catId" class="only-sr" value="5" <c:if test="${groupBuyForm.groupBuy.catId eq 5}">checked</c:if> />
 										<label for="sticker">스티커</label>
 							        </div>
 							        <div class="col-2">
-							            <input type="radio" id="bagAndPouch" name="groupBuy.catId" class="only-sr" value="6"
-							            <c:if test="${groupBuyForm.groupBuy.catId eq 6}">checked</c:if> />
+							            <input type="radio" id="bagAndPouch" name="groupBuy.catId" class="only-sr" value="6" <c:if test="${groupBuyForm.groupBuy.catId eq 6}">checked</c:if> />
 										<label for="bagAndPouch">에코백/파우치</label>
 							        </div>
 							        <div class="col-2">
-							            <input type="radio" id="etc" name="groupBuy.catId" class="only-sr" value="7"
-							            <c:if test="${groupBuyForm.groupBuy.catId eq 7}">checked</c:if> />
+							            <input type="radio" id="etc" name="groupBuy.catId" class="only-sr" value="7" <c:if test="${groupBuyForm.groupBuy.catId eq 7}">checked</c:if> />
 										<label for="etc">기타</label>
 							        </div>
 							    </div>
@@ -251,10 +241,10 @@ function input_append(ff){
 										<div class="form-group mr-2">
 										<c:choose>
 											<c:when test="${createGroupBuy eq true}">
-												<input type="text" id="minNo" name="groupBuy.minNo" class="form-control" placeholder="ex) 40" >
+												<form:input type="text" id="minNo" path="groupBuy.minNo" class="form-control" placeholder="ex) 40" />
 											</c:when>
 											<c:otherwise>
-												<input type="text" id="minNo" name="groupBuy.minNo" class="form-control" value="${groupBuyForm.groupBuy.minNo}" >
+												<form:input type="text" id="minNo" path="groupBuy.minNo" class="form-control" value="${groupBuyForm.groupBuy.minNo}" />
 											</c:otherwise>
 										</c:choose>
 										
@@ -269,11 +259,11 @@ function input_append(ff){
 					    		  <div class="form-group mr-2">
 					              		<c:choose>
 											<c:when test="${createGroupBuy eq true}">
-												<input type="date" id="endDate" name="groupBuy.endDate" class="form-control" placeholder="ex) 2020-6-30" >
+												<input type="date" id="endDate" name="groupBuy.endDate" class="form-control" placeholder="ex) 2020-6-30" />
 											</c:when>
 											<c:otherwise>
 												<input type="date" id="endDate" name="groupBuy.endDate" class="form-control" 
-													   value="<fmt:formatDate value='${groupBuyForm.groupBuy.endDate}' pattern='yyyy-MM-dd'/>">
+													   value="<fmt:formatDate value='${groupBuyForm.groupBuy.endDate}' pattern='yyyy-MM-dd'/>"/>
 											</c:otherwise>
 										</c:choose>
 					              
@@ -284,9 +274,11 @@ function input_append(ff){
 							
 							<div class="form-group" align="right">
 								<a class="btn btn-primary py-3 px-5" href="<c:url value='/groupBuy/list.do'></c:url>">취소</a> &nbsp;
-								<input type="button" value="완료" onClick="createGroupBuy()" class="btn btn-primary py-3 px-5">
+								<input type="button" value="완료"  class="btn btn-primary py-3 px-5"
+										onClick="groupBuySubmit( <c:if test="${createGroupBuy eq true}">'<c:url value='/groupBuy/create.do'></c:url>'</c:if>
+																	<c:if test="${createGroupBuy eq false}">'<c:url value='/groupBuy/update.do'></c:url>'</c:if> )"/>
 							</div>
-						</form>
+						</form:form>
 					</div>
 				</div>
 
