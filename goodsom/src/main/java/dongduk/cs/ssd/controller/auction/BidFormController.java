@@ -10,8 +10,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import javax.servlet.http.HttpSession;
 import dongduk.cs.ssd.domain.Bid;
 import dongduk.cs.ssd.service.BidService;
+import dongduk.cs.ssd.domain.User;
+import dongduk.cs.ssd.service.UserService;
+import dongduk.cs.ssd.domain.Auction;
+import dongduk.cs.ssd.service.AuctionService;
 
 /**
  * @author Hyekyung Kim | kimdahyee
@@ -25,14 +30,16 @@ import dongduk.cs.ssd.service.BidService;
 */
 
 @Controller
-@RequestMapping("/bid/*.do")
+@RequestMapping("/auction/bid/create.do")
 public class BidFormController {
 
 	@Autowired
 	BidService bidService;
 	
-	private final String formViewName = "/auction/form";
-	private final String detailViewName = "/auction/detail";
+	@Autowired
+	UserService userService;
+	
+	private final String detailViewName = "auction/auction_detail";
 	
 	@ModelAttribute("bidForm")
 	public BidForm formBacking(HttpServletRequest request,
@@ -45,22 +52,29 @@ public class BidFormController {
 		}
 	}
 	
-	@RequestMapping(method = RequestMethod.GET)
-	public String form() {
-		return formViewName;
+	@RequestMapping(method = RequestMethod.GET) 
+	public String form( ) {
+		 return detailViewName; 
 	}
-	
+
 	@RequestMapping(method = RequestMethod.POST)
-	public String create(HttpServletRequest request, BidForm bidForm) {
+	public String create(HttpServletRequest request, BidForm bidForm, 
+			@RequestParam("bidPrice") int bidPrice) {
 		
 		if(bidForm.isNewBid()) { // create
-			System.out.println("Betting price checking: " + bidForm.getBid().getBidPrice());
+			System.out.println("Betting price checking: " + bidPrice);
+			
+			HttpSession session = request.getSession();
+			int userId = (int) session.getAttribute("userId");
+			
 			bidService.createBid(bidForm.getBid());
-		} /*
-			 * else { // update bidService.updateBid(bidForm.getBid()); }
-			 */
+			
+		} else { 
+			//update bidService.updateBid(bidForm.getBid()); 
+		}
 	
 		return detailViewName;
+		//return "redirect:/view/auction/detail.do?autionId=" + auctionId;
 	}
 
 	public void setBidService(BidService bidService) {

@@ -16,12 +16,24 @@ function updateAuction(auctionId) {
 	}
 }
 
-</script>
-
-<script >
-function insertBid() {
-	bidForm.submit();
+function submit() {
+	
+	form.submit();
 }
+
+/* function insertBid(auctionId) {
+	
+	if (form.bidPrice.value == "") {
+		alert("Input your bidPrice")
+		form.bidPrice.focus();
+		return false;
+	}
+
+	if (confirm("배팅하시겠습니까?")) {
+		location.href= "bid/create.do?auctionId=${auction.auctionId}";
+	}
+} */
+
 </script>
 
 <%@ include file="../IncludeBanner.jsp" %> 
@@ -84,11 +96,12 @@ function insertBid() {
 						</p>
 					</div><br/><br/>
 					
+					<!-- betting -->
 					<div class="d-flex">
-						<form:form modelAttribute="BidForm" method="POST" action="/bid/create.do">
+						<form:form name="form" modelAttribute="bidForm" method="post" action="<c:url value='/bid/create.do'/>">
 							<h5>베팅 금액</h5>
-							<input type="text" id="bidPrice" class="form-control" placeholder="Input Your Bid Price">
-							<input type="button" value="신청하기" onClick="insertBid()" > 
+							<input type="text" id="bidPrice" name="bid.bidPrice" class="form-control" placeholder="ex) 4000">
+							<input type="button" value="신청하기" onClick="submit()" > 
 						</form:form>
 					</div>
 
