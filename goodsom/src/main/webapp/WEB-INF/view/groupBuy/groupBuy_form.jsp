@@ -203,31 +203,31 @@ function input_append(ff){
 
 							    <div class="radio-items">
 							        <div class="col-2">  <!-- width auto important, 소수점 백그라운드 이슈로 인해 auto 설정 -->
-							            <input type="radio" id="clothing" name="groupBuy.catId" class="only-sr" value="1" <c:if test="${groupBuyForm.groupBuy.catId eq 1}">checked</c:if> />
+							        	<form:radiobutton id="clothing" path="groupBuy.catId" class="only-sr" value="1" checked="${groupBuyForm.groupBuy.catId==1 ? 'checked':''}"  />
 							            <label for="clothing">의류</label>
 							        </div>
 							        <div class="col-2">
-							        	<input type="radio" id="schoolUniform" name="groupBuy.catId" class="only-sr" value="2" <c:if test="${groupBuyForm.groupBuy.catId eq 2}">checked</c:if> />
+							        	<form:radiobutton id="schoolUniform" path="groupBuy.catId" class="only-sr" value="2" checked="${groupBuyForm.groupBuy.catId==2 ? 'checked':''}" />
 										<label for="schoolUniform">학잠</label>
 							        </div>
 							        <div class="col-2">
-							            <input type="radio" id="writing" name="groupBuy.catId" class="only-sr" value="3" <c:if test="${groupBuyForm.groupBuy.catId eq 3}">checked</c:if> />
+							            <form:radiobutton id="writing" path="groupBuy.catId" class="only-sr" value="3" checked="${groupBuyForm.groupBuy.catId==3 ? 'checked':''}" />
 							            <label for="writing">필기구</label>
 							        </div>
 							        <div class="col-2">
-							            <input type="radio" id="tumbler" name="groupBuy.catId" class="only-sr" value="4" <c:if test="${groupBuyForm.groupBuy.catId eq 4}">checked</c:if> />
+							            <form:radiobutton id="tumbler" path="groupBuy.catId" class="only-sr" value="4" checked="${groupBuyForm.groupBuy.catId==4 ? 'checked':''}" />
 										<label for="tumbler">텀블러</label>
 							        </div>
 							        <div class="col-2">
-							            <input type="radio" id="sticker" name="groupBuy.catId" class="only-sr" value="5" <c:if test="${groupBuyForm.groupBuy.catId eq 5}">checked</c:if> />
+							            <form:radiobutton id="sticker" path="groupBuy.catId" class="only-sr" value="5" checked="${groupBuyForm.groupBuy.catId==5 ? 'checked':''}" />
 										<label for="sticker">스티커</label>
 							        </div>
 							        <div class="col-2">
-							            <input type="radio" id="bagAndPouch" name="groupBuy.catId" class="only-sr" value="6" <c:if test="${groupBuyForm.groupBuy.catId eq 6}">checked</c:if> />
+							            <form:radiobutton id="bagAndPouch" path="groupBuy.catId" class="only-sr" value="6" checked="${groupBuyForm.groupBuy.catId==6 ? 'checked':''}" />
 										<label for="bagAndPouch">에코백/파우치</label>
 							        </div>
 							        <div class="col-2">
-							            <input type="radio" id="etc" name="groupBuy.catId" class="only-sr" value="7" <c:if test="${groupBuyForm.groupBuy.catId eq 7}">checked</c:if> />
+							            <form:radiobutton id="etc" path="groupBuy.catId" class="only-sr" value="7" checked="${groupBuyForm.groupBuy.catId==7 ? 'checked':''}" />
 										<label for="etc">기타</label>
 							        </div>
 							    </div>
@@ -259,11 +259,11 @@ function input_append(ff){
 					    		  <div class="form-group mr-2">
 					              		<c:choose>
 											<c:when test="${createGroupBuy eq true}">
-												<input type="date" id="endDate" name="groupBuy.endDate" class="form-control" placeholder="ex) 2020-6-30" />
+												<form:input type="date" id="endDate" path="groupBuy.endDate" class="form-control" placeholder="ex) 2020-6-30" />
 											</c:when>
 											<c:otherwise>
-												<input type="date" id="endDate" name="groupBuy.endDate" class="form-control" 
-													   value="<fmt:formatDate value='${groupBuyForm.groupBuy.endDate}' pattern='yyyy-MM-dd'/>"/>
+												<fmt:formatDate value='${groupBuyForm.groupBuy.endDate}' pattern='yyyy-MM-dd' var="dateFormat"/>
+												<form:input type="date" id="endDate" path="groupBuy.endDate" class="form-control" value="${dateFormat}"/>
 											</c:otherwise>
 										</c:choose>
 					              

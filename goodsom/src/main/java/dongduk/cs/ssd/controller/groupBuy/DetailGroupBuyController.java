@@ -41,9 +41,17 @@ public class DetailGroupBuyController {
 	UserService userService;
 
 	// home -> list
-	// form -> list
+	// form -> list : 이 경우, 생성됐던 객체를 없애야함
 	@RequestMapping("/groupBuy/list.do")
-	public ModelAndView groupBuyDetail(){
+	public ModelAndView groupBuyDetail(HttpServletRequest request){
+		HttpSession session = request.getSession();
+		GroupBuyForm groupBuyForm  = (GroupBuyForm)session.getAttribute("groupBuyForm");
+		
+		if(groupBuyForm != null) {
+			System.out.println("groupBuyForm: " + groupBuyForm.toString());
+			groupBuyForm = null;
+		}
+		
 		ModelAndView mav = new ModelAndView(GROUPBUY_LIST);
 		List<GroupBuy> groupBuyList = null;
 		

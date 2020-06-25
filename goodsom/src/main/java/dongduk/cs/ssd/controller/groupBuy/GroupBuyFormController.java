@@ -50,19 +50,20 @@ public class GroupBuyFormController {
 			throws Exception {
 		String reqPage = request.getServletPath();
 		String groupBuyId = request.getParameter("groupBuyId");
-		System.out.println("reqPage: " + reqPage);
-		
+		System.out.println("reqPage: " + reqPage + ", groupBuyId: " + groupBuyId);
 //		list -> form : create
 		if(groupBuyId == null) { 
 			GroupBuyForm groupBuyForm = new GroupBuyForm();
 //			newGroupBuy 이용
 			model.addAttribute("createGroupBuy", groupBuyForm.getNewGroupBuy());
+			System.out.println("createGroupBuy: " + groupBuyForm.getNewGroupBuy());
 			return groupBuyForm;
 			
 //		detail -> form :  update or show(after create) GroupBuy
 		} else {
 			GroupBuyForm groupBuyForm = new GroupBuyForm(groupBuyService.getGroupBuy(Integer.valueOf(groupBuyId)));
 			model.addAttribute("createGroupBuy", groupBuyForm.getNewGroupBuy());
+			System.out.println("createGroupBuy: " + groupBuyForm.getNewGroupBuy());
 			return groupBuyForm;
 		}
 	}
@@ -91,6 +92,7 @@ public class GroupBuyFormController {
 		UserSession user  = (UserSession)session.getAttribute("userSession");
 		String reqPage = request.getServletPath();
 		
+		
 //		글 작성자, default img 세팅
 		if(user.getUser().getUserId() == groupBuyForm.getGroupBuy().getUserId()) {
 			model.addAttribute("isWriter", true);
@@ -108,7 +110,6 @@ public class GroupBuyFormController {
 			groupBuyService.deleteOptions(groupBuyId);
 			groupBuyForm.getGroupBuy().optionSetting(groupBuyId);
 			groupBuyService.createOptions(groupBuyForm.getGroupBuy());
-			
 		} else { 												//		create	
 //			db
 //			groupBuy create 후, id 받아오기
@@ -119,6 +120,7 @@ public class GroupBuyFormController {
 			groupBuyForm.getGroupBuy().optionSetting(groupBuyId);
 			groupBuyService.createOptions(groupBuyForm.getGroupBuy());
 			
+			model.addAttribute("createGroupBuy", true);
 		}
 //		스케줄러 => create / update 시 endDate로 설정
 		groupBuyService.deadLineScheduler(groupBuyForm.getGroupBuy().getEndDate());
@@ -126,6 +128,7 @@ public class GroupBuyFormController {
 //		detail에 필요한 파라미터 세팅
 		GroupBuy groupBuy = groupBuyService.getGroupBuy(groupBuyId);
 		model.addAttribute("groupBuy", groupBuy);
+		
 		model.addAttribute("writer", user.getUser().getNickname());
 		model.addAttribute("dDay", groupBuy.getDday(groupBuy.getUploadDate().getTime(), groupBuy.getEndDate().getTime()));
 		
