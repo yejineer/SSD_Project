@@ -115,13 +115,16 @@ function bid() {
  				<h5>${auction.content}</h5>
 			</div><br/><br/><br/>
 			
-			<c:if test="${isWriter eq true}">
-				<div class="form-group" align="right">
+			<div class="form-group" align="right">
+			</div><br/>
+			
+			<div class="form-group" align="right">
+				<c:if test="${isWriter eq true}">
 					<a class="btn btn-primary py-3 px-5" href="javascript:updateAuction()" >수정</a>
 					<a class="btn btn-primary py-3 px-5" href="javascript:deleteAuction()" >삭제</a>
+				</c:if>
 					<a class="btn btn-primary py-3 px-5" href="<c:url value='/auction/list.do'></c:url>">목록</a>
-				</div>
-			</c:if>
+			</div>
 		</div>
 
 <%@ include file="../IncludeBottom.jsp" %>
