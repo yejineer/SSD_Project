@@ -1,5 +1,7 @@
 package dongduk.cs.ssd.dao;
 
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.dao.DataAccessException;
@@ -23,4 +25,6 @@ public interface GroupBuyDao {
 	List<GroupBuy> getGroupBuyList() throws DataAccessException;
 	
 //	List<GroupBuy> getGroupBuyListByKeyword(String keyword) throws DataAccessException;
+
+	 void closeEvent(Date curTime);
 }

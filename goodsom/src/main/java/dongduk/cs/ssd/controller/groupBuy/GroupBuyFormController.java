@@ -86,13 +86,12 @@ public class GroupBuyFormController {
 	public String updateOrSubmit(HttpServletRequest request,
 								@ModelAttribute("groupBuyForm") GroupBuyForm groupBuyForm, 
 								Model model) {
-		
+		int groupBuyId;
 		HttpSession session = request.getSession();
 		UserSession user  = (UserSession)session.getAttribute("userSession");
-		
 		String reqPage = request.getServletPath();
-		int groupBuyId;
 		
+//		글 작성자, default img 세팅
 		if(user.getUser().getUserId() == groupBuyForm.getGroupBuy().getUserId()) {
 			model.addAttribute("isWriter", true);
 		}else {
@@ -102,38 +101,34 @@ public class GroupBuyFormController {
 		if (groupBuyForm.getGroupBuy().getImg().trim() == "") {
 			groupBuyForm.getGroupBuy().initImg(request.getContextPath());
         }
-		
-//		update
-		if (reqPage.trim().equals("/groupBuy/update.do")) {
+
+		if (reqPage.trim().equals("/groupBuy/update.do")) { 	//		update
 			// db
-			System.out.println("before: " + groupBuyForm.getGroupBuy().toString());
-			
 			groupBuyId = groupBuyService.updateGroupBuy(groupBuyForm.getGroupBuy());
 			groupBuyService.deleteOptions(groupBuyId);
 			groupBuyForm.getGroupBuy().optionSetting(groupBuyId);
-			System.out.println("after: " + groupBuyForm.getGroupBuy().toString());
 			groupBuyService.createOptions(groupBuyForm.getGroupBuy());
 			
-//		create	
-		} else {
-			// db
+		} else { 												//		create	
+//			db
+//			groupBuy create 후, id 받아오기
 			groupBuyService.createGroupBuy(groupBuyForm.getGroupBuy());
-			
 			groupBuyId = groupBuyForm.getGroupBuy().getGroupBuyId();
 			
+//			받아온 id와 option 파라미터를 Option객체에 세팅 후, create option
 			groupBuyForm.getGroupBuy().optionSetting(groupBuyId);
 			groupBuyService.createOptions(groupBuyForm.getGroupBuy());
 			
 		}
+//		스케줄러 => create / update 시 endDate로 설정
+		groupBuyService.deadLineScheduler(groupBuyForm.getGroupBuy().getEndDate());
+		
+//		detail에 필요한 파라미터 세팅
 		GroupBuy groupBuy = groupBuyService.getGroupBuy(groupBuyId);
 		model.addAttribute("groupBuy", groupBuy);
 		model.addAttribute("writer", user.getUser().getNickname());
+		model.addAttribute("dDay", groupBuy.getDday(groupBuy.getUploadDate().getTime(), groupBuy.getEndDate().getTime()));
 		
-		// D-day 계산: 더 좋은 위치 없나..
-		long timeLength = groupBuy.getEndDate().getTime() - groupBuy.getUploadDate().getTime();
-		long dDay = timeLength / ( 24*60*60*1000); 
-		dDay = Math.abs(dDay);
-		model.addAttribute("dDay", dDay);
 		return GROUPBUY_DETAIL;
 	}
 		

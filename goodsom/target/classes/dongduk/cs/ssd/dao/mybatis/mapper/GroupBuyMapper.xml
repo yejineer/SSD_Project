@@ -98,4 +98,11 @@
     FROM GROUPBUYS
   </select>
   
+  <update id="closeEvent" parameterType="Date">
+    <![CDATA[
+     UPDATE GROUPBUYS SET STATE = 'closed'
+     WHERE ENDDATE <= #{curTime}
+    ]]>
+  </update>
+  
 </mapper>

@@ -1,5 +1,6 @@
 package dongduk.cs.ssd.dao.mybatis;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -53,6 +54,11 @@ public class MybatisGroupBuyDao implements GroupBuyDao {
 	
 	public List<GroupBuy> getGroupBuyList() throws DataAccessException{
 		return groupBuyMapper.getGroupBuyList();
+	}
+	
+
+	public void closeEvent(Date curTime) {
+		groupBuyMapper.closeEvent(curTime);
 	}
 	
 }

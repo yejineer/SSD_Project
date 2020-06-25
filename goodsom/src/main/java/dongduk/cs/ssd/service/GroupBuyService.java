@@ -1,5 +1,6 @@
 package dongduk.cs.ssd.service;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,7 +34,10 @@ public interface GroupBuyService {
 	
 	public List<GroupBuy> getGroupBuyList();
 	
+	
 	/*
 	public List<GroupBuy> getGroupBuyListByKeyword(String keyword);
 	*/
+	
+	public void deadLineScheduler(Date endDate);
 }

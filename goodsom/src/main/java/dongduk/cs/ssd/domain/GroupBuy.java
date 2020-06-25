@@ -239,6 +239,13 @@ public class GroupBuy {
 		}
 	}
 	
+	public long getDday(long start, long end) {
+		long timeLength = getEndDate().getTime() - getUploadDate().getTime();
+		long dDay = timeLength / ( 24*60*60*1000 ); 
+		dDay = Math.abs(dDay);
+		return dDay;
+	}
+	
 	public String toString() {
 		String str = "groupBuyId: " + groupBuyId + ", title: " + title + ", content: " + content + ", img: " + img 
 				+ ", minNo: " + minNo + ", uploadDate: " + uploadDate + ", endDate: " + endDate + ", catId: " + catId;
