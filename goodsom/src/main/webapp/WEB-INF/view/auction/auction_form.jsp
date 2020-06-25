@@ -4,12 +4,23 @@
 	pageEncoding="UTF-8"%>
 	
 <script>
-function submit() {
-	
-	auctionForm.submit();
+function submit(isNewAuction) {
+
 	alert("경매를 등록합니다.");
+	if (isNewAuction) {
+		auctionForm.action="/auction/create.do";
+	} else {
+		auctionForm.action="/auction/update.do";
+	}
+	auctionForm.submit();
 }
 </script>
+<style>
+.error {
+	color: #ff0000;
+	/* font-weight: bold; */
+}
+</style>
 
 <%@ include file="../IncludeBanner.jsp" %> 
 
@@ -31,28 +42,24 @@ function submit() {
 			<div class="container">
 				<div class="row" >
 					<div class="col-lg-8 mb-5">
-						<form id="auctionForm" method="post" enctype="multipart/form-data" 
-							action="<c:choose>
-										<c:when test='${auctionForm.newAuction}'><c:url value='/auction/create.do'/></c:when>
-									<c:otherwise>
-										<c:url value='/auction/update.do'/></c:otherwise>
-									</c:choose>">
-						
+						<form:form modelAttribute="auctionForm" method="post" enctype="multipart/form-data">
 							<c:if test='${!auctionForm.newAuction}'>
 								<input hidden="originalAuction" value='${auction}'>
 							</c:if>
 							
 							<div class="form-group row">
 								<div class="col-md-12">
-									<label for="title">제목</label> 
-									<c:choose>
+									<label for="auction.title">제목</label> &nbsp;&nbsp;&nbsp; <form:errors path="auction.title" cssClass="error"/> 
+										<form:input path="auction.title" class="form-control" placeholder="Title" />
+										
+									<%-- <c:choose>
 										<c:when test="${auctionForm.newAuction}">
-											<input type="text" id="title" name="auction.title" class="form-control" placeholder="Title" >
+											<form:input path="auction.title" class="form-control" placeholder="Title" />
 										</c:when>
 										<c:otherwise>
-											<input type="text" id="title" name="auction.title" class="form-control" value="${auctionForm.auction.title}" >
+											<form:input path="auction.title" class="form-control" value="${auctionForm.auction.title}" />
 										</c:otherwise>
-									</c:choose>
+									</c:choose> --%>
 								</div>
 							</div>
 							
@@ -65,15 +72,14 @@ function submit() {
 							
 							<div class="form-group row">
 								<div class="col-md-12">
-									<label for="content">상세 설명</label>
+									<label for="auction.content">상세 설명</label> &nbsp;&nbsp;&nbsp;<form:errors path="auction.content" cssClass="error"/>
 									<c:choose>
-										<c:when test="${createAuction eq true}">
-											<textarea id="content" name="auction.content" class="form-control"
-											placeholder="Write description." cols="30" rows="10"></textarea>
+										<c:when test="${auctionForm.newAuction}">
+											<form:textarea path="auction.content" class="form-control"
+											placeholder="Write description." cols="30" rows="10"/>
 										</c:when>
 										<c:otherwise>
-											<textarea id="content" name="auction.content" class="form-control"
-											placeholder="${auctionForm.auction.content}" cols="30" rows="10">${auctionForm.auction.content}</textarea>
+											<form:textarea path="auction.content" class="form-control" cols="30" rows="10"/>
 										</c:otherwise>
 									</c:choose>
 								</div>
@@ -81,15 +87,15 @@ function submit() {
 							
 							<div class="form-group row">
 								<div class="col-md-12">
-									<label for="startPrice">최소 입찰 금액</label> 
+									<label for="auction.startPrice">최소 입찰 금액</label> &nbsp;&nbsp;&nbsp; <form:errors path="price" cssClass="error"/>
 									<div class="d-flex">
 										<div class="form-group mr-2">
 										<c:choose>
-											<c:when test="${createAuction eq true}">
-												<input type="text" id="startPrice" class="form-control" name="auction.startPrice" placeholder="ex) 5000">
+											<c:when test="${auctionForm.newAuction}">
+												<form:input path="price" class="form-control" placeholder="10000"/>
 											</c:when>
 											<c:otherwise>
-												<input type="text" id="startPrice" class="form-control" name="auction.startPrice" value="${auctionForm.auction.startPrice}">
+												<form:input path="price" class="form-control" value="${auctionForm.auction.startPrice}"/>
 											</c:otherwise>
 										</c:choose>
 										</div>
@@ -98,15 +104,15 @@ function submit() {
 							</div>
 							
 							<div class="form-group">
-			              	<label for="endDate">마감일</label>
+			              	<label for="auction.endDate">마감일</label> &nbsp;&nbsp;&nbsp; <form:errors path="auction.endDate" cssClass="error"/>
 				                <div class="d-flex">
 					    		  <div class="form-group mr-2">
 					    		  	<c:choose>
-										<c:when test="${createAuction eq true}">
-							                <input type="date" id="endDate" class="form-control" name="auction.endDate">
+										<c:when test="${auctionForm.newAuction}">
+							                <input type="date" id="auction.endDate" class="form-control" name="auction.endDate">
 										</c:when>
 										<c:otherwise>
-											<input type="date" id="endDate" class="form-control" name="auction.endDate" 
+											<input type="date" id="auction.endDate" class="form-control" name="auction.endDate" 
 													value="<fmt:formatDate value='${auctionForm.auction.endDate}' pattern='yyyy-MM-dd'/>">
 										</c:otherwise>
 									</c:choose>
@@ -117,15 +123,18 @@ function submit() {
 							
 							<div class="form-group" align="right">
 								<a class="btn btn-primary py-3 px-5" href="<c:url value='/auction/list.do'></c:url>">Cancel</a> &nbsp;
-								<input type="button" value="Save" onClick="submit()" class="btn btn-primary py-3 px-5">
+								<input type="button" value="Save" onClick="submit(${auctionForm.newAuction})" class="btn btn-primary py-3 px-5">
 							</div>
-						</form>
+						</form:form>
 					</div>
+					
 				</div>
+				
 
 			</div>
+			
 		</div>
-	</div>
+
 
 <%@ include file="../IncludeBottom.jsp" %>
 

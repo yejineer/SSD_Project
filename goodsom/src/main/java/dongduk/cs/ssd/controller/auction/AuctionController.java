@@ -20,8 +20,8 @@ import dongduk.cs.ssd.service.AuctionService;
 import dongduk.cs.ssd.service.UserService;
 
 /**
- * @author Hyekyung Kim	& Yejin Lee
- * @since 2020.05.08	& 2020.06.14
+ * @author Hyekyung Kim	| Yejin Lee
+ * @since 2020.05.08	| 2020.06.14
  */
 
 

@@ -43,7 +43,7 @@ public class OrderFormValidator implements Validator {
 		
 		String phone = regReq.getOrder().getPhone();
 		if (!phone.equals("") && !phone.matches("^[0][1]\\d{1}-\\d{3,4}-\\d{4}$")) {
-			errors.rejectValue("phoneNumber", "typeMismatch"); // 01x-xxx-xxxx or 01x-xxxx-xxxx인지 검증
+			errors.rejectValue("phone", "typeMismatch"); // 01x-xxx-xxxx or 01x-xxxx-xxxx인지 검증
 		}
 	}
 

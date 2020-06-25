@@ -6,10 +6,13 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import org.springframework.format.annotation.DateTimeFormat;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.PositiveOrZero;
 
-import dongduk.cs.ssd.controller.auction.AuctionForm;
-import dongduk.cs.ssd.controller.user.UserSession;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @SuppressWarnings("serial")
 public class Auction implements Serializable {
@@ -18,12 +21,15 @@ public class Auction implements Serializable {
 //	private static final String CLOSED = "closed";
 	
 	int auctionId;
+	@NotEmpty
 	String title;
+	@NotEmpty
 	String content;
 	String img;
 	int startPrice;
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	Date uploadDate;
+	@NotNull
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	Date endDate;
 	int count;

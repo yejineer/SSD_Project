@@ -59,16 +59,4 @@
 	<!-- Annotation 기반 트랜잭션 설정 활성화 -->
 	<tx:annotation-driven transaction-manager="transactionManager" />
 
-	<bean id="messageSource"
-		class="org.springframework.context.support.ResourceBundleMessageSource">
-		<property name="basenames">
-			<list>
-				<value>messages.validation</value>
-			</list>
-		</property>
-		<property name="defaultEncoding" value="UTF-8" />
-	</bean>
-
-
-
 </beans>
