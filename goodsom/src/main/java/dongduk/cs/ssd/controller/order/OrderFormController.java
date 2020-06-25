@@ -20,6 +20,7 @@ import dongduk.cs.ssd.controller.groupBuy.LineGroupBuyForm;
 import dongduk.cs.ssd.controller.user.UserSession;
 import dongduk.cs.ssd.domain.GroupBuy;
 import dongduk.cs.ssd.domain.LineGroupBuy;
+import dongduk.cs.ssd.domain.Order;
 import dongduk.cs.ssd.domain.User;
 import dongduk.cs.ssd.service.GroupBuyService;
 import dongduk.cs.ssd.service.OrderService;
@@ -32,7 +33,7 @@ import dongduk.cs.ssd.validator.OrderFormValidator;
 
 
 @Controller
-@SessionAttributes({"userSession", "lineGroupBuyForm"})
+@SessionAttributes({"lineGroupBuyForm", "orderForm"})
 
 public class OrderFormController {
 	
@@ -76,10 +77,13 @@ public class OrderFormController {
 		
 //		lineGroupBuyForm.setLineGroupBuyListByItems();
 //		List<LineGroupBuy> lineGroupBuy = lineGroupBuyForm.getLineGroupBuyList();
-		GroupBuy groupBuy = groupBuyService.getGroupBuy(lineGroupBuyForm.getGroupBuyId());
-		lineGroupBuyForm.setUnitPrice(lineGroupBuyForm.getQuantity() * groupBuy.getPrice());
+		int groupBuyId = lineGroupBuyForm.getGroupBuyId();
+		GroupBuy groupBuy = groupBuyService.getGroupBuy(groupBuyId);
+		int unitPrice = lineGroupBuyForm.getQuantity() * groupBuy.getPrice();
+		lineGroupBuyForm.setUnitPrice(unitPrice);
 		
 		mav.addObject("lineGroupBuyForm", lineGroupBuyForm);
+		
 		orderForm.getOrder().initOrder(user, lineGroupBuyForm, null);
 		return mav;
 		
@@ -103,11 +107,12 @@ public class OrderFormController {
 			ModelAndView mav = new ModelAndView("order/order_create");
 			return mav;
 		}
-		
+//		System.out.println("[controller] orderId = " + orderForm.getOrder().getOrderId());
 		orderService.createOrder(orderForm.getOrder());
 		
-		ModelAndView mav = new ModelAndView("payment_detail");
+		ModelAndView mav = new ModelAndView("order/payment_detail");
 		mav.addObject("order", orderForm.getOrder());
+		
 //		mav.addObject("message", "Thank you, your order has been submitted.");
 		status.setComplete();  // remove sessionLineGroupBuy and orderForm from session
 		return mav;

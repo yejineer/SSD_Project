@@ -105,46 +105,91 @@
 
 
 		<div class="site-section">
-			<div class="container">
-			
-			<!-- 구현 시작 -->
-				<a class="btn btn-primary py-3 px-5" href="<c:url value='<%=request.getContextPath()%>/mypage/list.do'>
-							<c:param name="menuId" value ="1" />
-						</c:url>">경매 등록 목록보기</a> &nbsp;&nbsp;
-				<a class="btn btn-primary py-3 px-5" href="<c:url value='<%=request.getContextPath()%>/mypage/list.do'>
-							<c:param name="menuId" value ="2" />
-						</c:url>">공동구매 등록 목록보기</a> &nbsp;&nbsp;
-				<a class="btn btn-primary py-3 px-5" href="<c:url value='<%=request.getContextPath()%>/mypage/list.do' />">
-					결제 목록보기</a>
-				<br><br>
-
-			</div>
-		</div>
-
+			<section class="ftco-section ftco-car-details">
+				<div class="container">
+					<div class="row justify-content-center">
+						<div class="col-md-12">
+							<div class="car-details">
+								<div class="text text-left">
+									<h1>
+										<b>세부 결제 내역</b>
+									</h1>
+									<br />
+									<h3>
+									<button disabled>공동구매</button> &nbsp;
+									${order.groupBuy.title}</h3>
+								</div>
+								<br>
+								
+								<div class="col-lg-4 col-md-6 mb-4">
+								<div class="post-entry-1 h-100">
+									<div class="post-entry-1-contents">
+										<h4>
+											<a href="<c:url value='../groupBuy/detail.do'>
+															<c:param name="groupBuyId" value="${order.groupBuy.groupBuyId}" />
+													 </c:url>"> ${order.groupBuy.title}</a>
+										</h4>
 		
-		<h2>세부 결제 내역</h2>
-
-		<br>
-		<c:forEach var="order" items="${orderList}" varStatus="status">
-			<div class="col-lg-4 col-md-6 mb-4">
-				<div class="post-entry-1 h-100">
-					<h3>${order.orderId}</h3>
-					<!-- 결제한 공동구매/경매의 이미지를 넣자. -->
-					<div class="post-entry-1-contents">
-
-						<h2>
-							<a href="order/detail.do">${order.totalPrice}</a>
-						</h2>
-						<span class="meta d-inline-block mb-3">${order.orderDate} </span>
-						<!-- auction에서 얻은 userId로 user를 구하여 nickname 호출  -->
-						<p>${order.phone}</p>
-						<!-- ??? -->
-						<!-- 요약할 방법을 찾아보자. -->
+										<span class="meta d-inline-block mb-3">
+											<span class="mx-2"> ${order.lineGroupBuy.unitPrice}원</span> &nbsp;&nbsp; 
+											<span class="mx-2"> ${order.lineGroupBuy.quantity}개</span> &nbsp;&nbsp;
+											<span class="mx-2"> 옵션 : ${order.lineGroupBuy.option}</span> <br>
+										</span>
+									</div>
+								</div>
+								<br />
+								<div class="d-flex">
+									<h4>TotalPrice : ${order.lineGroupBuy.unitPrice}원</h4> &nbsp;
+								</div>
+							</div>
+							<br>
+								
+								<div class="text text-left">
+									<table class="table table-striped">
+										<tbody>
+											<tr>
+												<th scope="row">cardInfo</th>
+												<td>${order.cardBank} ${order.cardNo}</td>
+											</tr>
+											<tr>
+												<th scope="row">validDate</th>
+												<td>${order.validDate}</td>
+											</tr>
+											<tr>
+												<th scope="row">CVC</th>
+												<td>${order.cvc}</td>
+											</tr>
+											<tr>
+												<th scope="row">Address</th>
+												<td>${order.address1} -
+													${order.address2} - ${order.address3}</td>
+											</tr>
+											<tr>
+												<th scope="row">Phone</th>
+												<td>${order.phone}</td>
+											</tr>
+											<tr>
+												<th scope="row">RefundAccount</th>
+												<td>${order.refundBank} ${order.refundAccount}</td>
+											</tr> 
+										</tbody>
+									</table>
+								</div>
+								<br>
+								<br>
+								
+								<div class="container">
+									<a class="btn btn-primary py-3 px-5"href="<c:url value='/mypage/list.do'>
+																				<c:param name="menuId" value ="0" />
+																			  </c:url>">목록</a> &nbsp;
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
-			</div>
-		</c:forEach>
-		${order.title}
+			</section>
+		</div>
+
 
 
 
@@ -201,6 +246,7 @@
 			<div class="container-fluid">
 		</div>
 
+	</div>
 	</div>
 
 	<script src="js/jquery-3.3.1.min.js"></script>

@@ -39,7 +39,7 @@ public class OrderForm implements Serializable {
 	
 	@Override
 	public String toString() {
-		return "OrderForm [order=" + order + ", newOrder=" + newOrder + "]";
+		return "OrderForm [order=" + order.toString() + ", newOrder=" + newOrder + "]";
 	}
 	
 }

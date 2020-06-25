@@ -34,7 +34,7 @@
 								
 								<div class="form-group">
 									<label for="email">Email</label> &emsp;
-									<form:input path="user.email" class="form-control" /><br/>
+									<form:input path="user.email" class="form-control" readonly="true"/><br/>
 								</div>
 								
 						        <div class="form-group">
@@ -55,7 +55,7 @@
 								
 								<div class="form-group">	
 									<label for="userName">Name</label> &emsp;
-									<form:input path="user.userName" class="form-control" /><br/>
+									<form:input path="user.userName" class="form-control" readonly="true"/><br/>
 								</div>
 								
 								<div class="form-group">
