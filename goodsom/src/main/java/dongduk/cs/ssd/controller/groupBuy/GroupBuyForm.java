@@ -21,12 +21,12 @@ public class GroupBuyForm implements Serializable {
 	
 	public GroupBuyForm() {
 		this.groupBuy = new GroupBuy();
-		this.newGroupBuy = true;
+		this.setNewGroupBuy(true);
 	}
 	
 	public GroupBuyForm(GroupBuy groupBuy) {
 		this.groupBuy = groupBuy;
-		this.newGroupBuy = false;
+		this.setNewGroupBuy(false);
 	}
 	
 	public GroupBuy getGroupBuy() {
