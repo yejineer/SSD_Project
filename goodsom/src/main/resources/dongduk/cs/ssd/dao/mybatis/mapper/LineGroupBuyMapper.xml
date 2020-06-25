@@ -9,7 +9,7 @@
 		</selectKey>
 		INSERT INTO LineGroupBuys (lineId, quantity, selectOption, unitPrice,
 		groupBuyId, orderId)
-		VALUES (#{lineId}, #{quantity}, #{selectOption},
+		VALUES (#{lineId}, #{quantity}, #{option},
 		#{unitPrice}, #{groupBuyId}, #{orderId})
 	</insert>
 </mapper>

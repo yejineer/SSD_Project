@@ -168,6 +168,7 @@ function createAuction() {
 					<div class="col-lg-8 mb-5">
 						<h2>결제 정보 입력</h2>
 						<form:form modelAttribute="orderForm" class="bg-light p-5 contact-form">
+							<form:input type="hidden" path="order.orderId" value="${order.userId}"/>
 							<div class="form-group">
 								<label for="account">카드정보</label> 
 								<div class="d-flex">
