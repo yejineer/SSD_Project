@@ -38,7 +38,7 @@ public class BidFormController {
 	public BidForm formBacking(HttpServletRequest request,
 			@ModelAttribute("bid") Bid bid) throws Exception{
 		
-		if(bid.getIsBidded()) { // update 
+		if(bid.getIsBidded()) { // update  //배팅한 이력이 있으면
 			return new BidForm(bidService.getBid(bid.getBidId()));
 		} else { // create
 			return new BidForm();
@@ -51,14 +51,14 @@ public class BidFormController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public String createOrUpdate(HttpServletRequest request,
-			BidForm bidForm) {
+	public String create(HttpServletRequest request, BidForm bidForm) {
 		
 		if(bidForm.isNewBid()) { // create
+			System.out.println("Betting price checking: " + bidForm.getBid().getBidPrice());
 			bidService.createBid(bidForm.getBid());
-		} else { // update
-			//bidService.updateBid(bidForm.getBid());
-		}
+		} /*
+			 * else { // update bidService.updateBid(bidForm.getBid()); }
+			 */
 	
 		return detailViewName;
 	}

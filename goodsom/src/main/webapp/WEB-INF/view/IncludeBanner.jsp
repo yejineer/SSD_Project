@@ -1,33 +1,54 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-	
+<body data-spy="scroll" data-target=".site-navbar-target"
+	data-offset="300">
 
-<!doctype html>
-<html lang="ko">
 
-<head>
-<title>Goodsom &mdash; SSD Final Project</title>
-<meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<div class="site-wrap" id="home-section">
 
-<link
-	href="https://fonts.googleapis.com/css?family=Poppins:400,900|Source+Serif+Pro&display=swap"
-	rel="stylesheet">
+		<div class="site-mobile-menu site-navbar-target">
+			<div class="site-mobile-menu-header">
+				<div class="site-mobile-menu-close mt-3">
+					<span class="icon-close2 js-menu-toggle"></span>
+				</div>
+			</div>
+			<div class="site-mobile-menu-body"></div>
+		</div>
 
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/fonts/icomoon/style.css">
 
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/bootstrap.min.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/bootstrap-datepicker.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/jquery.fancybox.min.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/owl.carousel.min.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/owl.theme.default.min.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/fonts/flaticon/font/flaticon.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/aos.css">
 
-<!-- MAIN CSS -->
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/style.css">
+		<header class="site-navbar site-navbar-target" role="banner">
 
-</head>
+			<div class="container">
+				<div class="row align-items-center position-relative">
+
+					<div class="col-3">
+						<div class="site-logo">
+							<a href="<%=request.getContextPath()%>/home.do" class="font-weight-bold">GoodSom</a>
+						</div>
+					</div>
+
+					<div class="col-9  text-right">
+
+
+						<span class="d-inline-block d-lg-none"><a href="#"
+							class="text-primary site-menu-toggle js-menu-toggle py-5"><span
+								class="icon-menu h3 text-primary"></span></a></span>
+
+
+
+						<nav class="site-navigation text-right ml-auto d-none d-lg-block" role="navigation">
+							<ul class="site-menu main-menu js-clone-nav ml-auto ">
+								<li><a href="<%=request.getContextPath()%>/home.do" class="nav-link">Home</a></li>
+								<li><a href="<%=request.getContextPath()%>/groupBuy/list.do" class="nav-link">GroupBuy</a></li>
+								<li><a href="<%=request.getContextPath()%>/auction/list.do" class="nav-link">Auction</a></li>
+								<li><a href="#">Community</a></li>
+								<li><a href="<%=request.getContextPath()%>/user/detail.do"><img src="<%=request.getContextPath()%>/resources/images/mypage.jpg" alt="Image" 
+								width="30px" height="20px" class="img-fluid"> ${userSession.user.nickname}</a></li>
+							</ul>
+						</nav>
+					</div>
+
+
+				</div>
+			</div>
+
+		</header>
