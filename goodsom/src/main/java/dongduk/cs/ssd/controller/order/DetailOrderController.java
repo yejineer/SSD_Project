@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import dongduk.cs.ssd.controller.user.UserSession;
+import dongduk.cs.ssd.domain.Auction;
 import dongduk.cs.ssd.domain.GroupBuy;
 import dongduk.cs.ssd.domain.Order;
 import dongduk.cs.ssd.service.GroupBuyService;
@@ -20,6 +21,7 @@ import dongduk.cs.ssd.service.OrderService;
  */
 
 @Controller
+@SessionAttributes("userSession")
 public class DetailOrderController {
 	
 	@Autowired
@@ -27,17 +29,36 @@ public class DetailOrderController {
 	@Autowired
 	GroupBuyService groupBuyService;
 	
-	@RequestMapping("/order/detail.do")
-	public ModelAndView handleRequest(
+	@RequestMapping("/order/groupBuy/detail.do")
+	public ModelAndView groupBuyHandleRequest(
 			@ModelAttribute("userSession") UserSession userSession,
 			@RequestParam("orderId") int orderId
 			) throws Exception {
 		// UserSession의 userId와 orderId에 해당하는 Order의 userId가 같은지 판단하는 코드 추가
 			ModelAndView mav = new ModelAndView("order/payment_detail");
 			Order order = orderService.getOrder(orderId);
-			System.out.println("[Controller] ORDER : " + order);
+			
+			// 공동구매
 			GroupBuy groupBuy = orderService.getGroupBuy(orderId);
 			order.setGroupBuy(groupBuy);
+			
+			mav.addObject("order", order);
+			return mav;
+	}
+	
+	@RequestMapping("/order/auction/detail.do")
+	public ModelAndView auctionHandleRequest(
+			@ModelAttribute("userSession") UserSession userSession,
+			@RequestParam("orderId") int orderId
+			) throws Exception {
+		// UserSession의 userId와 orderId에 해당하는 Order의 userId가 같은지 판단하는 코드 추가
+			ModelAndView mav = new ModelAndView("order/payment_detail");
+			Order order = orderService.getOrder(orderId);
+
+			// 경매
+			Auction auction = orderService.getAuction(orderId);
+			order.setAuction(auction);
+			
 			mav.addObject("order", order);
 			return mav;
 	}
