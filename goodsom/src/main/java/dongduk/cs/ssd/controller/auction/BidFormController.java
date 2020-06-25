@@ -58,11 +58,10 @@ public class BidFormController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public String create(HttpServletRequest request, BidForm bidForm, 
-			@RequestParam("bidPrice") int bidPrice) {
+	public String create(HttpServletRequest request, BidForm bidForm) {
 		
 		if(bidForm.isNewBid()) { // create
-			System.out.println("Betting price checking: " + bidPrice);
+			//System.out.println("Betting price checking: " + bidPrice);
 			
 			HttpSession session = request.getSession();
 			int userId = (int) session.getAttribute("userId");

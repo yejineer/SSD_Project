@@ -98,7 +98,7 @@ function submit() {
 					
 					<!-- betting -->
 					<div class="d-flex">
-						<form:form name="form" modelAttribute="bidForm" method="post" action="<c:url value='/bid/create.do'/>">
+						<form:form name="form" modelAttribute="bidForm" method="post" action="<c:url value='/auction/bid/create.do'/>">
 							<h5>베팅 금액</h5>
 							<input type="text" id="bidPrice" name="bid.bidPrice" class="form-control" placeholder="ex) 4000">
 							<input type="button" value="신청하기" onClick="submit()" > 
