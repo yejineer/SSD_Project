@@ -21,40 +21,69 @@ function deleteGroupBuy(url) {
 // 수량 증감
 function change(num) {
 	var x = document.form;
-	var y = Number(x.quantity.value) + num;
+	var y = Number(x.count.value) + num;
 	if (y < 1)
 		y = 1;
-	x.quantity.value = y;
+	x.count.value = y;
+}
+
+function orderCreate() {
+	var itemList = document.getElementsByName("item");
+	if (itemList.length == 0) {
+		alert('(옵션, 수량)쌍을 추가해주세요.');
+		return;
+	}
+	form.submit();
 }
 
 // (option, quantity) 선택
-function addItem() {
+function addItem(selectedQuantity) {
 	var list = document.getElementsByName("item");
 	var target = document.getElementById("options");
-	
 	var selectedOption = target.options[target.selectedIndex].text;
-	var selectedQuantity = document.getElementById("quantity").value;
-
+	
 	var id = list.length;
+	
+	if (selectedOption == '옵션 선택') {
+		alert('옵션을 선택해주세요.');
+		return;
+	} 
 	
  	for(var i = 0; i < list.length; i++){
 		list[i].setAttribute("value", list[i].value);
  	}
    	app = document.getElementById("itemBox")
-  	app.innerHTML += "<div id='itemDiv' class='d-flex'><input type='text' id='item' name='item' value='"
+  	app.innerHTML += "<div id='itemDiv' class='d-flex'>"
+  		+ "<input type='text' id='item' name='item' value='"
   	  	+ selectedOption + ", " + selectedQuantity + "' class='form-control' readonly>" 
+  	  	+ "<input type='hidden' id='option' name='option' value='" + selectedOption + "' />"
+  	  	+ "<input type='hidden' id='quantity' name='quantity' value='" + selectedQuantity + "' />"
   	  	+ "&nbsp;&nbsp;<input type='button' name='del_btn' id='" + id 
   	  	+ "' value='X' onClick='javascript:delItem(this.id);'></div>";
 
+  	  	/* LineGroupBuy를 list로 받아올 경우 */
+  	/* app.innerHTML += "<div id='itemDiv' class='d-flex'>"
+  		+ "<input type='text' id='item' name='item' value='"
+  	  	+ selectedOption + ", " + selectedQuantity + "' class='form-control' readonly>" 
+  	  	+ "<input type='hidden' id='lineGroupBuys[" + id + "].option' name='option' value='" + selectedOption + "' />"
+  	  	+ "<input type='hidden' id='lineGroupBuys[" + id + "].quantity' name='quantity' value='" + selectedQuantity + "' />"
+  	  	+ "&nbsp;&nbsp;<input type='button' name='del_btn' id='" + id 
+  	  	+ "' value='X' onClick='javascript:delItem(this.id);'></div>"; */
+	  
 }
 
 // (option, quantity) 삭제(선택취소)
 function delItem(id) {
-	var oaqList = document.getElementsByName("item");
+	var itemList = document.getElementsByName("item");
 	var btnList = document.getElementsByName("del_btn");
 
-	oaqList[id].outerHTML="";
+	var optionList = document.getElementsByName("option");
+	var quantityList = document.getElementsByName("quantity");
+	
+	itemList[id].outerHTML="";
 	btnList[id].outerHTML="";
+	optionList[id].outerHTML="";
+	quantityList[id].outerHTML="";
 	
 	btnList = document.getElementsByName("del_btn");
  	for(var i = 0; i < btnList.length; i++){
@@ -101,15 +130,13 @@ function delItem(id) {
 					<br />
 					
 					<form:form name="form" modelAttribute="lineGroupBuyForm" action="../order/groupBuy/create.do" method="GET">
-							
 					<div class="alert alert-primary" role="alert">
 							<div class="d-flex" style="margin-bottom: 10px;">
 								<h5>옵션</h5> &nbsp;&nbsp; 
-								<select name="option" id="options">
-									<option selected disabled>옵션 선택</option>
-									<c:forEach var="option" items="${groupBuy.options}"
-										varStatus="status">
-										<option value="${option.name}">${option.name}</option>
+								<select name="options" id="options">
+									<option value="chooseOption" selected disabled>옵션 선택</option>
+									<c:forEach var="option" items="${groupBuy.options}" varStatus="status">
+										<option value="${options.name}">${option.name}</option>
 									</c:forEach>
 
 								</select> <br />
@@ -119,15 +146,17 @@ function delItem(id) {
 								<h5>수량</h5> &nbsp;&nbsp; 
 								<input type="button" name="minus" value="-"
 									onclick="change(-1)" /> &nbsp; 
-								<input type="text" id="quantity" name="quantity" value="1"
+								<input type="text" name="count" id="count" value="1"
 									style="text-align: center; width: 50px;" readonly /> &nbsp; 
 								<input type="button" name="plus" value="+"
 									onclick="change(1)" /> &nbsp; &nbsp; 
-								<input type="button" value="추가하기" onclick="addItem()" />
+								<input type="button" value="추가하기" onclick="addItem(count.value)" />
 							</div>
 					</div>
+					
+					
 					<div id="itemBox"> </div>
-					<input type="submit" value="신청하기" />
+					<input type="button" onclick="orderCreate()" value="신청하기" />
 					</form:form>
 					<br/><br/>
   

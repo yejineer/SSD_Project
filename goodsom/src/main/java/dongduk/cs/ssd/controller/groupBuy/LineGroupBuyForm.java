@@ -13,10 +13,38 @@ import dongduk.cs.ssd.domain.LineGroupBuy;
 public class LineGroupBuyForm {
 
 	int groupBuyId;
+	GroupBuy groupBuy = new GroupBuy();
+	
 	int quantity;
 	String option;
 	int unitPrice;
-	GroupBuy groupBuy = new GroupBuy();
+	
+//	LineGroupBuy를 LIST로 가져올 경우
+//	List<LineGroupBuy> lineGroupBuys;
+//	
+//	public List<LineGroupBuy> getLineGroupBuys() {
+//		return lineGroupBuys;
+//	}
+//
+//	public void setLineGroupBuys(List<LineGroupBuy> lineGroupBuys) {
+//		this.lineGroupBuys = lineGroupBuys;
+//	}
+//	
+//	@Override
+//	public String toString() {
+//		return "LineGroupBuyForm [groupBuyId=" + groupBuyId + ", groupBuy=" + groupBuy + ", lineGroupBuys="
+//				+ lineGroupBuys + "]";
+//	}
+//
+//	public int getTotalPrice() {
+//		int totalPrice = 0;
+//
+//		for (LineGroupBuy lineGroupBuy : lineGroupBuys) {
+//			totalPrice += lineGroupBuy.getUnitPrice();
+//		}
+//		return totalPrice;
+//	}
+	
 	
 	public int getGroupBuyId() {
 		return groupBuyId;
@@ -25,7 +53,7 @@ public class LineGroupBuyForm {
 	public void setGroupBuyId(int groupBuyId) {
 		this.groupBuyId = groupBuyId;
 	}
-
+	
 	public int getQuantity() {
 		return quantity;
 	}
@@ -57,7 +85,7 @@ public class LineGroupBuyForm {
 	public void setGroupBuy(GroupBuy groupBuy) {
 		this.groupBuy = groupBuy;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "LineGroupBuyForm [groupBuyId=" + groupBuyId + ", quantity=" + quantity + ", option=" + option
@@ -127,13 +155,5 @@ public class LineGroupBuyForm {
 //		lineGroupBuyList.remove(lineId);
 //	}
 //	
-//	public int getTotalPrice() {
-//		int totalPrice = 0;
-//
-//		for (LineGroupBuy lineGroupBuy : lineGroupBuyList) {
-//			totalPrice += lineGroupBuy.getUnitPrice();
-//		}
-//		return totalPrice;
-//	}
-	
+
 }
