@@ -259,10 +259,10 @@ function input_append(ff){
 					    		  <div class="form-group mr-2">
 					              		<c:choose>
 											<c:when test="${createGroupBuy eq true}">
-												<form:input type="date" id="endDate" path="groupBuy.endDate" class="form-control" placeholder="ex) 2020-6-30" />
+												<input type="date" id="endDate" name="groupBuy.endDate" class="form-control" placeholder="ex) 2020-6-30" />
 											</c:when>
 											<c:otherwise>
-												<form:input type="date" id="endDate" path="groupBuy.endDate" class="form-control" 
+												<input type="date" id="endDate" name="groupBuy.endDate" class="form-control" 
 													   value="<fmt:formatDate value='${groupBuyForm.groupBuy.endDate}' pattern='yyyy-MM-dd'/>"/>
 											</c:otherwise>
 										</c:choose>
@@ -276,7 +276,7 @@ function input_append(ff){
 								<a class="btn btn-primary py-3 px-5" href="<c:url value='/groupBuy/list.do'></c:url>">취소</a> &nbsp;
 								<input type="button" value="완료"  class="btn btn-primary py-3 px-5"
 										onClick="groupBuySubmit( <c:if test="${createGroupBuy eq true}">'<c:url value='/groupBuy/create.do'></c:url>'</c:if>
-																	<c:if test="${createGroupBuy eq false}"><c:url value='/groupBuy/update.do'></c:url></c:if> )"/>
+																	<c:if test="${createGroupBuy eq false}">'<c:url value='/groupBuy/update.do'></c:url>'</c:if> )"/>
 							</div>
 						</form:form>
 					</div>
