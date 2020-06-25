@@ -34,4 +34,7 @@ public interface AuctionService {
 	
 	void increaseCount(Auction auction);
 	
+//	스케줄러
+	public void deadLineScheduler(Date endDate);
+	
 }

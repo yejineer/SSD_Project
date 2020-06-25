@@ -17,7 +17,7 @@
       AND AUCTIONID = #{param2}
   </select> 
   
-  <select id="getMaxPrice" resultType="int">
+  <select id="getMaxPrice" resultType="String">
     SELECT BIDPRICE
 	FROM ( SELECT BIDPRICE
 			FROM BIDS

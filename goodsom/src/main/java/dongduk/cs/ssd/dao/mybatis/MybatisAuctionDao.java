@@ -83,5 +83,10 @@ public class MybatisAuctionDao implements AuctionDao {
 	public void increaseCount(Auction auction) throws DataAccessException {
 		auctionMapper.increaseCount(auction);
 	}
+	
+//	스케줄러
+	public void closeEvent(Date curTime) {
+		auctionMapper.closeEvent(curTime);
+	}
 		
 }

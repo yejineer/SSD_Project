@@ -33,8 +33,8 @@ import dongduk.cs.ssd.service.AuctionService;
 import dongduk.cs.ssd.service.impl.AuctionServiceImpl;
 
 /**
- * @author Hyekyung Kim | Yejin Lee
- * @since 2020.05.08	| 2020.06.13
+ * @author Hyekyung Kim | Yejin Lee  | kimdahyee
+ * @since 2020.05.08	| 2020.06.13 | 2020.06.25
  */
 
 @Controller
@@ -123,6 +123,9 @@ public class AuctionFormController implements ApplicationContextAware  {
 			auctionService.createAuction(auctionForm.getAuction());
 			model.addAttribute("auction", auctionForm.getAuction()); 
 		}
+		
+//		스케줄러 => create / update 시 endDate로 설정
+		auctionService.deadLineScheduler(auctionForm.getAuction().getEndDate());
 
 //		작성자만 수정/삭제 버튼 보이게 하기 위해 isWriter, 작성자 출력 위해 writer값을 넘겨준다.
 		model.addAttribute("isWriter", true);

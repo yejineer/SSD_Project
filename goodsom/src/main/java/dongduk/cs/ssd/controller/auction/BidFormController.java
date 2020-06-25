@@ -84,7 +84,12 @@ public class BidFormController {
 		java.util.Date utilDate = new java.util.Date();
 		java.sql.Date bidDate = new java.sql.Date(utilDate.getTime());
 		
-		if(bidPrice < bidService.getMaxPrice(auctionId)) {	
+		int maxPrice = bidPrice;
+		if (bidService.getMaxPrice(auctionId) != null) {
+			maxPrice = Integer.parseInt(bidService.getMaxPrice(auctionId));
+		}
+		
+		if(bidPrice < maxPrice) {	
 			 response.setCharacterEncoding("UTF-8");
 		     PrintWriter writer = response.getWriter();
 		     writer.println("<script type='text/javascript'>");
@@ -97,7 +102,6 @@ public class BidFormController {
 		Bid bid = new Bid(userId, auctionId, bidPrice, bidDate);
 		bidService.createBid(bid);
 		
-		int maxPrice = bidService.getMaxPrice(auctionId);
 		auctionService.updateAuctionMaxPrice(maxPrice, auctionId); //auction table maxPrice update
 		
 		Auction auction = auctionService.getAuction(auctionId);

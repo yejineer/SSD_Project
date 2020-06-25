@@ -63,4 +63,11 @@
   	SET  COUNT=#{count}
   	WHERE AUCTIONID=#{auctionId}
   </update>
+  
+  <update id="closeEvent" parameterType="Date">
+    <![CDATA[
+     UPDATE AUCTIONS SET STATE = 'closed'
+     WHERE ENDDATE <= #{curTime}
+    ]]>
+  </update>
 </mapper>

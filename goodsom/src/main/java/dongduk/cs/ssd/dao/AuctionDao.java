@@ -34,4 +34,7 @@ public interface AuctionDao {
 	boolean isAuctionClosed(int auctionId, Date currentTime) throws DataAccessException;
 	
 	void increaseCount(Auction auction) throws DataAccessException;
+	
+//	스케줄러
+	void closeEvent(Date curTime);
 }

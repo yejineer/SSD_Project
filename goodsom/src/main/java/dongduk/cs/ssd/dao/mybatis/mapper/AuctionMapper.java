@@ -33,4 +33,7 @@ public interface AuctionMapper { // AuctionMapper.xml에서 구현한 method 이
 	
 //	boolean isAuctionClosed(int auctionId, Date endDate) throws DataAccessException;
 	void increaseCount(Auction auction) throws DataAccessException;
+	
+//	스케줄러
+	void closeEvent(Date curTime);
 }
