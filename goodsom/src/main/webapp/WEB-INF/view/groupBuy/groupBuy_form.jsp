@@ -264,7 +264,7 @@ function input_append(ff){
 					    		  <div class="form-group mr-2">
 					              		<c:choose>
 											<c:when test="${createGroupBuy eq true}">
-												<form:input type="date" id="endDate" path="groupBuy.endDate" class="form-control" placeholder="ex) 2020-6-30" />
+												<form:input type="date" id="endDate" path="groupBuy.endDate" class="form-control" placeholder="ex) 2020-6-30 14:22" />
 											</c:when>
 											<c:otherwise>
 												<fmt:formatDate value='${groupBuyForm.groupBuy.endDate}' pattern='yyyy-MM-dd' var="dateFormat"/>

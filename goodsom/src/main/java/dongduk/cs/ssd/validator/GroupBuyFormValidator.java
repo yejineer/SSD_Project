@@ -19,16 +19,16 @@ public class GroupBuyFormValidator implements Validator{
 	
 	
 		// 필수 입력 항목
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "order.cardBank", "required");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "order.cardNo", "required");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "order.validDate", "required");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "order.cvc", "required");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "order.address1", "required");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "order.address2", "required");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "order.address3", "required");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "order.phone", "required");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "order.refundBank", "required");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "order.refundAccount", "required");
+//		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "order.cardBank", "required");
+//		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "order.cardNo", "required");
+//		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "order.validDate", "required");
+//		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "order.cvc", "required");
+//		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "order.address1", "required");
+//		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "order.address2", "required");
+//		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "order.address3", "required");
+//		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "order.phone", "required");
+//		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "order.refundBank", "required");
+//		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "order.refundAccount", "required");
 	
 		
 	//	String zipcode = regReq.getAddress().getZipcode();

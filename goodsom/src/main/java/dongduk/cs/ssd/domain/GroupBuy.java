@@ -24,7 +24,7 @@ public class GroupBuy {
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	Date uploadDate;
 
-	@DateTimeFormat(pattern ="yyyy-MM-dd")
+	@DateTimeFormat(pattern ="yyyy-MM-dd HH:mm")
 	Date endDate;
 	
 	int count;

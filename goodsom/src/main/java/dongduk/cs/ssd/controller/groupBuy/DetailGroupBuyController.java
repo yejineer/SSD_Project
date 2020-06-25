@@ -41,17 +41,11 @@ public class DetailGroupBuyController {
 	UserService userService;
 
 	// home -> list
-	// form -> list : 이 경우, 생성됐던 객체를 없애야함
+	// form -> list : detail에서 취소 후 왔을 때 해당정보 유지
 	@RequestMapping("/groupBuy/list.do")
 	public ModelAndView groupBuyDetail(HttpServletRequest request){
 		HttpSession session = request.getSession();
-		GroupBuyForm groupBuyForm  = (GroupBuyForm)session.getAttribute("groupBuyForm");
-		
-		if(groupBuyForm != null) {
-			System.out.println("groupBuyForm: " + groupBuyForm.toString());
-			groupBuyForm = null;
-		}
-		
+	
 		ModelAndView mav = new ModelAndView(GROUPBUY_LIST);
 		List<GroupBuy> groupBuyList = null;
 		
@@ -61,7 +55,7 @@ public class DetailGroupBuyController {
 		if (groupBuyList == null) {
 			System.out.println("[DetailGroupBuyController] groupBuyList가 null");
 		} else {
-			mav.addObject("groupBuyList", groupBuyList);		
+			mav.addObject("groupBuyList", groupBuyList);
 		}
 		return mav;
 	}
