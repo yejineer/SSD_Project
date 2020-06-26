@@ -16,8 +16,7 @@
 					class="row align-items-center text-center justify-content-center">
 					<div class="col-lg-6">
 						<h1 class="text-white mb-4">GroupBuy</h1>
-						<p class="lead">Lorem ipsum dolor sit amet, consectetur
-							adipisicing elit maxime nemo placeat dolor est.</p>
+						<p class="lead">솜솜이들의 공동구매를 위한 공간</p>
 
 					</div>
 				</div>

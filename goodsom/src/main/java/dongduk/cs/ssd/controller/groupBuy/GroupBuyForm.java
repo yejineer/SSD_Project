@@ -2,21 +2,24 @@ package dongduk.cs.ssd.controller.groupBuy;
 
 import java.io.Serializable;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import dongduk.cs.ssd.domain.GroupBuy;
 
 /**
- * @author Seonmi Hwang
- * @since 2020.05.06
+ * @author Seonmi Hwang | HK
+ * @since 2020.05.06	| 2020.06.26
  */
 
 @SuppressWarnings("serial")
 public class GroupBuyForm implements Serializable {
 	
+	@Valid
 	@Autowired
 	private GroupBuy groupBuy;
-	
+
 	public boolean newGroupBuy;
 	
 	public GroupBuyForm() {

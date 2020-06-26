@@ -114,8 +114,7 @@ function input_append(ff){
 					class="row align-items-center text-center justify-content-center">
 					<div class="col-lg-6">
 						<h1 class="text-white mb-4">Add GroupBuy</h1>
-						<p class="lead">Lorem ipsum dolor sit amet, consectetur
-							adipisicing elit maxime nemo placeat dolor.</p>
+						<p class="lead">솜솜이들의 공동구매를 위한 공간</p>
 
 					</div>
 				</div>
@@ -133,6 +132,8 @@ function input_append(ff){
 							<div class="form-group row">
 								<div class="col-md-12">
 									<label for="title">제목</label> 
+									<form:errors path="groupBuy.title" cssClass="error"/> 
+									
 									<c:choose>
 										<c:when test="${createGroupBuy eq true}">
 											<form:input type="text" id="title" path="groupBuy.title" class="form-control" placeholder="Title" />
@@ -154,7 +155,7 @@ function input_append(ff){
               				
 							<div class="form-group row">
 								<div class="col-md-12">
-									<label for="price">가격</label> 
+									<label for="price">가격</label>
 									<c:choose>
 										<c:when test="${createGroupBuy eq true}">
 											<form:input type="number" id="price" path="groupBuy.price" class="form-control" placeholder="price" />
@@ -170,6 +171,8 @@ function input_append(ff){
 							<div class="form-group row">
 								<div class="col-md-12">
 									<label for="content">상세설명</label> 
+									<form:errors path="groupBuy.content" cssClass="error"/>
+									
 									<c:choose>
 										<c:when test="${createGroupBuy eq true}">
 											<form:textarea id="content" path="groupBuy.content" class="form-control"
@@ -242,6 +245,7 @@ function input_append(ff){
 							<div class="form-group row">
 								<div class="col-md-12">
 									<label for="minNo">최소수량</label> 
+									
 									<div class="d-flex">
 										<div class="form-group mr-2">
 										<c:choose>
@@ -260,6 +264,8 @@ function input_append(ff){
 			              	
 			              	<div class="form-group">
 			              	<label for="endDate">마감일</label>
+			              	<form:errors path="groupBuy.endDate" cssClass="error"/>
+			              	
 				                <div class="d-flex">
 					    		  <div class="form-group mr-2">
 					              		<c:choose>

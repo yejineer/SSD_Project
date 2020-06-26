@@ -6,10 +6,12 @@ import java.util.Calendar;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -85,12 +87,21 @@ public class GroupBuyFormController {
 	// form -> detail : create & update
 	@RequestMapping(value= {"/create.do", "/update.do"}, method=RequestMethod.POST)
 	public String updateOrSubmit(HttpServletRequest request,
-								@ModelAttribute("groupBuyForm") GroupBuyForm groupBuyForm, 
-								Model model) {
+			@Valid @ModelAttribute("groupBuyForm") GroupBuyForm groupBuyForm,
+			BindingResult result, Model model) {
 		int groupBuyId;
 		HttpSession session = request.getSession();
 		UserSession user  = (UserSession)session.getAttribute("userSession");
 		String reqPage = request.getServletPath();
+		String requestUrl = reqPage.trim();
+		
+		if(result.hasErrors()) {
+			if(requestUrl.equals("/groupBuy/update.do")) {
+				return "redirect:form.do?groupBuyId=" + groupBuyForm.getGroupBuy().getGroupBuyId();
+			}else {
+				return GROUPBUY_FORM;
+			}
+		}
 		
 		
 //		글 작성자, default img 세팅

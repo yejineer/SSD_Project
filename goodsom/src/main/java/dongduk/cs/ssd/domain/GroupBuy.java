@@ -5,6 +5,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -13,17 +15,19 @@ public class GroupBuy {
 	private static final int MENUID_GROUPBUY = 2;
 	
 	int groupBuyId;
+	@NotEmpty
 	String title;
+	@NotEmpty
 	String content;
 	String img;
 	int minNo;
 	List<Option> options = new ArrayList<Option>();
 	String[] optionList;
-	int tmpOptionId;
 	
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	Date uploadDate;
 
+	@NotNull
 	@DateTimeFormat(pattern ="yyyy-MM-dd HH:mm")
 	Date endDate;
 	
@@ -193,14 +197,6 @@ public class GroupBuy {
 	public void setOptionList(String[] optionList) {
 		this.optionList = optionList;
 	}
-	
-	public int getTmpOptionId() {
-		return tmpOptionId;
-	}
-
-	public void setTmpOptionId(int tmpOptionId) {
-		this.tmpOptionId = tmpOptionId;
-	}
 
 	public GroupBuy() {
 	}
@@ -234,7 +230,6 @@ public class GroupBuy {
 			Option op = new Option();
 			op.setName(optionList[i]);
 			op.setGroupBuyId(groupBuyId);
-			//op.setOptionId(tmpOptionId);
 			options.add(i, op);
 		}
 	}
