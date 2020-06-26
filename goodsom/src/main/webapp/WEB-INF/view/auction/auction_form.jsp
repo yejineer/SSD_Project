@@ -114,7 +114,7 @@ function submit(isNewAuction) {
 					    		  <div class="form-group mr-2">
 					    		  	<c:choose>
 										<c:when test="${auctionForm.newAuction}">
-							                <input type="date" id="auction.endDate" class="form-control" name="auction.endDate">
+							                <input type="date" id="auction.endDate" class="form-control" name="auction.endDate" placeholder='yyyy-MM-dd HH:mm'>
 										</c:when>
 										<c:otherwise>
 											<input type="date" id="auction.endDate" class="form-control" name="auction.endDate" 

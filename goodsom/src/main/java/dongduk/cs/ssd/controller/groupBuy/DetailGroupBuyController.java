@@ -72,6 +72,10 @@ public class DetailGroupBuyController {
 		
 		// db : option & groupBuy
 		GroupBuy groupBuy = groupBuyService.getGroupBuy(groupBuyId);
+		System.out.println("groupBuy: " + groupBuy.toString());
+		System.out.println("user: " + user.getUser().getUserId());
+		
+		
 		
 		if (user.getUser().getUserId() == groupBuy.getUserId()) {
 			model.addAttribute("isWriter", true);
