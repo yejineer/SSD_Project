@@ -261,10 +261,10 @@ public class GroupBuy {
 	}
 	
 	public void orderSet(int quentity) {
-		int total = getParticipants() + quentity;
-		float tmpRate = (total / getMinNo()) * 100;
+		float total = getParticipants() + quentity;
+		float tmpRate = (total / (float)getMinNo()) * 100;
 		
-		setParticipants(total);
+		setParticipants((int)total);
 		setRate((int) tmpRate);
 		
 		if(tmpRate >= 100) {

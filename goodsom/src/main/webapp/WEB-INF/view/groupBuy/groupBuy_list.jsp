@@ -32,7 +32,11 @@
 					<c:forEach var="groupBuy" items="${groupBuyList}" varStatus="status">
 						<div class="col-lg-4 col-md-6 mb-4">
 							<div class="post-entry-1 h-100">
-								<c:if test="${groupBuy.state eq 'proceeding'}">
+							
+								<c:if test="${groupBuy.state=='proceeding' || groupBuy.state=='achieved'}" >
+									<c:if test="${groupBuy.state eq 'achieved'}">
+										<a>달성된 공동구매입니다.<br> 마감일까지 참여 가능합니다.</a>
+									</c:if>
 									<a href="<c:url value='/groupBuy/detail.do'>
 									<c:param name="groupBuyId" value="${groupBuy.groupBuyId}"/>
 											</c:url>">
@@ -52,7 +56,7 @@
 										<span class="mx-2">달성률</span> 
 											<a href="#"><fmt:formatNumber value="${groupBuy.participants}"/>명 / </a>
 											<a href="#"><fmt:formatNumber value="${groupBuy.minNo}"/>명</a>
-											<a href="#"><fmt:formatNumber value="${groupBuy.rate}" pattern="###%"/></a>
+											<a href="#"><fmt:formatNumber value="${groupBuy.rate}"/>%</a>
 										</span>
 										<p>${groupBuy.content}</p>
 									</div>
