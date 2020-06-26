@@ -34,7 +34,7 @@ public interface GroupBuyService {
 	
 	public List<GroupBuy> getGroupBuyList();
 	
-	
+	public void increaseCount(GroupBuy groupBuy);
 	/*
 	public List<GroupBuy> getGroupBuyListByKeyword(String keyword);
 	*/

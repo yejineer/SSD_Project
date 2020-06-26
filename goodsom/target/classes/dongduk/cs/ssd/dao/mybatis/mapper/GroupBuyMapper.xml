@@ -98,6 +98,12 @@
     FROM GROUPBUYS
   </select>
   
+  <update id="increaseCount" parameterType="dongduk.cs.ssd.domain.GroupBuy">
+  	UPDATE GROUPBUYS
+  	SET COUNT=#{count}+1
+  	WHERE GROUPBUYID=#{groupBuyId}
+  </update>
+  
   <update id="closeEvent" parameterType="Date">
     <![CDATA[
      UPDATE GROUPBUYS SET STATE = 'closed'

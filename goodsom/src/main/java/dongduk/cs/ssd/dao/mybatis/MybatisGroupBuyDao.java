@@ -56,6 +56,9 @@ public class MybatisGroupBuyDao implements GroupBuyDao {
 		return groupBuyMapper.getGroupBuyList();
 	}
 	
+	public void increaseCount(GroupBuy groupBuy) throws DataAccessException{
+		groupBuyMapper.increaseCount(groupBuy);
+	}
 
 	public void closeEvent(Date curTime) {
 		groupBuyMapper.closeEvent(curTime);

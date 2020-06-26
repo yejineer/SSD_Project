@@ -63,6 +63,9 @@ public class GroupBuyServiceImpl implements GroupBuyService {
 		return groupBuyDao.getGroupBuyList();
 	}
 
+	public void increaseCount(GroupBuy groupBuy) {
+		groupBuyDao.increaseCount(groupBuy);
+	}
 	/*
 	public List<GroupBuy> getGroupBuyListByKeyword(String keyword) {
 		return groupBuyDao.getGroupBuyListByKeyword(keyword);

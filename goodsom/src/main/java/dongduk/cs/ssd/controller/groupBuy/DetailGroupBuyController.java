@@ -45,8 +45,6 @@ public class DetailGroupBuyController {
 	// form -> list : detail에서 취소 후 왔을 때 해당정보 유지
 	@RequestMapping("/groupBuy/list.do")
 	public ModelAndView groupBuyDetail(HttpServletRequest request){
-		HttpSession session = request.getSession();
-	
 		ModelAndView mav = new ModelAndView(GROUPBUY_LIST);
 		List<GroupBuy> groupBuyList = null;
 		
@@ -75,8 +73,10 @@ public class DetailGroupBuyController {
 		System.out.println("groupBuy: " + groupBuy.toString());
 		System.out.println("user: " + user.getUser().getUserId());
 		
+		// 조회수 증가
+		groupBuyService.increaseCount(groupBuy);
 		
-		
+		// 작성자인지 여부 
 		if (user.getUser().getUserId() == groupBuy.getUserId()) {
 			model.addAttribute("isWriter", true);
 		} else {
