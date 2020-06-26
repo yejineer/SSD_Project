@@ -1,5 +1,6 @@
 package dongduk.cs.ssd.domain;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -247,11 +248,15 @@ public class GroupBuy {
 		}
 	}
 	
-	public long getDday(long start, long end) {
+	public String getDday(long start, long end) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일");
+		
 		long timeLength = getEndDate().getTime() - getUploadDate().getTime();
+		long hour = (timeLength % ( 24*60*60*1000 )) / ( 60*60*1000 ); 
 		long dDay = timeLength / ( 24*60*60*1000 ); 
-		dDay = Math.abs(dDay);
-		return dDay;
+		String str = dDay + "일 " + hour + "시간  (" + sdf.format(getEndDate()) + "까지)";
+		System.out.println("str");
+		return str;
 	}
 	
 	public String toString() {

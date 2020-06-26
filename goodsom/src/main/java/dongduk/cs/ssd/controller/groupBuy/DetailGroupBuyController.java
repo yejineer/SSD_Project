@@ -89,6 +89,9 @@ public class DetailGroupBuyController {
 		
 		mav.addObject("groupBuy", groupBuy);
 		mav.addObject("writer", userService.getUserByUserId(groupBuy.getUserId()).getNickname());
+		model.addAttribute("dDay", groupBuy.getDday(groupBuy.getUploadDate().getTime(), groupBuy.getEndDate().getTime()));
+		
+		
 		return mav;
 	}
 	

@@ -27,8 +27,6 @@ import dongduk.cs.ssd.service.GroupBuyService;
  * @since 2020.05.06	| 2020.06.26
  */
 
-
-
 @Controller
 //@SessionAttributes("groupBuySession")
 @SessionAttributes("groupBuyForm")
@@ -75,7 +73,6 @@ public class GroupBuyFormController {
 		String reqPage = request.getServletPath();
 		String requestUrl = reqPage.trim();
 		
-		System.out.println("*** updateOrSubmit : " + requestUrl);
 		if(result.hasErrors()) {
 			if(requestUrl.equals("/groupBuy/update.do")) {
 				return "redirect:form.do?groupBuyId=" + groupBuyForm.getGroupBuy().getGroupBuyId();
@@ -83,8 +80,7 @@ public class GroupBuyFormController {
 				return GROUPBUY_FORM;
 			}
 		}
-		
-		
+
 //		글 작성자, default img 세팅
 		if(user.getUser().getUserId() == groupBuyForm.getGroupBuy().getUserId()) {
 			model.addAttribute("isWriter", true);
@@ -118,7 +114,6 @@ public class GroupBuyFormController {
 //		detail에 필요한 파라미터 세팅
 		GroupBuy groupBuy = groupBuyService.getGroupBuy(groupBuyId);
 		model.addAttribute("groupBuy", groupBuy);
-		
 		model.addAttribute("writer", user.getUser().getNickname());
 		model.addAttribute("dDay", groupBuy.getDday(groupBuy.getUploadDate().getTime(), groupBuy.getEndDate().getTime()));
 		
