@@ -27,8 +27,8 @@ import dongduk.cs.ssd.service.OrderService;
 import dongduk.cs.ssd.validator.OrderFormValidator;
 
 /**
- * @author Seonmi Hwang
- * @since 2020.05.04
+ * @author Seonmi Hwang	| HK
+ * @since 2020.05.04	| 2020.06.26
  */
 
 
@@ -105,7 +105,11 @@ public class OrderFormController {
 			return mav;
 		}
 
+		int quentity = orderForm.getOrder().getLineGroupBuy().getQuantity();
+		orderForm.getOrder().getGroupBuy().orderSet(quentity);
+		
 		orderService.createOrder(orderForm.getOrder());
+		groupBuyService.updateState(orderForm.getOrder().getGroupBuy());
 		
 		ModelAndView mav = new ModelAndView("order/payment_detail");
 		mav.addObject("order", orderForm.getOrder());

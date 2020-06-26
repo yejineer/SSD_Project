@@ -15,6 +15,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 public class GroupBuy {
 	private static final String PROCEEDING = "proceeding";
+	private static final String ACHIEVED = "achieved";
 	private static final int MENUID_GROUPBUY = 2;
 	
 	int groupBuyId;
@@ -257,6 +258,21 @@ public class GroupBuy {
 		String str = dDay + "일 " + hour + "시간  (" + sdf.format(getEndDate()) + "까지)";
 		System.out.println("str");
 		return str;
+	}
+	
+	public void orderSet(int quentity) {
+		int total = getParticipants() + quentity;
+		float tmpRate = (total / getMinNo()) * 100;
+		
+		setParticipants(total);
+		setRate((int) tmpRate);
+		
+		if(tmpRate >= 100) {
+			setState(ACHIEVED);
+		}
+		System.out.println("quentity: " + quentity + "minNo: " + getMinNo());
+		System.out.println("total: " + total + "rate: " + getRate() + "state: " + getState());
+		
 	}
 	
 	public String toString() {

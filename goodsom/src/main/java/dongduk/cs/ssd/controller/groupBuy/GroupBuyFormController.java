@@ -93,14 +93,13 @@ public class GroupBuyFormController {
         }
 
 		if (reqPage.trim().equals("/groupBuy/update.do")) { 	//		update
-			// db
+//			db: groupBuy update & option 삭제 후, 다시 생성
 			groupBuyId = groupBuyService.updateGroupBuy(groupBuyForm.getGroupBuy());
 			groupBuyService.deleteOptions(groupBuyId);
 			groupBuyForm.getGroupBuy().optionSetting(groupBuyId);
 			groupBuyService.createOptions(groupBuyForm.getGroupBuy());
 		} else { 												//		create	
-//			db
-//			groupBuy create 후, id 받아오기
+//			db: groupBuy create 후, id 받아오기
 			groupBuyService.createGroupBuy(groupBuyForm.getGroupBuy());
 			groupBuyId = groupBuyForm.getGroupBuy().getGroupBuyId();
 			

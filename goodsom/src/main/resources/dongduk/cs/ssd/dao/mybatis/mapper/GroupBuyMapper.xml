@@ -104,6 +104,12 @@
   	WHERE GROUPBUYID=#{groupBuyId}
   </update>
   
+  <update id="updateState" parameterType="dongduk.cs.ssd.domain.GroupBuy">
+  	UPDATE GROUPBUYS
+  	SET PARTICIPANTS=#{participants}, RATE=#{rate}, STATE=#{state}
+  	WHERE GROUPBUYID=#{groupBuyId}
+  </update>
+  
   <update id="closeEvent" parameterType="Date">
     <![CDATA[
      UPDATE GROUPBUYS SET STATE = 'closed'

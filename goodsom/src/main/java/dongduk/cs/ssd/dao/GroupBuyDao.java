@@ -26,5 +26,7 @@ public interface GroupBuyDao {
 	void increaseCount(GroupBuy groupBuy) throws DataAccessException;
 //	List<GroupBuy> getGroupBuyListByKeyword(String keyword) throws DataAccessException;
 
-	 void closeEvent(Date curTime);
+	void updateState(GroupBuy groupBuy) throws DataAccessException;
+	
+	void closeEvent(Date curTime);
 }

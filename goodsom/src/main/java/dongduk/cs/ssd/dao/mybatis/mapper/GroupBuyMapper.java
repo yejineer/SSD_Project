@@ -29,6 +29,8 @@ public interface GroupBuyMapper { // GroupBuyMapper.xml에서 구현한 method �
 	
 	void increaseCount(GroupBuy groupBuy) throws DataAccessException;
 	
+	void updateState(GroupBuy groupBuy) throws DataAccessException;
+	
 	void closeEvent(Date curTime);
 	
 }

@@ -71,6 +71,9 @@ public class GroupBuyServiceImpl implements GroupBuyService {
 		return groupBuyDao.getGroupBuyListByKeyword(keyword);
 	}
 	*/
+	public void updateState(GroupBuy groupBuy) {
+		groupBuyDao.updateState(groupBuy);
+	}
 //	스케줄러
 	public void deadLineScheduler(Date endDate) {
 		Runnable updateTableRunner = new Runnable() {	
