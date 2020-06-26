@@ -1,20 +1,14 @@
 package dongduk.cs.ssd.service;
 
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import dongduk.cs.ssd.domain.GroupBuy;
-import dongduk.cs.ssd.domain.Option;
+
 
 /**
- * @author Seonmi Hwang
- * @since 2020.05.06
- */
-/**
- * @author HK
- * @since 2020.06.22
+ * @author Seonmi Hwang | HK
+ * @since 2020.05.06	| 2020.06.26
  */
 
 
