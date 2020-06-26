@@ -32,6 +32,10 @@ public class MybatisBidDao implements BidDao {
 		return bidMapper.getMaxPrice(auctionId);
 	}
 	
+	public Bid getBidByMaxPrice(int bidPrice, int auctionId) throws DataAccessException {
+		return bidMapper.getBidByMaxPrice(bidPrice, auctionId);
+	}
+	
 	public void createBid(Bid bid) throws DataAccessException {
 		bidMapper.createBid(bid);
 	}

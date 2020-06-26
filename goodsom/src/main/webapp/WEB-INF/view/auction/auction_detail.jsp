@@ -93,18 +93,26 @@ function bid() {
 						<h4 class="text-danger">
 							<fmt:formatNumber value="${auction.maxPrice}" pattern="#,###원" />
 						</h4>
-						<p>
-							2020-06-14 <br /> 22 : 02 : 13
-						</p>
+						
+						<p>${bid.bidDate} <br/> ${bid.userId}</p>
+						
 					</div><br/><br/>
 					
 					<!-- betting -->
 					<div class="d-flex">
 						<form name="form" method="post" action="<c:url value='/auction/bid/create.do'/>">
+						
 							<h5>베팅 금액</h5>
 							<input type="text" id="bidPrice" name="bidPrice" class="form-control" placeholder="ex) 4000">
 							<input type="hidden" id="auctionId" name="auctionId" value="${auction.auctionId}">
-							<input type="button" value="신청하기" onClick="bid()" > 
+							<c:if test="${auction.state eq 'proceeding'}">
+								<input type="button" value="신청하기" onClick="bid()" > 
+							</c:if>
+								
+							<c:if test="${auction.state eq 'closed'}">
+								<input type="button" value="신청하기" onClick="bid()" disabled> 
+							</c:if>
+							
 						</form>
 					</div>
 
