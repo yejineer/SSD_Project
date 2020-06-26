@@ -26,6 +26,12 @@
 	WHERE ROWNUM = '1'
   </select> 
   
+  <select id="getBidByMaxPrice" resultType="Bid">
+    SELECT BIDID, BIDPRICE, BIDDATE, USERID, AUCTIONID
+	FROM BIDS
+	WHERE BIDPRICE = #{param1} AND AUCTIONID = #{param2}
+  </select> 
+  
   <insert id="createBid" parameterType="Bid">
   	INSERT INTO BIDS
   	  (BIDID, BIDPRICE, BIDDATE, USERID, AUCTIONID)

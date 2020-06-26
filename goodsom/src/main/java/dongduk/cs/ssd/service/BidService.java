@@ -16,6 +16,8 @@ public interface BidService {
 	
 	String getMaxPrice(int auctionId);
 	
+	Bid getBidByMaxPrice(int bidPrice, int auctionId);
+	
 	void createBid(Bid bid);
 	
 	//void updateBid(Bid bid);

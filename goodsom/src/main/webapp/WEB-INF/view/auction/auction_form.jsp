@@ -109,7 +109,8 @@ function submit(isNewAuction) {
 							</div>
 							
 							<div class="form-group">
-			              	<label for="auction.endDate">마감일</label> &nbsp;&nbsp;&nbsp; <form:errors path="auction.endDate" cssClass="error"/>
+			              	<label for="auction.endDate">마감일</label> &nbsp;&nbsp;&nbsp; 
+			              		<form:errors path="auction.endDate" cssClass="error"/>
 				                <div class="d-flex">
 					    		  <div class="form-group mr-2">
 					    		  	<c:choose>

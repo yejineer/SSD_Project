@@ -18,10 +18,12 @@ import dongduk.cs.ssd.controller.user.UserSession;
 import dongduk.cs.ssd.domain.Auction;
 import dongduk.cs.ssd.service.AuctionService;
 import dongduk.cs.ssd.service.UserService;
+import dongduk.cs.ssd.domain.Bid;
+import dongduk.cs.ssd.service.BidService;
 
 /**
- * @author Hyekyung Kim	| Yejin Lee
- * @since 2020.05.08	| 2020.06.14
+ * @author Hyekyung Kim	| Yejin Lee   | kimdahyee
+ * @since 2020.05.08	| 2020.06.14  | 2020.06.25
  */
 
 
@@ -34,8 +36,12 @@ public class AuctionController {
 	
 	@Autowired
 	AuctionService auctionService;
+	
 	@Autowired
 	UserService userService;
+	
+	@Autowired
+	BidService bidService;
 	
 	@RequestMapping(value="/auction/list.do", method=RequestMethod.GET)
 	public ModelAndView auctionList(){
@@ -55,7 +61,10 @@ public class AuctionController {
 			@RequestParam("auctionId") int auctionId, HttpSession session) {
 		ModelAndView mav = new ModelAndView(AUCTION_DETAIL);
 		Auction auction = auctionService.getAuction(auctionId);
-
+		Bid bid = bidService.getBidByMaxPrice(auction.getMaxPrice(), auctionId);
+		
+		//System.out.println("===============" + bid.getUserId());
+		
 		UserSession user  = (UserSession)request.getSession().getAttribute("userSession");
 		if (user.getUser().getUserId() == auction.getUserId()) {
 			mav.addObject("isWriter", true);
@@ -67,6 +76,7 @@ public class AuctionController {
 		
 		session.setAttribute("auctionId", auctionId);
 		mav.addObject("auction", auction);
+		mav.addObject("bid", bid);
 		mav.addObject("writer", userService.getUserByUserId(auction.getUserId()).getNickname());
 		return mav;
 	}
