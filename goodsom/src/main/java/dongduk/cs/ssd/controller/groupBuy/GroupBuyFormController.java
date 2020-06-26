@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import dongduk.cs.ssd.controller.user.UserSession;
 import dongduk.cs.ssd.domain.GroupBuy;
@@ -50,28 +51,12 @@ public class GroupBuyFormController {
 		System.out.println("reqPage: " + reqPage + ", groupBuyId: " + groupBuyId);
 //		list -> form : create
 		if(groupBuyId == null) { 
-			GroupBuyForm groupBuyForm = new GroupBuyForm();
-//			newGroupBuy 이용
-			model.addAttribute("createGroupBuy", groupBuyForm.getNewGroupBuy());
-			System.out.println("createGroupBuy: " + groupBuyForm.getNewGroupBuy());
-			return groupBuyForm;
-			
+			return new GroupBuyForm();	
 //		detail -> form :  update or show(after create) GroupBuy
 		} else {
-			GroupBuyForm groupBuyForm = new GroupBuyForm(groupBuyService.getGroupBuy(Integer.valueOf(groupBuyId)));
-			model.addAttribute("createGroupBuy", groupBuyForm.getNewGroupBuy());
-			System.out.println("createGroupBuy: " + groupBuyForm.getNewGroupBuy());
-			return groupBuyForm;
+			return new GroupBuyForm(groupBuyService.getGroupBuy(Integer.valueOf(groupBuyId)));
 		}
 	}
-
-	
-	/*
-	@RequestMapping(method = RequestMethod.GET)
-	public String form() {
-		return GROUPBUY_FORM;
-	}
-	*/
 	
 	@RequestMapping(value="/form.do")
 	public String groupBuyForm(){
@@ -83,18 +68,19 @@ public class GroupBuyFormController {
 	@RequestMapping(value= {"/create.do", "/update.do"}, method=RequestMethod.POST)
 	public String updateOrSubmit(HttpServletRequest request,
 			@Valid @ModelAttribute("groupBuyForm") GroupBuyForm groupBuyForm,
-			BindingResult result, Model model) {
+			BindingResult result, Model model, SessionStatus sessionStatus) {
 		int groupBuyId;
 		HttpSession session = request.getSession();
 		UserSession user  = (UserSession)session.getAttribute("userSession");
 		String reqPage = request.getServletPath();
 		String requestUrl = reqPage.trim();
 		
+		System.out.println("*** updateOrSubmit : " + requestUrl);
 		if(result.hasErrors()) {
 			if(requestUrl.equals("/groupBuy/update.do")) {
 				return "redirect:form.do?groupBuyId=" + groupBuyForm.getGroupBuy().getGroupBuyId();
 			}else {
-				return "redirect:form.do";
+				return GROUPBUY_FORM;
 			}
 		}
 		
@@ -125,8 +111,6 @@ public class GroupBuyFormController {
 //			받아온 id와 option 파라미터를 Option객체에 세팅 후, create option
 			groupBuyForm.getGroupBuy().optionSetting(groupBuyId);
 			groupBuyService.createOptions(groupBuyForm.getGroupBuy());
-			
-			model.addAttribute("createGroupBuy", true);
 		}
 //		스케줄러 => create / update 시 endDate로 설정
 		groupBuyService.deadLineScheduler(groupBuyForm.getGroupBuy().getEndDate());
@@ -137,6 +121,8 @@ public class GroupBuyFormController {
 		
 		model.addAttribute("writer", user.getUser().getNickname());
 		model.addAttribute("dDay", groupBuy.getDday(groupBuy.getUploadDate().getTime(), groupBuy.getEndDate().getTime()));
+		
+		sessionStatus.setComplete();
 		
 		return GROUPBUY_DETAIL;
 	}

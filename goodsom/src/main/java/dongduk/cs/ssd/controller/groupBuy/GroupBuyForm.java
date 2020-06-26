@@ -20,7 +20,7 @@ public class GroupBuyForm implements Serializable {
 	@Autowired
 	private GroupBuy groupBuy;
 
-	public boolean newGroupBuy;
+	private boolean newGroupBuy;
 	
 	public GroupBuyForm() {
 		this.groupBuy = new GroupBuy();
