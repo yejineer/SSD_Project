@@ -5,8 +5,10 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import javax.validation.constraints.Future;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -20,14 +22,16 @@ public class GroupBuy {
 	@NotEmpty
 	String content;
 	String img;
+	
+	@NotNull
+	@Positive
 	int minNo;
-	List<Option> options = new ArrayList<Option>();
-	String[] optionList;
 	
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	Date uploadDate;
 
 	@NotNull
+	@Future
 	@DateTimeFormat(pattern ="yyyy-MM-dd HH:mm")
 	Date endDate;
 	
@@ -35,13 +39,22 @@ public class GroupBuy {
 	String state;
 	int rate;
 	int participants;
-	List<User> groupBuyUsers = new ArrayList<User>();
-	List<Question> questions = new ArrayList<Question>();
+	
+	@NotNull
 	int catId;
+	
 	int menuId;
 	int userId;
+	
+	@NotNull
+	@Positive
 	int price;
-
+	@NotEmpty
+	String[] optionList;
+	
+	List<Option> options = new ArrayList<Option>();
+	List<User> groupBuyUsers = new ArrayList<User>();
+	List<Question> questions = new ArrayList<Question>();
 
 	public int getUserId() {
 		return userId;

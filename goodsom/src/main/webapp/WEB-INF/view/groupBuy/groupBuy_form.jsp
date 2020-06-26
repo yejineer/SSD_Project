@@ -156,6 +156,8 @@ function input_append(ff){
 							<div class="form-group row">
 								<div class="col-md-12">
 									<label for="price">가격</label>
+									<form:errors path="groupBuy.price" cssClass="error"/> 
+									
 									<c:choose>
 										<c:when test="${createGroupBuy eq true}">
 											<form:input type="number" id="price" path="groupBuy.price" class="form-control" placeholder="price" />
@@ -187,8 +189,8 @@ function input_append(ff){
 							</div>
 							
 							<div class="form-group">
-								<label for="option">옵션</label>
-								<input type="button" id="addOption" value="추가" onclick="input_append(this.form)"/> 
+								<label for="option">옵션</label>  <input type="button" id="addOption" value="추가" onclick="input_append(this.form)"/> 
+								<form:errors path="groupBuy.optionList" cssClass="error"/>
 								
 								<div id="optionBox">
 									<c:choose>
@@ -208,6 +210,7 @@ function input_append(ff){
 							
 							<div class="form-group">
 								<label for="catId">태그</label> <br/>
+								<form:errors path="groupBuy.catId" cssClass="error"/>
 
 							    <div class="radio-items">
 							        <div class="col-2">  <!-- width auto important, 소수점 백그라운드 이슈로 인해 auto 설정 -->

@@ -22,13 +22,8 @@ import dongduk.cs.ssd.domain.GroupBuy;
 import dongduk.cs.ssd.service.GroupBuyService;
 
 /**
- * @author Seonmi Hwang
- * @since 2020.05.06
- */
-
-/**
- * @author HK
- * @since 2020.06.12
+ * @author Seonmi Hwang | HK
+ * @since 2020.05.06	| 2020.06.26
  */
 
 
@@ -99,7 +94,7 @@ public class GroupBuyFormController {
 			if(requestUrl.equals("/groupBuy/update.do")) {
 				return "redirect:form.do?groupBuyId=" + groupBuyForm.getGroupBuy().getGroupBuyId();
 			}else {
-				return GROUPBUY_FORM;
+				return "redirect:form.do";
 			}
 		}
 		
