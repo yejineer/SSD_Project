@@ -92,15 +92,15 @@ function submit(isNewAuction) {
 							
 							<div class="form-group row">
 								<div class="col-md-12">
-									<label for="auction.startPrice">최소 입찰 금액</label> &nbsp;&nbsp;&nbsp; <form:errors path="price" cssClass="error"/>
+									<label for="inputPrice">최소 입찰 금액</label> &nbsp;&nbsp;&nbsp; <form:errors path="inputPrice" cssClass="error"/>
 									<div class="d-flex">
 										<div class="form-group mr-2">
 										<c:choose>
 											<c:when test="${auctionForm.newAuction}">
-												<form:input path="price" class="form-control" placeholder="10000"/>
+												<form:input path="inputPrice" class="form-control" placeholder="10000"/>
 											</c:when>
 											<c:otherwise>
-												<form:input path="price" class="form-control" value="${auctionForm.auction.startPrice}"/>
+												<form:input path="inputPrice" class="form-control" value="${auctionForm.auction.startPrice}"/>
 											</c:otherwise>
 										</c:choose>
 										</div>
@@ -115,7 +115,7 @@ function submit(isNewAuction) {
 					    		  <div class="form-group mr-2">
 					    		  	<c:choose>
 										<c:when test="${auctionForm.newAuction}">
-							                <input type="date" id="auction.endDate" class="form-control" name="auction.endDate" placeholder='yyyy-MM-dd'>
+							                <input type="date" id="auction.endDate" class="form-control" name="auction.endDate" placeholder="yyyy-MM-dd">
 										</c:when>
 										<c:otherwise>
 											<input type="date" id="auction.endDate" class="form-control" name="auction.endDate" 
@@ -125,29 +125,15 @@ function submit(isNewAuction) {
 					              </div>
 			              		</div>
 			              		
-			              		<form:radiobutton id="isAmPm" path="auction.isAmPm" value="am"/> 오전
-					            <form:radiobutton id="isAmPm" path="auction.isAmPm" value="pm" checked="checked"  />오후
+			              		<form:radiobuttons items="${amPm}" path="auction.isAmPm"/>
 					            
-								<select name="auction.hour">
-								    <option value="">시간</option>
-								    <option value="1">1시</option>
-								    <option value="2">2시</option>
-								    <option value="3">3시</option>
-								    <option value="4">4시</option>
-								    <option value="5">5시</option>
-								    <option value="6">6시</option>
-								    <option value="7">7시</option>
-								    <option value="8">8시</option>
-								    <option value="9">9시</option>
-								    <option value="10">10시</option>
-								    <option value="11">11시</option>
-								    <option value="12">12시</option>
-								</select>	
-								<select name="auction.minute">
-								    <option value="">분</option>
-								    <option value="00">00분</option>
-								    <option value="30">30분</option>
-								</select>
+								<form:select path="auction.hour">
+									<form:options items="${hourData}" itemLabel="label" itemValue="code"/>
+								</form:select>
+								
+								<form:select path="auction.minute">
+									<form:options items="${minuteData}" itemLabel="label" itemValue="code"/>
+								</form:select>
 			              	</div>
 
 							

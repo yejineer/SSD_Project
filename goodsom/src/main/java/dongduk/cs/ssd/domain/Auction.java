@@ -229,10 +229,15 @@ public class Auction implements Serializable {
 	public void initImg(String contextPath) {
 		img = contextPath + "/resources/images/somsom.jpg";
 	}
-	
+
+	@Override
 	public String toString() {
-		return "<<Auction객체의 값>" + "\nid : " + auctionId + "\ntitle : " + title + "\ncontent : " + content + "\nimg : " + img + 
-				"\nstartPrice : " + startPrice + "\nendDate: " + endDate;
+		return "Auction [auctionId=" + auctionId + ", title=" + title + ", content=" + content + ", img=" + img
+				+ ", startPrice=" + startPrice + ", uploadDate=" + uploadDate + ", endDate=" + endDate + ", count="
+				+ count + ", maxPrice=" + maxPrice + ", state=" + state + ", menuId=" + menuId + ", userId=" + userId
+				+ ", isAmPm=" + isAmPm + ", hour=" + hour + ", minute=" + minute + ", bids=" + bids + "]";
 	}
+	
+	
 	
 }

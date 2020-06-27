@@ -9,6 +9,8 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import dongduk.cs.ssd.domain.Auction;
 
 /**
@@ -22,7 +24,9 @@ public class AuctionForm implements Serializable{
 	@Valid
 	private Auction auction;
 	@NotEmpty @Pattern(regexp="^[1-9][0-9]*")
-	private String price;
+	private String inputPrice;
+//	@NotNull 
+//	private Date selectDate;
 	
 	private boolean newAuction;
 	
@@ -35,12 +39,12 @@ public class AuctionForm implements Serializable{
 		this.auction = auction;
 		this.newAuction = false;
 	}
-	public String getPrice() {
-		return price;
+	public String getInputPrice() {
+		return inputPrice;
 	}
 	
-	public void setPrice(String price) {
-		this.price = price;
+	public void setInputPrice(String inputPrice) {
+		this.inputPrice = inputPrice;
 	}
 	
 	public Auction getAuction() {
@@ -50,9 +54,16 @@ public class AuctionForm implements Serializable{
 	public boolean isNewAuction() {
 		return newAuction;
 	}
-	
+
+//	public Date getSelectDate() {
+//		return selectDate;
+//	}
+
+	@Override
 	public String toString() {
-		return auction.toString();
+		return "AuctionForm [auction=" + auction + ", inputPrice=" + inputPrice
+				+ ", newAuction=" + newAuction + "]";
 	}
+	
 
 }

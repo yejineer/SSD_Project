@@ -3,7 +3,9 @@ package dongduk.cs.ssd.controller.auction;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -81,7 +83,7 @@ public class AuctionFormController implements ApplicationContextAware  {
 	public String submit(HttpServletRequest request, @RequestParam("report") MultipartFile report,
 			@Valid @ModelAttribute("auctionForm") AuctionForm auctionForm, BindingResult result,
 			Model model, SessionStatus sessionStatus) {
-		
+		System.out.println(auctionForm.toString());
 //		/auction/create.do인지 /auction/update.do인지 구분하기 위해 필요!
 		String reqPage = request.getServletPath();
 		String requestUrl = reqPage.trim();
@@ -104,7 +106,7 @@ public class AuctionFormController implements ApplicationContextAware  {
 		String savedFileName = uploadFile(report);
 
 //		경매 update/create 작업
-		auctionForm.getAuction().setStartPrice(Integer.valueOf(auctionForm.getPrice()));
+		auctionForm.getAuction().setStartPrice(Integer.valueOf(auctionForm.getInputPrice()));
 		if (requestUrl.equals("/auction/update.do")) { // update
 			System.out.println(auctionForm.getAuction().toString());
 			if (report.getSize() != 0) { // 파일 새로 업로드 안 하면 원래 이미지 사용
@@ -156,4 +158,28 @@ public class AuctionFormController implements ApplicationContextAware  {
 		return savedName;
 	}
 	
+	@ModelAttribute("hourData")
+	protected List<Hour> referenceData1() throws Exception {
+		List<Hour> hour = new ArrayList<Hour>();
+		for (int i = 1; i <= 12; i++) {
+			hour.add(new Hour(i, i+"시"));			
+		}
+		return hour;
+	}
+	
+	@ModelAttribute("minuteData")
+	protected List<Minute> referenceData2() throws Exception {
+		List<Minute> minute = new ArrayList<Minute>();
+		minute.add(new Minute(00, "00분"));
+		minute.add(new Minute(30, "30분"));
+		return minute;
+	}
+	
+	@ModelAttribute("amPm")
+	protected List<String> referenceData3() throws Exception {
+		List<String> amPm = new ArrayList<String>();
+		amPm.add("am");
+		amPm.add("pm");
+		return amPm;
+	}
 }
