@@ -30,7 +30,7 @@
 				<div class="col-md-12">
 					<div class="car-details">
 						<div class="text text-left">
-							<span class="subheading" style="color:red;">${message}</span><br />
+							<span class="subheading" style="color:red;">&nbsp; ${message}</span><br />
 							<h1>
 								<b>세부 결제 내역</b>
 							</h1>
@@ -59,16 +59,16 @@
 									<div class="post-entry-1-contents">
 										<h4>
 											<a href="<c:url value='../../groupBuy/detail.do'>
-																<c:param name="groupBuyId" value="${order.groupBuy.groupBuyId}" />
+																<c:param name="groupBuyId" value="${lineGroupBuy.groupBuyId}" />
 													 </c:url>"> ${order.groupBuy.title}</a>
 										</h4>
-	
-										<span class="meta d-inline-block mb-3"> <span
-											class="mx-2"> ${order.lineGroupBuy.unitPrice}원</span>
-											&nbsp;&nbsp; <span class="mx-2">
-												${order.lineGroupBuy.quantity}개</span> &nbsp;&nbsp; <span
-											class="mx-2"> 옵션 : ${order.lineGroupBuy.option}</span> <br>
+										<c:forEach var="lineGroupBuy" items="${order.lineGroupBuys}" varStatus="status">
+										<span class="meta d-inline-block mb-3"> 
+											<span class="mx-2"> 옵션 : ${lineGroupBuy.selectOption}</span> &nbsp;&nbsp; 
+											<span class="mx-2"> 수량 : ${lineGroupBuy.quantity}개</span> &nbsp;&nbsp;
+											<span class="mx-2"> 금액 : ${lineGroupBuy.unitPrice}원</span> <br>
 										</span>
+										</c:forEach>
 									</div>
 								</div>
 								<br />
@@ -88,10 +88,9 @@
 													 </c:url>"> ${order.auction.title}</a>
 										</h4>
 	
-										<span class="meta d-inline-block mb-3"> <span
-											class="mx-2"> ${order.auction.price}원</span>
-											&nbsp;&nbsp; <span class="mx-2">
-												${order.quantity}개</span> &nbsp;&nbsp;<br>
+										<span class="meta d-inline-block mb-3"> 
+											<span class="mx-2"> 수량 : ${order.quantity}개</span> &nbsp;&nbsp; 
+											<span class="mx-2"> 금액 : ${order.auction.price}원</span> &nbsp;&nbsp;<br>
 										</span>
 									</div>
 								</div>

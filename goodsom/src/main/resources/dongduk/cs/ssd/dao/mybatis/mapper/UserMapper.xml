@@ -49,15 +49,6 @@
   	DELETE FROM USERS 
   	WHERE USERID = #{userId}
   </delete>
-  
-<!--   <select id="getOrderList" parameterType="int"
-  		resultType="Order">
-  	SELECT orderId, cardBank, cardNo, validDate, cvc,
-  		address1, address2, address3, phone, refundBank, 
-  		refundAccount, totalPrice, orderDate, userId
-  	FROM orders
-  	WHERE userId = #{userId}
-  </select> -->
 
 	<select id="getAuctionOrderList" resultType="Order">
 		SELECT s.auctionId, o.orderId, o.orderDate, o.totalPrice
@@ -66,7 +57,7 @@
 	</select>
 
 	<select id="getGroupBuyOrderList" resultType="Order">
-		SELECT l.groupBuyId, o.orderId, o.orderDate, o.totalPrice, l.quantity
+		SELECT DISTINCT l.groupBuyId, o.orderId, o.orderDate, o.totalPrice
 		FROM orders o, lineGroupBuys l
 		WHERE o.orderId = l.orderId and o.userId= #{param1}
 	</select>

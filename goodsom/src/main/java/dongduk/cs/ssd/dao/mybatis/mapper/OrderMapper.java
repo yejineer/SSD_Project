@@ -1,11 +1,7 @@
 package dongduk.cs.ssd.dao.mybatis.mapper;
 
-import java.util.List;
-
 import org.springframework.dao.DataAccessException;
 
-import dongduk.cs.ssd.domain.GroupBuy;
-import dongduk.cs.ssd.domain.LineGroupBuy;
 import dongduk.cs.ssd.domain.Order;
 
 /**
@@ -17,7 +13,7 @@ public interface OrderMapper {
 
 	  Order getOrder(int orderId) throws DataAccessException;
 
-	  void createOrder(Order order) throws DataAccessException;
+	  int createOrder(Order order) throws DataAccessException;
 	  
 	  Order getOrderWithLineGroupBuys(int orderId) throws DataAccessException; 
 

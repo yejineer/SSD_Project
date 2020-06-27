@@ -26,10 +26,10 @@ function deleteGroupBuy(participants) {
 // 수량 증감
 function change(num) {
 	var x = document.form;
-	var y = Number(x.count.value) + num;
+	var y = Number(x.quantity.value) + num;
 	if (y < 1)
 		y = 1;
-	x.count.value = y;
+	x.quantity.value = y;
 }
 
 function orderCreate() {
@@ -44,7 +44,7 @@ function orderCreate() {
 // (option, quantity) 선택
 function addItem(selectedQuantity) {
 	var list = document.getElementsByName("item");
-	var target = document.getElementById("options");
+	var target = document.getElementById("option");
 	var selectedOption = target.options[target.selectedIndex].text;
 	
 	var id = list.length;
@@ -57,24 +57,26 @@ function addItem(selectedQuantity) {
  	for(var i = 0; i < list.length; i++){
 		list[i].setAttribute("value", list[i].value);
  	}
+ 	
    	app = document.getElementById("itemBox")
+
+  	 /* list로 받아올 경우 */
   	app.innerHTML += "<div id='itemDiv' class='d-flex'>"
   		+ "<input type='text' id='item' name='item' value='"
   	  	+ selectedOption + ", " + selectedQuantity + "' class='form-control' readonly>" 
-  	  	+ "<input type='hidden' id='option' name='option' value='" + selectedOption + "' />"
-  	  	+ "<input type='hidden' id='quantity' name='quantity' value='" + selectedQuantity + "' />"
+  	  	+ "<input type='hidden' id='options[" + id + "]' name='options' value='" + selectedOption + "' />"
+  	  	+ "<input type='hidden' id='quantities[" + id + "]' name='quantities' value='" + selectedQuantity + "' />"
   	  	+ "&nbsp;&nbsp;<input type='button' name='del_btn' id='" + id 
-  	  	+ "' value='X' onClick='javascript:delItem(this.id);'></div>";
+  	  	+ "' value='X' onClick='delItem(this.id);'></div>";
 
-  	  	/* LineGroupBuy를 list로 받아올 경우 */
-  	/* app.innerHTML += "<div id='itemDiv' class='d-flex'>"
-  		+ "<input type='text' id='item' name='item' value='"
-  	  	+ selectedOption + ", " + selectedQuantity + "' class='form-control' readonly>" 
-  	  	+ "<input type='hidden' id='lineGroupBuys[" + id + "].option' name='option' value='" + selectedOption + "' />"
-  	  	+ "<input type='hidden' id='lineGroupBuys[" + id + "].quantity' name='quantity' value='" + selectedQuantity + "' />"
-  	  	+ "&nbsp;&nbsp;<input type='button' name='del_btn' id='" + id 
-  	  	+ "' value='X' onClick='javascript:delItem(this.id);'></div>"; */
-	  
+  	  	
+   	/*   	app.innerHTML += "<div id='itemDiv' class='d-flex'>"
+		+ "<input type='text' id='item' name='item' value='"
+	  	+ selectedOption + ", " + selectedQuantity + "' class='form-control' readonly>" 
+	  	+ "<input type='hidden' id='option' name='option' value='" + selectedOption + "' />"
+	  	+ "<input type='hidden' id='quantity' name='quantity' value='" + selectedQuantity + "' />"
+	  	+ "&nbsp;&nbsp;<input type='button' name='del_btn' id='" + id 
+	  	+ "' value='X' onClick='javascript:delItem(this.id);'></div>"; */
 }
 
 // (option, quantity) 삭제(선택취소)
@@ -82,8 +84,8 @@ function delItem(id) {
 	var itemList = document.getElementsByName("item");
 	var btnList = document.getElementsByName("del_btn");
 
-	var optionList = document.getElementsByName("option");
-	var quantityList = document.getElementsByName("quantity");
+	var optionList = document.getElementsByName("options");
+	var quantityList = document.getElementsByName("quantities");
 	
 	itemList[id].outerHTML="";
 	btnList[id].outerHTML="";
@@ -135,8 +137,8 @@ function delItem(id) {
 			<c:if test="${groupBuy.state eq 'closed'}" >
 				<h5>남은 시간 : &nbsp; &nbsp; 마감되었습니다.</h5>
 			</c:if>
-			<c:if test="${groupBuy.state eq 'proceeding' or groupBuy.state eq 'acheived'}" >
-				<h5>남은 시간 : &nbsp; &nbsp; <br/>${dDay}</h5>
+			<c:if test="${groupBuy.state eq 'proceeding' or groupBuy.state eq 'achieved'}" >
+				<h5>남은 시간 : &nbsp; &nbsp; ${dDay}</h5>
 			</c:if>	
 		
 			<br />
@@ -145,7 +147,7 @@ function delItem(id) {
 				<div class="alert alert-primary" role="alert">
 					<div class="d-flex" style="margin-bottom: 10px;">
 						<h5>옵션</h5> &nbsp;&nbsp; 
-						<select name="options" id="options">
+						<select name="option" id="option">
 							<option value="chooseOption" selected disabled>옵션 선택</option>
 							<c:forEach var="option" items="${groupBuy.options}" varStatus="status">
 								<option value="${options.name}">${option.name}</option>
@@ -153,24 +155,29 @@ function delItem(id) {
 
 						</select> <br />
 					</div>
-				</div>
-				
-				
-			<div id="itemBox"> </div>
-				<c:if test="${groupBuy.state eq 'closed'}" >
-					<input type="button" onclick="orderCreate()" value="신청하기" disabled />
-				</c:if>
-				<c:if test="${groupBuy.state eq 'proceeding' or groupBuy.state eq 'achieved'}" >
 					<div class="d-flex">
 						<h5>수량</h5> &nbsp;&nbsp; 
 						<input type="button" name="minus" value="-"
 							onclick="change(-1)" /> &nbsp; 
-						<input type="text" name="count" id="count" value="1"
+						<input type="text" name="quantity" id="count" value="1"
 							style="text-align: center; width: 50px;" readonly /> &nbsp; 
 						<input type="button" name="plus" value="+"
 							onclick="change(1)" /> &nbsp; &nbsp; 
-						<input type="button" value="추가하기" onclick="addItem(count.value)" />
+							
+						<c:if test="${groupBuy.state eq 'closed'}" >
+							<input type="button" value="추가하기" onclick="addItem(quantity.value)" disabled />
+						</c:if>
+						<c:if test="${groupBuy.state eq 'proceeding' or groupBuy.state eq 'achieved'}" >
+							<input type="button" value="추가하기" onclick="addItem(quantity.value)" />
+						</c:if>
 					</div>
+				</div>
+				
+				<div id="itemBox"> </div>
+				<c:if test="${groupBuy.state eq 'closed'}" >
+					<input type="button" onclick="orderCreate()" value="신청하기" disabled />
+				</c:if>
+				<c:if test="${groupBuy.state eq 'proceeding' or groupBuy.state eq 'achieved'}" >
 					<input type="button" onclick="orderCreate()" value="신청하기" />
 				</c:if>
 			

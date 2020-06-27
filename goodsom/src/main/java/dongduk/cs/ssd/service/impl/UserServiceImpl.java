@@ -14,8 +14,8 @@ import dongduk.cs.ssd.domain.User;
 import dongduk.cs.ssd.service.UserService;
 
 /**
- * @author Yejin Lee / kimdahyee	/ Seonmi-Hwang
- * @since 2020.05.03 / 2020.06.12	/ 2020.06.13
+ * @author Yejin Lee | kimdahyee  | Seonmi-Hwang
+ * @since 2020.05.03 | 2020.06.12 | 2020.06.13
  */
 
 @Service("userServiceImpl")
@@ -52,11 +52,6 @@ public class UserServiceImpl implements UserService {
 	public int deleteUser(int userId) {
 		return userDao.deleteUser(userId);
 	}
-	
-//	@Override
-//	public List<Order> getOrderList(int userId) { // 마이페이지 결제 목록 보기
-//		return userDao.getOrderList(userId);
-//	}
 
 	@Override
 	public List<Order> getAuctionOrderList(int userId) { // 마이페이지 결제 목록 보기

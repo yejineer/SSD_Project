@@ -1,11 +1,16 @@
 package dongduk.cs.ssd.domain;
 
+/**
+ * @author Seonmi Hwang
+ * @since 2020.06.27
+ */
+
 public class LineGroupBuy {
 	int lineId;
 	int orderId;
 	int groupBuyId;
 	int quantity;
-	String option;
+	String selectOption;
 	int unitPrice;
 	GroupBuy groupBuy = new GroupBuy();
 	
@@ -52,12 +57,12 @@ public class LineGroupBuy {
 		this.quantity = quantity;
 	}
 	
-	public String getOption() {
-		return option;
+	public String getSelectOption() {
+		return selectOption;
 	}
 	
-	public void setOption(String option) {
-		this.option = option;
+	public void setSelectOption(String selectOption) {
+		this.selectOption = selectOption;
 	}
 	
 	public int getUnitPrice() {
@@ -66,5 +71,11 @@ public class LineGroupBuy {
 	
 	public void setUnitPrice(int unitPrice) {
 		this.unitPrice = unitPrice;
+	}
+
+	@Override
+	public String toString() {
+		return "LineGroupBuy [lineId=" + lineId + ", orderId=" + orderId + ", groupBuyId=" + groupBuyId + ", quantity="
+				+ quantity + ", selectOption=" + selectOption + ", unitPrice=" + unitPrice + ", groupBuy=" + groupBuy + "]";
 	}
 }

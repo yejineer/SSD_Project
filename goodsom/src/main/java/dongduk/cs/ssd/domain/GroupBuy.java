@@ -34,13 +34,13 @@ public class GroupBuy {
 	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm")
 	Date uploadDate;
 
-	@NotNull
-	@DateTimeFormat(pattern ="yyyy-MM-dd")
-	Date tmpDate;
+//	@NotNull
+//	@DateTimeFormat(pattern ="yyyy-MM-dd")
+//	Date tmpDate;
 	
 	@NotNull
 	@Future
-	@DateTimeFormat(pattern ="yyyy-MM-dd HH:mm")
+	@DateTimeFormat(pattern ="yyyy-MM-dd")
 	Date endDate;
 	
 	int count;
@@ -245,13 +245,13 @@ public class GroupBuy {
 		this.minute = minute;
 	}
 	
-	public Date getTmpDate() {
-		return tmpDate;
-	}
-
-	public void setTmpDate(Date tmpDate) {
-		this.tmpDate = tmpDate;
-	}
+//	public Date getTmpDate() {
+//		return tmpDate;
+//	}
+//
+//	public void setTmpDate(Date tmpDate) {
+//		this.tmpDate = tmpDate;
+//	}
 	
 	public GroupBuy() {
 	}
@@ -279,7 +279,7 @@ public class GroupBuy {
 	}
 	
 	public void timeSet() {
-		 SimpleDateFormat KSTFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
+		SimpleDateFormat KSTFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
         SimpleDateFormat tmpFormat = new SimpleDateFormat("yyyy-MM-dd");
         SimpleDateFormat sdfHour = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         
@@ -335,7 +335,7 @@ public class GroupBuy {
 		long dDay = timeLength / ( 24*60*60*1000 ); 
 		Math.abs(dDay);
 		Math.abs(dHour);
-		String str = dDay + "일 " + dHour + "시간  (" + sdf.format(getEndDate()) + "까지)";
+		String str = dDay + "일 " + dHour + "시간  \n(" + sdf.format(getEndDate()) + "까지)";
 		System.out.println("str");
 		return str;
 	}

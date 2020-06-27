@@ -47,10 +47,6 @@ public class MybatisUserDao implements UserDao {
 	public int deleteUser(int userId) throws DataAccessException {
 		return userMapper.deleteUser(userId);
 	}
-	
-//	public List<Order> getOrderList(int orderId) throws DataAccessException { // 마이페이지 결제 목록 보기
-//		return userMapper.getOrderList(orderId);
-//	}
 
 	public List<Order> getAuctionOrderList(int orderId) throws DataAccessException { // 마이페이지 결제 목록 보기
 		return userMapper.getAuctionOrderList(orderId);

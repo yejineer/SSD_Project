@@ -1,5 +1,7 @@
 package dongduk.cs.ssd.dao.mybatis;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
@@ -25,7 +27,8 @@ public class MybatisOrderDao implements OrderDao {
 	
 	@Override
 	public Order getOrder(int orderId) throws DataAccessException {
-	    return orderMapper.getOrder(orderId);
+	    Order order = orderMapper.getOrder(orderId);
+	    return order;
 	}
 
 	@Override	
@@ -34,20 +37,20 @@ public class MybatisOrderDao implements OrderDao {
 	}
 
 	@Override
-	public void createOrder(Order order) throws DataAccessException {
-		orderMapper.createOrder(order);
+	public int createOrder(Order order) throws DataAccessException {
+		int orderSuccess = orderMapper.createOrder(order);
 		
-		LineGroupBuy lineGroupBuy = order.getLineGroupBuy();
-		lineGroupBuy.setOrderId(order.getOrderId());
-		lineGroupBuyMapper.insertLineGroupBuy(lineGroupBuy);
+		List<LineGroupBuy> lineGroupBuys = order.getLineGroupBuys();
+		for (LineGroupBuy lineGroupBuy : lineGroupBuys) {
+			lineGroupBuy.setOrderId(order.getOrderId());
+			orderSuccess += lineGroupBuyMapper.insertLineGroupBuy(lineGroupBuy);
+		}
 		
-//		if (order.getLineGroupBuys() != null) {
-//			for (int i = 0; i < order.getLineGroupBuys().size(); i++) {
-//				LineGroupBuy lineGroupBuy = (LineGroupBuy) order.getLineGroupBuys().get(i);
-//				lineGroupBuy.setOrderId(order.getOrderId());
-//				lineGroupBuyMapper.insertLineGroupBuy(lineGroupBuy);
-//			}
-//		} 
+		if (orderSuccess == lineGroupBuys.size() + 1) {
+			return 1;
+		} else {
+			return 0;
+		}
 	}
 	
 	@Override

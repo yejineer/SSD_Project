@@ -11,14 +11,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.util.WebUtils;
 
 import dongduk.cs.ssd.service.UserService;
 
 /**
- * @author Yejin Lee
- * @since 2020.05.07
+ * @author Yejin Lee | Seonmi Hwang
+ * @since 2020.05.07 | 2020.06.21
  */
 
 @Controller
