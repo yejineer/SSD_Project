@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.UUID;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -64,12 +65,12 @@ public class AuctionFormController implements ApplicationContextAware  {
 		String reqPage = request.getServletPath();
 		System.out.println(reqPage);
 		String auctionId = request.getParameter("auctionId");
-		Auction auction = auctionService.getAuction(Integer.valueOf(auctionId));
-		System.out.println(auction.toString());
 		System.out.println(auctionId);
 		if(auctionId == null) { //create: /auction/form.do
 			return new AuctionForm();
 		} else { // update: /auction/form.do?auctionId=
+			Auction auction = auctionService.getAuction(Integer.valueOf(auctionId));
+			System.out.println(auction.toString());
 			return new AuctionForm(auction);
 		}
 		
@@ -82,14 +83,19 @@ public class AuctionFormController implements ApplicationContextAware  {
 
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public String submit(HttpServletRequest request, @RequestParam("report") MultipartFile report,
-			@Valid @ModelAttribute("auctionForm") AuctionForm auctionForm, BindingResult result,
+	public String submit(HttpServletRequest request, @Valid @ModelAttribute("auctionForm") AuctionForm auctionForm, BindingResult result,
 			Model model, SessionStatus sessionStatus) {
 		System.out.println(auctionForm.toString());
 //		/auction/create.do인지 /auction/update.do인지 구분하기 위해 필요!
 		String reqPage = request.getServletPath();
 		String requestUrl = reqPage.trim();
-//		AuctionForm객체 validation
+		if (auctionForm.getInputPrice() != null && !auctionForm.getInputPrice().equals("")) {
+			if (!Pattern.matches("^[1-9][0-9]*", auctionForm.getInputPrice())) {
+				result.rejectValue("inputPrice", "typeMismatch");
+			}
+		}
+
+		//		AuctionForm객체 validation
 		if (result.hasErrors()) {
 			if (requestUrl.equals("/auction/update.do")) {
 				return "redirect:form.do?auctionId=" + auctionForm.getAuction().getAuctionId();
@@ -103,27 +109,28 @@ public class AuctionFormController implements ApplicationContextAware  {
 		
 //		시간세팅 by HK
 		auctionForm.getAuction().timeSet();
+
 //		파일 업로드 기능
 		System.out.println("uploadDir: " + uploadDir);
-		String savedFileName = uploadFile(report);
-
+		String savedFileName = uploadFile(auctionForm.getReport());
+		auctionForm.getAuction().setImg(request.getContextPath() + "/resources/images/" + savedFileName);
+		
 //		경매 update/create 작업
 		auctionForm.getAuction().setStartPrice(Integer.valueOf(auctionForm.getInputPrice()));
 		if (requestUrl.equals("/auction/update.do")) { // update
 			System.out.println(auctionForm.getAuction().toString());
-			if (report.getSize() != 0) { // 파일 새로 업로드 안 하면 원래 이미지 사용
-				auctionForm.getAuction().setImg(request.getContextPath() + "/resources/images/" + savedFileName);
-			}
+//			if (auctionForm.getReport().getSize() == 0) { // 파일 새로 업로드 안 하면 원래 이미지 사용
+//				auctionForm.getAuction().setImg(request.getContextPath() + "/resources/images/" + savedFileName);
+//			}
 
 			int auctionId = auctionService.updateAuction(auctionForm.getAuction());
 			model.addAttribute("auction", auctionService.getAuction(auctionId));
 //			System.out.println("update 하고 나서 가져온 auctionId: " + auctionId);
 		} else { // show after create
-			if (report.getSize() == 0) { // 파일 업로드 하지 않았을 때 SqlException이 나므로 기본 이미지 설정
-				auctionForm.getAuction().initImg(request.getContextPath());
-			} else {
-				auctionForm.getAuction().setImg(request.getContextPath() + "/resources/images/" + savedFileName);
-			}
+//			if (report.getSize() == 0) { // 파일 업로드 하지 않았을 때 SqlException이 나므로 기본 이미지 설정
+//				auctionForm.getAuction().initImg(request.getContextPath());
+//			} else {
+//			}
             auctionForm.getAuction().initAuction(user.getUser());
 			System.out.println("[AuctionFormController] auctionForm 값: " + auctionForm.toString());
 			auctionService.createAuction(auctionForm.getAuction());
@@ -173,7 +180,11 @@ public class AuctionFormController implements ApplicationContextAware  {
 	protected List<Minute> referenceData2() throws Exception {
 		List<Minute> minute = new ArrayList<Minute>();
 		minute.add(new Minute(00, "00분"));
+		minute.add(new Minute(10, "10분"));
+		minute.add(new Minute(10, "20분"));
 		minute.add(new Minute(30, "30분"));
+		minute.add(new Minute(10, "40분"));
+		minute.add(new Minute(10, "50분"));
 		return minute;
 	}
 	
