@@ -190,39 +190,39 @@ public class Auction implements Serializable {
 	
 	public void timeSet() {
 		 SimpleDateFormat KSTFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
-	        SimpleDateFormat tmpFormat = new SimpleDateFormat("yyyy-MM-dd");
-	        SimpleDateFormat sdfHour = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-	        
-	        // date 형식 초기화
-	        Date tmpDate;
-	        String newDate = null;
-			try {
-				tmpDate = KSTFormat.parse(getEndDate().toString());
-				System.out.println(tmpDate);
-				newDate = tmpFormat.format(tmpDate);
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
-	        
-	        // 마감시간 세팅
-	        if(isAmPm.equals("pm")){
-	        	int tmpHour = getHour()+12;
-	        	if(tmpHour == 24) {
-	        		setHour(00);
-	        	}else {
-	        		setHour(tmpHour);
-	        	}
-	        }
-	        
-	        try {
-	        	String dateFormat = newDate + " " + String.valueOf(getHour()) + ":" + String.valueOf(getMinute());
-	            System.out.println("dateFormat: " + dateFormat);
-				Date resultDate = sdfHour.parse(dateFormat);
-				setEndDate(resultDate);	// 마감일 세팅
-				System.out.println(resultDate);
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
+        SimpleDateFormat tmpFormat = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdfHour = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        
+        // date 형식 초기화
+        Date tmpDate;
+        String newDate = null;
+		try {
+			tmpDate = KSTFormat.parse(getEndDate().toString());
+			System.out.println(tmpDate);
+			newDate = tmpFormat.format(tmpDate);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+        
+        // 마감시간 세팅
+        if(isAmPm.equals("pm")){
+        	int tmpHour = getHour()+12;
+        	if(tmpHour == 24) {
+        		setHour(00);
+        	}else {
+        		setHour(tmpHour);
+        	}
+        }
+        
+        try {
+        	String dateFormat = newDate + " " + String.valueOf(getHour()) + ":" + String.valueOf(getMinute());
+            System.out.println("dateFormat: " + dateFormat);
+			Date resultDate = sdfHour.parse(dateFormat);
+			setEndDate(resultDate);	// 마감일 세팅
+			System.out.println(resultDate);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 	}
 	
 //	기본 이미지 지정하는 메서드
