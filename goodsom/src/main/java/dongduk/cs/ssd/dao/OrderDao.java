@@ -1,10 +1,7 @@
 package dongduk.cs.ssd.dao;
 
-import java.util.List;
-
 import org.springframework.dao.DataAccessException;
 
-import dongduk.cs.ssd.domain.LineGroupBuy;
 import dongduk.cs.ssd.domain.Order;
 
 /**

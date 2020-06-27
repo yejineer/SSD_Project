@@ -12,15 +12,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import dongduk.cs.ssd.controller.user.UserSession;
 import dongduk.cs.ssd.domain.Order;
-import dongduk.cs.ssd.service.AuctionService;
-import dongduk.cs.ssd.service.GroupBuyService;
 import dongduk.cs.ssd.service.OrderService;
-import dongduk.cs.ssd.service.ScrapService;
 import dongduk.cs.ssd.service.UserService;
 
 /**
- * @author kimdahyee	/ Seonmi-Hwang
- * @since 05.08.2020	/ 2020.06.14
+ * @author kimdahyee | Seonmi-Hwang
+ * @since 05.08.2020 | 2020.06.14
  */
 
 

@@ -6,7 +6,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 	
-
 <!doctype html>
 <html lang="ko">
 
@@ -34,6 +33,13 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/style.css">
 
 </head>
+
+<style>
+.error {
+	color: #ff0000;
+	/* font-weight: bold; */
+}
+</style>
 
 <body data-spy="scroll" data-target=".site-navbar-target"
 	data-offset="300">
@@ -77,7 +83,7 @@
 							<ul class="site-menu main-menu js-clone-nav ml-auto ">
 								<li><a href="<%=request.getContextPath()%>/home.do" class="nav-link">Home</a></li>
 								<li><a href="<%=request.getContextPath()%>/groupBuy/list.do" class="nav-link">GroupBuy</a></li>
-								<li><a href="<%=request.getContextPath()%>/auction/list.do" class="nav-link"">Auction</a></li>
+								<li><a href="<%=request.getContextPath()%>/auction/list.do" class="nav-link">Auction</a></li>
 								<li><a href="#">Community</a></li>
 								<li><a href="<%=request.getContextPath()%>/user/detail.do"><img src="<%=request.getContextPath()%>/resources/images/mypage.jpg" alt="Image" 
 								width="30px" height="20px" class="img-fluid"> ${userSession.user.nickname}</a></li>
@@ -98,8 +104,7 @@
 					class="row align-items-center text-center justify-content-center">
 					<div class="col-lg-6">
 						<h1 class="text-white mb-4">Proceed Order</h1>
-						<p class="lead">Lorem ipsum dolor sit amet, consectetur
-							adipisicing elit maxime nemo placeat dolor.</p>
+						<p class="lead">결제를 진행하는 화면입니다.</p>
 
 					</div>
 				</div>
@@ -113,31 +118,6 @@
 				
 				<c:choose>
 					<c:when test="${not empty orderForm.order.lineGroupBuys}">  
-					<!-- lineGroupBuys가 아닌 경우 -->
-						<%-- <c:forEach var="lineGroupBuy" items="${lineGroupBuys}" varStatus="status">
-							<div class="col-lg-4 col-md-6 mb-4">
-								<div class="post-entry-1 h-100">
-									<div class="post-entry-1-contents">
-										<h3>
-											<a href="<c:url value='../../groupBuy/detail.do'>
-															<c:param name="groupBuyId" value="${lineGroupBuyForm.groupBuyId}" />
-													 </c:url>"> ${lineGroupBuyForm.groupBuy.title}</a>
-										</h3>
-		
-										<span class="meta d-inline-block mb-3">
-											<span class="mx-2"> ${lineGroupBuyForm.unitPrice}원</span> &nbsp;&nbsp; 
-											<span class="mx-2"> ${lineGroupBuyForm.quantity}개</span> &nbsp;&nbsp;
-											<span class="mx-2"> 옵션 : ${lineGroupBuyForm.option}</span> <br>
-										</span>
-									</div>
-								</div>
-								<br />
-								<div class="d-flex">
-									<h4>TotalPrice : ${lineGroupBuyForm.unitPrice}원</h4> &nbsp;
-								</div>
-							</div>
-						</c:forEach> --%>
-						
 						<div class="col-lg-4 col-md-6 mb-4">
 								<div class="post-entry-1 h-100">
 									<div class="post-entry-1-contents">
@@ -148,9 +128,9 @@
 										</h4>
 										<c:forEach var="lineGroupBuy" items="${orderForm.order.lineGroupBuys}" varStatus="status">
 										<span class="meta d-inline-block mb-3">
-											<span class="mx-2"> ${lineGroupBuy.unitPrice}원</span> &nbsp;&nbsp; 
-											<span class="mx-2"> ${lineGroupBuy.quantity}개</span> &nbsp;&nbsp;
-											<span class="mx-2"> 옵션 : ${lineGroupBuy.selectOption}</span> <br>
+											<span class="mx-2"> 옵션 : ${lineGroupBuy.selectOption}</span> &nbsp;&nbsp; 
+											<span class="mx-2"> 수량 : ${lineGroupBuy.quantity}개</span> &nbsp;&nbsp;
+											<span class="mx-2"> 금액 : ${lineGroupBuy.unitPrice}원</span> <br>
 										</span>
 										</c:forEach>
 									</div>
@@ -173,9 +153,9 @@
 										</h3>
 		
 										<span class="meta d-inline-block mb-3">
-											<span class="mx-2"> ${lineGroupBuy.unitPrice}원</span> &nbsp;&nbsp; 
-											<span class="mx-2"> ${lineGroupBuy.quantity}개</span> &nbsp;&nbsp;
-											<span class="mx-2"> 옵션 : ${lineGroupBuy.option}</span> <br>
+											<span class="mx-2"> 옵션 : ${lineGroupBuy.option}</span> &nbsp;&nbsp; 
+											<span class="mx-2"> 수량 : ${lineGroupBuy.quantity}개</span> &nbsp;&nbsp;
+											<span class="mx-2"> 금액 : ${lineGroupBuy.unitPrice}원</span> <br>
 										</span>
 									</div>
 								</div>
@@ -192,32 +172,32 @@
 								<label for="account">카드정보</label> 
 								<div class="d-flex">
 								<form:select path="order.cardBank" items="${cardBanks}" />
-								<form:errors path="order.cardBank" />
+								<form:errors path="order.cardBank" cssClass="error" />
 								<form:input path="order.cardNo" type="text"
 									class="form-control" placeholder="카드번호를 입력하세요" /> 
 								</div>
-								<form:errors path="order.cardNo" />
+								<form:errors path="order.cardNo" cssClass="error" />
 							</div>
 							
 							<div class="form-group">
 								<label for="validDate">유효기간</label> 
 								<form:input path="order.validDate" type="text"
 									class="form-control" placeholder="MM/YY" />
-								<form:errors path="order.validDate" />	
+								<form:errors path="order.validDate" cssClass="error" />	
 							</div>
 
 							<div class="form-group">
 								<label for="cvc">CVC</label> 
 								<form:input path="order.cvc" type="text" 
 									class="form-control" placeholder="123" />
-								<form:errors path="order.cvc" />	
+								<form:errors path="order.cvc" cssClass="error" />	
 							</div>
 
 							<div class="form-group">
 								<label for="phone">전화번호</label> 
 								<form:input path="order.phone" type="text"
 									class="form-control" placeholder="010-1234-5678" />
-								<form:errors path="order.phone" />	
+								<form:errors path="order.phone" cssClass="error" />	
 							</div>
 
 							<div class="form-group">
@@ -228,20 +208,20 @@
 									style="width: 70px;" /> &nbsp;&nbsp; 
 								<form:input path="order.address3" type="text" 
 								value="" style="width: 70px;" />
-								<form:errors path="order.address1" />	
-								<form:errors path="order.address2" />	
-								<form:errors path="order.address3" />	
+								<form:errors path="order.address1" cssClass="error" />	
+								<form:errors path="order.address2" cssClass="error" />	
+								<form:errors path="order.address3" cssClass="error" />	
 							</div>
 
 							<div class="form-group">
 								<label for="refundAccount">환불계좌</label> 
 								<div class="d-flex">
 									<form:select path="order.refundBank" items="${cardBanks}" />
-									<form:errors path="order.refundBank" />	
+									<form:errors path="order.refundBank" cssClass="error" />	
 									<form:input path="order.refundAccount" type="text"
 										class="form-control" placeholder="환불계좌를 입력하세요" />
 								</div>
-								<form:errors path="order.refundAccount" />	 
+								<form:errors path="order.refundAccount" cssClass="error" />	 
 							</div>
 							
 							<br />

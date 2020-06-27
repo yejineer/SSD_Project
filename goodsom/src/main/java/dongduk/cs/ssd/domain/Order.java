@@ -6,6 +6,11 @@ import java.util.List;
 
 import dongduk.cs.ssd.controller.groupBuy.LineGroupBuyForm;
 
+/**
+ * @author Seonmi Hwang
+ * @since 2020.05.06
+ */
+
 public class Order {
 	int orderId;
 	String cardBank;
@@ -21,24 +26,18 @@ public class Order {
 	int totalPrice;
 	Date orderDate;
 	int userId;
+	
 	List<LineGroupBuy> lineGroupBuys;
-//	LineGroupBuy lineGroupBuy;
 	GroupBuy groupBuy;
 	Bid successBidder = new Bid();
 	Auction auction;
-	int menuId;
-	int quantity;
+	
+	int menuId; // auction과 groupBuy를 구분하기 위함.
+	int quantity; // auction에 수량 1을 설정해주기 위함.
 	int groupBuyId;
 	int auctionId;
 	int totalQuantity;
-	
-//	public LineGroupBuy getLineGroupBuy() {
-//		return lineGroupBuy;
-//	}
-//
-//	public void setLineGroupBuy(LineGroupBuy lineGroupBuy) {
-//		this.lineGroupBuy = lineGroupBuy;
-//	}
+
 	
 	public int getGroupBuyId() {
 		return groupBuyId;
@@ -239,10 +238,6 @@ public class Order {
 		refundBank = user.getRefundBank();
 		refundAccount = user.getRefundAccount();
 		
-//		// order한 날짜
-//		orderDate = new Date();
-		
-		// 아래 사항들은 service에서 해주면 안되나?
 		// GroupBuy를 결제하는 경우
 		if (lineGroupBuyForm != null) {
 			lineGroupBuys = new ArrayList<LineGroupBuy>();
@@ -270,20 +265,11 @@ public class Order {
 				totalPrice += unitPrice;
 				totalQuantity += quantities.get(i);
 			}
+			
 			lineGroupBuyForm.setUnitPrices(unitPrices);
-			
-			// 코드 최적화 필요
-//			lineGroupBuy = new LineGroupBuy();
-//			lineGroupBuy.setGroupBuy(groupBuy);
-//			lineGroupBuy.setGroupBuyId(groupBuyId);
-//			lineGroupBuy.setOption(lineGroupBuyForm.getOption());
-//			lineGroupBuy.setQuantity(lineGroupBuyForm.getQuantity());
-//			lineGroupBuy.setUnitPrice(lineGroupBuyForm.getUnitPrice());
-			
 		}
 		
 		
-//
 //		// Auction을 결제하는 경우
 //		if (auction != null) {
 //			List<Bid> bids = auction.getBids();
@@ -309,16 +295,5 @@ public class Order {
 				+ ", orderDate=" + orderDate + ", menuId=" + menuId + ", quantity=" + quantity + ", groupBuyId="
 				+ groupBuyId + ", auctionId=" + auctionId + "]";
 	}
-
-//	@Override
-//	public String toString() {
-//		return "Order [orderId=" + orderId + ", cardBank=" + cardBank + ", cardNo=" + cardNo + ", validDate="
-//				+ validDate + ", cvc=" + cvc + ", address1=" + address1 + ", address2=" + address2 + ", address3="
-//				+ address3 + ", phone=" + phone + ", refundBank=" + refundBank + ", refundAccount=" + refundAccount
-//				+ ", userId=" + userId + ", lineGroupBuy=" + lineGroupBuy + ", groupBuy=" + groupBuy
-//				+ ", successBidder=" + successBidder + ", auction=" + auction + ", totalPrice=" + totalPrice
-//				+ ", orderDate=" + orderDate + ", menuId=" + menuId + ", quantity=" + quantity + ", groupBuyId="
-//				+ groupBuyId + ", auctionId=" + auctionId + "]";
-//	}
 
 }

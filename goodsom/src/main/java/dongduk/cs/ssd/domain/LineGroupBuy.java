@@ -1,5 +1,10 @@
 package dongduk.cs.ssd.domain;
 
+/**
+ * @author Seonmi Hwang
+ * @since 2020.06.27
+ */
+
 public class LineGroupBuy {
 	int lineId;
 	int orderId;

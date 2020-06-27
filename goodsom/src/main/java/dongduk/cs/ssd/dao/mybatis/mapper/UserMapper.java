@@ -26,8 +26,6 @@ public interface UserMapper {
 
 	int deleteUser(int userId);
 	
-//	List<Order> getOrderList(int userId); // 마이페이지 결제 목록 보기
-	
 	List<Order> getAuctionOrderList(int userId);
 	
 	List<Order> getGroupBuyOrderList(int userId);

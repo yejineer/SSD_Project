@@ -11,8 +11,8 @@ import org.springframework.web.util.WebUtils;
 import dongduk.cs.ssd.service.UserService;
 
 /**
- * @author Yejin Lee
- * @since 2020.05.07
+ * @author Yejin Lee | Seonmi-Hwang
+ * @since 2020.05.07 | 2020.06.21
  */
 
 @Controller

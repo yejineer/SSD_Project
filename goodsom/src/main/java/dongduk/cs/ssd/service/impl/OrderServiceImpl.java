@@ -11,7 +11,6 @@ import dongduk.cs.ssd.dao.OrderDao;
 import dongduk.cs.ssd.dao.UserDao;
 import dongduk.cs.ssd.domain.Auction;
 import dongduk.cs.ssd.domain.GroupBuy;
-import dongduk.cs.ssd.domain.LineGroupBuy;
 import dongduk.cs.ssd.domain.Order;
 import dongduk.cs.ssd.domain.User;
 import dongduk.cs.ssd.service.OrderService;
@@ -97,5 +96,4 @@ public class OrderServiceImpl implements OrderService {
 		return groupBuyOrderList;
 	}
 
-	
 }

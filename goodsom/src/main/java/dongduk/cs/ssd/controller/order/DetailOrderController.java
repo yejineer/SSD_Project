@@ -10,7 +10,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import dongduk.cs.ssd.controller.user.UserSession;
 import dongduk.cs.ssd.domain.Auction;
-import dongduk.cs.ssd.domain.GroupBuy;
 import dongduk.cs.ssd.domain.Order;
 import dongduk.cs.ssd.service.GroupBuyService;
 import dongduk.cs.ssd.service.OrderService;

@@ -18,9 +18,6 @@ import org.springframework.web.servlet.ModelAndViewDefiningException;
 
 import dongduk.cs.ssd.controller.groupBuy.LineGroupBuyForm;
 import dongduk.cs.ssd.controller.user.UserSession;
-import dongduk.cs.ssd.domain.GroupBuy;
-import dongduk.cs.ssd.domain.LineGroupBuy;
-import dongduk.cs.ssd.domain.Order;
 import dongduk.cs.ssd.domain.User;
 import dongduk.cs.ssd.service.GroupBuyService;
 import dongduk.cs.ssd.service.OrderService;
@@ -68,27 +65,9 @@ public class OrderFormController {
 		
 		UserSession userSession = (UserSession) request.getSession().getAttribute("userSession");
 		User user = userSession.getUser();
-		
-//		lineGroupBuyForm.setLineGroupBuyListByItems();
-//		List<LineGroupBuy> lineGroupBuy = lineGroupBuyForm.getLineGroupBuyList();
 
-//		int groupBuyId = lineGroupBuyForm.getGroupBuyId();
-//		GroupBuy groupBuy = groupBuyService.getGroupBuy(groupBuyId);
-//		int unitPrice = lineGroupBuyForm.getQuantity() * groupBuy.getPrice();
-//		lineGroupBuyForm.setUnitPrice(unitPrice);
-		
-		System.out.println("LineGroupBuys : " + lineGroupBuyForm);
-		
-//		mav.addObject("lineGroupBuyForm", lineGroupBuyForm);
-		
 		orderForm.getOrder().initOrder(user, lineGroupBuyForm, null);
 		return mav;
-		
-//		} else { // 선택한 상품이 없을 경우
-//			ModelAndView modelAndView = new ModelAndView("Error");
-//			modelAndView.addObject("message", "An order could not be created because products could not be found.");
-//			throw new ModelAndViewDefiningException(modelAndView);
-//		}
 	}
 	
 	@RequestMapping(value = "/order/groupBuy/create.do", method = RequestMethod.POST) // 결과 출력
@@ -113,6 +92,7 @@ public class OrderFormController {
 		
 		ModelAndView mav = new ModelAndView("order/payment_detail");
 		mav.addObject("order", orderForm.getOrder());
+		
 		if (orderSuccess == 1) {
 			mav.addObject("message", "결제가 성공적으로 완료되었습니다.");
 		} else {

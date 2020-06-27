@@ -13,8 +13,8 @@ import org.springframework.web.servlet.ModelAndView;
 import dongduk.cs.ssd.service.UserService;
 
 /**
- * @author Yejin Lee	/ Seonmi-Hwang
- * @since 2020.05.07	/ 2020.06.21
+ * @author Yejin Lee | Seonmi-Hwang
+ * @since 2020.05.07 | 2020.06.21
  */
 
 

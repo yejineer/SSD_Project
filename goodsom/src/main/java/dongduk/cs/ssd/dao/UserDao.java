@@ -10,8 +10,8 @@ import dongduk.cs.ssd.domain.Order;
 import dongduk.cs.ssd.domain.User;
 
 /**
- * @author Yejin Lee | kimdahyee
- * @since 2020.05.06 | 2020.06.12
+ * @author Yejin Lee | kimdahyee  | Seonmi Hwang
+ * @since 2020.05.06 | 2020.06.12 | 2020.06.21
  */
 
 public interface UserDao {
@@ -27,8 +27,6 @@ public interface UserDao {
 	void updateUser(User user) throws DataAccessException;
 
 	int deleteUser(int userId) throws DataAccessException;
-	
-//	List<Order> getOrderList(int userId); // 마이페이지 결제 목록 보기
 	
 	List<Order> getAuctionOrderList(int userId);
 	
