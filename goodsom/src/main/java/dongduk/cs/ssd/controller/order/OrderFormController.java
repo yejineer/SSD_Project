@@ -72,14 +72,14 @@ public class OrderFormController {
 //		lineGroupBuyForm.setLineGroupBuyListByItems();
 //		List<LineGroupBuy> lineGroupBuy = lineGroupBuyForm.getLineGroupBuyList();
 
-		int groupBuyId = lineGroupBuyForm.getGroupBuyId();
-		GroupBuy groupBuy = groupBuyService.getGroupBuy(groupBuyId);
-		int unitPrice = lineGroupBuyForm.getQuantity() * groupBuy.getPrice();
-		lineGroupBuyForm.setUnitPrice(unitPrice);
+//		int groupBuyId = lineGroupBuyForm.getGroupBuyId();
+//		GroupBuy groupBuy = groupBuyService.getGroupBuy(groupBuyId);
+//		int unitPrice = lineGroupBuyForm.getQuantity() * groupBuy.getPrice();
+//		lineGroupBuyForm.setUnitPrice(unitPrice);
 		
 		System.out.println("LineGroupBuys : " + lineGroupBuyForm);
 		
-		mav.addObject("lineGroupBuyForm", lineGroupBuyForm);
+//		mav.addObject("lineGroupBuyForm", lineGroupBuyForm);
 		
 		orderForm.getOrder().initOrder(user, lineGroupBuyForm, null);
 		return mav;
@@ -105,15 +105,19 @@ public class OrderFormController {
 			return mav;
 		}
 
-		int quentity = orderForm.getOrder().getLineGroupBuy().getQuantity();
-		orderForm.getOrder().getGroupBuy().orderSet(quentity);
+		int totalQuantity = orderForm.getOrder().getTotalQuantity();
+		orderForm.getOrder().getGroupBuy().orderSet(totalQuantity);
 		
-		orderService.createOrder(orderForm.getOrder());
+		int orderSuccess = orderService.createOrder(orderForm.getOrder());
 		groupBuyService.updateState(orderForm.getOrder().getGroupBuy());
 		
 		ModelAndView mav = new ModelAndView("order/payment_detail");
 		mav.addObject("order", orderForm.getOrder());
-		mav.addObject("message", "결제가 성공적으로 완료되었습니다.");
+		if (orderSuccess == 1) {
+			mav.addObject("message", "결제가 성공적으로 완료되었습니다.");
+		} else {
+			mav.addObject("message", "결제가 실패했습니다.");
+		}
 		status.setComplete();  // remove sessionLineGroupBuy and orderForm from session
 		return mav;
 	}

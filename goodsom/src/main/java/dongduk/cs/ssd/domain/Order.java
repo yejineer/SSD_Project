@@ -19,8 +19,8 @@ public class Order {
 	String refundBank;
 	String refundAccount;
 	int userId;
-//	List<LineGroupBuy> lineGroupBuys;
-	LineGroupBuy lineGroupBuy;
+	List<LineGroupBuy> lineGroupBuys;
+//	LineGroupBuy lineGroupBuy;
 	GroupBuy groupBuy;
 	Bid successBidder = new Bid();
 	Auction auction;
@@ -30,17 +30,16 @@ public class Order {
 	int quantity;
 	int groupBuyId;
 	int auctionId;
+	int totalQuantity;
 	
+//	public LineGroupBuy getLineGroupBuy() {
+//		return lineGroupBuy;
+//	}
+//
+//	public void setLineGroupBuy(LineGroupBuy lineGroupBuy) {
+//		this.lineGroupBuy = lineGroupBuy;
+//	}
 	
-	
-	public LineGroupBuy getLineGroupBuy() {
-		return lineGroupBuy;
-	}
-
-	public void setLineGroupBuy(LineGroupBuy lineGroupBuy) {
-		this.lineGroupBuy = lineGroupBuy;
-	}
-
 	public int getGroupBuyId() {
 		return groupBuyId;
 	}
@@ -121,20 +120,13 @@ public class Order {
 		this.successBidder = successBidder;
 	}
 
-	public Order() {
+	public List<LineGroupBuy> getLineGroupBuys() {
+		return lineGroupBuys;
 	}
-	
-//	public List<LineGroupBuy> order() {
-//		return lineGroupBuys;
-//	}
-//
-//	public List<LineGroupBuy> getLineGroupBuys() {
-//		return lineGroupBuys;
-//	}
-//
-//	public void setLineGroupBuys(List<LineGroupBuy> lineGroupBuys) {
-//		this.lineGroupBuys = lineGroupBuys;
-//	}
+
+	public void setLineGroupBuys(List<LineGroupBuy> lineGroupBuys) {
+		this.lineGroupBuys = lineGroupBuys;
+	}
 
 	public int getOrderId() {
 		return orderId;
@@ -224,6 +216,14 @@ public class Order {
 		this.refundAccount = refundAccount;
 	}
 	
+	public int getTotalQuantity() {
+		return totalQuantity;
+	}
+
+	public void setTotalQuantity(int totalQuantity) {
+		this.totalQuantity = totalQuantity;
+	}
+
 	public void initOrder(User user, LineGroupBuyForm lineGroupBuyForm, Auction auction) {
 		userId = user.getUserId();
 		
@@ -245,19 +245,40 @@ public class Order {
 		// 아래 사항들은 service에서 해주면 안되나?
 		// GroupBuy를 결제하는 경우
 		if (lineGroupBuyForm != null) {
+			lineGroupBuys = new ArrayList<LineGroupBuy>();
+			
 			groupBuyId = lineGroupBuyForm.getGroupBuyId();
 			groupBuy = lineGroupBuyForm.getGroupBuy();
-//			lineGroupBuys = lineGroupBuyForm.getLineGroupBuyList();
-			totalPrice = lineGroupBuyForm.getUnitPrice(); // 여러 개일 경우 for문으로 unitPrice들 다 더해줌
-			groupBuy = lineGroupBuyForm.getGroupBuy();
+			
+			List<String> options = lineGroupBuyForm.getOptions();
+			List<Integer> quantities = lineGroupBuyForm.getQuantities();
+			List<Integer> unitPrices = new ArrayList<Integer>();
+			
+			for (int i = 0; i < quantities.size(); i++) { // (옵션, 수량)쌍의 갯수 동안
+				int unitPrice = lineGroupBuyForm.getQuantities().get(i) * groupBuy.getPrice();
+				unitPrices.add(unitPrice);
+				
+				LineGroupBuy lineGroupBuy = new LineGroupBuy();
+				lineGroupBuy.setSelectOption(options.get(i));
+				lineGroupBuy.setQuantity(quantities.get(i));
+				lineGroupBuy.setUnitPrice(unitPrice);
+				lineGroupBuy.setGroupBuyId(groupBuyId);
+				lineGroupBuy.setGroupBuy(groupBuy);
+				
+				lineGroupBuys.add(lineGroupBuy);
+				
+				totalPrice += unitPrice;
+				totalQuantity += quantities.get(i);
+			}
+			lineGroupBuyForm.setUnitPrices(unitPrices);
 			
 			// 코드 최적화 필요
-			lineGroupBuy = new LineGroupBuy();
-			lineGroupBuy.setGroupBuy(groupBuy);
-			lineGroupBuy.setGroupBuyId(groupBuyId);
-			lineGroupBuy.setOption(lineGroupBuyForm.getOption());
-			lineGroupBuy.setQuantity(lineGroupBuyForm.getQuantity());
-			lineGroupBuy.setUnitPrice(lineGroupBuyForm.getUnitPrice());
+//			lineGroupBuy = new LineGroupBuy();
+//			lineGroupBuy.setGroupBuy(groupBuy);
+//			lineGroupBuy.setGroupBuyId(groupBuyId);
+//			lineGroupBuy.setOption(lineGroupBuyForm.getOption());
+//			lineGroupBuy.setQuantity(lineGroupBuyForm.getQuantity());
+//			lineGroupBuy.setUnitPrice(lineGroupBuyForm.getUnitPrice());
 			
 		}
 		
@@ -283,10 +304,21 @@ public class Order {
 		return "Order [orderId=" + orderId + ", cardBank=" + cardBank + ", cardNo=" + cardNo + ", validDate="
 				+ validDate + ", cvc=" + cvc + ", address1=" + address1 + ", address2=" + address2 + ", address3="
 				+ address3 + ", phone=" + phone + ", refundBank=" + refundBank + ", refundAccount=" + refundAccount
-				+ ", userId=" + userId + ", lineGroupBuy=" + lineGroupBuy + ", groupBuy=" + groupBuy
+				+ ", userId=" + userId + ", lineGroupBuys=" + lineGroupBuys + ", groupBuy=" + groupBuy
 				+ ", successBidder=" + successBidder + ", auction=" + auction + ", totalPrice=" + totalPrice
 				+ ", orderDate=" + orderDate + ", menuId=" + menuId + ", quantity=" + quantity + ", groupBuyId="
 				+ groupBuyId + ", auctionId=" + auctionId + "]";
 	}
+
+//	@Override
+//	public String toString() {
+//		return "Order [orderId=" + orderId + ", cardBank=" + cardBank + ", cardNo=" + cardNo + ", validDate="
+//				+ validDate + ", cvc=" + cvc + ", address1=" + address1 + ", address2=" + address2 + ", address3="
+//				+ address3 + ", phone=" + phone + ", refundBank=" + refundBank + ", refundAccount=" + refundAccount
+//				+ ", userId=" + userId + ", lineGroupBuy=" + lineGroupBuy + ", groupBuy=" + groupBuy
+//				+ ", successBidder=" + successBidder + ", auction=" + auction + ", totalPrice=" + totalPrice
+//				+ ", orderDate=" + orderDate + ", menuId=" + menuId + ", quantity=" + quantity + ", groupBuyId="
+//				+ groupBuyId + ", auctionId=" + auctionId + "]";
+//	}
 
 }
