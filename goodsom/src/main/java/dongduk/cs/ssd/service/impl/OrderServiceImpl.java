@@ -48,11 +48,10 @@ public class OrderServiceImpl implements OrderService {
 		return orderDao.createOrder(order);
 	}
 	
-//	@Override
-//	public Order getOrderWithLineGroupBuys(int orderId) {
-//		return orderDao.getOrderWithLineGroupBuys(orderId);
-//	}
-	
+	@Override
+	public Order getOrderWithLineGroupBuys(int orderId) {
+		return orderDao.getOrderWithLineGroupBuys(orderId);
+	}
 	
 	/* 추가 메소드 */
 	

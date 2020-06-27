@@ -18,14 +18,14 @@ public class Order {
 	String phone;
 	String refundBank;
 	String refundAccount;
+	int totalPrice;
+	Date orderDate;
 	int userId;
 	List<LineGroupBuy> lineGroupBuys;
 //	LineGroupBuy lineGroupBuy;
 	GroupBuy groupBuy;
 	Bid successBidder = new Bid();
 	Auction auction;
-	int totalPrice;
-	Date orderDate;
 	int menuId;
 	int quantity;
 	int groupBuyId;

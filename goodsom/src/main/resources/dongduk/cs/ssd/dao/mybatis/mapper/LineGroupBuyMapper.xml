@@ -16,10 +16,5 @@
 		VALUES (#{lineId}, #{quantity}, #{selectOption},
 		#{unitPrice}, #{groupBuyId}, #{orderId})
 	</insert>
-	
-	<select id="getLineGroupBuys" parameterType="int" resultType="LineGroupBuy">
-		SELECT <include refid="BaseColumns" />
-		FROM lineGroupBuys
-		WHERE orderId = #{orderId}
-	</select>
+
 </mapper>

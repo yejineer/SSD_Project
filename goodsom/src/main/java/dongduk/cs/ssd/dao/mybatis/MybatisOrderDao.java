@@ -28,17 +28,13 @@ public class MybatisOrderDao implements OrderDao {
 	@Override
 	public Order getOrder(int orderId) throws DataAccessException {
 	    Order order = orderMapper.getOrder(orderId);
-	    
-	    System.out.println("LineGroupBuyMapper getLineGroupBuys" + lineGroupBuyMapper.getLineGroupBuys(orderId));
-	    
-	    order.setLineGroupBuys(lineGroupBuyMapper.getLineGroupBuys(orderId));
 	    return order;
 	}
 
-//	@Override	
-//	public Order getOrderWithLineGroupBuys(int orderId) throws DataAccessException {
-//		return orderMapper.getOrderWithLineGroupBuys(orderId);
-//	}
+	@Override	
+	public Order getOrderWithLineGroupBuys(int orderId) throws DataAccessException {
+		return orderMapper.getOrderWithLineGroupBuys(orderId);
+	}
 
 	@Override
 	public int createOrder(Order order) throws DataAccessException {
