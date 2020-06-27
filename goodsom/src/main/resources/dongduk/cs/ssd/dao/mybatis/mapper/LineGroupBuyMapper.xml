@@ -3,13 +3,23 @@
 
 <mapper namespace="dongduk.cs.ssd.dao.mybatis.mapper.LineGroupBuyMapper">
 	<cache />
+	
+	<sql id="BaseColumns">
+		lineId, quantity, selectOption, unitPrice, groupBuyId, orderId
+	</sql>
+	
 	<insert id="insertLineGroupBuy" parameterType="LineGroupBuy">
 		<selectKey keyProperty="lineId" resultType="int" order="BEFORE">
 			SELECT lineId_seq.nextval AS lineId FROM DUAL
 		</selectKey>
-		INSERT INTO LineGroupBuys (lineId, quantity, selectOption, unitPrice,
-		groupBuyId, orderId)
-		VALUES (#{lineId}, #{quantity}, #{option},
+		INSERT INTO LineGroupBuys (<include refid="BaseColumns" />)
+		VALUES (#{lineId}, #{quantity}, #{selectOption},
 		#{unitPrice}, #{groupBuyId}, #{orderId})
 	</insert>
+	
+	<select id="getLineGroupBuys" parameterType="int" resultType="LineGroupBuy">
+		SELECT <include refid="BaseColumns" />
+		FROM lineGroupBuys
+		WHERE orderId = #{orderId}
+	</select>
 </mapper>

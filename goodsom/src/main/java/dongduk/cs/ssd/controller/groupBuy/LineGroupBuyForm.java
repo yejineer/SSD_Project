@@ -15,37 +15,15 @@ public class LineGroupBuyForm {
 	int groupBuyId;
 	GroupBuy groupBuy = new GroupBuy();
 	
-	int quantity;
-	String option;
-	int unitPrice;
+//	int quantity;
+//	String option;
+//	int unitPrice;
 	
 //	LineGroupBuy를 LIST로 가져올 경우
-//	List<LineGroupBuy> lineGroupBuys;
-//	
-//	public List<LineGroupBuy> getLineGroupBuys() {
-//		return lineGroupBuys;
-//	}
-//
-//	public void setLineGroupBuys(List<LineGroupBuy> lineGroupBuys) {
-//		this.lineGroupBuys = lineGroupBuys;
-//	}
-//	
-//	@Override
-//	public String toString() {
-//		return "LineGroupBuyForm [groupBuyId=" + groupBuyId + ", groupBuy=" + groupBuy + ", lineGroupBuys="
-//				+ lineGroupBuys + "]";
-//	}
-//
-//	public int getTotalPrice() {
-//		int totalPrice = 0;
-//
-//		for (LineGroupBuy lineGroupBuy : lineGroupBuys) {
-//			totalPrice += lineGroupBuy.getUnitPrice();
-//		}
-//		return totalPrice;
-//	}
-	
-	
+	List<Integer> quantities;
+	List<String> options;
+	List<Integer> unitPrices;
+
 	public int getGroupBuyId() {
 		return groupBuyId;
 	}
@@ -54,30 +32,6 @@ public class LineGroupBuyForm {
 		this.groupBuyId = groupBuyId;
 	}
 	
-	public int getQuantity() {
-		return quantity;
-	}
-
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
-
-	public String getOption() {
-		return option;
-	}
-
-	public void setOption(String option) {
-		this.option = option;
-	}
-
-	public int getUnitPrice() {
-		return unitPrice;
-	}
-
-	public void setUnitPrice(int unitPrice) {
-		this.unitPrice = unitPrice;
-	}
-
 	public GroupBuy getGroupBuy() {
 		return groupBuy;
 	}
@@ -86,13 +40,66 @@ public class LineGroupBuyForm {
 		this.groupBuy = groupBuy;
 	}
 
-	@Override
-	public String toString() {
-		return "LineGroupBuyForm [groupBuyId=" + groupBuyId + ", quantity=" + quantity + ", option=" + option
-				+ ", unitPrice=" + unitPrice + ", groupBuy=" + groupBuy + "]";
+	public List<Integer> getQuantities() {
+		return quantities;
 	}
 
-	
+	public void setQuantities(List<Integer> quantities) {
+		this.quantities = quantities;
+	}
+
+	public List<String> getOptions() {
+		return options;
+	}
+
+	public void setOptions(List<String> options) {
+		this.options = options;
+	}
+
+	public List<Integer> getUnitPrices() {
+		return unitPrices;
+	}
+
+	public void setUnitPrices(List<Integer> unitPrices) {
+		this.unitPrices = unitPrices;
+	}
+
+	@Override
+	public String toString() {
+		return "LineGroupBuyForm [groupBuyId=" + groupBuyId + ", groupBuy=" + groupBuy + ", quantities=" + quantities
+				+ ", options=" + options + "]";
+	}
+
+//	public int getQuantity() {
+//		return quantity;
+//	}
+//
+//	public void setQuantity(int quantity) {
+//		this.quantity = quantity;
+//	}
+//
+//	public String getOption() {
+//		return option;
+//	}
+//
+//	public void setOption(String option) {
+//		this.option = option;
+//	}
+//
+//	public int getUnitPrice() {
+//		return unitPrice;
+//	}
+//
+//	public void setUnitPrice(int unitPrice) {
+//		this.unitPrice = unitPrice;
+//	}
+//
+//	@Override
+//	public String toString() {
+//		return "LineGroupBuyForm [groupBuyId=" + groupBuyId + ", quantity=" + quantity + ", option=" + option
+//				+ ", unitPrice=" + unitPrice + ", groupBuy=" + groupBuy + "]";
+//	}
+
 //	private String[] item; // (option, quantity)쌍의 배열 from groupBuy_detail.jsp
 //
 //	private List<LineGroupBuy> lineGroupBuyList;

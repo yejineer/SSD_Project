@@ -34,13 +34,7 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/style.css">
 
 </head>
-<script>
-function createAuction() {
-	
-	auctionForm.submit();
-	alert("경매를 등록합니다.");
-}
-</script>
+
 <body data-spy="scroll" data-target=".site-navbar-target"
 	data-offset="300">
 
@@ -118,8 +112,9 @@ function createAuction() {
 				<h2>주문 내역 확인</h2>	<br />
 				
 				<c:choose>
-					<c:when test="${lineGroupBuyForm ne null}">  <!-- 공동구매, List<LineGroupBuy> lineGroupBuys를 넘겨준다고 가정 -->
-						<%-- <c:forEach var="lineGroupBuy" items="${lineGroupBuys}" varStatus="status"> --%>
+					<c:when test="${not empty orderForm.order.lineGroupBuys}">  
+					<!-- lineGroupBuys가 아닌 경우 -->
+						<%-- <c:forEach var="lineGroupBuy" items="${lineGroupBuys}" varStatus="status">
 							<div class="col-lg-4 col-md-6 mb-4">
 								<div class="post-entry-1 h-100">
 									<div class="post-entry-1-contents">
@@ -141,7 +136,31 @@ function createAuction() {
 									<h4>TotalPrice : ${lineGroupBuyForm.unitPrice}원</h4> &nbsp;
 								</div>
 							</div>
-						<%-- </c:forEach> --%>
+						</c:forEach> --%>
+						
+						<div class="col-lg-4 col-md-6 mb-4">
+								<div class="post-entry-1 h-100">
+									<div class="post-entry-1-contents">
+										<h4>
+											<a href="<c:url value='../../groupBuy/detail.do'>
+															<c:param name="groupBuyId" value="${orderForm.order.groupBuyId}" />
+													 </c:url>"> ${orderForm.order.groupBuy.title}</a>
+										</h4>
+										<c:forEach var="lineGroupBuy" items="${orderForm.order.lineGroupBuys}" varStatus="status">
+										<span class="meta d-inline-block mb-3">
+											<span class="mx-2"> ${lineGroupBuy.unitPrice}원</span> &nbsp;&nbsp; 
+											<span class="mx-2"> ${lineGroupBuy.quantity}개</span> &nbsp;&nbsp;
+											<span class="mx-2"> 옵션 : ${lineGroupBuy.selectOption}</span> <br>
+										</span>
+										</c:forEach>
+									</div>
+								</div>
+								<br />
+								<div class="d-flex">
+									<h4>TotalPrice : ${orderForm.order.totalPrice}원</h4> &nbsp;
+								</div>
+						</div>
+						
 					</c:when>
 					<c:otherwise> <!-- 경매 auction, 객체를 넘겨준다고 가정-->
 							<div class="col-lg-4 col-md-6 mb-4">
