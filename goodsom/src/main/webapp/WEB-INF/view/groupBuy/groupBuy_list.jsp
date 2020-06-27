@@ -33,23 +33,33 @@
 						<div class="col-lg-4 col-md-6 mb-4">
 							<div class="post-entry-1 h-100">
 							
-								<c:if test="${groupBuy.state=='proceeding' || groupBuy.state=='achieved'}" >
-									<c:if test="${groupBuy.state eq 'achieved'}">
-										<a>달성된 공동구매입니다.<br> 마감일까지 참여 가능합니다.</a>
-									</c:if>
-									<a href="<c:url value='/groupBuy/detail.do'>
-									<c:param name="groupBuyId" value="${groupBuy.groupBuyId}"/>
-											</c:url>">
-											<img src="${groupBuy.img}" alt="Image" class="img-fluid">
-									</a>
-									<div class="post-entry-1-contents">
-										<h2>
-											<a  href="<c:url value='/groupBuy/detail.do'>
-														<c:param name="groupBuyId" value="${groupBuy.groupBuyId}"/>
-													</c:url>">${groupBuy.title}</a>
-										</h2>
+								<a href="<c:url value='/groupBuy/detail.do'>
+									<c:param name="groupBuyId" value="${groupBuy.groupBuyId}"/></c:url>">
+										<img src="${groupBuy.img}" alt="Image" class="img-fluid">
+								</a>
+								<div class="post-entry-1-contents">
+									<div class="price-wrap d-flex" style="color:blue;">
+										<c:if test="${groupBuy.state eq 'proceeding'}" >
+											<h5>Proceeding</h5>
+										</c:if>
+										<c:if test="${groupBuy.state eq 'achieved'}" >
+											<h5>Achieved</h5>
+										</c:if>
+										<c:if test="${groupBuy.state eq 'closed'}" >
+											<h5>Closed</h5>
+										</c:if>
+									
 										<span class="meta d-inline-block mb-3">
-											~ <fmt:formatDate value="${groupBuy.endDate}" pattern="yyyy-MM-dd" />
+											
+											&nbsp; ~ <fmt:formatDate value="${groupBuy.endDate}" pattern="yyyy-MM-dd" />
+										</span>
+									</div>
+									
+									<h2><a  href="<c:url value='/groupBuy/detail.do'>
+													<c:param name="groupBuyId" value="${groupBuy.groupBuyId}"/>
+												</c:url>">${groupBuy.title}</a>
+									</h2>
+									
 										<span class="mx-2">가격</span> 
 											<a href="#"><fmt:formatNumber value="${groupBuy.price}" pattern="#,###원"/></a> <br/><br/>
 										
@@ -57,29 +67,11 @@
 											<a href="#"><fmt:formatNumber value="${groupBuy.participants}"/>명 / </a>
 											<a href="#"><fmt:formatNumber value="${groupBuy.minNo}"/>명</a>
 											<a href="#"><fmt:formatNumber value="${groupBuy.rate}"/>%</a>
-										</span>
-										<p>${groupBuy.content}</p>
-									</div>
-								</c:if>
-								<c:if test="${groupBuy.state eq 'closed'}">
-									<a>마감된 공동구매입니다.</a>
-									<img src="${groupBuy.img}" alt="Image" class="img-fluid">
-									<div class="post-entry-1-contents">
-										<h2>
-											<a>${groupBuy.title}</a>
-										</h2>
-										<span class="meta d-inline-block mb-3">
-											~ <fmt:formatDate value="${groupBuy.endDate}" pattern="yyyy-MM-dd" />
-										<span class="mx-2">가격</span> 
-										<a href="#"><fmt:formatNumber value="${groupBuy.price}" pattern="#,###원"/></a> <br/><br/>
-										<span class="mx-2">달성률</span> 
-											<a href="#"><fmt:formatNumber value="${groupBuy.participants}"/>명 / </a>
-											<a href="#"><fmt:formatNumber value="${groupBuy.minNo}"/>명</a>
-											<a href="#"><fmt:formatNumber value="${groupBuy.rate}" pattern="###%"/></a>
-										</span>
-										<p>${groupBuy.content}</p>
-									</div>
-								</c:if>
+										
+									
+									<p>${groupBuy.content}</p>
+									
+								</div>
 							</div>
 						</div>
     				
