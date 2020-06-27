@@ -1,10 +1,12 @@
 package dongduk.cs.ssd.domain;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotEmpty;
@@ -29,12 +31,12 @@ public class GroupBuy {
 	@Positive
 	int minNo;
 	
-	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm")
 	Date uploadDate;
 
 	@NotNull
 	@Future
-	@DateTimeFormat(pattern ="yyyy-MM-dd HH:mm")
+	@DateTimeFormat(pattern ="yyyy-MM-dd")
 	Date endDate;
 	
 	int count;
@@ -53,6 +55,10 @@ public class GroupBuy {
 	int price;
 	@NotEmpty
 	String[] optionList;
+	
+	String isAmPm;
+	int hour;
+	int minute;
 	
 	List<Option> options = new ArrayList<Option>();
 	List<User> groupBuyUsers = new ArrayList<User>();
@@ -213,6 +219,28 @@ public class GroupBuy {
 		this.optionList = optionList;
 	}
 
+	public String getIsAmPm() {
+		return isAmPm;
+	}
+
+	public void setIsAmPm(String isAmPm) {
+		this.isAmPm = isAmPm;
+	}
+	public int getHour() {
+		return hour;
+	}
+
+	public void setHour(int hour) {
+		this.hour = hour;
+	}
+	public int getMinute() {
+		return minute;
+	}
+
+	public void setMinute(int minute) {
+		this.minute = minute;
+	}
+	
 	public GroupBuy() {
 	}
 
@@ -224,7 +252,41 @@ public class GroupBuy {
 	public void initGroupBuy(User user) {
 		Calendar calendar = Calendar.getInstance();
         java.util.Date date = calendar.getTime();
-        System.out.println(date);
+        
+        SimpleDateFormat KSTFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
+        SimpleDateFormat tmpFormat = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdfHour = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        
+        // date 형식 초기화
+        Date tmpDate;
+        String newDate = null;
+		try {
+			tmpDate = KSTFormat.parse(getEndDate().toString());
+			System.out.println(tmpDate);
+			newDate = tmpFormat.format(tmpDate);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+        
+        // 마감시간 세팅
+        if(isAmPm.equals("pm")){
+        	int tmpHour = getHour()+12;
+        	if(tmpHour == 24) {
+        		setHour(00);
+        	}else {
+        		setHour(tmpHour);
+        	}
+        }
+        
+        try {
+        	String dateFormat = newDate + " " + String.valueOf(getHour()) + ":" + String.valueOf(getMinute());
+            System.out.println("dateFormat: " + dateFormat);
+			Date resultDate = sdfHour.parse(dateFormat);
+			setEndDate(resultDate);	// 마감일 세팅
+			System.out.println(getEndDate());
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
         
         uploadDate = date;
         userId = user.getUserId();
@@ -249,15 +311,17 @@ public class GroupBuy {
 		}
 	}
 	
-	public String getDday(long start, long end) {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일");
+	public String getDday(long end) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일 HH시 mm분");
+		Calendar calendar = Calendar.getInstance();
+        java.util.Date now = calendar.getTime();
 		
-		long timeLength = getEndDate().getTime() - getUploadDate().getTime();
-		long hour = (timeLength % ( 24*60*60*1000 )) / ( 60*60*1000 ); 
+		long timeLength = getEndDate().getTime() - now.getTime();
+		long dHour = (timeLength % ( 24*60*60*1000 )) / ( 60*60*1000 ); 
 		long dDay = timeLength / ( 24*60*60*1000 ); 
 		Math.abs(dDay);
-		Math.abs(hour);
-		String str = dDay + "일 " + hour + "시간  (" + sdf.format(getEndDate()) + "까지)";
+		Math.abs(dHour);
+		String str = dDay + "일 " + dHour + "시간  (" + sdf.format(getEndDate()) + "까지)";
 		System.out.println("str");
 		return str;
 	}

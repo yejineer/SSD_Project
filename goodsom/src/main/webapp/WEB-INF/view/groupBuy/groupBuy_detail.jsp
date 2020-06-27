@@ -136,7 +136,7 @@ function delItem(id) {
 				<h5>남은 시간 : &nbsp; &nbsp; 마감되었습니다.</h5>
 			</c:if>
 			<c:if test="${groupBuy.state eq 'proceeding' or groupBuy.state eq 'acheived'}" >
-				<h5>남은 시간 : &nbsp; &nbsp; ${dDay}</h5>
+				<h5>남은 시간 : &nbsp; &nbsp; <br/>${dDay}</h5>
 			</c:if>	
 		
 			<br />

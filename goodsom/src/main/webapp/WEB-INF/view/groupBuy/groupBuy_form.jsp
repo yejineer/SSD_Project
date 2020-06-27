@@ -49,11 +49,15 @@ function input_append(ff){
 
 </script>
 <style>
+.error {
+	color: #ff0000;
+	/* font-weight: bold; */
+}
+
 * {
   margin: 0;
   padding: 0;
 }
-
 /* temp grid */
 
 .only-sr {
@@ -95,10 +99,6 @@ function input_append(ff){
   color: #fff;
 }
 
-.ie8 .radio-items input[type="radio"].checked + label {
-  background-color: #454a60;
-  color: #fff;
-}
 
 #addOption{
 	width:100px;
@@ -274,18 +274,43 @@ function input_append(ff){
 			              	
 				                <div class="d-flex">
 					    		  <div class="form-group mr-2">
-					              		<c:choose>
-											<c:when test="${groupBuyForm.newGroupBuy}">
-												<form:input type="date" id="endDate" path="groupBuy.endDate" class="form-control" placeholder="ex) 2020-6-30 14:22" />
-											</c:when>
-											<c:otherwise>
-												<fmt:formatDate value='${groupBuyForm.groupBuy.endDate}' pattern='yyyy-MM-dd' var="dateFormat"/>
-												<form:input type="date" id="endDate" path="groupBuy.endDate" class="form-control" value="${dateFormat}"/>
-											</c:otherwise>
-										</c:choose>
-					              
+				              		<c:choose>
+										<c:when test="${groupBuyForm.newGroupBuy}">
+											<form:input type="date" id="endDate" path="groupBuy.endDate" class="form-control" placeholder="ex) yyyy-MM-dd" />
+										</c:when>
+										<c:otherwise>
+											<fmt:formatDate value='${groupBuyForm.groupBuy.endDate}' pattern='yyyy-MM-dd' var="dateFormat"/>
+											<form:input type="date" id="endDate" path="groupBuy.endDate" class="form-control" value="${dateFormat}"/>
+										</c:otherwise>
+									</c:choose>
+									
+					              	
 					              </div>
 			              		</div>
+			              		
+			              		<form:radiobutton id="isAmPm" path="groupBuy.isAmPm" value="am"/> 오전
+					            <form:radiobutton id="isAmPm" path="groupBuy.isAmPm" value="pm" checked="checked"  />오후
+					            
+								<select name="groupBuy.hour">
+								    <option value="">시간</option>
+								    <option value="1">1시</option>
+								    <option value="2">2시</option>
+								    <option value="3">3시</option>
+								    <option value="4">4시</option>
+								    <option value="5">5시</option>
+								    <option value="6">6시</option>
+								    <option value="7">7시</option>
+								    <option value="8">8시</option>
+								    <option value="9">9시</option>
+								    <option value="10">10시</option>
+								    <option value="11">11시</option>
+								    <option value="12">12시</option>
+								</select>	
+								<select name="groupBuy.minute">
+								    <option value="">분</option>
+								    <option value="00">00분</option>
+								    <option value="30">30분</option>
+								</select>
 			              	</div>
 
 							
