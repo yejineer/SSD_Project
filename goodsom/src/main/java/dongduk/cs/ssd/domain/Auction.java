@@ -9,6 +9,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import javax.validation.constraints.Future;
+import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -33,6 +35,7 @@ public class Auction implements Serializable {
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	Date uploadDate;
 	@NotNull
+	@FutureOrPresent
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	Date endDate;
 	int count;
@@ -41,6 +44,7 @@ public class Auction implements Serializable {
 	int menuId;
 	int userId;
 
+	@NotEmpty
 	String isAmPm;
 	int hour;
 	int minute;
