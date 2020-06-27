@@ -66,7 +66,7 @@
 	</select>
 
 	<select id="getGroupBuyOrderList" resultType="Order">
-		SELECT l.groupBuyId, o.orderId, o.orderDate, o.totalPrice, l.quantity
+		SELECT DISTINCT l.groupBuyId, o.orderId, o.orderDate, o.totalPrice
 		FROM orders o, lineGroupBuys l
 		WHERE o.orderId = l.orderId and o.userId= #{param1}
 	</select>

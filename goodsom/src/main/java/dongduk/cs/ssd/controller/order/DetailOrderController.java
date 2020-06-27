@@ -36,11 +36,12 @@ public class DetailOrderController {
 			) throws Exception {
 		// UserSession의 userId와 orderId에 해당하는 Order의 userId가 같은지 판단하는 코드 추가
 			ModelAndView mav = new ModelAndView("order/payment_detail");
-			Order order = orderService.getOrder(orderId);
+			Order order = orderService.getOrderWithLineGroupBuys(orderId);
+			
+			System.out.println("[Order DetailOrder]" + order);
 			
 			// 공동구매
-			GroupBuy groupBuy = orderService.getGroupBuy(orderId);
-			order.setGroupBuy(groupBuy);
+			order.setGroupBuy(orderService.getGroupBuy(orderId));
 			
 			mav.addObject("order", order);
 			return mav;

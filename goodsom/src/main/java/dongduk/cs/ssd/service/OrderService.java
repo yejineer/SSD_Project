@@ -21,7 +21,7 @@ public interface OrderService {
 	
 	public int createOrder(Order order);
 
-//	public Order getOrderWithLineGroupBuys(int orderId);
+	public Order getOrderWithLineGroupBuys(int orderId);
 	
 	public GroupBuy getGroupBuy(int orderId);
 	
