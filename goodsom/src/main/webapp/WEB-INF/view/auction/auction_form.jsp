@@ -9,6 +9,8 @@
 <%@ include file="../IncludeTop.jsp" %> 
 
 <script>
+$("#ampm").attr("checked","checked");
+
 function submit(isNewAuction) {
 
 	alert("경매를 등록합니다.");
@@ -67,8 +69,9 @@ function submit(isNewAuction) {
 							
 							<div class="form-group row">
 								<div class="col-md-12">
-									<label for="img">대표 이미지</label>
-                					<input type="file" id="img" name="report" value="input file" />
+									<label for="report">대표 이미지</label>&nbsp;&nbsp;&nbsp;<form:errors path="report" cssClass="error"/><br/>
+                					<form:input type="file" path="report" value="사진을 선택합니다." />
+                					
               					</div>
               				</div>
 							
@@ -94,7 +97,7 @@ function submit(isNewAuction) {
 										<div class="form-group mr-2">
 										<c:choose>
 											<c:when test="${auctionForm.newAuction}">
-												<form:input path="inputPrice" class="form-control" placeholder="10000"/>
+												<form:input path="inputPrice" class="form-control" placeholder="ex) 10000"/>
 											</c:when>
 											<c:otherwise>
 												<form:input path="inputPrice" class="form-control" value="${auctionForm.auction.startPrice}"/>
@@ -112,24 +115,28 @@ function submit(isNewAuction) {
 					    		  <div class="form-group mr-2">
 					    		  	<c:choose>
 										<c:when test="${auctionForm.newAuction}">
-							                <input type="date" id="auction.endDate" class="form-control" name="auction.endDate" placeholder="yyyy-MM-dd">
+							                <form:input type="date" path="auction.endDate" class="form-control" placeholder="yyyy-MM-dd"/>
 										</c:when>
 										<c:otherwise>
-											<input type="date" id="auction.endDate" class="form-control" name="auction.endDate" 
-													value="<fmt:formatDate value='${auctionForm.auction.endDate}' pattern='yyyy-MM-dd'/>">
+											<fmt:formatDate value='${groupBuyForm.groupBuy.endDate}' pattern='yyyy-MM-dd' var="dateFormat"/>
+											<form:input type="date" path="auction.endDate" class="form-control"	value="${dateFormat}"/>
 										</c:otherwise>
 									</c:choose>
-					              </div>
+					             </div>
 			              		</div>
+			              	</div>
 			              		
-			              		<form:radiobuttons items="${amPm}" path="auction.isAmPm"/>
-					            
+			              	<div class="form-group">
+			              		<form:radiobuttons items="${amPm}" id="amPm" path="auction.isAmPm"/> &nbsp;&nbsp;&nbsp;
+					            <form:errors path="auction.isAmPm" cssClass="error"/>  &nbsp;&nbsp;&nbsp;
+					        </div>
+					        <div class="form-group"> 
 								<form:select path="auction.hour">
-									<form:options items="${hourData}" itemLabel="label" itemValue="code"/>
+									<form:options path="auction.hour" items="${hourData}" itemLabel="label" itemValue="code"/>
 								</form:select>
-								
+								&nbsp;&nbsp;&nbsp;
 								<form:select path="auction.minute">
-									<form:options items="${minuteData}" itemLabel="label" itemValue="code"/>
+									<form:options path="auction.minute" items="${minuteData}" itemLabel="label" itemValue="code"/>
 								</form:select>
 			              	</div>
 
