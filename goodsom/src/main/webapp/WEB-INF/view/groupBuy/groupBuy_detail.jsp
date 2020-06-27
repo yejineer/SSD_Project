@@ -12,10 +12,15 @@
 <script>
 var optionStatus = 1;
 // delete
-function deleteGroupBuy(url) {
-	
+function deleteGroupBuy(participants) {
 	var deleteCheck = confirm("등록하신 공동구매를 삭제하시겠습니까?")
-	return deleteCheck;
+	
+	if(deleteCheck == true && participants > 0){
+		alert(participants + "명의 참여자가 존재하여 삭제할 수 없습니다.");
+		return false;
+	}else{
+		return deleteCheck;
+	}
 }
 
 // 수량 증감
@@ -191,7 +196,7 @@ function delItem(id) {
 					</c:url>">수정</a>
 	   			<a class="btn btn-primary py-3 px-5" href="<c:url value='/groupBuy/delete.do'>
 	   				<c:param name="groupBuyId" value="${groupBuy.groupBuyId}"/></c:url>" 
-			   		onClick="return deleteGroupBuy();">삭제</a>	
+			   		onClick="return deleteGroupBuy('${groupBuy.participants}');">삭제</a>	
 	   		</div>	
 	    </c:if>						
    </div>
