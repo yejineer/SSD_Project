@@ -81,12 +81,7 @@ public class GroupBuyFormController {
 			}
 		}
 
-//		글 작성자, default img 세팅
-		if(user.getUser().getUserId() == groupBuyForm.getGroupBuy().getUserId()) {
-			model.addAttribute("isWriter", true);
-		}else {
-			model.addAttribute("isWriter", false);
-		}
+//		default img 세팅 & initGroupBuy
 		groupBuyForm.getGroupBuy().initGroupBuy(user.getUser());
 		if (groupBuyForm.getGroupBuy().getImg().trim() == "") {
 			groupBuyForm.getGroupBuy().initImg(request.getContextPath());
@@ -112,9 +107,14 @@ public class GroupBuyFormController {
 		
 //		detail에 필요한 파라미터 세팅
 		GroupBuy groupBuy = groupBuyService.getGroupBuy(groupBuyId);
+		if(user.getUser().getUserId() == groupBuy.getUserId()) {
+			model.addAttribute("isWriter", true);
+		}else {
+			model.addAttribute("isWriter", false);
+		}
 		model.addAttribute("groupBuy", groupBuy);
 		model.addAttribute("writer", user.getUser().getNickname());
-		model.addAttribute("dDay", groupBuy.getDday(groupBuy.getUploadDate().getTime(), groupBuy.getEndDate().getTime()));
+		model.addAttribute("dDay", groupBuy.getDday(groupBuy.getEndDate().getTime()));
 		
 		sessionStatus.setComplete();
 		
