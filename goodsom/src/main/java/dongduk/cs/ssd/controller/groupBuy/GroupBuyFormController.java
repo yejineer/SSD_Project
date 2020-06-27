@@ -73,6 +73,13 @@ public class GroupBuyFormController {
 		String reqPage = request.getServletPath();
 		String requestUrl = reqPage.trim();
 		
+//		default img 세팅 & initGroupBuy
+		groupBuyForm.getGroupBuy().initGroupBuy(user.getUser());
+		groupBuyForm.getGroupBuy().timeSet();
+		if (groupBuyForm.getGroupBuy().getImg().trim() == "") {
+			groupBuyForm.getGroupBuy().initImg(request.getContextPath());
+        }
+		System.out.println("between setting&bindError: " + groupBuyForm.getGroupBuy().getEndDate().toString());
 		if(result.hasErrors()) {
 			if(requestUrl.equals("/groupBuy/update.do")) {
 				return "redirect:form.do?groupBuyId=" + groupBuyForm.getGroupBuy().getGroupBuyId();
@@ -80,12 +87,6 @@ public class GroupBuyFormController {
 				return GROUPBUY_FORM;
 			}
 		}
-
-//		default img 세팅 & initGroupBuy
-		groupBuyForm.getGroupBuy().initGroupBuy(user.getUser());
-		if (groupBuyForm.getGroupBuy().getImg().trim() == "") {
-			groupBuyForm.getGroupBuy().initImg(request.getContextPath());
-        }
 
 		if (reqPage.trim().equals("/groupBuy/update.do")) { 	//		update
 //			db: groupBuy update & option 삭제 후, 다시 생성

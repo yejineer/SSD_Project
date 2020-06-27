@@ -93,10 +93,12 @@ public class AuctionFormController implements ApplicationContextAware  {
 				return AUCTION_FORM;
 			}
 		}
-
+		
 		//		경매 create시 작성자 번호(userId)를 넣어야하고, view에서 작성자를 출력해야 하므로 현재 접속 중인 사용자의 정보를 Session에서 가져온다.
 		UserSession user  = (UserSession)request.getSession().getAttribute("userSession");
 		
+//		시간세팅 by HK
+		auctionForm.getAuction().timeSet();
 //		파일 업로드 기능
 		System.out.println("uploadDir: " + uploadDir);
 		String savedFileName = uploadFile(report);
