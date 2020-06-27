@@ -10,15 +10,15 @@
 
 <script type="text/javascript">
 
-function deleteAuction(auctionId) {
+function deleteAuction() {
 	if (confirm("경매를 삭제하시겠습니까?")) {
-		location.href= "delete.do?auctionId=${auction.auctionId}";
+		location.href= "delete.do?auctionId=${auctionId}";
 	}
 }
 
-function updateAuction(auctionId) {
+function updateAuction() {
 	if (confirm("경매를 수정하시겠습니까?")) {
-		location.href= "update.do?auctionId=${auction.auctionId}";
+		location.href= "form.do?auctionId=${auctionId}";
 	}
 }
 
