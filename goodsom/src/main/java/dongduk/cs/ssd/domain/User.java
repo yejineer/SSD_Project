@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * @author kimdahyee
- * @since 2020.06.12
+ * @since  2020.06.12
  */
 
 @SuppressWarnings("serial")

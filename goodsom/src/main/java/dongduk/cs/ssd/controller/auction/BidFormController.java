@@ -108,6 +108,7 @@ public class BidFormController {
 		
 		session.setAttribute("auctionId", auctionId);
 		mav.addObject("auction", auction);
+		mav.addObject("bid", bid);
 		mav.addObject("writer", userService.getUserByUserId(auction.getUserId()).getNickname());
 		return mav;
 		

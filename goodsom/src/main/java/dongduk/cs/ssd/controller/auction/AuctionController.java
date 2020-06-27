@@ -63,8 +63,6 @@ public class AuctionController {
 		Auction auction = auctionService.getAuction(auctionId);
 		Bid bid = bidService.getBidByMaxPrice(auction.getMaxPrice(), auctionId);
 		
-		//System.out.println("===============" + bid.getUserId());
-		
 		UserSession user  = (UserSession)request.getSession().getAttribute("userSession");
 		if (user.getUser().getUserId() == auction.getUserId()) {
 			mav.addObject("isWriter", true);
