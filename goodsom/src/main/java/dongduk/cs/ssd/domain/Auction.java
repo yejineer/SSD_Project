@@ -1,10 +1,13 @@
 package dongduk.cs.ssd.domain;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
@@ -30,7 +33,7 @@ public class Auction implements Serializable {
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	Date uploadDate;
 	@NotNull
-	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm")
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	Date endDate;
 	int count;
 	int maxPrice;
@@ -38,6 +41,10 @@ public class Auction implements Serializable {
 	int menuId;
 	int userId;
 
+	String isAmPm;
+	int hour;
+	int minute;
+	
 	List<Bid> bids = new ArrayList<Bid>();
 	
 	public int getUserId() {
@@ -147,6 +154,28 @@ public class Auction implements Serializable {
 		this.state = state;
 	}
 	
+	public String getIsAmPm() {
+		return isAmPm;
+	}
+
+	public void setIsAmPm(String isAmPm) {
+		this.isAmPm = isAmPm;
+	}
+	public int getHour() {
+		return hour;
+	}
+
+	public void setHour(int hour) {
+		this.hour = hour;
+	}
+	public int getMinute() {
+		return minute;
+	}
+
+	public void setMinute(int minute) {
+		this.minute = minute;
+	}
+	
 	public void initAuction(User user) {
 		Calendar calendar = Calendar.getInstance();
         java.util.Date date = calendar.getTime();
@@ -157,6 +186,43 @@ public class Auction implements Serializable {
         state = PROCEEDING;
         count = 0;
         menuId = MENUID_AUCTION;
+	}
+	
+	public void timeSet() {
+		 SimpleDateFormat KSTFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
+	        SimpleDateFormat tmpFormat = new SimpleDateFormat("yyyy-MM-dd");
+	        SimpleDateFormat sdfHour = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+	        
+	        // date 형식 초기화
+	        Date tmpDate;
+	        String newDate = null;
+			try {
+				tmpDate = KSTFormat.parse(getEndDate().toString());
+				System.out.println(tmpDate);
+				newDate = tmpFormat.format(tmpDate);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+	        
+	        // 마감시간 세팅
+	        if(isAmPm.equals("pm")){
+	        	int tmpHour = getHour()+12;
+	        	if(tmpHour == 24) {
+	        		setHour(00);
+	        	}else {
+	        		setHour(tmpHour);
+	        	}
+	        }
+	        
+	        try {
+	        	String dateFormat = newDate + " " + String.valueOf(getHour()) + ":" + String.valueOf(getMinute());
+	            System.out.println("dateFormat: " + dateFormat);
+				Date resultDate = sdfHour.parse(dateFormat);
+				setEndDate(resultDate);	// 마감일 세팅
+				System.out.println(resultDate);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
 	}
 	
 //	기본 이미지 지정하는 메서드

@@ -19,12 +19,8 @@ import dongduk.cs.ssd.service.GroupBuyService;
 import dongduk.cs.ssd.service.UserService;
 
 /**
- * @author Seonmi Hwang
- * @since 2020.05.04
- */
-/**
- * @author HK
- * @since 2020.06.22
+ * @author Seonmi Hwang	| HK
+ * @since 2020.05.04	| 2020.06.27
  */
 
 @Controller

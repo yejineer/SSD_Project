@@ -35,8 +35,12 @@ public class GroupBuy {
 	Date uploadDate;
 
 	@NotNull
-	@Future
 	@DateTimeFormat(pattern ="yyyy-MM-dd")
+	Date tmpDate;
+	
+	@NotNull
+	@Future
+	@DateTimeFormat(pattern ="yyyy-MM-dd HH:mm")
 	Date endDate;
 	
 	int count;
@@ -241,6 +245,14 @@ public class GroupBuy {
 		this.minute = minute;
 	}
 	
+	public Date getTmpDate() {
+		return tmpDate;
+	}
+
+	public void setTmpDate(Date tmpDate) {
+		this.tmpDate = tmpDate;
+	}
+	
 	public GroupBuy() {
 	}
 
@@ -252,8 +264,22 @@ public class GroupBuy {
 	public void initGroupBuy(User user) {
 		Calendar calendar = Calendar.getInstance();
         java.util.Date date = calendar.getTime();
+  
+        uploadDate = date;
+        userId = user.getUserId();
+        count = 0;					// 조회수
+        state = PROCEEDING;			// 게시물 상태
+        rate = 0;					// 참여 달성률
+        participants = 0;			// 참여자 수
+        menuId = MENUID_GROUPBUY;	// 메뉴
         
-        SimpleDateFormat KSTFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
+        System.out.println("[initGroupBuy] uploadDate: " + uploadDate + ", userId: " + userId
+        		 + ", count: " + count  + ", state: " + state  + ", rate: " + rate  
+        		 + ", participants: " + participants  + ", menuId: " + menuId );
+	}
+	
+	public void timeSet() {
+		 SimpleDateFormat KSTFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
         SimpleDateFormat tmpFormat = new SimpleDateFormat("yyyy-MM-dd");
         SimpleDateFormat sdfHour = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         
@@ -283,22 +309,10 @@ public class GroupBuy {
             System.out.println("dateFormat: " + dateFormat);
 			Date resultDate = sdfHour.parse(dateFormat);
 			setEndDate(resultDate);	// 마감일 세팅
-			System.out.println(getEndDate());
+			System.out.println(resultDate);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-        
-        uploadDate = date;
-        userId = user.getUserId();
-        count = 0;					// 조회수
-        state = PROCEEDING;			// 게시물 상태
-        rate = 0;					// 참여 달성률
-        participants = 0;			// 참여자 수
-        menuId = MENUID_GROUPBUY;	// 메뉴
-        
-        System.out.println("[initGroupBuy] uploadDate: " + uploadDate + ", userId: " + userId
-        		 + ", count: " + count  + ", state: " + state  + ", rate: " + rate  
-        		 + ", participants: " + participants  + ", menuId: " + menuId );
 	}
 	
 	public void optionSetting(int groupBuyId) {
