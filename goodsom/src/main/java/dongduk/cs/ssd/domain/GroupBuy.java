@@ -255,6 +255,8 @@ public class GroupBuy {
 		long timeLength = getEndDate().getTime() - getUploadDate().getTime();
 		long hour = (timeLength % ( 24*60*60*1000 )) / ( 60*60*1000 ); 
 		long dDay = timeLength / ( 24*60*60*1000 ); 
+		Math.abs(dDay);
+		Math.abs(hour);
 		String str = dDay + "일 " + hour + "시간  (" + sdf.format(getEndDate()) + "까지)";
 		System.out.println("str");
 		return str;

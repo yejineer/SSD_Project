@@ -126,39 +126,51 @@ function delItem(id) {
       		</p>
          	<h2 align="center">$ ${groupBuy.price}</h2><br/>
          	<h5>참여자 수 : &nbsp; &nbsp; ${groupBuy.participants} / ${groupBuy.minNo}</h5>
-					<h5>남은 시간 : &nbsp; &nbsp; ${dDay}</h5>
-					<br />
-					
-					<form:form name="form" modelAttribute="lineGroupBuyForm" action="../order/groupBuy/create.do" method="GET">
-					<div class="alert alert-primary" role="alert">
-							<div class="d-flex" style="margin-bottom: 10px;">
-								<h5>옵션</h5> &nbsp;&nbsp; 
-								<select name="options" id="options">
-									<option value="chooseOption" selected disabled>옵션 선택</option>
-									<c:forEach var="option" items="${groupBuy.options}" varStatus="status">
-										<option value="${options.name}">${option.name}</option>
-									</c:forEach>
+			
+			<c:if test="${groupBuy.state eq 'closed'}" >
+				<h5>남은 시간 : &nbsp; &nbsp; 마감되었습니다.</h5>
+			</c:if>
+			<c:if test="${groupBuy.state eq 'proceeding' or groupBuy.state eq 'acheived'}" >
+				<h5>남은 시간 : &nbsp; &nbsp; ${dDay}</h5>
+			</c:if>	
+		
+			<br />
+			
+			<form:form name="form" modelAttribute="lineGroupBuyForm" action="../order/groupBuy/create.do" method="GET">
+				<div class="alert alert-primary" role="alert">
+					<div class="d-flex" style="margin-bottom: 10px;">
+						<h5>옵션</h5> &nbsp;&nbsp; 
+						<select name="options" id="options">
+							<option value="chooseOption" selected disabled>옵션 선택</option>
+							<c:forEach var="option" items="${groupBuy.options}" varStatus="status">
+								<option value="${options.name}">${option.name}</option>
+							</c:forEach>
 
-								</select> <br />
-							</div>
-
-							<div class="d-flex">
-								<h5>수량</h5> &nbsp;&nbsp; 
-								<input type="button" name="minus" value="-"
-									onclick="change(-1)" /> &nbsp; 
-								<input type="text" name="count" id="count" value="1"
-									style="text-align: center; width: 50px;" readonly /> &nbsp; 
-								<input type="button" name="plus" value="+"
-									onclick="change(1)" /> &nbsp; &nbsp; 
-								<input type="button" value="추가하기" onclick="addItem(count.value)" />
-							</div>
+						</select> <br />
 					</div>
-					
-					
-					<div id="itemBox"> </div>
+				</div>
+				
+				
+			<div id="itemBox"> </div>
+				<c:if test="${groupBuy.state eq 'closed'}" >
+					<input type="button" onclick="orderCreate()" value="신청하기" disabled />
+				</c:if>
+				<c:if test="${groupBuy.state eq 'proceeding' or groupBuy.state eq 'achieved'}" >
+					<div class="d-flex">
+						<h5>수량</h5> &nbsp;&nbsp; 
+						<input type="button" name="minus" value="-"
+							onclick="change(-1)" /> &nbsp; 
+						<input type="text" name="count" id="count" value="1"
+							style="text-align: center; width: 50px;" readonly /> &nbsp; 
+						<input type="button" name="plus" value="+"
+							onclick="change(1)" /> &nbsp; &nbsp; 
+						<input type="button" value="추가하기" onclick="addItem(count.value)" />
+					</div>
 					<input type="button" onclick="orderCreate()" value="신청하기" />
-					</form:form>
-					<br/><br/>
+				</c:if>
+			
+			</form:form>
+			<br/><br/>
   
          </div>
        </div> 
