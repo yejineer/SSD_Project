@@ -37,6 +37,7 @@
 									<c:param name="groupBuyId" value="${groupBuy.groupBuyId}"/></c:url>">
 										<img src="${groupBuy.img}" alt="Image" class="img-fluid">
 								</a>
+								<div style="float:right">조회수: ${groupBuy.count}&nbsp;&nbsp;</div>
 								<div class="post-entry-1-contents">
 									<div class="price-wrap d-flex" style="color:blue;">
 										<c:if test="${groupBuy.state eq 'proceeding'}" >
