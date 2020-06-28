@@ -94,7 +94,7 @@ function bid() {
 							<fmt:formatNumber value="${auction.maxPrice}" pattern="#,###원" />
 						</h4>
 						
-						<p>${bid.bidDate} <br/> ${writer}</p>
+						<p>${bid.bidDate} <br/> ${bidder}</p>
 						
 					</div><br/><br/>
 					
