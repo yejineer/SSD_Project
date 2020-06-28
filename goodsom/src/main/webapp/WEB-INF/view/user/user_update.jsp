@@ -10,6 +10,13 @@
 
 <%@ include file="../IncludeBanner.jsp" %> 
 
+<style>
+.error {
+	color: #ff0000;
+	/* font-weight: bold; */
+}
+</style>
+
 		<div class="site-section-cover">
 			<div class="container">
 				<div
@@ -39,18 +46,14 @@
 								
 						        <div class="form-group">
 									<label for="password">Password</label> &emsp;
-									<form:input path="user.password" type="password" class="form-control" /><br/>
+									<form:input path="user.password" type="password" class="form-control" />
+									<form:errors path="user.password" cssClass="error" /><br/>
 								</div>
 								
 								<div class="form-group">	
 									<label for="password">Check Password</label> &emsp;
-									<form:input path="repeatedPassword" type="password" class="form-control" /><br/>
-								</div>
-								
-								<div class="form-group">	
-									<label for="nickname">Nickname</label> &emsp;
-									<form:input path="user.nickname" class="form-control" />
-									<form:errors path="user.nickname" /><br/>
+									<form:input path="repeatedPassword" type="password" class="form-control" />
+									<form:errors path="repeatedPassword" cssClass="error" /><br/>
 								</div>
 								
 								<div class="form-group">	
@@ -58,31 +61,35 @@
 									<form:input path="user.userName" class="form-control" readonly="true"/><br/>
 								</div>
 								
+								<div class="form-group">	
+									<label for="nickname">Nickname</label> &emsp;
+									<form:input path="user.nickname" class="form-control" />
+									<form:errors path="user.nickname" cssClass="error" /><br/>
+								</div>
+								
 								<div class="form-group">
 									<label for="phone">Phone</label> &emsp;
 									<form:input path="user.phone" class="form-control" />
-									<form:errors path="user.phone" /><br/>
+									<form:errors path="user.phone" cssClass="error" /><br/>
 								</div>
 								
 								<div class="form-group">	
-									<label>Address</label> &emsp;
-									<form:input path="user.address1" class="form-control"/>
-									<form:errors path="user.address1" />
-									
-									<form:input path="user.address2" class="form-control"/>
-									<form:errors path="user.address2" />
-									
-									<form:input path="user.address3" class="form-control"/>
-									<form:errors path="user.address3" /><br/>
+									<label>Address</label> <br />
+									<form:input path="user.address1" style="width:70px;"/>&nbsp;-&nbsp; 
+									<form:input path="user.address2" style="width:70px;"/> &nbsp;&nbsp; 
+									<form:input path="user.address3" style="width:70px;"/><br/>
 								</div>
 								
 								<div class="form-group">
 									<label>Account</label> &emsp;
-									<form:input path="user.refundBank" class="form-control" />
-									<form:errors path="user.refundBank" />
-			
-									<form:input path="user.refundAccount" class="form-control" />
-									<form:errors path="user.refundAccount" /><br/>
+									<div class="d-flex">
+										<form:select path="user.refundBank" >
+											<option value="">은행</option>
+											<form:options items="${cardBanks}" />
+										</form:select>
+										<form:input path="user.refundAccount" class="form-control" />
+										<form:errors path="user.refundAccount" cssClass="error" />
+									</div><br/>
 								</div>
 		
 								<div class="form-group" align="center">
@@ -94,6 +101,5 @@
 				</div>
 			</div>
 		</div>
-</div>
 
 <%@ include file="../IncludeBottom.jsp" %>

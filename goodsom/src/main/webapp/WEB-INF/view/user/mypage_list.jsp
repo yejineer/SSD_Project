@@ -120,6 +120,7 @@
 
 					<!-- 경매 목록 보기 -->
 					<c:if test="${menuId eq 1}">
+						<div class="row">
 						<c:forEach var="auction" items="${auctionList}" varStatus="status">
 							<div class="col-lg-4 col-md-6 mb-4">
 								<div class="post-entry-1 h-100">
@@ -145,16 +146,16 @@
 								</div>
 							</div>
 						</c:forEach>
+						</div>
 					</c:if>
 
 					<!-- 공동구매 목록 보기 -->
 					<c:if test="${menuId eq 2}">
-						<c:forEach var="groupBuy" items="${groupBuyList}"
-							varStatus="status">
+						<div class="row">
+						<c:forEach var="groupBuy" items="${groupBuyList}" varStatus="status">
 							<div class="col-lg-4 col-md-6 mb-4">
 								<div class="post-entry-1 h-100">
-									<a
-										href="<c:url value='../groupBuy/detail.do'>
+									<a href="<c:url value='../groupBuy/detail.do'>
 												<c:param name="groupBuyId" value ="${groupBuy.groupBuyId}" />
 											</c:url>">
 										<img src="${groupBuy.img}" alt="Image" class="img-fluid">
@@ -177,6 +178,7 @@
 								</div>
 							</div>
 						</c:forEach>
+						</div>
 					</c:if>
 					<!-- 구현 끝 -->
 

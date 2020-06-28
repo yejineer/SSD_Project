@@ -1,9 +1,10 @@
-package dongduk.cs.ssd.controller.user;
+package dongduk.cs.ssd.validator;
 
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
+import dongduk.cs.ssd.controller.user.UserForm;
 import dongduk.cs.ssd.domain.User;
 import org.springframework.stereotype.Component;
 
@@ -13,7 +14,7 @@ import org.springframework.stereotype.Component;
  */
 
 @Component
-public class UserFormValidator implements Validator {
+public class LoginFormValidator implements Validator {
 
 	public boolean supports(Class<?> clazz) {
 		return User.class.isAssignableFrom(clazz);

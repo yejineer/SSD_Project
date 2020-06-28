@@ -216,7 +216,10 @@
 							<div class="form-group">
 								<label for="refundAccount">환불계좌</label> 
 								<div class="d-flex">
-									<form:select path="order.refundBank" items="${cardBanks}" />
+									<form:select path="order.refundBank" >
+										<option value="" disabled>은행</option>
+										<form:options items="${cardBanks}" />
+									</form:select>
 									<form:errors path="order.refundBank" cssClass="error" />	
 									<form:input path="order.refundAccount" type="text"
 										class="form-control" placeholder="환불계좌를 입력하세요" />
