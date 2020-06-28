@@ -24,6 +24,8 @@ public interface AuctionMapper { // AuctionMapper.xml에서 구현한 method 이
 	
 	void deleteAuction(int auctionId) throws DataAccessException;
 	
+	int deleteAuctionByUserId(int userId) throws DataAccessException;
+	
 	List<Auction> getAuctionList() throws DataAccessException;
 	
 	List<Auction> getAuctionListByKeyword(String keyword) throws DataAccessException;

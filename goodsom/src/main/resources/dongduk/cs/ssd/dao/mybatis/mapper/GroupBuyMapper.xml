@@ -36,6 +36,11 @@
     WHERE  GROUPBUYID=#{groupBuyId}
   </delete>
   
+  <delete id="deleteGroupBuyByUserId" parameterType="java.lang.Integer">
+    DELETE FROM GROUPBUYS
+    WHERE  USERID = #{userId}
+  </delete>
+  
   <insert id="createOptions" parameterType="dongduk.cs.ssd.domain.GroupBuy">
   
   	INSERT INTO OPTIONS (OPTIONID, GROUPBUYID, NAME)

@@ -11,14 +11,30 @@
 <script>
 
 	function logoutCheck() {
-		return confirm("로그아웃 하시겠습니까?")
+		if (confirm("로그아웃 하시겠습니까?")) {
+			location.href= "logout.do";
+		}
 	}
 	
 	function removeCheck() {
-		return confirm("정말 탈퇴하시겠습니까?");
+		if (confirm("정말 탈퇴하시겠습니까?")) {
+			location.href= "delete.do";
+		}
 	}
 
 </script>
+
+<c:choose>
+	<c:when test="${deleteComplete == -1}">
+		<body onLoad="alert('작성한 공동구매/경매 중 마감되지 않은 게시글이 있어서 \n회원탈퇴가 불가합니다.')">
+	</c:when>
+	<c:when test="${deleteComplete == 0}">
+		<body onLoad="alert('예상치 못한 문제로 회원탈퇴에 실패했습니다.')">
+	</c:when>
+	<c:otherwise>
+		<body>
+	</c:otherwise>
+</c:choose>
 
 <%@ include file="../IncludeBanner.jsp" %> 
 
@@ -77,10 +93,10 @@
 								</div><br><br>
 								
 								<div class="container">
-									<a class="btn btn-primary py-3 px-5"href="<c:url value='/mypage/list.do'></c:url>">목록 보기</a> &nbsp;
-									<a class="btn btn-primary py-3 px-5"href="<c:url value='/user/update.do'></c:url>">회원 정보 수정</a> &nbsp; 
-									<a class="btn btn-primary py-3 px-5"href="<c:url value='/user/logout.do'></c:url>" onclick="logoutCheck()">로그아웃</a> &nbsp; 
-									<a class="btn btn-primary py-3 px-5"href="<c:url value='/user/delete.do'></c:url>" onclick="removeCheck()">회원 탈퇴</a> 
+									<a class="btn btn-primary py-3 px-5" href="<c:url value='/mypage/list.do'></c:url>">목록 보기</a> &nbsp;
+									<a class="btn btn-primary py-3 px-5" href="<c:url value='/user/update.do'></c:url>">회원 정보 수정</a> &nbsp; 
+									<a class="btn btn-primary py-3 px-5" href="javascript:logoutCheck()">로그아웃</a> &nbsp; 
+									<a class="btn btn-primary py-3 px-5" href="javascript:removeCheck()">회원 탈퇴</a> 
 								</div>
 								
 							</div>
@@ -89,7 +105,6 @@
 				</div>
 			</section>
 		</div>
-	</div>
 		
 <%@ include file="../IncludeBottom.jsp" %>
 
