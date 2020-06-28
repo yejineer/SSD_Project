@@ -251,7 +251,7 @@ function input_append(ff){
 							<div class="form-group row">
 								<div class="col-md-12">
 									<label for="minNo">최소수량</label> 
-									
+									<form:errors path="groupBuy.minNo" cssClass="error"/>
 									<div class="d-flex">
 										<div class="form-group mr-2">
 										<c:choose>
