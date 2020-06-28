@@ -79,4 +79,9 @@
 	WHERE orderId = #{orderId}
   </select>
   
+  <delete id="deleteOrderByUserId" parameterType="Integer">
+  	DELETE FROM ORDERS
+  	WHERE USERID = #{userId}
+  </delete>
+  
  </mapper>
