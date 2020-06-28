@@ -27,19 +27,15 @@ public class GroupBuy {
 	String content;
 	String img;
 	
-	@NotNull
 	@Positive
 	int minNo;
 	
 	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm")
 	Date uploadDate;
 
-//	@NotNull
-//	@DateTimeFormat(pattern ="yyyy-MM-dd")
-//	Date tmpDate;
+	Date resultDate;
 	
 	@NotNull
-	@Future
 	@DateTimeFormat(pattern ="yyyy-MM-dd")
 	Date endDate;
 	
@@ -48,15 +44,15 @@ public class GroupBuy {
 	int rate;
 	int participants;
 	
-	@NotNull
+	@Positive
 	int catId;
 	
 	int menuId;
 	int userId;
 	
-	@NotNull
 	@Positive
 	int price;
+	
 	@NotEmpty
 	String[] optionList;
 	
@@ -245,6 +241,14 @@ public class GroupBuy {
 		this.minute = minute;
 	}
 	
+	public Date getResultDate() {
+		return resultDate;
+	}
+
+	public void setResultDate(Date resultDate) {
+		this.resultDate = resultDate;
+	}
+	
 //	public Date getTmpDate() {
 //		return tmpDate;
 //	}
@@ -307,7 +311,7 @@ public class GroupBuy {
         try {
         	String dateFormat = newDate + " " + String.valueOf(getHour()) + ":" + String.valueOf(getMinute());
             System.out.println("dateFormat: " + dateFormat);
-			Date resultDate = sdfHour.parse(dateFormat);
+			resultDate = sdfHour.parse(dateFormat);
 			setEndDate(resultDate);	// 마감일 세팅
 			System.out.println(resultDate);
 		} catch (ParseException e) {

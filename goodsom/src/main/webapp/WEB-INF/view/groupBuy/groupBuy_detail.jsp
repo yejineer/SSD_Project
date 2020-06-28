@@ -152,7 +152,6 @@ function delItem(id) {
 							<c:forEach var="option" items="${groupBuy.options}" varStatus="status">
 								<option value="${options.name}">${option.name}</option>
 							</c:forEach>
-
 						</select> <br />
 					</div>
 					<div class="d-flex">
