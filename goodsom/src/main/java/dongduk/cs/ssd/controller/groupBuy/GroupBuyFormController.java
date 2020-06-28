@@ -75,7 +75,6 @@ public class GroupBuyFormController {
 		if (groupBuyForm.getGroupBuy().getImg().trim() == "") {
 			groupBuyForm.getGroupBuy().initImg(request.getContextPath());
         }
-		
 				
 		if(result.hasErrors()) {
 			if(requestUrl.equals("/groupBuy/update.do")) {
@@ -103,8 +102,8 @@ public class GroupBuyFormController {
 			groupBuyForm.getGroupBuy().optionSetting(groupBuyId);
 			groupBuyService.createOptions(groupBuyForm.getGroupBuy());
 		}
-//		스케줄러 => create / update 시 endDate로 설정
-		groupBuyService.deadLineScheduler(groupBuyForm.getGroupBuy().getEndDate());
+//		스케줄러 => create / update 시 resultDate로 설정
+		groupBuyService.deadLineScheduler(groupBuyForm.getGroupBuy().getResultDate());
 		
 //		detail에 필요한 파라미터 세팅
 		GroupBuy groupBuy = groupBuyService.getGroupBuy(groupBuyId);

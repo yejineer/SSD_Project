@@ -12,6 +12,7 @@ import javax.validation.constraints.Future;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
+import javax.validation.constraints.PositiveOrZero;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -57,7 +58,10 @@ public class GroupBuy {
 	String[] optionList;
 	
 	String isAmPm;
+	
+	@Positive
 	int hour;
+	@PositiveOrZero
 	int minute;
 	
 	List<Option> options = new ArrayList<Option>();
