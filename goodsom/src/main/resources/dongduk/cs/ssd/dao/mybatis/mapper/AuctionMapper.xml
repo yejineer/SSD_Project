@@ -75,7 +75,7 @@
    <![CDATA[
     SELECT * FROM
     	(SELECT * FROM AUCTIONS
-    	 ORDER BY UPLOADDATE DESC)
+    	 ORDER BY COUNT DESC)
     WHERE ROWNUM <= 3
    ]]>
   </select>
