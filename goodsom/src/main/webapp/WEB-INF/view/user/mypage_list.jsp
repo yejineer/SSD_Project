@@ -75,7 +75,6 @@
 										<span class="meta d-inline-block mb-3">
 											<fmt:formatDate value="${order.orderDate}" pattern="yyyy-MM-dd" /> 
 											<span class="mx-2"> 총액 : ${order.totalPrice}원</span>
-											<span class="mx-2"> 수량 : ${order.quantity}</span> 
 										</span><br /><br />
 									</div>
 									<p style="text-align : right; padding : 20px;"> <a href="<c:url value='../order/auction/detail.do'>

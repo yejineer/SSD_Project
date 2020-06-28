@@ -142,22 +142,23 @@
 						</div>
 						
 					</c:when>
-					<c:otherwise> <!-- 경매 auction, 객체를 넘겨준다고 가정-->
+					<c:otherwise> <!-- auction이 담긴 orderForm이 넘어옴 -->
 							<div class="col-lg-4 col-md-6 mb-4">
 								<div class="post-entry-1 h-100">
 									<div class="post-entry-1-contents">
 										<h3>
 											<a href="<c:url value='../auction/detail.do'>
-															<c:param name="auctionId" value="${auction.auctionId}" />
-													 </c:url>"> ${lineGroupBuy.groupBuy.title}</a>
+															<c:param name="auctionId" value="${orderForm.order.auction.auctionId}" />
+													 </c:url>"> ${orderForm.order.auction.title}</a>
 										</h3>
 		
 										<span class="meta d-inline-block mb-3">
-											<span class="mx-2"> 옵션 : ${lineGroupBuy.option}</span> &nbsp;&nbsp; 
-											<span class="mx-2"> 수량 : ${lineGroupBuy.quantity}개</span> &nbsp;&nbsp;
-											<span class="mx-2"> 금액 : ${lineGroupBuy.unitPrice}원</span> <br>
+											<span class="mx-2"> 금액 : ${orderForm.order.totalPrice}원</span> <br>
 										</span>
 									</div>
+								</div><br />
+								<div class="d-flex">
+									<h4>TotalPrice : ${orderForm.order.totalPrice}원</h4> &nbsp;
 								</div>
 							</div>
 					</c:otherwise>

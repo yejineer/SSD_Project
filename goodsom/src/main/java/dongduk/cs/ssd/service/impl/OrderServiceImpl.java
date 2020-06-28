@@ -79,7 +79,6 @@ public class OrderServiceImpl implements OrderService {
 			int auctionId = order.getAuctionId();
 			order.setAuction(auctionDao.getAuction(auctionId));
 			order.setMenuId(1);
-			order.setQuantity(1);
 		}
 		return auctionOrderList;
 	}

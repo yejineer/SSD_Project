@@ -89,8 +89,7 @@
 										</h4>
 	
 										<span class="meta d-inline-block mb-3"> 
-											<span class="mx-2"> 수량 : ${order.quantity}개</span> &nbsp;&nbsp; 
-											<span class="mx-2"> 금액 : ${order.auction.price}원</span> &nbsp;&nbsp;<br>
+											<span class="mx-2"> 금액 : ${order.totalPrice}원</span> &nbsp;&nbsp;<br>
 										</span>
 									</div>
 								</div>

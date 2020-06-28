@@ -39,7 +39,7 @@ public class Auction implements Serializable {
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	Date uploadDate;
 	@NotNull
-	@FutureOrPresent
+//	@FutureOrPresent
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	Date endDate;
 	int count;
