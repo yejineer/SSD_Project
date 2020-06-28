@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import dongduk.cs.ssd.dao.OrderDao;
+import dongduk.cs.ssd.dao.mybatis.mapper.GroupBuyMapper;
 import dongduk.cs.ssd.dao.mybatis.mapper.LineGroupBuyMapper;
 import dongduk.cs.ssd.dao.mybatis.mapper.OrderMapper;
 import dongduk.cs.ssd.domain.LineGroupBuy;
@@ -24,6 +26,8 @@ public class MybatisOrderDao implements OrderDao {
 	protected OrderMapper orderMapper;
 	@Autowired
 	protected LineGroupBuyMapper lineGroupBuyMapper;
+	@Autowired
+	protected GroupBuyMapper groupBuyMapper;
 	
 	@Override
 	public Order getOrder(int orderId) throws DataAccessException {
@@ -37,20 +41,22 @@ public class MybatisOrderDao implements OrderDao {
 	}
 
 	@Override
+	@Transactional
 	public int createOrder(Order order) throws DataAccessException {
+		// ORDERS 테이블에 order 삽입
 		int orderSuccess = orderMapper.createOrder(order);
 		
+		// LINEGROUPBUYS 테이블에 lineGroupBuy들 삽입
 		List<LineGroupBuy> lineGroupBuys = order.getLineGroupBuys();
 		for (LineGroupBuy lineGroupBuy : lineGroupBuys) {
 			lineGroupBuy.setOrderId(order.getOrderId());
 			orderSuccess += lineGroupBuyMapper.insertLineGroupBuy(lineGroupBuy);
 		}
 		
-		if (orderSuccess == lineGroupBuys.size() + 1) {
-			return 1;
-		} else {
-			return 0;
-		}
+		// GROUPBUYS 테이블에 참여자, 달성률, 상태 update
+		orderSuccess += groupBuyMapper.updateState(order.getGroupBuy());
+		
+		return orderSuccess;
 	}
 	
 	@Override
