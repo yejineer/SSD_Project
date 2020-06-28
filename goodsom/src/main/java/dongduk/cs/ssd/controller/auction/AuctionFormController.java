@@ -2,6 +2,7 @@ package dongduk.cs.ssd.controller.auction;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -15,12 +16,15 @@ import javax.validation.Valid;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -89,13 +93,12 @@ public class AuctionFormController implements ApplicationContextAware  {
 //		/auction/create.do인지 /auction/update.do인지 구분하기 위해 필요!
 		String reqPage = request.getServletPath();
 		String requestUrl = reqPage.trim();
-		if (auctionForm.getInputPrice() != null && !auctionForm.getInputPrice().equals("")) {
-			if (!Pattern.matches("^[1-9][0-9]*", auctionForm.getInputPrice())) {
-				result.rejectValue("inputPrice", "typeMismatch");
-			}
-		}
 
-		//		AuctionForm객체 validation
+//		대표 이미지 선택 안 했을 시
+		if (auctionForm.getAuction().getReport().getSize() == 0) {
+			result.rejectValue("auction.report", "notSelected");
+		}
+//		AuctionForm객체 validation
 		if (result.hasErrors()) {
 			if (requestUrl.equals("/auction/update.do")) {
 				return "redirect:form.do?auctionId=" + auctionForm.getAuction().getAuctionId();
@@ -104,19 +107,19 @@ public class AuctionFormController implements ApplicationContextAware  {
 			}
 		}
 		
-		//		경매 create시 작성자 번호(userId)를 넣어야하고, view에서 작성자를 출력해야 하므로 현재 접속 중인 사용자의 정보를 Session에서 가져온다.
+//		경매 create시 작성자 번호(userId)를 넣어야하고, view에서 작성자를 출력해야 하므로 현재 접속 중인 사용자의 정보를 Session에서 가져온다.
 		UserSession user  = (UserSession)request.getSession().getAttribute("userSession");
-		
+		System.out.println(user.toString());
 //		시간세팅 by HK
 		auctionForm.getAuction().timeSet();
 
 //		파일 업로드 기능
 		System.out.println("uploadDir: " + uploadDir);
-		String savedFileName = uploadFile(auctionForm.getReport());
+		String savedFileName = uploadFile(auctionForm.getAuction().getReport());
 		auctionForm.getAuction().setImg(request.getContextPath() + "/resources/images/" + savedFileName);
 		
 //		경매 update/create 작업
-		auctionForm.getAuction().setStartPrice(Integer.valueOf(auctionForm.getInputPrice()));
+//		auctionForm.getAuction().setStartPrice(Integer.valueOf(auctionForm.getInputPrice()));
 		if (requestUrl.equals("/auction/update.do")) { // update
 			System.out.println(auctionForm.getAuction().toString());
 //			if (auctionForm.getReport().getSize() == 0) { // 파일 새로 업로드 안 하면 원래 이미지 사용
@@ -166,6 +169,11 @@ public class AuctionFormController implements ApplicationContextAware  {
 		}
 		return savedName;
 	}
+	
+//	@InitBinder
+//	public void initBinder(WebDataBinder binder) {
+//	    binder.registerCustomEditor(MultipartFile.class, "auction.report",new StringTrimmerEditor(true));
+//	} 
 	
 	@ModelAttribute("hourData")
 	protected List<Hour> referenceData1() throws Exception {

@@ -15,9 +15,11 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
 
 @SuppressWarnings("serial")
 public class Auction implements Serializable {
@@ -28,9 +30,11 @@ public class Auction implements Serializable {
 	int auctionId;
 	@NotEmpty
 	String title;
+	MultipartFile report;
 	@NotEmpty
 	String content;
 	String img;
+	@NotNull @Positive
 	int startPrice;
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	Date uploadDate;
@@ -92,6 +96,14 @@ public class Auction implements Serializable {
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+
+	public MultipartFile getReport() {
+		return report;
+	}
+
+	public void setReport(MultipartFile report) {
+		this.report = report;
 	}
 
 	public String getContent() {
@@ -217,7 +229,9 @@ public class Auction implements Serializable {
         		setHour(tmpHour);
         	}
         }
-        
+        if (getHour() == 12) {
+        	setHour(00);
+        }
         try {
         	String dateFormat = newDate + " " + String.valueOf(getHour()) + ":" + String.valueOf(getMinute());
             System.out.println("dateFormat: " + dateFormat);
@@ -236,11 +250,13 @@ public class Auction implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Auction [auctionId=" + auctionId + ", title=" + title + ", content=" + content + ", img=" + img
-				+ ", startPrice=" + startPrice + ", uploadDate=" + uploadDate + ", endDate=" + endDate + ", count="
-				+ count + ", maxPrice=" + maxPrice + ", state=" + state + ", menuId=" + menuId + ", userId=" + userId
-				+ ", isAmPm=" + isAmPm + ", hour=" + hour + ", minute=" + minute + ", bids=" + bids + "]";
+		return "Auction [auctionId=" + auctionId + ", title=" + title + ", report=" + report + ", content=" + content
+				+ ", img=" + img + ", startPrice=" + startPrice + ", uploadDate=" + uploadDate + ", endDate=" + endDate
+				+ ", count=" + count + ", maxPrice=" + maxPrice + ", state=" + state + ", menuId=" + menuId
+				+ ", userId=" + userId + ", isAmPm=" + isAmPm + ", hour=" + hour + ", minute=" + minute + ", bids="
+				+ bids + "]";
 	}
+
 	
 	
 	

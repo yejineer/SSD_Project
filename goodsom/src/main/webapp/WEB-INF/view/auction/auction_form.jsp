@@ -9,17 +9,16 @@
 <%@ include file="../IncludeTop.jsp" %> 
 
 <script>
-$("#ampm").attr("checked","checked");
+function auctionSubmit(isNewAuction) {
 
-function submit(isNewAuction) {
-
-	alert("경매를 등록합니다.");
-	if (isNewAuction) {
-		auctionForm.action="/auction/create.do";
-	} else {
-		auctionForm.action="/auction/update.do";
+	if(isNewAuction){
+		alert("경매를 등록합니다.");
+		document.auctionForm.action="create.do";
+	}else{
+		alert("경매를 수정합니다.");
+		document.auctionForm.action="update.do";
 	}
-	auctionForm.submit();
+	document.auctionForm.submit();
 }
 </script>
 <style>
@@ -49,7 +48,7 @@ function submit(isNewAuction) {
 			<div class="container">
 				<div class="row" >
 					<div class="col-lg-8 mb-5">
-						<form:form modelAttribute="auctionForm" method="post" enctype="multipart/form-data">
+						<form:form modelAttribute="auctionForm" name="auctionForm" method="post" enctype="multipart/form-data">
 							
 							<div class="form-group row">
 								<div class="col-md-12">
@@ -69,8 +68,8 @@ function submit(isNewAuction) {
 							
 							<div class="form-group row">
 								<div class="col-md-12">
-									<label for="report">대표 이미지</label>&nbsp;&nbsp;&nbsp;<form:errors path="report" cssClass="error"/><br/>
-                					<form:input type="file" path="report" value="사진을 선택합니다." />
+									<label for="auction.report">대표 이미지</label>&nbsp;&nbsp;&nbsp;<form:errors path="auction.report" cssClass="error"/><br/>
+                					<form:input type="file" path="auction.report" />
                 					
               					</div>
               				</div>
@@ -92,15 +91,15 @@ function submit(isNewAuction) {
 							
 							<div class="form-group row">
 								<div class="col-md-12">
-									<label for="inputPrice">최소 입찰 금액</label> &nbsp;&nbsp;&nbsp; <form:errors path="inputPrice" cssClass="error"/>
+									<label for="auction.startPrice">최소 입찰 금액</label> &nbsp;&nbsp;&nbsp; <form:errors path="auction.startPrice" cssClass="error"/>
 									<div class="d-flex">
 										<div class="form-group mr-2">
 										<c:choose>
 											<c:when test="${auctionForm.newAuction}">
-												<form:input path="inputPrice" class="form-control" placeholder="ex) 10000"/>
+												<form:input type="number" path="auction.startPrice" class="form-control" placeholder="10000"/>
 											</c:when>
 											<c:otherwise>
-												<form:input path="inputPrice" class="form-control" value="${auctionForm.auction.startPrice}"/>
+												<form:input type="number" path="auction.startPrice" class="form-control" value="${auctionForm.auction.startPrice}"/>
 											</c:otherwise>
 										</c:choose>
 										</div>
@@ -143,7 +142,7 @@ function submit(isNewAuction) {
 							
 							<div class="form-group" align="right">
 								<a class="btn btn-primary py-3 px-5" href="<c:url value='/auction/list.do'></c:url>">Cancel</a> &nbsp;
-								<input type="button" value="Save" onClick="submit(${auctionForm.newAuction})" class="btn btn-primary py-3 px-5">
+								<input type="button" value="Save" onClick="auctionSubmit(${auctionForm.newAuction})" class="btn btn-primary py-3 px-5">
 							</div>
 						</form:form>
 					</div>

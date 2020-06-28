@@ -24,10 +24,7 @@ public class AuctionForm implements Serializable{
 	
 	@Valid
 	private Auction auction;
-	@NotBlank
-	private String inputPrice;
-	@NotNull
-	private MultipartFile report;
+
 	private boolean newAuction;
 	
 	public AuctionForm() {
@@ -44,13 +41,10 @@ public class AuctionForm implements Serializable{
 		return auction;
 	}
 	
-	public String getInputPrice() {
-		return inputPrice;
-	}
+//	public String getInputPrice() {
+//		return inputPrice;
+//	}
 
-	public MultipartFile getReport() {
-		return report;
-	}
 
 	public boolean isNewAuction() {
 		return newAuction;
@@ -58,8 +52,7 @@ public class AuctionForm implements Serializable{
 
 	@Override
 	public String toString() {
-		return "AuctionForm [auction=" + auction + ", inputPrice=" + inputPrice + ", report=" + report + ", newAuction="
-				+ newAuction + "]";
+		return "AuctionForm [auction=" + auction + ", newAuction=" + newAuction + "]";
 	}
 
 //	public Date getSelectDate() {
