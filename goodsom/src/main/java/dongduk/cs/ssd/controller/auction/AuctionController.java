@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
@@ -28,7 +29,7 @@ import dongduk.cs.ssd.service.BidService;
 
 
 @Controller
-
+@SessionAttributes("auctionForm")
 public class AuctionController {
 	
 	private static final String AUCTION_LIST = "auction/auction_list";
@@ -44,7 +45,7 @@ public class AuctionController {
 	BidService bidService;
 	
 	@RequestMapping(value="/auction/list.do", method=RequestMethod.GET)
-	public ModelAndView auctionList(){
+	public ModelAndView auctionList(SessionStatus sessionStatus){
 		ModelAndView mav = new ModelAndView(AUCTION_LIST);
 		List<Auction> auctionList = null;
 		auctionList = auctionService.getAuctionList();
@@ -53,6 +54,7 @@ public class AuctionController {
 		} else {
 			mav.addObject("auctionList", auctionList);			
 		}
+		sessionStatus.setComplete();
 		return mav;
 	}
 	

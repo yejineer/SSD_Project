@@ -12,6 +12,7 @@ import javax.validation.constraints.Future;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
+import javax.validation.constraints.PositiveOrZero;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -27,19 +28,15 @@ public class GroupBuy {
 	String content;
 	String img;
 	
-	@NotNull
 	@Positive
 	int minNo;
 	
 	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm")
 	Date uploadDate;
 
-//	@NotNull
-//	@DateTimeFormat(pattern ="yyyy-MM-dd")
-//	Date tmpDate;
+	Date resultDate;
 	
 	@NotNull
-	@Future
 	@DateTimeFormat(pattern ="yyyy-MM-dd")
 	Date endDate;
 	
@@ -48,20 +45,23 @@ public class GroupBuy {
 	int rate;
 	int participants;
 	
-	@NotNull
+	@Positive
 	int catId;
 	
 	int menuId;
 	int userId;
 	
-	@NotNull
 	@Positive
 	int price;
+	
 	@NotEmpty
 	String[] optionList;
 	
 	String isAmPm;
+	
+	@Positive
 	int hour;
+	@PositiveOrZero
 	int minute;
 	
 	List<Option> options = new ArrayList<Option>();
@@ -245,6 +245,14 @@ public class GroupBuy {
 		this.minute = minute;
 	}
 	
+	public Date getResultDate() {
+		return resultDate;
+	}
+
+	public void setResultDate(Date resultDate) {
+		this.resultDate = resultDate;
+	}
+	
 //	public Date getTmpDate() {
 //		return tmpDate;
 //	}
@@ -307,7 +315,7 @@ public class GroupBuy {
         try {
         	String dateFormat = newDate + " " + String.valueOf(getHour()) + ":" + String.valueOf(getMinute());
             System.out.println("dateFormat: " + dateFormat);
-			Date resultDate = sdfHour.parse(dateFormat);
+			resultDate = sdfHour.parse(dateFormat);
 			setEndDate(resultDate);	// 마감일 세팅
 			System.out.println(resultDate);
 		} catch (ParseException e) {

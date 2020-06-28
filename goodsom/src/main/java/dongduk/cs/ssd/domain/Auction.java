@@ -9,6 +9,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import javax.validation.constraints.Future;
+import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -33,6 +35,7 @@ public class Auction implements Serializable {
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	Date uploadDate;
 	@NotNull
+	@FutureOrPresent
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	Date endDate;
 	int count;
@@ -41,6 +44,7 @@ public class Auction implements Serializable {
 	int menuId;
 	int userId;
 
+	@NotEmpty
 	String isAmPm;
 	int hour;
 	int minute;
@@ -229,10 +233,15 @@ public class Auction implements Serializable {
 	public void initImg(String contextPath) {
 		img = contextPath + "/resources/images/somsom.jpg";
 	}
-	
+
+	@Override
 	public String toString() {
-		return "<<Auction객체의 값>" + "\nid : " + auctionId + "\ntitle : " + title + "\ncontent : " + content + "\nimg : " + img + 
-				"\nstartPrice : " + startPrice + "\nendDate: " + endDate;
+		return "Auction [auctionId=" + auctionId + ", title=" + title + ", content=" + content + ", img=" + img
+				+ ", startPrice=" + startPrice + ", uploadDate=" + uploadDate + ", endDate=" + endDate + ", count="
+				+ count + ", maxPrice=" + maxPrice + ", state=" + state + ", menuId=" + menuId + ", userId=" + userId
+				+ ", isAmPm=" + isAmPm + ", hour=" + hour + ", minute=" + minute + ", bids=" + bids + "]";
 	}
+	
+	
 	
 }

@@ -1,9 +1,5 @@
 package dongduk.cs.ssd.controller.groupBuy;
 
-import java.sql.Date;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -75,11 +71,11 @@ public class GroupBuyFormController {
 		
 //		default img 세팅 & initGroupBuy
 		groupBuyForm.getGroupBuy().initGroupBuy(user.getUser());
-		groupBuyForm.getGroupBuy().timeSet();
+		
 		if (groupBuyForm.getGroupBuy().getImg().trim() == "") {
 			groupBuyForm.getGroupBuy().initImg(request.getContextPath());
         }
-		System.out.println("between setting&bindError: " + groupBuyForm.getGroupBuy().getEndDate().toString());
+				
 		if(result.hasErrors()) {
 			if(requestUrl.equals("/groupBuy/update.do")) {
 				return "redirect:form.do?groupBuyId=" + groupBuyForm.getGroupBuy().getGroupBuyId();
@@ -87,7 +83,10 @@ public class GroupBuyFormController {
 				return GROUPBUY_FORM;
 			}
 		}
-
+		
+//		시간 세팅
+		groupBuyForm.getGroupBuy().timeSet();
+		
 		if (reqPage.trim().equals("/groupBuy/update.do")) { 	//		update
 //			db: groupBuy update & option 삭제 후, 다시 생성
 			groupBuyId = groupBuyService.updateGroupBuy(groupBuyForm.getGroupBuy());
@@ -103,8 +102,8 @@ public class GroupBuyFormController {
 			groupBuyForm.getGroupBuy().optionSetting(groupBuyId);
 			groupBuyService.createOptions(groupBuyForm.getGroupBuy());
 		}
-//		스케줄러 => create / update 시 endDate로 설정
-		groupBuyService.deadLineScheduler(groupBuyForm.getGroupBuy().getEndDate());
+//		스케줄러 => create / update 시 resultDate로 설정
+		groupBuyService.deadLineScheduler(groupBuyForm.getGroupBuy().getResultDate());
 		
 //		detail에 필요한 파라미터 세팅
 		GroupBuy groupBuy = groupBuyService.getGroupBuy(groupBuyId);

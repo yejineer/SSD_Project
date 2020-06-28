@@ -10,15 +10,15 @@
 
 <script type="text/javascript">
 
-function deleteAuction(auctionId) {
+function deleteAuction() {
 	if (confirm("경매를 삭제하시겠습니까?")) {
 		location.href= "delete.do?auctionId=${auction.auctionId}";
 	}
 }
 
-function updateAuction(auctionId) {
+function updateAuction() {
 	if (confirm("경매를 수정하시겠습니까?")) {
-		location.href= "update.do?auctionId=${auction.auctionId}";
+		location.href= "form.do?auctionId=${auction.auctionId}";
 	}
 }
 
@@ -81,7 +81,7 @@ function bid() {
 					</h5>
 					<h5>
 						마감일 : &nbsp; &nbsp;
-						<fmt:formatDate value="${auction.endDate}" pattern="yyyy-MM-dd" />
+						<fmt:formatDate value="${auction.endDate}" pattern="yyyy-MM-dd HH:mm" />
 					</h5>
 					<br />
 
@@ -127,7 +127,8 @@ function bid() {
 			</div><br/>
 			
 			<div class="form-group" align="right">
-				<c:if test="${isWriter eq true}">
+				<%-- <c:if test="${(isWriter eq true) and (empty bids) and (auction.state eq 'proceeding')}"> --%>
+				<c:if test="${(isWriter eq true) and (empty bids)}">
 					<a class="btn btn-primary py-3 px-5" href="javascript:updateAuction()" >수정</a>
 					<a class="btn btn-primary py-3 px-5" href="javascript:deleteAuction()" >삭제</a>
 				</c:if>
