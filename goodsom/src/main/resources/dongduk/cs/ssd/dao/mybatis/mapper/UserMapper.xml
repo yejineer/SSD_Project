@@ -54,19 +54,22 @@
 		SELECT s.auctionId, o.orderId, o.orderDate, o.totalPrice
 		FROM orders o, successBidders s
 		WHERE o.orderId = s.orderId and o.userId = #{param1}
+		ORDER BY orderId DESC
 	</select>
 
 	<select id="getGroupBuyOrderList" resultType="Order">
 		SELECT DISTINCT l.groupBuyId, o.orderId, o.orderDate, o.totalPrice
 		FROM orders o, lineGroupBuys l
 		WHERE o.orderId = l.orderId and o.userId= #{param1}
+		ORDER BY orderId DESC
 	</select>
 
   <select id="getGroupBuyList" parameterType="int"
   		resultType="GroupBuy">
-  	SELECT groupBuyId, title, img, uploadDate, userId, menuId <!-- TO_CHAR(uploadDate, 'YYYY-MM-DD HH24:MI:SS') -->
+  	SELECT groupBuyId, title, img, uploadDate, userId, menuId
   	FROM groupBuys
   	WHERE userId = #{userId}
+  	ORDER BY groupBuyId DESC
   </select> <!-- user가 등록한 GroupBuyList를 가져옴 for 마이페이지 공동구매 등록 목록 보기 -->
   
     <select id="getAuctionList" parameterType="int"
@@ -74,6 +77,7 @@
   	SELECT auctionId, title, img, uploadDate, userId, menuId
   	FROM auctions
   	WHERE userId = #{userId}
+  	ORDER BY auctionId DESC
   </select> <!-- user가 등록한 AuctionList를 가져옴 for 마이페이지 경매 등록 목록 보기 -->
   
 </mapper>
