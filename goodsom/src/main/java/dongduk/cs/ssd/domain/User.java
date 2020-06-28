@@ -12,7 +12,7 @@ public class User implements Serializable {
 	
 	int userId;
 	String email;
-	String password;
+	String passwd;
 	String userName;
 	String nickname;
 	String address1;
@@ -53,12 +53,12 @@ public class User implements Serializable {
 	}
 
 
-	public String getPassword() {
-		return password;
+	public String getPasswd() {
+		return passwd;
 	}
 	
-	public void setPassword(String password) {
-		this.password = password;
+	public void setPasswd(String passwd) {
+		this.passwd = passwd;
 	}
 	
 	public String getEmail() {
@@ -128,7 +128,22 @@ public class User implements Serializable {
 	public String getPhone() {
 		return phone;
 	}
+	
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+	
+	public boolean matchPassword(String inputPassword) {
+		return passwd.equals(inputPassword);
+	}
+
+
+	@Override
+	public String toString() {
+		return "User [userId=" + userId + ", email=" + email + ", passwd=" + passwd + ", userName=" + userName
+				+ ", nickname=" + nickname + ", address1=" + address1 + ", address2=" + address2 + ", address3="
+				+ address3 + ", phone=" + phone + ", refundBank=" + refundBank + ", refundAccount=" + refundAccount
+				+ "]";
+	}
+	
 }

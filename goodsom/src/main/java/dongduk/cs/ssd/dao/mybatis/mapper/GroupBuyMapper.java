@@ -23,13 +23,15 @@ public interface GroupBuyMapper { // GroupBuyMapper.xml에서 구현한 method �
 	
 	void deleteGroupBuy(int groupBuyId) throws DataAccessException;
 	
+	int deleteGroupBuyByUserId(int userId) throws DataAccessException;
+	
 	void createOptions(GroupBuy groupBuy) throws DataAccessException;
 	
 	List<GroupBuy> getGroupBuyList() throws DataAccessException;
 	
 	void increaseCount(GroupBuy groupBuy) throws DataAccessException;
 	
-	void updateState(GroupBuy groupBuy) throws DataAccessException;
+	int updateState(GroupBuy groupBuy) throws DataAccessException;
 	
 	void closeEvent(Date curTime);
 	

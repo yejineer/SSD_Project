@@ -19,7 +19,6 @@ import org.springframework.web.servlet.ModelAndViewDefiningException;
 import dongduk.cs.ssd.controller.groupBuy.LineGroupBuyForm;
 import dongduk.cs.ssd.controller.user.UserSession;
 import dongduk.cs.ssd.domain.User;
-import dongduk.cs.ssd.service.GroupBuyService;
 import dongduk.cs.ssd.service.OrderService;
 import dongduk.cs.ssd.validator.OrderFormValidator;
 
@@ -35,9 +34,8 @@ public class OrderFormController {
 	
 	@Autowired
 	private OrderService orderService;
-	
-	@Autowired
-	private GroupBuyService groupBuyService;
+
+	private int FAIL = 0;
 	
 	@ModelAttribute("orderForm")
 	public OrderForm formBacking(HttpServletRequest request) {
@@ -80,23 +78,21 @@ public class OrderFormController {
 		
 		// 검증 오류 발생 시 다시 form view로 이동
 		if (bindingResult.hasErrors()) {
-			ModelAndView mav = new ModelAndView("order/order_create");
-			return mav;
+			return new ModelAndView("order/order_create");
 		}
 
 		int totalQuantity = orderForm.getOrder().getTotalQuantity();
 		orderForm.getOrder().getGroupBuy().orderSet(totalQuantity);
 		
 		int orderSuccess = orderService.createOrder(orderForm.getOrder());
-		groupBuyService.updateState(orderForm.getOrder().getGroupBuy());
 		
 		ModelAndView mav = new ModelAndView("order/payment_detail");
 		mav.addObject("order", orderForm.getOrder());
 		
-		if (orderSuccess == 1) {
-			mav.addObject("message", "결제가 성공적으로 완료되었습니다.");
+		if (orderSuccess == FAIL) {
+			mav.addObject("message", "결제에 실패했습니다.");
 		} else {
-			mav.addObject("message", "결제가 실패했습니다.");
+			mav.addObject("message", "결제가 성공적으로 완료되었습니다.");
 		}
 		status.setComplete();  // remove sessionLineGroupBuy and orderForm from session
 		return mav;

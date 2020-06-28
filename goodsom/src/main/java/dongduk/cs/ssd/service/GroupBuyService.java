@@ -30,8 +30,6 @@ public interface GroupBuyService {
 	
 //	public List<GroupBuy> getGroupBuyListByKeyword(String keyword);
 	
-	public void updateState(GroupBuy groupBuy);
-	
 	public void deadLineScheduler(Date endDate);
 	
 	public List<GroupBuy> getRecentGroupBuyList();

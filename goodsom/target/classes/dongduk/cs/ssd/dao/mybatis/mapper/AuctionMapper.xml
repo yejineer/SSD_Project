@@ -40,7 +40,11 @@
   <delete id="deleteAuction" parameterType="java.lang.Integer">
     DELETE FROM AUCTIONS
     WHERE  AUCTIONID=#{auctionId}
-  	
+  </delete>
+  
+  <delete id="deleteAuctionByUserId" parameterType="java.lang.Integer">
+    DELETE FROM AUCTIONS
+    WHERE  USERID = #{userId}
   </delete>
   
   <!-- Get all auctions -->

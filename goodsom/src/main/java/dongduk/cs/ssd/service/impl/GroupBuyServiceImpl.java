@@ -71,9 +71,6 @@ public class GroupBuyServiceImpl implements GroupBuyService {
 		return groupBuyDao.getGroupBuyListByKeyword(keyword);
 	}
 	*/
-	public void updateState(GroupBuy groupBuy) {
-		groupBuyDao.updateState(groupBuy);
-	}
 	
 	public List<GroupBuy> getRecentGroupBuyList() {
 		return groupBuyDao.getRecentGroupBuyList();
