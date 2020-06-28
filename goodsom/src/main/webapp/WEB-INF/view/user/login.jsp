@@ -8,34 +8,16 @@
 
 <%@ include file="../IncludeTop.jsp" %> 
 
+<style>
+	.error {
+		color: #ff0000;
+		/* font-weight: bold; */
+	}
+</style>
 
-<script>
-function login() {
-	if (form.emailId.value == "") {
-		alert("Input Your ID.");
-		form.id.focus();
-		return false;
-	} 
-	if (form.password.value == "") {
-		alert("Input Your Password.");
-		form.password.focus();
-		return false;
-	}		
-	form.submit();
-}
-</script>
-
-<c:choose>
-	<c:when test="${deleteComplete == 1}">
-		<body onLoad="alert('회원탈퇴가 완료되었습니다.')">
-	</c:when>
-	<c:when test="${deleteComplete == 0}">
-		<body onLoad="alert('회원탈퇴에 실패했습니다.')">
-	</c:when>
-	<c:otherwise>
-		<body>
-	</c:otherwise>
-</c:choose>
+<c:if test="${deleteComplete == 1}">
+	<body onLoad="alert('회원탈퇴가 완료되었습니다.')">
+</c:if>
 
 <body bgcolor="black">
 	<div class="container" style="padding: 100px">
@@ -44,24 +26,28 @@ function login() {
 
 				<h2 class="text-center">Login</h2>
 				<br/>
-
-				<form name="form" method="POST" action="<c:url value='/user/login.do' />" class="bg-light p-5 contact-form">
-
+				
+				<form:form modelAttribute="loginForm" method="POST" action="login.do" class="bg-light p-5 contact-form">
+					<form:errors cssClass="error" /> <br />
 					<div class="form-group">
-						<label for="name">ID</label> <input name="emailId" id="emailId" type="text" class="form-control" placeholder="ID">
+						<label for="name">Email</label> 
+						<form:input path="email" class="form-control" placeholder="Email" />
+						<form:errors path="email" cssClass="error" />
 					</div>
 
 					<div class="form-group">
-						<label for="name">Password</label> <input name="password"id="password" type="password" class="form-control" placeholder="Password">
+						<label for="name">Password</label> 
+						<form:input path="password" type="password" class="form-control" placeholder="Password" />
+						<form:errors path="password" cssClass="error" />
 					</div>
 					<br />
 
 					<div class="form-group" align="center">
-						<input type="button" value="Login" onClick="login()" class="btn btn-primary py-3 px-5"> &nbsp;
+						<input type="submit" value="Login" class="btn btn-primary py-3 px-5"> &nbsp;
 				        <a class="btn btn-primary py-3 px-5" href="<c:url value='/user/register.do'></c:url>">Register</a>
 					</div>
 					
-				</form>
+				</form:form>
 			</div>
 		</div>
 	</div>

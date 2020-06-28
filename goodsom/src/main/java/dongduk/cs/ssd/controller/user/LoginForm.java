@@ -6,7 +6,7 @@ package dongduk.cs.ssd.controller.user;
 public class LoginForm { //command class
 
 //	@NotBlank @Email
-	private String id;
+	private String email;
 //	@NotBlank
 	private String password;
 
@@ -14,16 +14,16 @@ public class LoginForm { //command class
 		
 	}
 
-	public LoginForm(String id, String password) {
-		this.id = id;
+	public LoginForm(String email, String password) {
+		this.email = email;
 		this.password = password;
 	}
-	public String getId() {
-		return id;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getPassword() {
@@ -34,5 +34,9 @@ public class LoginForm { //command class
 		this.password = password;
 	}
 
+	@Override
+	public String toString() {
+		return "LoginForm [email=" + email + ", password=" + password + "]";
+	}
 }
 

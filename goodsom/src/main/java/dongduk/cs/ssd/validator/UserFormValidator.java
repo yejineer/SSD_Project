@@ -36,8 +36,8 @@ public class UserFormValidator implements Validator {
 			errors.rejectValue("user.email", "typeMismatch"); // email type 검증
 		}
 		
-		if (user.getPassword() != null && user.getPassword().length() > 0) {
-			if (!user.getPassword().equals(regReq.getRepeatedPassword())) {
+		if (user.getPasswd() != null && user.getPasswd().length() > 0) {
+			if (!user.getPasswd().equals(regReq.getRepeatedPassword())) {
 				errors.rejectValue("repeatedPassword", "invalidPassword");
 			}
 		}
