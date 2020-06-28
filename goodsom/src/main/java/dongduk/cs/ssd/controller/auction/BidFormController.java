@@ -84,32 +84,45 @@ public class BidFormController {
 		java.util.Date utilDate = new java.util.Date();
 		java.sql.Date bidDate = new java.sql.Date(utilDate.getTime());
 		
-		int maxPrice = bidPrice;
-		if (bidService.getMaxPrice(auctionId) != null) {
+		int maxPrice = 0; 
+		if (bidService.getMaxPrice(auctionId) != null) { 
 			maxPrice = Integer.parseInt(bidService.getMaxPrice(auctionId));
+		} else {
+			maxPrice = bidPrice;
+		} //auction의 maxPrice 값 가져오기
+		
+		System.out.println("최고금액" + maxPrice);
+		System.out.println("배팅금액" + bidPrice);
+		
+		if (bidPrice < maxPrice) {	
+			
+			response.setCharacterEncoding("UTF-8");
+		    PrintWriter writer = response.getWriter();
+		    writer.println("<script type='text/javascript'>");
+		    writer.println("alert('최고 금액 이상의 금액을 배팅하세요');");
+		    writer.println("history.back();");
+		    writer.println("</script>");
+		    writer.flush();
+		    
+		} else {
+			
+			Bid newBid = new Bid(userId, auctionId, bidPrice, bidDate);
+			bidService.createBid(newBid); //bid 생성
+			
+			auctionService.updateAuctionMaxPrice(maxPrice, auctionId); //auction table maxPrice update
+			
 		}
-		
-		if(bidPrice < maxPrice) {	
-			 response.setCharacterEncoding("UTF-8");
-		     PrintWriter writer = response.getWriter();
-		     writer.println("<script type='text/javascript'>");
-		     writer.println("alert('최고 금액 이상의 금액을 배팅하세요');");
-		     writer.println("history.back();");
-		     writer.println("</script>");
-		     writer.flush();
-		}
-		
-		Bid bid = new Bid(userId, auctionId, bidPrice, bidDate);
-		bidService.createBid(bid);
-		
-		auctionService.updateAuctionMaxPrice(maxPrice, auctionId); //auction table maxPrice update
 		
 		Auction auction = auctionService.getAuction(auctionId);
+		Bid bid = bidService.getBidByMaxPrice(maxPrice, auctionId);
 		
+		session.setAttribute("bid", bid);
 		session.setAttribute("auctionId", auctionId);
+		
 		mav.addObject("auction", auction);
-		mav.addObject("bid", bid);
+		mav.addObject("bidder", userService.getUserByUserId(bid.getUserId()).getNickname());
 		mav.addObject("writer", userService.getUserByUserId(auction.getUserId()).getNickname());
+		
 		return mav;
 		
 		/*

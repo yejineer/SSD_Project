@@ -60,8 +60,8 @@ public class AuctionController {
 	public ModelAndView auctionDetail(HttpServletRequest request,
 			@RequestParam("auctionId") int auctionId, HttpSession session) {
 		ModelAndView mav = new ModelAndView(AUCTION_DETAIL);
-		Auction auction = auctionService.getAuction(auctionId);
-		Bid bid = bidService.getBidByMaxPrice(auction.getMaxPrice(), auctionId);
+		Auction auction = auctionService.getAuction(auctionId); //auction 정보 가져오기
+		Bid bid = bidService.getBidByMaxPrice(auction.getMaxPrice(), auctionId); //auction의 최고 금액에 해당하는 bid 정보 가져오기
 		
 		UserSession user  = (UserSession)request.getSession().getAttribute("userSession");
 		if (user.getUser().getUserId() == auction.getUserId()) {
