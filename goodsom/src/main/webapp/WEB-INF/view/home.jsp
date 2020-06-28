@@ -102,15 +102,54 @@
 			</div>
 			
 			<div class="row align-items-end mb-4">
-				<div class="col-md-3">
-					<a href="portfolio-single.html" class="portfolio-item"><img src="<%=request.getContextPath()%>/resources/images/img_1.jpg" alt="Image" class="img-fluid"></a>
-				</div>
-				<div class="col-md-6">
-					<a href="portfolio-single.html" class="portfolio-item"><img src="<%=request.getContextPath()%>/resources/images/img_2.jpg" alt="Image" class="img-fluid"></a>
-				</div>
-				<div class="col-md-3">
-					<a href="portfolio-single.html" class="portfolio-item"><img src="<%=request.getContextPath()%>/resources/images/img_3.jpg" alt="Image" class="img-fluid"></a>
-				</div>
+				<c:forEach var="groupBuy" items="${recentGroupBuy}" varStatus="status">
+						<div class="col-lg-4 col-md-6 mb-4">
+							<div class="post-entry-1 h-100">
+							
+								<a href="<c:url value='/groupBuy/detail.do'>
+									<c:param name="groupBuyId" value="${groupBuy.groupBuyId}"/></c:url>">
+										<img src="${groupBuy.img}" alt="Image" class="img-fluid">
+								</a>
+								<div class="post-entry-1-contents">
+									<div class="price-wrap d-flex" style="color:blue;">
+										<c:if test="${groupBuy.state eq 'proceeding'}" >
+											<h5>Proceeding</h5>
+										</c:if>
+										<c:if test="${groupBuy.state eq 'achieved'}" >
+											<h5>Achieved</h5>
+										</c:if>
+										<c:if test="${groupBuy.state eq 'closed'}" >
+											<h5>Closed</h5>
+										</c:if>
+									
+										<span class="meta d-inline-block mb-3">
+											
+											&nbsp; ~ <fmt:formatDate value="${groupBuy.endDate}" pattern="yyyy-MM-dd" />
+										</span>
+									</div>
+									
+									<h2><a  href="<c:url value='/groupBuy/detail.do'>
+													<c:param name="groupBuyId" value="${groupBuy.groupBuyId}"/>
+												</c:url>">${groupBuy.title}</a>
+									</h2>
+									
+										<span class="mx-2">가격</span> 
+											<a href="#"><fmt:formatNumber value="${groupBuy.price}" pattern="#,###원"/></a> <br/><br/>
+										
+										<span class="mx-2">달성률</span> 
+											<a href="#"><fmt:formatNumber value="${groupBuy.participants}"/>명 / </a>
+											<a href="#"><fmt:formatNumber value="${groupBuy.minNo}"/>명</a>
+											<a href="#"><fmt:formatNumber value="${groupBuy.rate}"/>%</a>
+										
+									
+									<p>${groupBuy.content}</p>
+									
+								</div>
+							</div>
+						</div>
+    				
+
+					</c:forEach>
 			</div>
 			
 			<div class="col-md-6 mr-auto">

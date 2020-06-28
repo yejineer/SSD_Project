@@ -123,7 +123,7 @@ function delItem(id) {
      <div class="container">
        <div class="row align-items-center">
          <div class="col-md-6 mb-5 mb-md-0">
-         	<img src="<%=request.getContextPath()%>/resources/images/img_5.jpg" alt="Image" class="img-fluid">
+        	 <img src="${groupBuy.img}" alt="Image" class="img-fluid">
          </div>
          
          <div class="col-md-5 ml-auto">

@@ -33,4 +33,5 @@ public interface GroupBuyMapper { // GroupBuyMapper.xml에서 구현한 method �
 	
 	void closeEvent(Date curTime);
 	
+	List<GroupBuy> getRecentGroupBuyList() throws DataAccessException;
 }

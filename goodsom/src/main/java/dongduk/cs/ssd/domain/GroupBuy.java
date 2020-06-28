@@ -57,6 +57,7 @@ public class GroupBuy {
 	@NotEmpty
 	String[] optionList;
 	
+	@NotEmpty
 	String isAmPm;
 	
 	@Positive

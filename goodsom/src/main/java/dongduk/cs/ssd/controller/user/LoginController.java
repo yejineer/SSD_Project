@@ -1,5 +1,7 @@
 package dongduk.cs.ssd.controller.user;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -13,12 +15,14 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import dongduk.cs.ssd.domain.GroupBuy;
 import dongduk.cs.ssd.domain.User;
+import dongduk.cs.ssd.service.GroupBuyService;
 import dongduk.cs.ssd.service.UserService;
 
 /**
- * @author kimdahyee
- * @since  2020.06.12
+ * @author kimdahyee	| HK
+ * @since  2020.06.12	| 2020.6.28
  */
 
 @Controller
@@ -29,6 +33,9 @@ public class LoginController {
 	private String formViewName;
 	
 	private UserService userService;
+	
+	@Autowired
+	private GroupBuyService groupBuyService;
 	
 	@Autowired
 	public void setUserService(UserService userService) { //setter method를 통한 DI
@@ -48,8 +55,10 @@ public class LoginController {
 			@RequestParam("emailId") String email,
 			@RequestParam("password") String password,
 			Model model) throws Exception {
+		List<GroupBuy> recentGroupBuy = null;
 		
 		User user = userService.getUser(email, password);// 로그인 시도
+		recentGroupBuy = groupBuyService.getRecentGroupBuyList();
 		
 		if (user == null) { // 해당 email과 password를 갖는 사용자가 존재하지 않을 시
 			
@@ -60,6 +69,7 @@ public class LoginController {
 			UserSession userSession = new UserSession(user);
 			session.setAttribute("userSession", userSession);
 			model.addAttribute("userSession", userSession); // 필요한가??
+			model.addAttribute("recentGroupBuy", recentGroupBuy);
 			return new ModelAndView("home");
 			
 		}

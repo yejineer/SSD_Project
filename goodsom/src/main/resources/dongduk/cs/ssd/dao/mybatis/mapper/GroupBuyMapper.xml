@@ -117,4 +117,14 @@
     ]]>
   </update>
   
+  <select id="getRecentGroupBuyList" resultType="dongduk.cs.ssd.domain.GroupBuy">
+   <![CDATA[
+    SELECT * FROM
+    	(SELECT * FROM GROUPBUYS
+    	 ORDER BY UPLOADDATE DESC)
+    WHERE ROWNUM <= 3
+   ]]>
+  </select>
+  
+  
 </mapper>

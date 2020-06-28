@@ -65,4 +65,8 @@ public class MybatisGroupBuyDao implements GroupBuyDao {
 		groupBuyMapper.closeEvent(curTime);
 	}
 	
+	public List<GroupBuy> getRecentGroupBuyList(){
+		return groupBuyMapper.getRecentGroupBuyList();
+	}
+	
 }
