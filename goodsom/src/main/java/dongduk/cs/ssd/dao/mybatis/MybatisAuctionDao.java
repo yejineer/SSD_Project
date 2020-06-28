@@ -9,11 +9,13 @@ import org.springframework.stereotype.Repository;
 
 import dongduk.cs.ssd.dao.AuctionDao;
 import dongduk.cs.ssd.dao.mybatis.mapper.AuctionMapper;
+import dongduk.cs.ssd.dao.mybatis.mapper.SuccessBidderMapper;
 import dongduk.cs.ssd.domain.Auction;
+import dongduk.cs.ssd.domain.SuccessBidder;
 
 /**
- * @author Yejin Lee | kimdahyee
- * @since 2020.06.12 | 2020.06.25
+ * @author Yejin Lee | kimdahyee  | Seonmi Hwang
+ * @since 2020.06.12 | 2020.06.25 | 2020.06.29
  */
 
 @Repository
@@ -23,10 +25,17 @@ public class MybatisAuctionDao implements AuctionDao {
 	
 	@Autowired
 	protected AuctionMapper auctionMapper;
+	@Autowired
+	protected SuccessBidderMapper successBidderMapper;
 
 	@Override
 	public Auction getAuction(int auctionId) throws DataAccessException {
 		return auctionMapper.getAuction(auctionId);
+	}
+	
+	@Override
+	public Auction getAuctionWithBids(int auctionId) throws DataAccessException {
+		return auctionMapper.getAuctionWithBids(auctionId);
 	}
 
 	@Override
@@ -92,4 +101,7 @@ public class MybatisAuctionDao implements AuctionDao {
 		auctionMapper.closeEvent(curTime);
 	}
 		
+	public SuccessBidder getSuccessBidderByAuctionId(int auctionId) {
+		return successBidderMapper.getSuccessBidderByAuctionId(auctionId);
+	}
 }

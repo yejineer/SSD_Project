@@ -29,14 +29,13 @@ public class Order {
 	
 	List<LineGroupBuy> lineGroupBuys;
 	GroupBuy groupBuy;
-	Bid successBidder = new Bid();
+	SuccessBidder successBidder;
 	Auction auction;
 	
 	int menuId; // auction과 groupBuy를 구분하기 위함.
-	int quantity; // auction에 수량 1을 설정해주기 위함.
 	int groupBuyId;
 	int auctionId;
-	int totalQuantity;
+	int totalQuantity; // groupBuy의 state를 update하기 위함
 
 	
 	public int getGroupBuyId() {
@@ -53,14 +52,6 @@ public class Order {
 
 	public void setAuctionId(int auctionId) {
 		this.auctionId = auctionId;
-	}
-
-	public int getQuantity() {
-		return quantity;
-	}
-
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
 	}
 
 	public int getMenuId() {
@@ -111,11 +102,11 @@ public class Order {
 		this.userId = userId;
 	}
 	
-	public Bid getSuccessBidder() {
+	public SuccessBidder getSuccessBidder() {
 		return successBidder;
 	}
 
-	public void setSuccessBidder(Bid successBidder) {
+	public void setSuccessBidder(SuccessBidder successBidder) {
 		this.successBidder = successBidder;
 	}
 
@@ -269,19 +260,24 @@ public class Order {
 			lineGroupBuyForm.setUnitPrices(unitPrices);
 		}
 		
-		
-//		// Auction을 결제하는 경우
-//		if (auction != null) {
-//			List<Bid> bids = auction.getBids();
-//			totalPrice = auction.getMaxPrice();
-//			
-//			for (Bid bid : bids) {
-//				if (bid.getBidPrice() == totalPrice) {
-//					successBidder = bid;
-//					break;
-//				}
-//			}
-//		}
+		// Auction을 결제하는 경우
+		if (auction != null) {
+			List<Bid> bids = auction.getBids();
+			totalPrice = auction.getMaxPrice();
+			auctionId = auction.getAuctionId();
+			this.auction = auction;
+			
+			successBidder = new SuccessBidder();
+			successBidder.setAuctionId(auctionId);
+			successBidder.setUserId(user.getUserId());
+			
+			for (Bid bid : bids) {
+				if (bid.getBidPrice() == totalPrice) {
+					successBidder.setBidId(bid.getBidId());
+					break;
+				}
+			}
+		}
 
 	}
 
@@ -292,7 +288,7 @@ public class Order {
 				+ address3 + ", phone=" + phone + ", refundBank=" + refundBank + ", refundAccount=" + refundAccount
 				+ ", userId=" + userId + ", lineGroupBuys=" + lineGroupBuys + ", groupBuy=" + groupBuy
 				+ ", successBidder=" + successBidder + ", auction=" + auction + ", totalPrice=" + totalPrice
-				+ ", orderDate=" + orderDate + ", menuId=" + menuId + ", quantity=" + quantity + ", groupBuyId="
+				+ ", orderDate=" + orderDate + ", menuId=" + menuId + ", groupBuyId="
 				+ groupBuyId + ", auctionId=" + auctionId + "]";
 	}
 

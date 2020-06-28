@@ -3,18 +3,22 @@ package dongduk.cs.ssd.service;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.dao.DataAccessException;
+
 import dongduk.cs.ssd.domain.Auction;
-import dongduk.cs.ssd.domain.Bid;
+import dongduk.cs.ssd.domain.SuccessBidder;
 
 
 /**
- * @author Hyekyung Kim | Yejin Lee  | kimdahyee
- * @since 2020.05.05	| 2020.06.13 | 2020.06.25
+ * @author Hyekyung Kim | Yejin Lee  | kimdahyee  | Seonmi Hwang
+ * @since 2020.05.05	| 2020.06.13 | 2020.06.25 | 2020.06.29
  */
 
 public interface AuctionService {
 	
 	Auction getAuction(int auctionId);
+	
+	Auction getAuctionWithBids(int auctionId) throws DataAccessException;
 	
 	int createAuction(Auction auction);
 	
@@ -38,5 +42,7 @@ public interface AuctionService {
 	
 //	스케줄러
 	public void deadLineScheduler(Date endDate);
+	
+	public SuccessBidder getSuccessBidderByAuctionId(int auctionId);
 	
 }

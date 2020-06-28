@@ -36,6 +36,10 @@ function bid() {
 	
 }
 
+function orderAuction() {
+	location.href= "../order/auction/create.do?auctionId=${auction.auctionId}";
+}
+
 </script>
 
 
@@ -103,16 +107,25 @@ function bid() {
 						<form name="form" method="post" action="<c:url value='/auction/bid/create.do'/>">
 						
 							<h5>베팅 금액</h5>
-							<input type="text" id="bidPrice" name="bidPrice" class="form-control" placeholder="ex) 4000">
+							<div class="d-flex">
 							<input type="hidden" id="auctionId" name="auctionId" value="${auction.auctionId}">
 							<c:if test="${auction.state eq 'proceeding'}">
+								<input type="text" id="bidPrice" name="bidPrice" class="form-control" placeholder="ex) 4000">
 								<input type="button" value="신청하기" onClick="bid()" > 
 							</c:if>
 								
 							<c:if test="${auction.state eq 'closed'}">
+								<input type="text" id="bidPrice" name="bidPrice" class="form-control" placeholder="ex) 4000" disabled>
 								<input type="button" value="신청하기" onClick="bid()" disabled> 
+								
+								<c:if test="${completeOrder ne 1}">
+									&nbsp;&nbsp; <!-- 아래 버튼은 낙찰자만 볼 수 있도록 -->
+									<input type="button" value="결제하기" onClick="orderAuction()" > 
+								</c:if>
 							</c:if>
 							
+							
+							</div>
 						</form>
 					</div>
 

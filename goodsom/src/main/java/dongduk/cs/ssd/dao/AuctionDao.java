@@ -7,14 +7,17 @@ import org.springframework.dao.DataAccessException;
 
 import dongduk.cs.ssd.domain.Auction;
 import dongduk.cs.ssd.domain.Bid;
+import dongduk.cs.ssd.domain.SuccessBidder;
 
 /**
- * @author Hyekyung Kim | Yejin Lee  | kimdahyee
- * @since  2020.05.05   | 2020.06.12 | 2020.06.25
+ * @author Hyekyung Kim | Yejin Lee  | kimdahyee  | Seonmi Hwang
+ * @since  2020.05.05   | 2020.06.12 | 2020.06.25 | 2020.06.29
  */
 
 public interface AuctionDao {
 	Auction getAuction(int auctionId) throws DataAccessException;
+	
+	Auction getAuctionWithBids(int auctionId) throws DataAccessException;
 	
 //	Return auctionID
 	int createAuction(Auction auction) throws DataAccessException;
@@ -38,4 +41,6 @@ public interface AuctionDao {
 	List<Auction> getRecentAuctionList() throws DataAccessException;
 //	스케줄러
 	void closeEvent(Date curTime);
+	
+	public SuccessBidder getSuccessBidderByAuctionId(int auctionId);
 }

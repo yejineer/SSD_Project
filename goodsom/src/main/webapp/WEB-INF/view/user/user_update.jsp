@@ -46,8 +46,8 @@
 								
 						        <div class="form-group">
 									<label for="password">Password</label> &emsp;
-									<form:input path="user.password" type="password" class="form-control" />
-									<form:errors path="user.password" cssClass="error" /><br/>
+									<form:input path="user.passwd" type="password" class="form-control" />
+									<form:errors path="user.passwd" cssClass="error" /><br/>
 								</div>
 								
 								<div class="form-group">	

@@ -4,22 +4,23 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.stereotype.Service;
 
 import dongduk.cs.ssd.dao.AuctionDao;
 import dongduk.cs.ssd.domain.Auction;
-import dongduk.cs.ssd.domain.Bid;
+import dongduk.cs.ssd.domain.SuccessBidder;
 import dongduk.cs.ssd.service.AuctionService;
 
 
 /**
- * @author Hyekyung Kim | Yejin Lee  | kimdahyee
- * @since 2020.05.05	| 2020.06.13 | 2020.06.25
+ * @author Hyekyung Kim | Yejin Lee  | kimdahyee  | Seonmi Hwang
+ * @since 2020.05.05	| 2020.06.13 | 2020.06.25 | 2020.06.29
  */
 
 @Service
-public class AuctionServiceImpl implements AuctionService{
+public class AuctionServiceImpl implements AuctionService {
 	
 	@Autowired
 	private AuctionDao auctionDao;
@@ -30,6 +31,10 @@ public class AuctionServiceImpl implements AuctionService{
 	
 	public Auction getAuction(int auctionId) {
 		return auctionDao.getAuction(auctionId);
+	}
+	
+	public Auction getAuctionWithBids(int auctionId) throws DataAccessException {
+		return auctionDao.getAuctionWithBids(auctionId);
 	}
 	
 	public List<Auction> getAuctionList() {
@@ -91,6 +96,10 @@ public class AuctionServiceImpl implements AuctionService{
 		
 		System.out.println("Auction updateTableRunner has been scheduled to execute at " + endDate);
 
+	}
+	
+	public SuccessBidder getSuccessBidderByAuctionId(int auctionId) {
+		return auctionDao.getSuccessBidderByAuctionId(auctionId);
 	}
 	
 }
