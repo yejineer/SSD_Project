@@ -34,6 +34,8 @@ public interface AuctionService {
 	
 	void increaseCount(Auction auction);
 	
+	List<Auction> getRecentAuctionList();
+	
 //	스케줄러
 	public void deadLineScheduler(Date endDate);
 	

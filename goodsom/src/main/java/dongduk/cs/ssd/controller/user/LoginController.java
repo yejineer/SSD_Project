@@ -15,8 +15,10 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import dongduk.cs.ssd.domain.Auction;
 import dongduk.cs.ssd.domain.GroupBuy;
 import dongduk.cs.ssd.domain.User;
+import dongduk.cs.ssd.service.AuctionService;
 import dongduk.cs.ssd.service.GroupBuyService;
 import dongduk.cs.ssd.service.UserService;
 
@@ -38,6 +40,9 @@ public class LoginController {
 	private GroupBuyService groupBuyService;
 	
 	@Autowired
+	private AuctionService auctionService;
+	
+	@Autowired
 	public void setUserService(UserService userService) { //setter method를 통한 DI
 		this.userService = userService;
 	}
@@ -56,9 +61,11 @@ public class LoginController {
 			@RequestParam("password") String password,
 			Model model) throws Exception {
 		List<GroupBuy> recentGroupBuy = null;
+		List<Auction> recentAuction = null;
 		
 		User user = userService.getUser(email, password);// 로그인 시도
 		recentGroupBuy = groupBuyService.getRecentGroupBuyList();
+		recentAuction = auctionService.getRecentAuctionList();
 		
 		if (user == null) { // 해당 email과 password를 갖는 사용자가 존재하지 않을 시
 			
@@ -70,6 +77,7 @@ public class LoginController {
 			session.setAttribute("userSession", userSession);
 			model.addAttribute("userSession", userSession); // 필요한가??
 			model.addAttribute("recentGroupBuy", recentGroupBuy);
+			model.addAttribute("recentAuction", recentAuction);
 			return new ModelAndView("home");
 			
 		}

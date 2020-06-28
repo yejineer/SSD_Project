@@ -69,6 +69,10 @@ public class AuctionServiceImpl implements AuctionService{
 		auctionDao.increaseCount(auction);
 	}
 	
+	public List<Auction> getRecentAuctionList() {
+		return auctionDao.getRecentAuctionList();
+	}
+	
 //	스케줄러
 	public void deadLineScheduler(Date endDate) {
 		Runnable updateTableRunner = new Runnable() {	

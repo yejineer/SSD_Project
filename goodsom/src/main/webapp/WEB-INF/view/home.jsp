@@ -157,15 +157,45 @@
 			</div>
 			
 			<div class="row align-items-start">
-				<div class="col-md-4">
-					<a href="portfolio-single.html" class="portfolio-item"><img src="<%=request.getContextPath()%>/resources/images/img_2.jpg" alt="Image" class="img-fluid"></a>
-				</div>
-				<div class="col-md-4">
-					<a href="portfolio-single.html" class="portfolio-item"><img src="<%=request.getContextPath()%>/resources/images/hero_1.jpg" alt="Image" class="img-fluid"></a>
-				</div>
-				<div class="col-md-4">
-					<a href="portfolio-single.html" class="portfolio-item"><img src="<%=request.getContextPath()%>/resources/images/hero_3.jpg" alt="Image" class="img-fluid"></a>
-				</div>
+				<c:forEach var="auction" items="${recentAuction}" varStatus="status">
+						<div class="col-lg-4 col-md-6 mb-4">
+							<div class="post-entry-1 h-100">
+								
+								<a href="<c:url value='/auction/detail.do'><c:param name="auctionId" value="${auction.auctionId}"/></c:url>">
+									<img src="${auction.img}" alt="Image" class="img-fluid">
+								</a>
+									
+								<div class="post-entry-1-contents">
+									<div class="price-wrap d-flex" style="color:blue;">
+									
+										<c:if test="${auction.state eq 'proceeding'}">
+											<h5>Proceeding</h5> 
+										</c:if>
+										
+										<c:if test="${auction.state eq 'closed'}">
+											<h5>Closed</h5>
+										</c:if>
+										
+			    						<span class="meta d-inline-block mb-3">
+											&nbsp; ~ <fmt:formatDate value="${auction.endDate}" pattern="yyyy-MM-dd" />
+										</span>
+			    					</div>
+										
+									<h2><a  href="<c:url value='/auction/detail.do'>
+											<c:param name="auctionId" value="${auction.auctionId}"/>
+											</c:url>">${auction.title}</a>
+									</h2>
+										
+									<span class="meta d-inline-block mb-3">
+										<span>현재 최고 금액</span> &nbsp;
+										<a href="#"><fmt:formatNumber value="${auction.maxPrice}" pattern="#,###원"/></a>
+									</span>
+										
+									<p>${auction.content}</p>
+								</div>
+							</div>
+						</div>
+					</c:forEach>
 			</div>
 			
 		</div>

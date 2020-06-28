@@ -70,4 +70,13 @@
      WHERE ENDDATE <= #{curTime}
     ]]>
   </update>
+  
+  <select id="getRecentAuctionList" resultType="dongduk.cs.ssd.domain.Auction">
+   <![CDATA[
+    SELECT * FROM
+    	(SELECT * FROM AUCTIONS
+    	 ORDER BY UPLOADDATE DESC)
+    WHERE ROWNUM <= 3
+   ]]>
+  </select>
 </mapper>
