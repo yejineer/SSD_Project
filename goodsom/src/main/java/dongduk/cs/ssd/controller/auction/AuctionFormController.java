@@ -181,10 +181,10 @@ public class AuctionFormController implements ApplicationContextAware  {
 		List<Minute> minute = new ArrayList<Minute>();
 		minute.add(new Minute(00, "00분"));
 		minute.add(new Minute(10, "10분"));
-		minute.add(new Minute(10, "20분"));
+		minute.add(new Minute(20, "20분"));
 		minute.add(new Minute(30, "30분"));
-		minute.add(new Minute(10, "40분"));
-		minute.add(new Minute(10, "50분"));
+		minute.add(new Minute(40, "40분"));
+		minute.add(new Minute(50, "50분"));
 		return minute;
 	}
 	
