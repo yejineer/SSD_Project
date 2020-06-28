@@ -284,30 +284,20 @@ function input_append(ff){
 									</c:choose>
 					              </div>
 			              		</div>
-			              		
-			              		<c:choose>
-									<c:when test="${groupBuyForm.newGroupBuy}">
-										<form:radiobutton id="isAmPm" path="groupBuy.isAmPm" value="am" /> 오전
-					            		<form:radiobutton id="isAmPm" path="groupBuy.isAmPm" value="pm" checked="checked"  />오후
-									</c:when>
-									<c:otherwise>
-										<form:radiobutton id="isAmPm" path="groupBuy.isAmPm" value="am" checked="${groupBuyForm.groupBuy.isAmPm=='am' ? 'checked':''}"/> 오전
-					            		<form:radiobutton id="isAmPm" path="groupBuy.isAmPm" value="pm" checked="${groupBuyForm.groupBuy.isAmPm=='pm' ? 'checked':''}"  />오후
-									</c:otherwise>
-								</c:choose>
-					            
-					            <form:errors path="groupBuy.hour" cssClass="error"/>
+			              	</div>
+			              	
+			              	
+							<div class="form-group">
+			              		<form:radiobuttons items="${amPm}" id="amPm" path="groupBuy.isAmPm"/> &nbsp;&nbsp;&nbsp;
+					            <form:errors path="groupBuy.isAmPm" cssClass="error"/>  &nbsp;&nbsp;&nbsp;
+					        </div>
+					        <div class="form-group"> 
 								<form:select path="groupBuy.hour">
-						            <c:forEach var="hour" begin="1" end="12" varStatus="status">
-						            	<form:option value="${hour}" selected="${groupBuyForm.groupBuy.hour==hour ? 'checked':''}">${hour}시</form:option>
-									</c:forEach>
+									<form:options path="groupBuy.hour" items="${hourData}" itemLabel="label" itemValue="code"/>
 								</form:select>
-									
-								
-								<form:errors path="groupBuy.minute" cssClass="error"/>
+								&nbsp;&nbsp;&nbsp;
 								<form:select path="groupBuy.minute">
-								    <form:option value="00" selected="${groupBuyForm.groupBuy.minute==00 ? 'checked':''}">00분</form:option>
-								    <form:option value="30" selected="${groupBuyForm.groupBuy.minute==30 ? 'checked':''}">30분</form:option>
+									<form:options path="groupBuy.minute" items="${minuteData}" itemLabel="label" itemValue="code"/>
 								</form:select>
 			              	</div>
 

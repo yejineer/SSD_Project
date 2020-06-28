@@ -1,5 +1,8 @@
 package dongduk.cs.ssd.controller.groupBuy;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -14,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import dongduk.cs.ssd.controller.auction.Hour;
+import dongduk.cs.ssd.controller.auction.Minute;
 import dongduk.cs.ssd.controller.user.UserSession;
 import dongduk.cs.ssd.domain.GroupBuy;
 import dongduk.cs.ssd.service.GroupBuyService;
@@ -83,7 +88,6 @@ public class GroupBuyFormController {
 				return GROUPBUY_FORM;
 			}
 		}
-		
 //		시간 세팅
 		groupBuyForm.getGroupBuy().timeSet();
 		
@@ -126,5 +130,32 @@ public class GroupBuyFormController {
 		this.groupBuyService = groupBuyService;
 	}
 	*/
-		
+	@ModelAttribute("hourData")
+	protected List<Hour> referenceData1() throws Exception {
+		List<Hour> hour = new ArrayList<Hour>();
+		for (int i = 1; i <= 12; i++) {
+			hour.add(new Hour(i, i+"시"));			
+		}
+		return hour;
+	}
+	
+	@ModelAttribute("minuteData")
+	protected List<Minute> referenceData2() throws Exception {
+		List<Minute> minute = new ArrayList<Minute>();
+		minute.add(new Minute(00, "00분"));
+		minute.add(new Minute(10, "10분"));
+		minute.add(new Minute(20, "20분"));
+		minute.add(new Minute(30, "30분"));
+		minute.add(new Minute(40, "40분"));
+		minute.add(new Minute(50, "50분"));
+		return minute;
+	}
+	
+	@ModelAttribute("amPm")
+	protected List<String> referenceData3() throws Exception {
+		List<String> amPm = new ArrayList<String>();
+		amPm.add("am");
+		amPm.add("pm");
+		return amPm;
+	}
 }
