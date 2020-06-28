@@ -6,7 +6,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,11 +19,12 @@ import dongduk.cs.ssd.domain.Auction;
 import dongduk.cs.ssd.service.AuctionService;
 import dongduk.cs.ssd.service.UserService;
 import dongduk.cs.ssd.domain.Bid;
+import dongduk.cs.ssd.domain.SuccessBidder;
 import dongduk.cs.ssd.service.BidService;
 
 /**
- * @author Hyekyung Kim	| Yejin Lee   | kimdahyee
- * @since 2020.05.08	| 2020.06.14  | 2020.06.25
+ * @author Hyekyung Kim	| Yejin Lee   | kimdahyee  | Seonmi Hwang
+ * @since 2020.05.08	| 2020.06.14  | 2020.06.25 | 2020.06.29
  */
 
 
@@ -43,6 +43,7 @@ public class AuctionController {
 	
 	@Autowired
 	BidService bidService;
+	
 	
 	@RequestMapping(value="/auction/list.do", method=RequestMethod.GET)
 	public ModelAndView auctionList(SessionStatus sessionStatus){
@@ -64,6 +65,14 @@ public class AuctionController {
 		ModelAndView mav = new ModelAndView(AUCTION_DETAIL);
 		Auction auction = auctionService.getAuction(auctionId);
 		Bid bid = bidService.getBidByMaxPrice(auction.getMaxPrice(), auctionId);
+		
+		// 낙찰자가 결제까지 완료한 경우
+		SuccessBidder successBidder = auctionService.getSuccessBidderByAuctionId(auctionId);
+		if (successBidder != null) {
+			mav.addObject("completeOrder", 1);
+		} else {
+			mav.addObject("completeOrder", 0);
+		}
 		
 		UserSession user  = (UserSession)request.getSession().getAttribute("userSession");
 		if (user.getUser().getUserId() == auction.getUserId()) {

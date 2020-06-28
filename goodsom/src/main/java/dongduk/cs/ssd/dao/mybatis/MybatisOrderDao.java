@@ -11,8 +11,10 @@ import dongduk.cs.ssd.dao.OrderDao;
 import dongduk.cs.ssd.dao.mybatis.mapper.GroupBuyMapper;
 import dongduk.cs.ssd.dao.mybatis.mapper.LineGroupBuyMapper;
 import dongduk.cs.ssd.dao.mybatis.mapper.OrderMapper;
+import dongduk.cs.ssd.dao.mybatis.mapper.SuccessBidderMapper;
 import dongduk.cs.ssd.domain.LineGroupBuy;
 import dongduk.cs.ssd.domain.Order;
+import dongduk.cs.ssd.domain.SuccessBidder;
 
 /**
  * @author Seonmi Hwang
@@ -28,6 +30,8 @@ public class MybatisOrderDao implements OrderDao {
 	protected LineGroupBuyMapper lineGroupBuyMapper;
 	@Autowired
 	protected GroupBuyMapper groupBuyMapper;
+	@Autowired
+	protected SuccessBidderMapper successBidderMapper;
 	
 	@Override
 	public Order getOrder(int orderId) throws DataAccessException {
@@ -46,15 +50,27 @@ public class MybatisOrderDao implements OrderDao {
 		// ORDERS 테이블에 order 삽입
 		int orderSuccess = orderMapper.createOrder(order);
 		
-		// LINEGROUPBUYS 테이블에 lineGroupBuy들 삽입
+		// GroupBuy를 결제하는 경우
 		List<LineGroupBuy> lineGroupBuys = order.getLineGroupBuys();
-		for (LineGroupBuy lineGroupBuy : lineGroupBuys) {
-			lineGroupBuy.setOrderId(order.getOrderId());
-			orderSuccess += lineGroupBuyMapper.insertLineGroupBuy(lineGroupBuy);
+		if (lineGroupBuys != null) {
+			// LINEGROUPBUYS 테이블에 lineGroupBuy들 삽입
+			for (LineGroupBuy lineGroupBuy : lineGroupBuys) {
+				lineGroupBuy.setOrderId(order.getOrderId());
+				orderSuccess += lineGroupBuyMapper.insertLineGroupBuy(lineGroupBuy);
+			}
+			// GROUPBUYS 테이블에 참여자, 달성률, 상태 update
+			orderSuccess += groupBuyMapper.updateState(order.getGroupBuy());
 		}
 		
-		// GROUPBUYS 테이블에 참여자, 달성률, 상태 update
-		orderSuccess += groupBuyMapper.updateState(order.getGroupBuy());
+		// Auction을 결제하는 경우
+		SuccessBidder successBidder = order.getSuccessBidder();
+		
+		System.out.println("[SuccessBidder] : " + successBidder);
+		
+		if (successBidder != null) {
+			successBidder.setOrderId(order.getOrderId());
+			orderSuccess += successBidderMapper.insertSuccessBidder(successBidder);
+		}
 		
 		return orderSuccess;
 	}

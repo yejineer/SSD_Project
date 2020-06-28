@@ -6,15 +6,16 @@ import java.util.List;
 import org.springframework.dao.DataAccessException;
 
 import dongduk.cs.ssd.domain.Auction;
-import dongduk.cs.ssd.domain.Bid;
 
 /**
- * @author Yejin Lee | kimdahyee
- * @since 2020.06.12 | 2020.06.25
+ * @author Yejin Lee | kimdahyee  | Seonmi Hwang
+ * @since 2020.06.12 | 2020.06.25 | 2020.06.29
  */
 public interface AuctionMapper { // AuctionMapper.xml에서 구현한 method 이름과 일치해야함!
 	
 	Auction getAuction(int auctionId) throws DataAccessException;
+	
+	Auction getAuctionWithBids(int auctionId) throws DataAccessException;
 	
 	int createAuction(Auction auction) throws DataAccessException;
 	

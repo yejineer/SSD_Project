@@ -15,6 +15,25 @@
     WHERE AUCTIONID = #{auctionId}
   </select>
   
+  <resultMap id="resultMap" type="Auction">
+  	<id column="auctionId" property="auctionId" />
+  	<result column="title" property="title" />
+  	<result column="img" property="img" />
+  	<result column="maxPrice" property="maxPrice" />
+  	<result column="menuId" property="menuId" />
+  	<collection property="bids" ofType="Bid">
+  		<id property="bidId" column="bidId" />
+  		<result property="bidPrice" column="bidPrice" />
+  	</collection>
+  </resultMap>
+  
+  <select id="getAuctionWithBids" parameterType="java.lang.Integer" resultMap="resultMap"> <!-- 경매 결제에서 이용 -->
+    SELECT a.auctionId, a.title, a.img, a.maxPrice, a.menuId,
+    	   b.bidId, b.bidPrice
+    FROM AUCTIONS a, BIDS b
+    WHERE a.auctionId = b.auctionId AND a.auctionId = #{auctionId}
+  </select>
+  
   <insert id="createAuction" parameterType="dongduk.cs.ssd.domain.Auction">
   	<selectKey keyProperty="auctionId" resultType="int" order="BEFORE">
   		SELECT auctionId_seq.nextval AS auctionId FROM DUAL
