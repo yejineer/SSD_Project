@@ -25,8 +25,8 @@
 
 	<task:scheduler id="scheduler" pool-size="10" />
 
-<!-- 	<mvc:view-controller path="/index/login.do"
-		view-name="user/login" /> -->
+ 	<mvc:view-controller path="/index/login.do"
+		view-name="user/login" />
 	<mvc:view-controller path="/user/register.do"
 		view-name="user/register" />
 

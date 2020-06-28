@@ -24,6 +24,8 @@ public interface GroupBuyService {
 
 	public void createOptions(GroupBuy groupBuy);
 	
+	public void updateOptions(GroupBuy groupBuy);
+	
 	public List<GroupBuy> getGroupBuyList();
 	
 	public void increaseCount(GroupBuy groupBuy);

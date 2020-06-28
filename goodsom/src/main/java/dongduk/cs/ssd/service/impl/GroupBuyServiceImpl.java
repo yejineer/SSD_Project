@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import dongduk.cs.ssd.dao.GroupBuyDao;
 import dongduk.cs.ssd.domain.GroupBuy;
@@ -26,6 +27,7 @@ import dongduk.cs.ssd.service.GroupBuyService;
  */
 
 @Service
+@Transactional
 public class GroupBuyServiceImpl implements GroupBuyService {
 	
 	@Autowired
@@ -56,6 +58,13 @@ public class GroupBuyServiceImpl implements GroupBuyService {
 	}
 	
 	public void createOptions(GroupBuy groupBuy) {
+		groupBuy.optionSetting(groupBuy.getGroupBuyId());
+		groupBuyDao.createOptions(groupBuy);
+	}
+	
+	public void updateOptions(GroupBuy groupBuy) {
+		groupBuyDao.deleteOptions(groupBuy.getGroupBuyId());
+		groupBuy.optionSetting(groupBuy.getGroupBuyId());
 		groupBuyDao.createOptions(groupBuy);
 	}
 	
