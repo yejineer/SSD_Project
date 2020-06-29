@@ -42,7 +42,9 @@
 								<li><a href="<%=request.getContextPath()%>/auction/list.do" class="nav-link">Auction</a></li>
 								<li><a href="#">Community</a></li>
 								<li><a href="<%=request.getContextPath()%>/user/detail.do"><img src="<%=request.getContextPath()%>/resources/images/mypage.jpg" alt="Image" 
-								width="30px" height="20px" class="img-fluid"> ${userSession.user.nickname}</a></li>
+								width="30px" height="20px" class="img-fluid"> ${userSession.user.nickname}</a>
+								<a href="<%=request.getContextPath()%>/noti/list.do"><img src="<%=request.getContextPath()%>/resources/images/noti.jpg" alt="Image" width="30px" height="20px" class="img-fluid"></a>
+								</li>
 							</ul>
 						</nav>
 					</div>
