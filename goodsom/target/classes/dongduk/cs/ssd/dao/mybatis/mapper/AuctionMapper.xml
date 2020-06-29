@@ -18,12 +18,20 @@
   	<result column="menuId" property="menuId" />
   	<result column="writerId" property="userId" />
   	<collection property="bids" ofType="Bid">
-  		<id property="bidId" column="bidId" />
-  		<result property="bidPrice" column="bidPrice" />
+  		<id property="bidId" column="bidId"/>
+  		<result property="bidPrice" column="bidPrice"/>
   	</collection>
   </resultMap>
   
-  <select id="getAuction" parameterType="java.lang.Integer" resultMap="resultMap"> <!-- 경매 결제에서 이용 -->
+  
+  <select id="getAuction" parameterType="java.lang.Integer" resultType="Auction"> <!-- bid없는 Auction객체 위해 필요 -->
+    SELECT auctionId, title, content, img, startPrice, uploadDate, endDate, count,
+    		maxPrice, state, menuId, userId
+    FROM AUCTIONS
+    WHERE auctionId = #{auctionId}
+  </select>
+  
+  <select id="getAuctionWithBids" parameterType="java.lang.Integer" resultMap="resultMap"> <!-- bid있는 Auction객체, 경매 결제에서 이용 -->
     SELECT a.auctionId, a.title, a.content, a.img, a.startPrice, a.uploadDate, a.endDate, a.count,
     		a.maxPrice, a.state, a.menuId, a.userId AS writerId, b.bidId, b.bidPrice
     FROM AUCTIONS a, BIDS b
@@ -63,21 +71,20 @@
   </delete>
   
   <!-- Get all auctions -->
-  <select id="getAuctionList" resultMap="resultMap">
-    SELECT a.auctionId, a.title, a.content, a.img, a.startPrice, a.uploadDate, a.endDate, a.count,
-    		a.maxPrice, a.state, a.menuId, a.userId AS writerId, b.bidId, b.bidPrice
-    FROM AUCTIONS a, BIDS b
-    ORDER BY a.uploadDate DESC
+  <select id="getAuctionList" resultType="Auction">
+    SELECT auctionId, title, content, img, startPrice, uploadDate, endDate, count,
+    		maxPrice, state, menuId, userId
+    FROM AUCTIONS
+    ORDER BY uploadDate DESC
   </select>
   
   <!-- Search auctions by Keyword -->
-  <select id="getAuctionListByKeyword" resultMap="resultMap">
+  <select id="getAuctionListByKeyword" resultType="Auction">
   	<bind name="pattern" value="'%' + _parameter + '%'" />
-	  	SELECT a.auctionId, a.title, a.content, a.img, a.startPrice, a.uploadDate, a.endDate, a.count,
-    		a.maxPrice, a.state, a.menuId, a.userId AS writerId, b.bidId, b.bidPrice
-	    FROM AUCTIONS a, BIDS b
-	    WHERE a.auctionId = b.auctionId AND a.auctionId = #{auctionId}
-	  			AND a.title LIKE #{pattern}
+	  	SELECT auctionId, title, content, img, startPrice, uploadDate, endDate, count,
+    		maxPrice, state, menuId, userId
+    	FROM AUCTIONS
+	    WHERE title LIKE #{pattern}
   </select>
   
   <update id="increaseCount" parameterType="dongduk.cs.ssd.domain.Auction">

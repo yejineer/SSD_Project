@@ -58,8 +58,8 @@ public class AuctionServiceImpl implements AuctionService {
 		return auctionDao.updateAuction(auction);
 	}
 	
-	public void updateAuctionMaxPrice(int maxPrice, int auctionId) {
-		auctionDao.updateAuctionMaxPrice(maxPrice, auctionId);
+	public int updateAuctionMaxPrice(int maxPrice, int auctionId) {
+		return auctionDao.updateAuctionMaxPrice(maxPrice, auctionId);
 	}
 
 	public List<Auction> deleteAuction(int auctionId) {

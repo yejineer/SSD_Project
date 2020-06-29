@@ -15,6 +15,8 @@ public interface AuctionMapper { // AuctionMapper.xml에서 구현한 method 이
 	
 	Auction getAuction(int auctionId) throws DataAccessException;
 	
+	Auction getAuctionWithBids(int auctionId) throws DataAccessException;
+	
 	int createAuction(Auction auction) throws DataAccessException;
 	
 	int updateAuction(Auction auction) throws DataAccessException;

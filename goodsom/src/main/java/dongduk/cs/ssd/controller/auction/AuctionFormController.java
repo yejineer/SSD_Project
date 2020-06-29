@@ -36,7 +36,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 import dongduk.cs.ssd.controller.user.UserSession;
 import dongduk.cs.ssd.domain.Auction;
+import dongduk.cs.ssd.domain.Bid;
+import dongduk.cs.ssd.domain.User;
 import dongduk.cs.ssd.service.AuctionService;
+import dongduk.cs.ssd.service.BidService;
+import dongduk.cs.ssd.service.UserService;
 import dongduk.cs.ssd.service.impl.AuctionServiceImpl;
 
 /**
@@ -63,6 +67,10 @@ public class AuctionFormController implements ApplicationContextAware  {
 	
 	@Autowired
 	private AuctionService auctionService;
+	@Autowired
+	private UserService userService;
+	@Autowired
+	private BidService bidService;
 
 	@ModelAttribute("auctionForm")
 	public AuctionForm formBacking(HttpServletRequest request, Model model, SessionStatus sessionStatus) throws Exception{
@@ -88,7 +96,7 @@ public class AuctionFormController implements ApplicationContextAware  {
 	
 	@RequestMapping(method = RequestMethod.POST)
 	public String submit(HttpServletRequest request, @Valid @ModelAttribute("auctionForm") AuctionForm auctionForm, BindingResult result,
-			Model model, SessionStatus sessionStatus) {
+			Model model, SessionStatus sessionStatus, HttpSession session) {
 		System.out.println(auctionForm.toString());
 //		/auction/create.do인지 /auction/update.do인지 구분하기 위해 필요!
 		String reqPage = request.getServletPath();
@@ -110,8 +118,9 @@ public class AuctionFormController implements ApplicationContextAware  {
 //		경매 create시 작성자 번호(userId)를 넣어야하고, view에서 작성자를 출력해야 하므로 현재 접속 중인 사용자의 정보를 Session에서 가져온다.
 		UserSession user  = (UserSession)request.getSession().getAttribute("userSession");
 		System.out.println(user.toString());
-//		시간세팅 by HK
+//		시간세팅
 		auctionForm.getAuction().timeSet();
+		auctionForm.getAuction().setMaxPrice(auctionForm.getAuction().getStartPrice());
 
 //		파일 업로드 기능
 		System.out.println("uploadDir: " + uploadDir);
@@ -127,9 +136,14 @@ public class AuctionFormController implements ApplicationContextAware  {
 //			}
 
 			int auctionId = auctionService.updateAuction(auctionForm.getAuction());
-			model.addAttribute("auction", auctionService.getAuction(auctionId));
-//			System.out.println("update 하고 나서 가져온 auctionId: " + auctionId);
-		} else { // show after create
+			Auction auction = auctionService.getAuction(auctionId);
+			Bid maxPriceBid = bidService.getBidByMaxPrice(auction.getMaxPrice(), auctionId);
+			
+			model.addAttribute("auction", auction);
+			model.addAttribute("date_maxBid", maxPriceBid.getBidDate());
+			User user_maxBid = userService.getUserByUserId(maxPriceBid.getUserId());
+			model.addAttribute("user_maxBid", user_maxBid.getNickname());
+		} else { // create
 //			if (report.getSize() == 0) { // 파일 업로드 하지 않았을 때 SqlException이 나므로 기본 이미지 설정
 //				auctionForm.getAuction().initImg(request.getContextPath());
 //			} else {
@@ -137,15 +151,20 @@ public class AuctionFormController implements ApplicationContextAware  {
             auctionForm.getAuction().initAuction(user.getUser());
 			System.out.println("[AuctionFormController] auctionForm 값: " + auctionForm.toString());
 			auctionService.createAuction(auctionForm.getAuction());
-			model.addAttribute("auction", auctionForm.getAuction()); 
+			
+			model.addAttribute("auction", auctionForm.getAuction());
+			model.addAttribute("date_maxBid", "");
+			model.addAttribute("user_maxBid", "아직 입찰자가 없습니다.");
 		}
 		
 //		스케줄러 => create / update 시 endDate로 설정
 		auctionService.deadLineScheduler(auctionForm.getAuction().getEndDate(), auctionForm.getAuction().getAuctionId());
+		session.setAttribute("bidForm", new BidForm());
 
 //		작성자만 수정/삭제 버튼 보이게 하기 위해 isWriter, 작성자 출력 위해 writer값을 넘겨준다.
 		model.addAttribute("isWriter", true);
 		model.addAttribute("writer", user.getUser().getNickname());
+		model.addAttribute("bidForm", session.getAttribute("bidForm"));
 		sessionStatus.setComplete();
 		return AUCTION_DETAIL;
 	}

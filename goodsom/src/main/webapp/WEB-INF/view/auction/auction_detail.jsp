@@ -23,15 +23,9 @@ function updateAuction() {
 }
 
 function bid() {
-	
-	if (form.bidPrice.value == "") {
-		alert("Input your bidPrice")
-		form.bidPrice.focus();
-		return false;
-	}
 
 	if (confirm("배팅 하시겠습니까?")) {
-		form.submit();
+		bidForm.submit();
 	}
 	
 }
@@ -41,8 +35,12 @@ function orderAuction() {
 }
 
 </script>
-
-
+<style>
+.error {
+	color: #ff0000;
+	/* font-weight: bold; */
+}
+</style>
 <%@ include file="../IncludeBanner.jsp" %> 
 
 		<div class="site-section-cover">
@@ -97,37 +95,36 @@ function orderAuction() {
 						<h4 class="text-danger">
 							<fmt:formatNumber value="${auction.maxPrice}" pattern="#,###원" />
 						</h4>
-						
-						<p>${bid.bidDate} <br/> ${bidder}</p>
+						<p><fmt:formatDate value="${date_maxBid}" pattern="yyyy-MM-dd" /> <br/> 
+							${user_maxBid}</p>
 						
 					</div><br/><br/>
 					
 					<!-- betting -->
-					<div class="d-flex">
-						<form name="form" method="post" action="<c:url value='/auction/bid/create.do'/>">
-						
-							<h5>베팅 금액</h5>
-							<div class="d-flex">
-							<input type="hidden" id="auctionId" name="auctionId" value="${auction.auctionId}">
-							<c:if test="${auction.state eq 'proceeding'}">
-								<input type="text" id="bidPrice" name="bidPrice" class="form-control" placeholder="ex) 4000">
-								<input type="button" value="신청하기" onClick="bid()" > 
-							</c:if>
-								
-							<c:if test="${auction.state eq 'closed'}">
-								<input type="text" id="bidPrice" name="bidPrice" class="form-control" placeholder="ex) 4000" disabled>
-								<input type="button" value="신청하기" onClick="bid()" disabled> 
-								
-								<c:if test="${completeOrder ne 1 && successBidderUserId eq userSession.user.userId}">
-									&nbsp;&nbsp; <!-- 아래 버튼은 낙찰자만 볼 수 있도록 -->
-									<input type="button" value="결제하기" onClick="orderAuction()" > 
-								</c:if>
-							</c:if>
-							
-							
-							</div>
-						</form>
-					</div>
+					<c:if test="${isWriter eq false}">
+						<div class="d-flex">
+							<form:form modelAttribute="bidForm" method="post" action="/goodsom/auction/bid/create.do">
+								<h5>베팅 금액</h5>&nbsp;&nbsp;<form:errors path="bid.bidPrice" cssClass="error"/>
+								<div class="d-flex">
+								<form:input type="hidden" path="bid.auctionId" value="${auction.auctionId}"/>
+									<c:if test="${auction.state eq 'proceeding'}">
+										<form:input type="number" path="bid.bidPrice" class="form-control"/>
+										<input type="button" value="신청하기" onClick="bid()" > 
+									</c:if>
+										
+									<c:if test="${auction.state eq 'closed'}">
+										<form:input type="number" path="bid.bidPrice" class="form-control" readonly="true"/>
+										<input type="button" value="신청하기" onClick="bid()" disabled> 
+										
+										<c:if test="${completeOrder ne 1}">
+											&nbsp;&nbsp; <!-- 아래 버튼은 낙찰자만 볼 수 있도록 -->
+											<input type="button" value="결제하기" onClick="orderAuction()" > 
+										</c:if>
+									</c:if>
+								</div>
+							</form:form>
+						</div>
+					</c:if>
 
 				</div>
 			</div><br/><br/>
