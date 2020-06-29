@@ -32,5 +32,7 @@ public interface GroupBuyDao {
 	
 	List<GroupBuy> getRecentGroupBuyList() throws DataAccessException;
 	
+//	keyword로 검색
+	public List<GroupBuy> groupBuyListByKeyword(String keyword);
 	
 }

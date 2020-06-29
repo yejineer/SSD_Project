@@ -10,20 +10,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
 import dongduk.cs.ssd.domain.Auction;
 import dongduk.cs.ssd.domain.GroupBuy;
 import dongduk.cs.ssd.service.SearchService;
 
 /**
- * @author Hyekyung Kim
- * @since 2020.05.05
+ * @author Hyekyung Kim  | kimdahyee
+ * @since  2020.05.05    | 2020.06.30
  */
 
-//@Controller
+@Controller
 public class SearchController {
-	/*
-	final int GROUPBUY = 1; // 일단 임의로 정함
-	final int AUCTION = 2;
+	
+	private static final String GROUPBUY_LIST = "groupBuy/groupBuy_list";
+	private static final String AUCTION_LIST = "auction/auction_list";
 	
 	private SearchService searchService;
 	
@@ -33,55 +34,31 @@ public class SearchController {
 	}
 
 	
-	@RequestMapping("/search.do")
+	@RequestMapping("/list/search.do")
 	public ModelAndView handleRequest(HttpServletRequest request,
 			@RequestParam(value="keyword", required=false) String keyword,
-			@RequestParam(value="type", required=false) int type) throws Exception {
-		ModelAndView mav = new ModelAndView();
+			@RequestParam(value="choice") int choice) throws Exception {
 		
+		System.out.println("나 들어오기는해");
+		
+		ModelAndView mav = new ModelAndView();
+				
 		if (keyword != null) {	
+			
 			if (!StringUtils.hasLength(keyword)) {	// no input
 				return new ModelAndView("Error", "message", "검색어를 입력해주세요.");
 			}
 			
-			PagedListHolder<GroupBuy> groupBuyList = null;
-			PagedListHolder<Auction> auctionList;
-			
-			if(type == GROUPBUY) {	// search by type
-				groupBuyList = new PagedListHolder<GroupBuy>(this.searchService.groupBuyListByKeyword(keyword.toLowerCase()));
-				groupBuyList.setPageSize(3);
-				
+			if (choice == 1) { //groupBuy
+				mav = new ModelAndView(GROUPBUY_LIST);
+				List<GroupBuy> groupBuyList = searchService.groupBuyListByKeyword(keyword.toLowerCase());
 				mav.addObject("groupBuyList", groupBuyList);
-				
-			}else if(type == AUCTION) {
-				auctionList = new PagedListHolder<Auction>(this.searchService.auctionListByKeyword(keyword.toLowerCase()));
-				auctionList.setPageSize(3);
-				
-				mav.addObject("auctionList", auctionList);
-			}else {	
-				groupBuyList = new PagedListHolder<GroupBuy>(this.searchService.groupBuyListByKeyword(keyword.toLowerCase()));
-				groupBuyList.setPageSize(3);
-				auctionList = new PagedListHolder<Auction>(this.searchService.auctionListByKeyword(keyword.toLowerCase()));
-				auctionList.setPageSize(3);
-				
-				mav.addObject("groupBuyList", groupBuyList);
+			} else {
+				mav = new ModelAndView(AUCTION_LIST);
+				List<Auction> auctionList = searchService.auctionListByKeyword(keyword.toLowerCase());
 				mav.addObject("auctionList", auctionList);
 			}
-			
-			return mav;
 		}
-		else {
-			@SuppressWarnings("unchecked")
-			PagedListHolder<GroupBuy> groupBuyList = (PagedListHolder<GroupBuy>)request.getSession().getAttribute("SearchController_groupBuyList");
-			@SuppressWarnings("unchecked")
-			PagedListHolder<Auction> auctionList = (PagedListHolder<Auction>)request.getSession().getAttribute("SearchController_auctionList");
-			if (groupBuyList == null || auctionList == null) {
-				return new ModelAndView("Error", "message", "Your session has timed out. Please start over again.");
-			}
-			mav.addObject("groupBuyList", groupBuyList);
-			mav.addObject("auctionList", auctionList);
-			return mav;
-		}
+		return mav;
 	}
-	*/
 }

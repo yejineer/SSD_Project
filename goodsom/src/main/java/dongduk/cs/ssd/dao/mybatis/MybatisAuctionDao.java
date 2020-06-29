@@ -104,4 +104,9 @@ public class MybatisAuctionDao implements AuctionDao {
 	public SuccessBidder getSuccessBidderByAuctionId(int auctionId) {
 		return successBidderMapper.getSuccessBidderByAuctionId(auctionId);
 	}
+	
+//	keyword로 검색
+	public List<Auction> auctionListByKeyword(String keyword) {
+		return auctionMapper.auctionListByKeyword(keyword);
+	}
 }

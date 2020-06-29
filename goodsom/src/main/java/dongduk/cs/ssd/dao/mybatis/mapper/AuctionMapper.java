@@ -42,4 +42,8 @@ public interface AuctionMapper { // AuctionMapper.xml에서 구현한 method 이
 	void closeEvent(Date curTime);
 	
 	Integer getSuccessBidderUserId(int auctionId);
+	
+//  keyword로 검색
+	List<Auction> auctionListByKeyword(String keyword);
+
 }

@@ -79,7 +79,7 @@
   </select>
   
   <!-- Search auctions by Keyword -->
-  <select id="getAuctionListByKeyword" resultType="Auction">
+  <select id="auctionListByKeyword" resultType="Auction">
   	<bind name="pattern" value="'%' + _parameter + '%'" />
 	  	SELECT auctionId, title, content, img, startPrice, uploadDate, endDate, count,
     		maxPrice, state, menuId, userId

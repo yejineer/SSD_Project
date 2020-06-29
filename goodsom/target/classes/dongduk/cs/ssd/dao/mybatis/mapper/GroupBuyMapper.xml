@@ -104,6 +104,14 @@
     ORDER BY UPLOADDATE DESC
   </select>
   
+   <!-- Search groupBuy by Keyword -->
+  <select id="groupBuyListByKeyword" resultType="GroupBuy">
+  	<bind name="pattern" value="'%' + _parameter + '%'" />
+	  	SELECT <include refid="BaseColumns_GroupBuys" />
+    	FROM GROUPBUYS
+	    WHERE title LIKE #{pattern} 
+  </select>
+  
   <update id="increaseCount" parameterType="dongduk.cs.ssd.domain.GroupBuy">
   	UPDATE GROUPBUYS
   	SET COUNT=#{count}+1

@@ -7,6 +7,7 @@ import org.springframework.dao.DataAccessException;
 
 import dongduk.cs.ssd.domain.Auction;
 import dongduk.cs.ssd.domain.Bid;
+import dongduk.cs.ssd.domain.GroupBuy;
 import dongduk.cs.ssd.domain.SuccessBidder;
 
 /**
@@ -44,4 +45,7 @@ public interface AuctionDao {
 	public Integer getSuccessBidderUserId(int auctionId);
 	
 	public SuccessBidder getSuccessBidderByAuctionId(int auctionId);
+	
+//	keyword로 검색
+	public List<Auction> auctionListByKeyword(String keyword);
 }
