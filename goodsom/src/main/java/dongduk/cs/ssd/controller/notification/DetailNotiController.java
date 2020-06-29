@@ -29,14 +29,29 @@ public class DetailNotiController {
 	UserService userService;
 	
 	@RequestMapping("/noti/detail.do")
-	public ModelAndView handleRequest(@RequestParam("notiId") int notiId) throws Exception {
-		Notification noti = notiService.getNoti(notiId);
-		int userId = notiService.getNoti(notiId).getUserId();
-		User user = userService.getUserByUserId(userId);
+	public ModelAndView handleRequest(@RequestParam("notiId") int notiId,
+			@RequestParam("type") int type, 
+			@RequestParam("content") String content) throws Exception {
+		
 		ModelAndView mov = new ModelAndView();
+		Notification noti;
+		int userId;
+		User user;
+		if(type == 1) {
+			noti = notiService.getAuctionNoti(notiId);
+			userId = noti.getUserId();
+			user = userService.getUserByUserId(userId);
+			
+		}else {
+			noti = notiService.getGroupBuyNoti(notiId);
+			userId = noti.getUserId();
+			user = userService.getUserByUserId(userId);
+		}
+		System.out.println("type: " + type);
 		mov.addObject("nickname", user.getNickname());
-		mov.addObject("message", "참여한 경매가 낙찰되었습니다. 결제를 진행해주세요!");
 		mov.addObject("noti", noti);
+		mov.addObject("content", content);
+		mov.addObject("type", type);
 		mov.setViewName(formViewName);
 		
 		return mov;

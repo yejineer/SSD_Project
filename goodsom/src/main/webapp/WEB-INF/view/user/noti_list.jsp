@@ -9,11 +9,15 @@
 <%@ include file="../IncludeTop.jsp" %> 
 
 <script>
+function toBidNoti(){
+	
+}
 
+function toGroupBuyNoti(){
+
+	
+}
 </script>
-
-
-
 <%@ include file="../IncludeBanner.jsp" %> 
 
 		<div class="site-section-cover">
@@ -42,7 +46,8 @@
 									</h1>
 								</div>
 								<br>
-
+								
+								<h5>경매 알림</h5>
 								<div class="text text-left">
 									<table class="table table-striped">
 										<tbody>
@@ -50,19 +55,49 @@
 												<th scope="row">제목</th>
 												<th scope="row">날짜</th>
 												<th scope="row">내용</th>
-												<th scope="row">조회</th>
 											</tr>
-											<c:forEach var="noti" items="${userNotiList}" varStatus="status">
+											<c:forEach var="noti_a" items="${bidNotiList}" varStatus="status">
 												<tr>
 													<td><a  href="<c:url value='/noti/detail.do'>
-															<c:param name="notiId" value="${noti.notiId}"/>
-														</c:url>">${noti.title}</a>
+															<c:param name="notiId" value="${noti_a.notiId}"/>
+															<c:param name="type" value="bid"/>
+														</c:url>">${noti_a.title}</a>
 													</td>
-													<td><fmt:formatDate value="${noti.notiDate}" pattern="yyyy-MM-dd" />
+													<td><fmt:formatDate value="${noti_a.notiDate}" pattern="yyyy-MM-dd" />
 													</td>
 													<td><a  href="<c:url value='/noti/detail.do'>
-															<c:param name="notiId" value="${noti.notiId}"/>
-														</c:url>">${message}</a>
+															<c:param name="notiId" value="${noti_a.notiId}"/>
+															<c:param name="type" value="1"/>
+															<c:param name="content" value="${noti_a.content}"/>
+														</c:url>">${noti_a.content}</a>
+													</td>
+												</tr>
+											</c:forEach>
+										</tbody>
+									</table>
+									
+									<h5>공동구매 알림</h5>
+									<table class="table table-striped">
+										<tbody>
+											<tr>
+												<th scope="row">제목</th>
+												<th scope="row">날짜</th>
+												<th scope="row">내용</th>
+											</tr>
+											<c:forEach var="noti_g" items="${groupBuyNotiList}" varStatus="status">
+												<tr>
+													<td><a  href="<c:url value='/noti/detail.do'>
+															<c:param name="notiId" value="${noti_g.notiId}"/>
+															<c:param name="type" value="groupBuy"/>
+														</c:url>">${noti_g.title}</a>
+													</td>
+													<td><fmt:formatDate value="${noti_g.notiDate}" pattern="yyyy-MM-dd" />
+													</td>
+													<td><a  href="<c:url value='/noti/detail.do'>
+															<c:param name="notiId" value="${noti_g.notiId}"/>
+															<c:param name="type" value="2"/>
+															<c:param name="content" value="${noti_g.content}"/>
+														</c:url>">${noti_g.content}</a>
 													</td>
 												</tr>
 											</c:forEach>

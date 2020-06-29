@@ -31,4 +31,6 @@ public interface GroupBuyDao {
 	void closeEvent(Date curTime);
 	
 	List<GroupBuy> getRecentGroupBuyList() throws DataAccessException;
+	
+	
 }

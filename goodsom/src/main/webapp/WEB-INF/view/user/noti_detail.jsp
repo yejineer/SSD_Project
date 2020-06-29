@@ -44,16 +44,16 @@ function deleteNoti() {
        <div>
          
           <div align="right">
-         	<p>&nbsp; &nbsp; ${nickname}님의 알림함 <br/></p>
+         	<p>&nbsp; &nbsp;${type} : ${nickname}님의 알림함 <br/></p>
           </div>
           
-         	<h2 align="center">${noti.title}</h2><br/>
+         	<h2 align="center">제목: ${noti.title}</h2><br/>
          	
           <div align="right">
          	수신일 : &nbsp; &nbsp; <fmt:formatDate value="${noti.notiDate}" pattern="yyyy-MM-dd HH:mm" />
 		  </div>
 			<h5>내용</h5>
-			<h6>${message}</h6>
+			<h6>${content}</h6>
         
        </div> 
        
@@ -63,7 +63,9 @@ function deleteNoti() {
 	   		<a class="btn btn-primary py-3 px-5" href="<c:url value='/noti/list.do'>
 				</c:url>">확인</a>
    			<a class="btn btn-primary py-3 px-5" href="<c:url value='/noti/delete.do'>
-   				<c:param name="notiId" value="${noti.notiId}"/></c:url>" 
+   				<c:param name="notiId" value="${noti.notiId}"/>
+   				<c:param name="type" value="${type}"/>
+   				</c:url>" 
 		   		onClick="return deleteNoti();">삭제</a>	
    		</div>	
 	    					

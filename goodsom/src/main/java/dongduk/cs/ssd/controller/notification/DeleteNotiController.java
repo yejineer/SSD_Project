@@ -31,19 +31,39 @@ public class DeleteNotiController {
 	
 	@RequestMapping("/noti/delete.do")
 	public ModelAndView handleRequest(HttpSession session,
-			@RequestParam("notiId") int notiId) throws Exception {
+			@RequestParam("notiId") int notiId,
+			@RequestParam("type") int type) throws Exception {
 		UserSession userSession  = (UserSession)session.getAttribute("userSession");
 		User user = userSession.getUser();
-		
-		notiService.deleteNoti(notiId);
-		List<Notification> userNotiList = notiService.getNotiByUserId(user.getUserId());
+		List<Notification> bidNotiList = null;
+		List<Notification> groupBuyNotiList = null;
 		
 		ModelAndView mov = new ModelAndView();
-		mov.addObject("nickname", user.getNickname());
-		mov.addObject("message", "참여한 경매가 낙찰되었습니다. 결제를 진행해주세요!");
-		mov.addObject("userNotiList", userNotiList);
-		mov.setViewName(formViewName);
 		
+		if(type==1) {
+			notiService.deleteAuctionNoti(notiId);
+		}else {
+			notiService.deleteGroupBuyNoti(notiId);
+		}
+		
+		bidNotiList = notiService.getAuctionNotiByUserId(user.getUserId());
+		for(int i=0; i<bidNotiList.size(); i++) {
+				bidNotiList.get(i).setContent("참여한 경매가 낙찰되었습니다. 결제를 진행해주세요!");
+		}
+			
+		groupBuyNotiList = notiService.getGroupBuyNotiByUserId(user.getUserId());
+		for(int i=0; i<groupBuyNotiList.size(); i++) {
+			if( (groupBuyNotiList.get(i).getState()).equals("closed") ) {
+				groupBuyNotiList.get(i).setContent("참여한 공동구매가 마감되었습니다.");
+			}else {
+				groupBuyNotiList.get(i).setContent("참여한 공동구매가 목표 인원을 달성하여 성사되었습니다!");
+			}
+		}
+		
+		mov.addObject("nickname", user.getNickname());
+		mov.addObject("bidNotiList", bidNotiList);
+		mov.addObject("groupBuyNotiList", groupBuyNotiList);
+		mov.setViewName(formViewName);
 		return mov;
 	}
 	
