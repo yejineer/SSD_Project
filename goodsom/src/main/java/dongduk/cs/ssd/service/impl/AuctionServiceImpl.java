@@ -9,7 +9,10 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.stereotype.Service;
 
 import dongduk.cs.ssd.dao.AuctionDao;
+import dongduk.cs.ssd.dao.BidDao;
+import dongduk.cs.ssd.dao.NotificationDao;
 import dongduk.cs.ssd.domain.Auction;
+import dongduk.cs.ssd.domain.Bid;
 import dongduk.cs.ssd.domain.SuccessBidder;
 import dongduk.cs.ssd.service.AuctionService;
 
@@ -24,6 +27,12 @@ public class AuctionServiceImpl implements AuctionService {
 	
 	@Autowired
 	private AuctionDao auctionDao;
+	
+	@Autowired
+	private BidDao bidDao;
+	
+	@Autowired
+	private NotificationDao notiDao;
 	
 //	스케줄러
 	@Autowired
@@ -75,7 +84,7 @@ public class AuctionServiceImpl implements AuctionService {
 	}
 	
 //	스케줄러
-	public void deadLineScheduler(Date endDate) {
+	public void deadLineScheduler(Date endDate, final int auctionId) {
 		Runnable updateTableRunner = new Runnable() {	
 			// anonymous class 정의
 			@Override
@@ -84,6 +93,14 @@ public class AuctionServiceImpl implements AuctionService {
 				// 실행 시점의 시각을 전달하여 그 시각 이전의 closing time 값을 갖는 event의 상태를 변경 
 				auctionDao.closeEvent(curTime);	// EVENTS 테이블의 레코드 갱신	
 				System.out.println("Auction updateTableRunner is executed at " + curTime);
+				
+				if(auctionDao.getAuction(auctionId).getState().equals("closed")) {
+					Bid bid = bidDao.getSuccessBidByAuctionId(auctionId);
+					bid.setAuctionTitle(auctionDao.getAuction(auctionId).getTitle());
+					notiDao.createNoti_a(bid);
+					System.out.println("****closed auction and create noti ");
+
+				}
 			}
 		};
 		
@@ -91,7 +108,6 @@ public class AuctionServiceImpl implements AuctionService {
 		scheduler.schedule(updateTableRunner, endDate);  
 		
 		System.out.println("Auction updateTableRunner has been scheduled to execute at " + endDate);
-
 	}
 	
 	public SuccessBidder getSuccessBidderByAuctionId(int auctionId) {

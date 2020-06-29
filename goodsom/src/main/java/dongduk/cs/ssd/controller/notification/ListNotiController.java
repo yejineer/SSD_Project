@@ -14,6 +14,7 @@ import dongduk.cs.ssd.controller.user.UserSession;
 import dongduk.cs.ssd.domain.Bid;
 import dongduk.cs.ssd.domain.Notification;
 import dongduk.cs.ssd.domain.User;
+import dongduk.cs.ssd.service.AuctionService;
 import dongduk.cs.ssd.service.BidService;
 import dongduk.cs.ssd.service.NotiService;
 
@@ -33,6 +34,9 @@ public class ListNotiController {
 	@Autowired
 	private BidService bidService;
 	
+	@Autowired
+	private AuctionService auctionService;
+	
 	public void setNotiService(NotiService notiService) {
 		this.notiService = notiService;
 	}
@@ -41,22 +45,23 @@ public class ListNotiController {
 //	user_detail -> noti_list
 	@RequestMapping("/noti/list.do")  // ex) /user/detail.do?userId=2
 	public ModelAndView handleRequest(HttpSession session) throws Exception {
-		UserSession user  = (UserSession)session.getAttribute("userSession");
-		List<Bid> userBidList = null;
+		UserSession userSession  = (UserSession)session.getAttribute("userSession");
+		User user = userSession.getUser();
+//		List<Bid> userBidList = null;
+		List<Notification> userNotiList = null;
 		
 		// user가 배팅한 경매 && 마감된 경매 && 최고금액인 경매
 //		해당 유저가 배팅한 모든 Bid 정보
-		userBidList = bidService.getBidByUserId(user.getUser().getUserId());	// bidService에 추가
+		userNotiList = notiService.getNotiByUserId(user.getUserId());	// bidService에 추가
 		
-		for(int i=0; i<userBidList.size(); i++) {
-			System.out.println("Is Bidded: " + userBidList.get(i).getIsBidded());
-			if(userBidList.get(i).getIsBidded()) {
-				notiService.createNoti_a(userBidList.get(i).getAuctionId());
-			}
-		}
+//		for(int i=0; i<userNotiList.size(); i++) {
+//			System.out.println(userNotiList.get(i).toString());
+//		}
 		
 		ModelAndView mov = new ModelAndView();
-//		mov.addObject(attributeName, attributeValue);
+		mov.addObject("nickname", user.getNickname());
+		mov.addObject("message", "참여한 경매가 낙찰되었습니다. 결제를 진행해주세요!");
+		mov.addObject("userNotiList", userNotiList);
 		mov.setViewName(formViewName);
 		
 		return mov;

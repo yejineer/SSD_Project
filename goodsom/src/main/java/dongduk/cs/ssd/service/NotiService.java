@@ -11,15 +11,15 @@ import dongduk.cs.ssd.domain.Notification;
  */
 public interface NotiService {
 	
-//	List<Notification> getNotiListByEmailId(String emailId); //Do sql operations twice.
+	List<Notification> getNotiByUserId(int userId); //Do sql operations twice.
 //	
 //	Notification getNoti(int notiId); // Two tables share one noti_sequence.
 //	
 //	void createNoti_g(int groupBuyId); // lineGroupBuys table
 	
-	void createNoti_a(int auctionId); // successBidders table
+	void createNoti_a(Bid bid); // successBidders table
 
-	List<Bid> getBidByUserId(int userId);
+//	List<Bid> getBidByUserId(int userId);
 	
 //	void deleteNoti(int notiId);
 }

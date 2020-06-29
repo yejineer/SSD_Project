@@ -44,7 +44,9 @@ public class MybatisBidDao implements BidDao {
 	public List<Bid> getBidByUserId(int userId) throws DataAccessException{
 		return bidMapper.getBidByUserId(userId);
 	}
-	
+	public Bid getSuccessBidByAuctionId(int auctionId) throws DataAccessException{
+		return bidMapper.getSuccessBidByAuctionId(auctionId);
+	}
 	/*
 	 * public void updateBid(Bid bid) throws DataAccessException {
 	 * bidMapper.updateBid(bid); }

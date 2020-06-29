@@ -47,6 +47,15 @@
 	WHERE USERID = #{userId}
   </select> 
   
+  
+  <select id="getSuccessBidByAuctionId" resultType="dongduk.cs.ssd.domain.Bid" parameterType="int">
+   <![CDATA[
+    SELECT *
+	FROM (SELECT * FROM BIDS
+		  ORDER BY BIDPRICE DESC)
+	WHERE ROWNUM <=1 AND AUCTIONID = #{auctionId}
+	]]>
+  </select> 
  <!--  <update id="updateBid" parameterType="Bid">
   	UPDATE BIDS 
   	SET

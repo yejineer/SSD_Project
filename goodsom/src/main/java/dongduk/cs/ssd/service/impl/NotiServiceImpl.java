@@ -20,10 +20,10 @@ public class NotiServiceImpl implements NotiService {
 	@Autowired
 	private NotificationDao notiDao;
 	
-//	@Override
-//	public List<Notification> getNotiListByEmailId(String emailId) {
-//		return notiDao.getNotiListByEmailId(emailId);
-//	}
+	@Override
+	public List<Notification> getNotiByUserId(int userId){
+		return notiDao.getNotiByUserId(userId);
+	}
 
 //	@Override
 //	public Notification getNoti(int notiId) {
@@ -36,14 +36,14 @@ public class NotiServiceImpl implements NotiService {
 //	}
 
 	@Override
-	public void createNoti_a(int auctionId) {
-		notiDao.createNoti_a(auctionId);
+	public void createNoti_a(Bid bid) {
+		notiDao.createNoti_a(bid);
 	}
 	
-	@Override
-	public List<Bid> getBidByUserId(int userId){
-		return notiDao.getBidByUserId(userId);
-	}
+//	@Override
+//	public List<Bid> getBidByUserId(int userId){
+//		return notiDao.getBidByUserId(userId);
+//	}
 
 //	@Override
 //	public void deleteNoti(int notiId) {
