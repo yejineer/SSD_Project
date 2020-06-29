@@ -65,6 +65,8 @@ public class GroupBuy {
 	@PositiveOrZero
 	int minute;
 	
+	int notiId;
+	
 	List<Option> options = new ArrayList<Option>();
 	List<User> groupBuyUsers = new ArrayList<User>();
 	List<Question> questions = new ArrayList<Question>();
@@ -254,13 +256,13 @@ public class GroupBuy {
 		this.resultDate = resultDate;
 	}
 	
-//	public Date getTmpDate() {
-//		return tmpDate;
-//	}
-//
-//	public void setTmpDate(Date tmpDate) {
-//		this.tmpDate = tmpDate;
-//	}
+	public int getNotiId() {
+		return notiId;
+	}
+
+	public void setNotiId(int notiId) {
+		this.notiId = notiId;
+	}
 	
 	public GroupBuy() {
 	}

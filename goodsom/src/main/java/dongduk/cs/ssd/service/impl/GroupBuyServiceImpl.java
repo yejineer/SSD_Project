@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import dongduk.cs.ssd.dao.GroupBuyDao;
+import dongduk.cs.ssd.dao.NotificationDao;
 import dongduk.cs.ssd.domain.GroupBuy;
 import dongduk.cs.ssd.domain.Option;
 import dongduk.cs.ssd.service.GroupBuyService;
@@ -32,6 +33,9 @@ public class GroupBuyServiceImpl implements GroupBuyService {
 	
 	@Autowired
 	private GroupBuyDao groupBuyDao;
+	
+	@Autowired
+	private NotificationDao notiDao;
 	
 	@Autowired
 	private ThreadPoolTaskScheduler scheduler;
@@ -86,7 +90,7 @@ public class GroupBuyServiceImpl implements GroupBuyService {
 	}
 	
 //	스케줄러
-	public void deadLineScheduler(Date endDate) {
+	public void deadLineScheduler(Date endDate, final int groupBuyId) {
 		Runnable updateTableRunner = new Runnable() {	
 			// anonymous class 정의
 			@Override
@@ -95,6 +99,14 @@ public class GroupBuyServiceImpl implements GroupBuyService {
 				// 실행 시점의 시각을 전달하여 그 시각 이전의 closing time 값을 갖는 event의 상태를 변경 
 				groupBuyDao.closeEvent(curTime);	// EVENTS 테이블의 레코드 갱신	
 				System.out.println("updateTableRunner is executed at " + curTime);
+				
+				String state = groupBuyDao.getGroupBuy(groupBuyId).getState();
+				
+				if(state.equals("closed")) {
+					GroupBuy groupBuy = groupBuyDao.getGroupBuy(groupBuyId);
+					notiDao.createNoti_g(groupBuy);
+					System.out.println("****closed groupBuy and create noti ");
+				}
 			}
 		};
 		
@@ -104,4 +116,5 @@ public class GroupBuyServiceImpl implements GroupBuyService {
 		System.out.println("updateTableRunner has been scheduled to execute at " + endDate);
 
 	}
+
 }

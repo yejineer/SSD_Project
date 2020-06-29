@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import dongduk.cs.ssd.dao.NotificationDao;
 import dongduk.cs.ssd.dao.mybatis.mapper.NotiMapper;
 import dongduk.cs.ssd.domain.Bid;
+import dongduk.cs.ssd.domain.GroupBuy;
 import dongduk.cs.ssd.domain.Notification;
 
 /**
@@ -26,19 +27,35 @@ public class MybatisNotiDao implements NotificationDao {
 		notiMapper.createNoti_a(bid);
 	}
 	
-	public Notification getNoti(int notiId) throws DataAccessException{
-		return notiMapper.getNoti(notiId);
+	public Notification getAuctionNoti(int notiId) throws DataAccessException{
+		return notiMapper.getAuctionNoti(notiId);
+	}
+	
+	public Notification getGroupBuyNoti(int notiId) throws DataAccessException{
+		return notiMapper.getGroupBuyNoti(notiId);
 	}
 	
 //	public List<Bid> getBidByUserId(int userId)throws DataAccessException{
 //		return notiMapper.getBidByUserId(userId);
 //	}
 	
-	public List<Notification> getNotiByUserId(int userId) throws DataAccessException{
-		return notiMapper.getNotiByUserId(userId);
+	public List<Notification> getAuctionNotiByUserId(int userId) throws DataAccessException{
+		return notiMapper.getAuctionNotiByUserId(userId);
 	}
 	
-	public void deleteNoti(int notiId) throws DataAccessException{
-		notiMapper.deleteNoti(notiId);
+	public List<Notification> getGroupBuyNotiByUserId(int userId) throws DataAccessException{
+		return notiMapper.getGroupBuyNotiByUserId(userId);
+	}
+	
+	public void createNoti_g(GroupBuy groupBuy) throws DataAccessException{
+		notiMapper.createNoti_g(groupBuy);
+	}
+	
+	public void deleteAuctionNoti(int notiId) throws DataAccessException{
+		notiMapper.deleteAuctionNoti(notiId);
+	}
+	
+	public void deleteGroupBuyNoti(int notiId) throws DataAccessException{
+		notiMapper.deleteGroupBuyNoti(notiId);
 	}
 }
