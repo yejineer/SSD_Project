@@ -61,6 +61,7 @@ function toGroupBuyNoti(){
 													<td><a  href="<c:url value='/noti/detail.do'>
 															<c:param name="notiId" value="${noti_a.notiId}"/>
 															<c:param name="type" value="1"/>
+															<c:param name="content" value="${noti_a.content}"/>
 														</c:url>">${noti_a.title}</a>
 													</td>
 													<td><fmt:formatDate value="${noti_a.notiDate}" pattern="yyyy-MM-dd" />
@@ -89,6 +90,7 @@ function toGroupBuyNoti(){
 													<td><a  href="<c:url value='/noti/detail.do'>
 															<c:param name="notiId" value="${noti_g.notiId}"/>
 															<c:param name="type" value="2"/>
+															<c:param name="content" value="${noti_g.content}"/>
 														</c:url>">${noti_g.title}</a>
 													</td>
 													<td><fmt:formatDate value="${noti_g.notiDate}" pattern="yyyy-MM-dd" />
