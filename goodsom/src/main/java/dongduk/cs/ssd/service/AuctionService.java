@@ -3,8 +3,6 @@ package dongduk.cs.ssd.service;
 import java.util.Date;
 import java.util.List;
 
-import org.springframework.dao.DataAccessException;
-
 import dongduk.cs.ssd.domain.Auction;
 import dongduk.cs.ssd.domain.SuccessBidder;
 
@@ -40,6 +38,8 @@ public interface AuctionService {
 	
 //	스케줄러
 	public void deadLineScheduler(Date endDate);
+	
+	public int getSuccessBidderUserId(int auctionId);
 	
 	public SuccessBidder getSuccessBidderByAuctionId(int auctionId);
 	

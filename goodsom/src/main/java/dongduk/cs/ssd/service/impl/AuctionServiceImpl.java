@@ -94,6 +94,10 @@ public class AuctionServiceImpl implements AuctionService {
 
 	}
 	
+	public int getSuccessBidderUserId(int auctionId) {
+		return auctionDao.getSuccessBidderUserId(auctionId);
+	}
+	
 	public SuccessBidder getSuccessBidderByAuctionId(int auctionId) {
 		return auctionDao.getSuccessBidderByAuctionId(auctionId);
 	}

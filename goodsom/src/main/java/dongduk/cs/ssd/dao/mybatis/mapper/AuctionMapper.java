@@ -38,4 +38,6 @@ public interface AuctionMapper { // AuctionMapper.xml에서 구현한 method 이
 	
 //	스케줄러
 	void closeEvent(Date curTime);
+	
+	int getSuccessBidderUserId(int auctionId);
 }

@@ -96,6 +96,11 @@ public class MybatisAuctionDao implements AuctionDao {
 		auctionMapper.closeEvent(curTime);
 	}
 		
+	@Override
+	public int getSuccessBidderUserId(int auctionId) {
+		return auctionMapper.getSuccessBidderUserId(auctionId);
+	}
+	
 	public SuccessBidder getSuccessBidderByAuctionId(int auctionId) {
 		return successBidderMapper.getSuccessBidderByAuctionId(auctionId);
 	}
