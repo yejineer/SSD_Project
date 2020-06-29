@@ -7,17 +7,17 @@
   		NOTIID, TITLE, NOTIDATE, USERID, AUCTIONID, STATE
   </sql>
 
-  <insert id="createNoti_a" parameterType="java.lang.Integer">
+  <insert id="createNoti_a" parameterType="dongduk.cs.ssd.domain.Bid">
   	INSERT INTO NOTIFICATIONS_A (<include refid="BaseColumns_Noti" />)
-	VALUES (NOTIID_A_SEQ.nextval, #{title}, #{notidate}, #{userId}, #{auctionId}, #{state})
+	VALUES (NOTIID_A_SEQ.nextval, #{auctionTitle}, SYSDATE, #{userId}, #{auctionId}, 'closed')
 
   	<selectKey keyProperty="notiId" resultType="int" order="AFTER">
   		SELECT NOTIID_A_SEQ.currval AS notiId FROM DUAL
   	</selectKey>	
   </insert>
   
-  <select id="getBidByUserId" resultType="dongduk.cs.ssd.domain.Bid">
-	  SELECT * FROM BIDS
+  <select id="getNotiByUserId" resultType="dongduk.cs.ssd.domain.Notification">
+	  SELECT * FROM NOTIFICATIONS_A
 	  WHERE USERID = #{userId}
   </select>
 </mapper>

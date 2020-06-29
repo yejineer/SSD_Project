@@ -41,7 +41,7 @@ public interface AuctionService {
 	List<Auction> getRecentAuctionList();
 	
 //	스케줄러
-	public void deadLineScheduler(Date endDate);
+	public void deadLineScheduler(Date endDate, int auctionId);
 	
 	public SuccessBidder getSuccessBidderByAuctionId(int auctionId);
 	

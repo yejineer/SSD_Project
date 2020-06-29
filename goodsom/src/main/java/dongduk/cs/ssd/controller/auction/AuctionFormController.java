@@ -141,7 +141,7 @@ public class AuctionFormController implements ApplicationContextAware  {
 		}
 		
 //		스케줄러 => create / update 시 endDate로 설정
-		auctionService.deadLineScheduler(auctionForm.getAuction().getEndDate());
+		auctionService.deadLineScheduler(auctionForm.getAuction().getEndDate(), auctionForm.getAuction().getAuctionId());
 
 //		작성자만 수정/삭제 버튼 보이게 하기 위해 isWriter, 작성자 출력 위해 writer값을 넘겨준다.
 		model.addAttribute("isWriter", true);

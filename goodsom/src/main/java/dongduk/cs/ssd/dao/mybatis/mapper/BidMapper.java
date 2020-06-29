@@ -26,6 +26,7 @@ public interface BidMapper {
 	
 	List<Bid> getBidByUserId(int userId);
 	
+	Bid getSuccessBidByAuctionId(int auctionId);
 	//void updateBid(Bid bid);
 	
 	//User getUserById(int userId);

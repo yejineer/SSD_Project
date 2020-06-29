@@ -26,6 +26,8 @@ public interface BidDao {
 	void createBid(Bid bid) throws DataAccessException;	
 	
 	List<Bid> getBidByUserId(int userId) throws DataAccessException;
+	
+	Bid getSuccessBidByAuctionId(int auctionId) throws DataAccessException;
 	//void updateBid(Bid bid) throws DataAccessException;
 	
 	//User getUserById(int userId) throws DataAccessException;
