@@ -366,7 +366,7 @@ public class GroupBuy {
 	
 	public String toString() {
 		String str = "groupBuyId: " + groupBuyId + ", title: " + title + ", content: " + content + ", img: " + img 
-				+ ", minNo: " + minNo + ", uploadDate: " + uploadDate + ", endDate: " + endDate + ", catId: " + catId;
+				+ ", minNo: " + minNo + ", uploadDate: " + uploadDate + ", endDate: " + endDate + ", state: " + state + ", catId: " + catId;
 		str += "\noptions --> ";
 		for(Option op:options) {
 			str += op.toString() + "\n";
