@@ -22,7 +22,7 @@ public interface AuctionService {
 	
 	int updateAuction(Auction auction);
 	
-	void updateAuctionMaxPrice(int maxPrice, int auctionId);
+	int updateAuctionMaxPrice(int maxPrice, int auctionId);
 	
 	List<Auction> deleteAuction(int auctionId);
 	

@@ -1,14 +1,16 @@
 package dongduk.cs.ssd.controller.auction;
 
+import javax.validation.Valid;
+
 import dongduk.cs.ssd.domain.Bid;
 
 /**
- * @author Hyekyung Kim | kimdahyee
- * @since  2020.05.08   | 2020.06.25
+ * @author Hyekyung Kim | kimdahyee		| Yejin Lee
+ * @since  2020.05.08   | 2020.06.25	| 2020.06.29
  */
 
 public class BidForm {
-	
+	@Valid
 	private Bid bid;
 	private boolean newBid;
 	

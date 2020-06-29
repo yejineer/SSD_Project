@@ -2,10 +2,13 @@ package dongduk.cs.ssd.domain;
 
 import java.util.Date;
 
+import javax.validation.constraints.NotNull;
+
 public class Bid {
 	int bidId;
 	int userId;
 	int auctionId;
+	@NotNull
 	int bidPrice;
 	boolean isBidded;
 	Date bidDate;

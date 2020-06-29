@@ -30,7 +30,11 @@ public class MybatisAuctionDao implements AuctionDao {
 	
 	@Override
 	public Auction getAuction(int auctionId) throws DataAccessException {
-		return auctionMapper.getAuction(auctionId);
+		Auction auction = auctionMapper.getAuctionWithBids(auctionId);
+		if (auction == null) {
+			auction = auctionMapper.getAuction(auctionId);			
+		}
+		return auction;
 	}
 
 	@Override
@@ -47,8 +51,9 @@ public class MybatisAuctionDao implements AuctionDao {
 	}
 	
 	@Override
-	public void updateAuctionMaxPrice(int maxPrice, int auctionId) throws DataAccessException {
+	public int updateAuctionMaxPrice(int maxPrice, int auctionId) throws DataAccessException {
 		auctionMapper.updateAuctionMaxPrice(maxPrice, auctionId);
+		return auctionId;
 	}
 
 	@Override
@@ -65,11 +70,6 @@ public class MybatisAuctionDao implements AuctionDao {
 	public List<Auction> getAuctionListByKeyword(String keyword) throws DataAccessException {
 		return auctionMapper.getAuctionListByKeyword(keyword);
 	}
-
-//	@Override
-//	public List<Bid> getBidByAuctionId(int auctionId) throws DataAccessException {
-//		return null;
-//	}
 
 	@Override
 	public boolean isAuctionClosed(int auctionId, Date currentTime) throws DataAccessException {

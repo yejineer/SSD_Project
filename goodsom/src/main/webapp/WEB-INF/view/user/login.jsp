@@ -30,13 +30,13 @@
 				<form:form modelAttribute="loginForm" method="POST" action="login.do" class="bg-light p-5 contact-form">
 					<form:errors cssClass="error" /> <br />
 					<div class="form-group">
-						<label for="name">Email</label> 
+						<label for="email">Email</label> 
 						<form:input path="email" class="form-control" placeholder="Email" />
 						<form:errors path="email" cssClass="error" />
 					</div>
 
 					<div class="form-group">
-						<label for="name">Password</label> 
+						<label for="password">Password</label> 
 						<form:input path="password" type="password" class="form-control" placeholder="Password" />
 						<form:errors path="password" cssClass="error" />
 					</div>

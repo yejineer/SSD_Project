@@ -1,20 +1,21 @@
 package dongduk.cs.ssd.controller.auction;
 
-import java.io.PrintWriter;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.support.SessionStatus;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
+
 import dongduk.cs.ssd.domain.Bid;
 import dongduk.cs.ssd.service.BidService;
 import dongduk.cs.ssd.domain.User;
@@ -24,118 +25,84 @@ import dongduk.cs.ssd.domain.Auction;
 import dongduk.cs.ssd.service.AuctionService;
 
 /**
- * @author Hyekyung Kim | kimdahyee
- * @since  2020.05.08   | 2020.06.25
+ * @author Hyekyung Kim | kimdahyee		| Yejin Lee
+ * @since 2020.05.08 	| 2020.06.25	| 2020.06.29
  */
 
-/*
-@Controller
-@SessionAttributes("bid")
-@RequestMapping("/auction/detail.do")
-*/
 
 @Controller
+@SessionAttributes("bidForm")
 @RequestMapping("/auction/bid/create.do")
 public class BidFormController {
-	
-	private final String detailViewName = "auction/auction_detail";
+
+	private static final String AUCTION_DETAIL = "auction/auction_detail";
 
 	@Autowired
 	BidService bidService;
-	
+
 	public void setBidService(BidService bidService) {
 		this.bidService = bidService;
 	}
-	
+
 	@Autowired
 	UserService userService;
-	
+
 	@Autowired
 	AuctionService auctionService;
-	
-	/*
-	 * @ModelAttribute("bidForm") public BidForm formBacking(HttpServletRequest
-	 * request,
-	 * 
-	 * @ModelAttribute("bid") Bid bid) throws Exception{
-	 * 
-	 * if(bid.getIsBidded()) { // update //배팅한 이력이 있으면 return new
-	 * BidForm(bidService.getBid(bid.getBidId())); } else { // create return new
-	 * BidForm(); } }
-	 * 
-	 * @RequestMapping(method = RequestMethod.GET) public String form( ) { return
-	 * detailViewName; }
-	 */
 
 	@RequestMapping(method = RequestMethod.POST)
-	public ModelAndView create(HttpServletRequest request, BidForm bidForm, 
-			@RequestParam("bidPrice") int bidPrice, @RequestParam("auctionId") int auctionId,
-			HttpServletResponse response) throws Exception {
-		
-		System.out.println("Betting price checking: " + bidPrice);
-		System.out.println("Betting auctionId checking: " + auctionId);
-		
-		ModelAndView mav = new ModelAndView(detailViewName);
-		
-		HttpSession session = request.getSession(); 
-		UserSession userSession = (UserSession)session.getAttribute("userSession");
-		int userId = (int) userSession.getUser().getUserId();
-		
-		java.util.Date utilDate = new java.util.Date();
-		java.sql.Date bidDate = new java.sql.Date(utilDate.getTime());
-		
-		int maxPrice = 0; 
-		if (bidService.getMaxPrice(auctionId) != null) { 
-			maxPrice = Integer.parseInt(bidService.getMaxPrice(auctionId));
-		} else {
-			maxPrice = bidPrice;
-		} //auction의 maxPrice 값 가져오기
-		
-		System.out.println("최고금액" + maxPrice);
-		System.out.println("배팅금액" + bidPrice);
-		
-		if (bidPrice < maxPrice) {	
-			
-			response.setCharacterEncoding("UTF-8");
-		    PrintWriter writer = response.getWriter();
-		    writer.println("<script type='text/javascript'>");
-		    writer.println("alert('최고 금액 이상의 금액을 배팅하세요');");
-		    writer.println("history.back();");
-		    writer.println("</script>");
-		    writer.flush();
-		    
-		} else {
-			
-			Bid newBid = new Bid(userId, auctionId, bidPrice, bidDate);
-			bidService.createBid(newBid); //bid 생성
-			
-			auctionService.updateAuctionMaxPrice(maxPrice, auctionId); //auction table maxPrice update
-			
+	public String create(HttpServletRequest request,
+			@Valid @ModelAttribute("bidForm") BidForm bidForm, BindingResult result, 
+			HttpServletResponse response, HttpSession session, Model model, SessionStatus sessionStatus) throws Exception {
+		int auctionId = bidForm.getBid().getAuctionId();
+//		BidForm객체 validation
+		Auction auction = auctionService.getAuction(auctionId);
+		model.addAttribute("writer", userService.getUserByUserId(auction.getUserId()).getNickname());
+		model.addAttribute("isWriter", false);
+	
+		if (bidForm.getBid().getBidPrice() < auction.getMaxPrice()) {
+			result.rejectValue("bid.bidPrice", "invalid");
+		}
+
+//		BidForm객체 validation
+		if (result.hasErrors()) {
+			Bid maxPriceBid = bidService.getBidByMaxPrice(auction.getMaxPrice(), auctionId);
+			if (maxPriceBid == null) {
+				model.addAttribute("date_maxBid", "");
+				model.addAttribute("user_maxBid", "아직 입찰자가 없습니다.");
+			} else {
+				model.addAttribute("date_maxBid", maxPriceBid.getBidDate());
+				User user_maxBid = userService.getUserByUserId(maxPriceBid.getUserId());
+				model.addAttribute("user_maxBid", user_maxBid.getNickname());
+			}
+			model.addAttribute("auction", auction);
+			return AUCTION_DETAIL;
 		}
 		
-		Auction auction = auctionService.getAuction(auctionId);
-		Bid bid = bidService.getBidByMaxPrice(maxPrice, auctionId);
-		
-		session.setAttribute("bid", bid);
-		session.setAttribute("auctionId", auctionId);
-		
-		mav.addObject("auction", auction);
-		mav.addObject("bidder", userService.getUserByUserId(bid.getUserId()).getNickname());
-		mav.addObject("writer", userService.getUserByUserId(auction.getUserId()).getNickname());
-		
-		return mav;
-		
-		/*
-		 * if(bidForm.isNewBid()) { // create
-		 * 
-		 * HttpSession session = request.getSession(); int userId = (int)
-		 * session.getAttribute("userId");
-		 * 
-		 * bidService.createBid(bidForm.getBid());
-		 * 
-		 * } else { //update bidService.updateBid(bidForm.getBid()); }
-		 */
-		
+		UserSession userSession = (UserSession)session.getAttribute("userSession");
+		int userId = (int) userSession.getUser().getUserId();
+
+		java.util.Date utilDate = new java.util.Date();
+		java.sql.Date bidDate = new java.sql.Date(utilDate.getTime());
+
+		System.out.println("Betting auctionId checking: " + auctionId);
+		System.out.println("bid생성 전 최고금액" + auction.getMaxPrice());
+		System.out.println("배팅금액" + bidForm.getBid().getBidPrice());
+
+//		bid 생성
+		Bid newBid = new Bid(userId, auctionId, bidForm.getBid().getBidPrice(), bidDate);
+		bidService.createBid(newBid);
+
+//		Auction객체의 최고 금액 변경 후 Auction객체 다시 가져와 넘겨주기
+		int updatedAutionId = auctionService.updateAuctionMaxPrice(bidForm.getBid().getBidPrice(), auctionId); // auction table maxPrice update
+		model.addAttribute("auction", auctionService.getAuction(updatedAutionId));;
+//		auction_detail.jsp에 넘겨줄 model 값 설정
+		model.addAttribute("date_maxBid", newBid.getBidDate());
+		User user_maxBid = userService.getUserByUserId(newBid.getUserId());
+		model.addAttribute("user_maxBid", user_maxBid.getNickname());
+		session.setAttribute("bidForm", new BidForm());
+		model.addAttribute("bidForm", session.getAttribute("bidForm"));
+		return AUCTION_DETAIL;
 	}
 
 }

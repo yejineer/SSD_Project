@@ -23,7 +23,7 @@ public interface AuctionDao {
 //	Return auctionID
 	int updateAuction(Auction auction) throws DataAccessException;
 	
-	void updateAuctionMaxPrice(int maxPrice, int auctionId) throws DataAccessException;
+	int updateAuctionMaxPrice(int maxPrice, int auctionId) throws DataAccessException;
 	
 	void deleteAuction(int auctionId) throws DataAccessException;
 	
