@@ -18,8 +18,6 @@ public interface AuctionService {
 	
 	Auction getAuction(int auctionId);
 	
-	Auction getAuctionWithBids(int auctionId) throws DataAccessException;
-	
 	int createAuction(Auction auction);
 	
 	int updateAuction(Auction auction);

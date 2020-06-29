@@ -4,32 +4,28 @@
 <!-- AuctionMapper 인터페이스의 package이름과 같아야 함 -->
 <mapper namespace="dongduk.cs.ssd.dao.mybatis.mapper.AuctionMapper">
 
-  <sql id="BaseColumns_Auctions">
-  	auctionId, title, content, img, startPrice, uploadDate, endDate, count,
-  	maxPrice, state, menuId, userId 
-  </sql>
-  
-  <select id="getAuction" parameterType="java.lang.Integer" resultType="dongduk.cs.ssd.domain.Auction"> <!-- parameterType없이도 되남 -->
-    SELECT <include refid="BaseColumns_Auctions" />
-    FROM AUCTIONS
-    WHERE AUCTIONID = #{auctionId}
-  </select>
-  
   <resultMap id="resultMap" type="Auction">
   	<id column="auctionId" property="auctionId" />
   	<result column="title" property="title" />
+  	<result column="content" property="content" />
   	<result column="img" property="img" />
+  	<result column="startPrice" property="startPrice" />
+  	<result column="uploadDate" property="uploadDate" />
+  	<result column="endDate" property="endDate" />
+  	<result column="count" property="count" />
   	<result column="maxPrice" property="maxPrice" />
+  	<result column="state" property="state" />
   	<result column="menuId" property="menuId" />
+  	<result column="writerId" property="userId" />
   	<collection property="bids" ofType="Bid">
   		<id property="bidId" column="bidId" />
   		<result property="bidPrice" column="bidPrice" />
   	</collection>
   </resultMap>
   
-  <select id="getAuctionWithBids" parameterType="java.lang.Integer" resultMap="resultMap"> <!-- 경매 결제에서 이용 -->
-    SELECT a.auctionId, a.title, a.img, a.maxPrice, a.menuId,
-    	   b.bidId, b.bidPrice
+  <select id="getAuction" parameterType="java.lang.Integer" resultMap="resultMap"> <!-- 경매 결제에서 이용 -->
+    SELECT a.auctionId, a.title, a.content, a.img, a.startPrice, a.uploadDate, a.endDate, a.count,
+    		a.maxPrice, a.state, a.menuId, a.userId AS writerId, b.bidId, b.bidPrice
     FROM AUCTIONS a, BIDS b
     WHERE a.auctionId = b.auctionId AND a.auctionId = #{auctionId}
   </select>
@@ -67,18 +63,21 @@
   </delete>
   
   <!-- Get all auctions -->
-  <select id="getAuctionList" resultType="Auction">
-    SELECT <include refid="BaseColumns_Auctions" />
-    FROM AUCTIONS
-    ORDER BY UPLOADDATE DESC
+  <select id="getAuctionList" resultMap="resultMap">
+    SELECT a.auctionId, a.title, a.content, a.img, a.startPrice, a.uploadDate, a.endDate, a.count,
+    		a.maxPrice, a.state, a.menuId, a.userId AS writerId, b.bidId, b.bidPrice
+    FROM AUCTIONS a, BIDS b
+    ORDER BY a.uploadDate DESC
   </select>
   
   <!-- Search auctions by Keyword -->
-  <select id="getAuctionListByKeyword" resultType="dongduk.cs.ssd.domain.Auction">
+  <select id="getAuctionListByKeyword" resultMap="resultMap">
   	<bind name="pattern" value="'%' + _parameter + '%'" />
-	  	SELECT <include refid="BaseColumns_Auctions" />
-	  	FROM AUCTIONS
-	  	WHERE title LIKE #{pattern}
+	  	SELECT a.auctionId, a.title, a.content, a.img, a.startPrice, a.uploadDate, a.endDate, a.count,
+    		a.maxPrice, a.state, a.menuId, a.userId AS writerId, b.bidId, b.bidPrice
+	    FROM AUCTIONS a, BIDS b
+	    WHERE a.auctionId = b.auctionId AND a.auctionId = #{auctionId}
+	  			AND a.title LIKE #{pattern}
   </select>
   
   <update id="increaseCount" parameterType="dongduk.cs.ssd.domain.Auction">

@@ -27,15 +27,10 @@ public class MybatisAuctionDao implements AuctionDao {
 	protected AuctionMapper auctionMapper;
 	@Autowired
 	protected SuccessBidderMapper successBidderMapper;
-
+	
 	@Override
 	public Auction getAuction(int auctionId) throws DataAccessException {
 		return auctionMapper.getAuction(auctionId);
-	}
-	
-	@Override
-	public Auction getAuctionWithBids(int auctionId) throws DataAccessException {
-		return auctionMapper.getAuctionWithBids(auctionId);
 	}
 
 	@Override

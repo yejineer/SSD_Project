@@ -29,12 +29,8 @@ public class AuctionServiceImpl implements AuctionService {
 	@Autowired
 	private ThreadPoolTaskScheduler scheduler;
 	
-	public Auction getAuction(int auctionId) {
+	public Auction getAuction(int auctionId) throws DataAccessException {
 		return auctionDao.getAuction(auctionId);
-	}
-	
-	public Auction getAuctionWithBids(int auctionId) throws DataAccessException {
-		return auctionDao.getAuctionWithBids(auctionId);
 	}
 	
 	public List<Auction> getAuctionList() {

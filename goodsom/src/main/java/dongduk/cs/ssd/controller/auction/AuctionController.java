@@ -64,6 +64,7 @@ public class AuctionController {
 			@RequestParam("auctionId") int auctionId, HttpSession session) {
 		ModelAndView mav = new ModelAndView(AUCTION_DETAIL);
 		Auction auction = auctionService.getAuction(auctionId); //auction 정보 가져오기
+		
 		Bid bid = bidService.getBidByMaxPrice(auction.getMaxPrice(), auctionId); //auction의 최고 금액에 해당하는 bid 정보 가져오기
 		
 		// 낙찰자가 결제까지 완료한 경우

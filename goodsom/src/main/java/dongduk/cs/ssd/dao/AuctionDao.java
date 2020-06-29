@@ -15,9 +15,8 @@ import dongduk.cs.ssd.domain.SuccessBidder;
  */
 
 public interface AuctionDao {
-	Auction getAuction(int auctionId) throws DataAccessException;
 	
-	Auction getAuctionWithBids(int auctionId) throws DataAccessException;
+	Auction getAuction(int auctionId) throws DataAccessException;
 	
 //	Return auctionID
 	int createAuction(Auction auction) throws DataAccessException;
