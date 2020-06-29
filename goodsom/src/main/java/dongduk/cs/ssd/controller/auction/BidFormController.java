@@ -60,8 +60,14 @@ public class BidFormController {
 		model.addAttribute("writer", userService.getUserByUserId(auction.getUserId()).getNickname());
 		model.addAttribute("isWriter", false);
 	
-		if (bidForm.getBid().getBidPrice() <= auction.getMaxPrice()) {
-			result.rejectValue("bid.bidPrice", "invalid");
+		if (auction.getBids().isEmpty()) {
+			if (bidForm.getBid().getBidPrice() < auction.getStartPrice()) {
+				result.rejectValue("bid.bidPrice", "smallerThanStartPrice");
+			}
+		} else {
+			if (bidForm.getBid().getBidPrice() <= auction.getMaxPrice()) {
+				result.rejectValue("bid.bidPrice", "smallerThanMaxPrice");
+			}
 		}
 
 //		BidForm객체 validation
