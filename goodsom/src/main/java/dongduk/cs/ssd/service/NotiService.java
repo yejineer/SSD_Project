@@ -2,6 +2,7 @@ package dongduk.cs.ssd.service;
 
 import java.util.List;
 
+import dongduk.cs.ssd.domain.Bid;
 import dongduk.cs.ssd.domain.Notification;
 
 /**
@@ -9,16 +10,16 @@ import dongduk.cs.ssd.domain.Notification;
  * @since 2020.05.06
  */
 public interface NotiService {
-
-	/*
-	List<Notification> getNotiListByEmailId(String emailId); //Do sql operations twice.
 	
-	Notification getNoti(int notiId); // Two tables share one noti_sequence.
-	
-	void createNoti_g(int groupBuyId); // lineGroupBuys table
+//	List<Notification> getNotiListByEmailId(String emailId); //Do sql operations twice.
+//	
+//	Notification getNoti(int notiId); // Two tables share one noti_sequence.
+//	
+//	void createNoti_g(int groupBuyId); // lineGroupBuys table
 	
 	void createNoti_a(int auctionId); // successBidders table
+
+	List<Bid> getBidByUserId(int userId);
 	
-	void deleteNoti(int notiId);
-	*/
+//	void deleteNoti(int notiId);
 }

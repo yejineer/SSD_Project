@@ -1,5 +1,7 @@
 package dongduk.cs.ssd.dao.mybatis;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
@@ -38,6 +40,9 @@ public class MybatisBidDao implements BidDao {
 	
 	public void createBid(Bid bid) throws DataAccessException {
 		bidMapper.createBid(bid);
+	}
+	public List<Bid> getBidByUserId(int userId) throws DataAccessException{
+		return bidMapper.getBidByUserId(userId);
 	}
 	
 	/*

@@ -1,6 +1,9 @@
 package dongduk.cs.ssd.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import dongduk.cs.ssd.dao.BidDao;
@@ -39,6 +42,9 @@ public class BidServiceImpl implements BidService{
 		bidDao.createBid(bid);
 	}
 
+	public List<Bid> getBidByUserId(int userId) {
+		return bidDao.getBidByUserId(userId);
+	}
 	/*
 	 * public void updateBid(Bid bid) { bidDao.updateBid(bid); }
 	 * 

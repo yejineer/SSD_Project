@@ -1,5 +1,7 @@
 package dongduk.cs.ssd.dao;
 
+import java.util.List;
+
 import org.springframework.dao.DataAccessException;
 
 import dongduk.cs.ssd.domain.Bid;
@@ -21,8 +23,9 @@ public interface BidDao {
 	
 	Bid getBidByMaxPrice(int bidPrice, int auctionId);
 	
-	void createBid(Bid bid) throws DataAccessException;
+	void createBid(Bid bid) throws DataAccessException;	
 	
+	List<Bid> getBidByUserId(int userId) throws DataAccessException;
 	//void updateBid(Bid bid) throws DataAccessException;
 	
 	//User getUserById(int userId) throws DataAccessException;

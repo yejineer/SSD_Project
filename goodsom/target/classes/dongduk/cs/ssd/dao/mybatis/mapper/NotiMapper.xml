@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dongduk.cs.ssd.dao.mybatis.mapper.NotiMapper">
+  <cache />
+  <sql id="BaseColumns_Noti">
+  		NOTIID, TITLE, NOTIDATE, USERID, AUCTIONID, STATE
+  </sql>
+
+  <insert id="createNoti_a" parameterType="java.lang.Integer">
+  	INSERT INTO NOTIFICATIONS_A (<include refid="BaseColumns_Noti" />)
+	VALUES (NOTIID_A_SEQ.nextval, #{title}, #{notidate}, #{userId}, #{auctionId}, #{state})
+
+  	<selectKey keyProperty="notiId" resultType="int" order="AFTER">
+  		SELECT NOTIID_A_SEQ.currval AS notiId FROM DUAL
+  	</selectKey>	
+  </insert>
+  
+  <select id="getBidByUserId" resultType="dongduk.cs.ssd.domain.Bid">
+	  SELECT * FROM BIDS
+	  WHERE USERID = #{userId}
+  </select>
+</mapper>

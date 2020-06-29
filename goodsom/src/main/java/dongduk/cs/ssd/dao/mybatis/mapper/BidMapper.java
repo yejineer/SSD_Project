@@ -1,5 +1,9 @@
 package dongduk.cs.ssd.dao.mybatis.mapper;
 
+import java.util.List;
+
+import org.springframework.dao.DataAccessException;
+
 import dongduk.cs.ssd.domain.Bid;
 import dongduk.cs.ssd.domain.User;
 
@@ -19,6 +23,8 @@ public interface BidMapper {
 	Bid getBidByMaxPrice(int bidPrice, int auctionId);
 	
 	void createBid(Bid bid);
+	
+	List<Bid> getBidByUserId(int userId);
 	
 	//void updateBid(Bid bid);
 	

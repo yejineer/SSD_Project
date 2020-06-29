@@ -94,7 +94,8 @@
 								
 								<div class="container">
 									<a class="btn btn-primary py-3 px-5" href="<c:url value='/mypage/list.do'></c:url>">목록 보기</a> &nbsp;
-									<a class="btn btn-primary py-3 px-5" href="<c:url value='/user/update.do'></c:url>">회원 정보 수정</a> &nbsp; 
+									<a class="btn btn-primary py-3 px-5" href="<c:url value='/user/update.do'></c:url>">회원 정보 수정</a> &nbsp;
+									<a class="btn btn-primary py-3 px-5" href="<c:url value='/noti/list.do'></c:url>">알림 목록 보기</a> &nbsp;  
 									<a class="btn btn-primary py-3 px-5" href="javascript:logoutCheck()">로그아웃</a> &nbsp; 
 									<a class="btn btn-primary py-3 px-5" href="javascript:removeCheck()">회원 탈퇴</a> 
 								</div>

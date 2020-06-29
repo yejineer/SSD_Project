@@ -1,5 +1,7 @@
 package dongduk.cs.ssd.service;
 
+import java.util.List;
+
 import dongduk.cs.ssd.domain.Bid;
 import dongduk.cs.ssd.domain.User;
 
@@ -20,6 +22,7 @@ public interface BidService {
 	
 	void createBid(Bid bid);
 	
+	List<Bid> getBidByUserId(int userId);
 	//void updateBid(Bid bid);
 	
 	//User getUserById(int userId);

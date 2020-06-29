@@ -3,7 +3,9 @@
 
 <mapper namespace="dongduk.cs.ssd.dao.mybatis.mapper.BidMapper">
   <cache />
-  
+  <sql id="BaseColumns_Bid">
+  		NOTIID, TITLE, NOTIDATE, USERID, AUCTIONID, STATE
+  </sql>
   <select id="getBid" resultType="Bid">
     SELECT BIDID, BIDPRICE, BIDDATE, USERID, AUCTIONID
     FROM BIDS
@@ -38,6 +40,12 @@
   	VALUES 
   	  (BIDID_SEQ.nextval, #{bidPrice}, #{bidDate}, #{userId}, #{auctionId}) 
   </insert>
+  
+  <select id="getBidByUserId" resultType="dongduk.cs.ssd.domain.Bid" parameterType="int">
+    SELECT *
+	FROM BIDS
+	WHERE USERID = #{userId}
+  </select> 
   
  <!--  <update id="updateBid" parameterType="Bid">
   	UPDATE BIDS 
