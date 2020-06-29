@@ -24,7 +24,7 @@ public interface UserMapper {
 
 	void updateUser(User user);
 
-	int deleteUser(int userId);
+	int deleteUser(User user);
 	
 	List<Order> getAuctionOrderList(int userId);
 	

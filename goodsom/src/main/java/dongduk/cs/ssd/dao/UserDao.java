@@ -26,7 +26,7 @@ public interface UserDao {
 
 	void updateUser(User user) throws DataAccessException;
 
-	int deleteUser(int userId) throws DataAccessException;
+	int deleteUser(User user) throws DataAccessException;
 	
 	List<Order> getAuctionOrderList(int userId);
 	

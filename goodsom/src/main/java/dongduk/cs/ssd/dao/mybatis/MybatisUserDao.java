@@ -5,16 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import dongduk.cs.ssd.domain.Auction;
 import dongduk.cs.ssd.domain.GroupBuy;
 import dongduk.cs.ssd.domain.Order;
 import dongduk.cs.ssd.domain.User;
 import dongduk.cs.ssd.dao.UserDao;
-import dongduk.cs.ssd.dao.mybatis.mapper.AuctionMapper;
-import dongduk.cs.ssd.dao.mybatis.mapper.GroupBuyMapper;
-import dongduk.cs.ssd.dao.mybatis.mapper.OrderMapper;
 import dongduk.cs.ssd.dao.mybatis.mapper.UserMapper;
 
 /**
@@ -27,12 +23,6 @@ public class MybatisUserDao implements UserDao {
 	
 	@Autowired
 	private UserMapper userMapper;
-	@Autowired
-	private OrderMapper orderMapper;
-	@Autowired
-	private GroupBuyMapper groupBuyMapper;
-	@Autowired
-	private AuctionMapper auctionMapper;
 	
 	public User getUser(String email, String passwd) throws DataAccessException {
 		return userMapper.getUser(email, passwd);
@@ -54,23 +44,10 @@ public class MybatisUserDao implements UserDao {
 		userMapper.updateUser(user);
 	}
 
-	@Transactional
-	public int deleteUser(int userId) throws DataAccessException {
-		// USERS 테이블에 userId에 해당하는 유저 삭제
-		int deleteSuccess =  userMapper.deleteUser(userId);
-		
-		// ORDERS 테이블에 userId에 해당하는 결제정보 삭제
-		deleteSuccess += orderMapper.deleteOrderByUserId(userId);
-		
-		// GROUPBUYS 테이블에 userId에 해당하는 공동구매 삭제
-		deleteSuccess += groupBuyMapper.deleteGroupBuyByUserId(userId);
-		
-		// AUCTIONS 테이블에 userId에 해당하는 경매 삭제
-		deleteSuccess += auctionMapper.deleteAuctionByUserId(userId);
-		
-		return deleteSuccess;
+	public int deleteUser(User user) throws DataAccessException {
+		return userMapper.deleteUser(user);
 	}
-
+	
 	public List<Order> getAuctionOrderList(int orderId) throws DataAccessException { // 마이페이지 결제 목록 보기
 		return userMapper.getAuctionOrderList(orderId);
 	}

@@ -45,10 +45,20 @@
   	WHERE USERID = #{userId}
   </update>
   
-  <delete id="deleteUser" parameterType="Integer">
-  	DELETE FROM USERS 
+  <update id="deleteUser" parameterType="User">
+  	UPDATE USERS SET
+  		EMAIL = '알수없음@deleted.user',
+  		PASSWD = '알수없음',
+  		USERNAME = '알수없음',
+  		NICKNAME = '알수없음',
+  		ADDRESS1 = null,
+  		ADDRESS2 = null,
+  		ADDRESS3 = null,
+  		PHONE = null,
+  		REFUNDBANK = null,
+  		REFUNDACCOUNT = null
   	WHERE USERID = #{userId}
-  </delete>
+  </update>
 
 	<select id="getAuctionOrderList" resultType="Order">
 		SELECT s.auctionId, o.orderId, o.orderDate, o.totalPrice

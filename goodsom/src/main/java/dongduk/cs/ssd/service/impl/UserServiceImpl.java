@@ -50,13 +50,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public int deleteUser(int userId) {
-		try {
-			userDao.deleteUser(userId);
-		} catch (DataAccessException ex) {
-			return 0;
-		}
-		return 1;
+	public int deleteUser(User user) {
+		return userDao.deleteUser(user);
 	}
 
 	@Override
@@ -83,17 +78,19 @@ public class UserServiceImpl implements UserService {
 		List<GroupBuy> groupBuys = userDao.getGroupBuyList(userId);
 		List<Auction> auctions = userDao.getAuctionList(userId);
 		
-		System.out.println("[GROUPBUY EXIST?]" + groupBuys.get(0).getState());
-		System.out.println("[AUCTION EXIST?]" + auctions.get(0).getState());
-		for (GroupBuy groupBuy : groupBuys) {
-			if (!groupBuy.getState().equals("closed")) {
-				return true;
+//		System.out.println("[GROUPBUY EXIST?]" + groupBuys.get(0).getState());
+//		System.out.println("[AUCTION EXIST?]" + auctions.get(0).getState());
+		if (groupBuys != null && auctions != null) {
+			for (GroupBuy groupBuy : groupBuys) {
+				if (!groupBuy.getState().equals("closed")) {
+					return true;
+				}
 			}
-		}
-		
-		for (Auction auction : auctions) {
-			if (!auction.getState().equals("closed")) {
-				return true;
+			
+			for (Auction auction : auctions) {
+				if (!auction.getState().equals("closed")) {
+					return true;
+				}
 			}
 		}
 		return false;
