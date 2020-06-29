@@ -130,36 +130,21 @@ public class AuctionFormController implements ApplicationContextAware  {
 //		auctionForm.getAuction().setStartPrice(Integer.valueOf(auctionForm.getInputPrice()));
 		if (requestUrl.equals("/auction/update.do")) { // update
 			System.out.println(auctionForm.getAuction().toString());
-//			if (auctionForm.getReport().getSize() == 0) { // 파일 새로 업로드 안 하면 원래 이미지 사용
-//				auctionForm.getAuction().setImg(request.getContextPath() + "/resources/images/" + savedFileName);
-//			}
-
+			auctionForm.getAuction().setState("proceeding");
 			int auctionId = auctionService.updateAuction(auctionForm.getAuction());
-			Auction auction = auctionService.getAuction(auctionId);
-			Bid maxPriceBid = bidService.getBidByMaxPrice(auction.getMaxPrice(), auctionId);
-			
-			model.addAttribute("auction", auction);
-			model.addAttribute("date_maxBid", maxPriceBid.getBidDate());
-			User user_maxBid = userService.getUserByUserId(maxPriceBid.getUserId());
-			model.addAttribute("user_maxBid", user_maxBid.getNickname());
+			model.addAttribute("auction", auctionService.getAuction(auctionId));
 		} else { // create
-//			if (report.getSize() == 0) { // 파일 업로드 하지 않았을 때 SqlException이 나므로 기본 이미지 설정
-//				auctionForm.getAuction().initImg(request.getContextPath());
-//			} else {
-//			}
             auctionForm.getAuction().initAuction(user.getUser());
 			System.out.println("[AuctionFormController] auctionForm 값: " + auctionForm.toString());
 			auctionService.createAuction(auctionForm.getAuction());
-			
 			model.addAttribute("auction", auctionForm.getAuction());
-			model.addAttribute("date_maxBid", "");
-			model.addAttribute("user_maxBid", "아직 입찰자가 없습니다.");
 		}
 		
 //		스케줄러 => create / update 시 endDate로 설정
 		auctionService.deadLineScheduler(auctionForm.getAuction().getEndDate(), auctionForm.getAuction().getAuctionId());
 		session.setAttribute("bidForm", new BidForm());
-
+		model.addAttribute("date_maxBid", "");
+		model.addAttribute("user_maxBid", "아직 입찰자가 없습니다.");
 //		작성자만 수정/삭제 버튼 보이게 하기 위해 isWriter, 작성자 출력 위해 writer값을 넘겨준다.
 		model.addAttribute("isWriter", true);
 		model.addAttribute("writer", user.getUser().getNickname());
