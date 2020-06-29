@@ -55,18 +55,18 @@
 						<c:choose>
 							<c:when test="${not empty order.groupBuy}">	
 							<div class="col-lg-4 col-md-6 mb-4">
-								<div class="post-entry-1 h-100">
-									<div class="post-entry-1-contents">
+								<div class="post-entry-1 h-100" style="width:1000px;">
+									<div class="post-entry-1-contents" style="width:1000px;">
 										<h4>
 											<a href="<c:url value='../../groupBuy/detail.do'>
 																<c:param name="groupBuyId" value="${order.groupBuy.groupBuyId}" />
 													 </c:url>"> ${order.groupBuy.title}</a>
 										</h4>
-										<c:forEach var="lineGroupBuy" items="${order.lineGroupBuys}" varStatus="status">
+										<c:forEach var="lineGroupBuy" items="${order.lineGroupBuys}" varStatus="status"><br />
 										<span class="meta d-inline-block mb-3"> 
 											<span class="mx-2"> 옵션 : ${lineGroupBuy.selectOption}</span> &nbsp;&nbsp; 
 											<span class="mx-2"> 수량 : ${lineGroupBuy.quantity}개</span> &nbsp;&nbsp;
-											<span class="mx-2"> 금액 : ${lineGroupBuy.unitPrice}원</span> <br>
+											<span class="mx-2"> 금액 : ${lineGroupBuy.unitPrice}원</span>
 										</span>
 										</c:forEach>
 									</div>
@@ -80,8 +80,8 @@
 							</c:when>
 							<c:when test="${not empty order.auction}">	
 							<div class="col-lg-4 col-md-6 mb-4">
-								<div class="post-entry-1 h-100">
-									<div class="post-entry-1-contents">
+								<div class="post-entry-1 h-100" style="width:1000px;">
+									<div class="post-entry-1-contents" style="width:1000px;">
 										<h4>
 											<a href="<c:url value='../../auction/detail.do'>
 																<c:param name="auctionId" value="${order.auction.auctionId}" />

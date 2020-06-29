@@ -1,102 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-	
-<!doctype html>
-<html lang="ko">
 
-<head>
-<title>Goodsom &mdash; SSD Final Project</title>
-<meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<%@ include file="../IncludeTop.jsp"%>
 
-<link
-	href="https://fonts.googleapis.com/css?family=Poppins:400,900|Source+Serif+Pro&display=swap"
-	rel="stylesheet">
-
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/fonts/icomoon/style.css">
-
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/bootstrap.min.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/bootstrap-datepicker.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/jquery.fancybox.min.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/owl.carousel.min.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/owl.theme.default.min.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/fonts/flaticon/font/flaticon.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/aos.css">
-
-<!-- MAIN CSS -->
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/style.css">
-
-</head>
-
-<style>
-.error {
-	color: #ff0000;
-	/* font-weight: bold; */
-}
-</style>
-
-<body data-spy="scroll" data-target=".site-navbar-target"
-	data-offset="300">
-
-
-	<div class="site-wrap" id="home-section">
-
-		<div class="site-mobile-menu site-navbar-target">
-			<div class="site-mobile-menu-header">
-				<div class="site-mobile-menu-close mt-3">
-					<span class="icon-close2 js-menu-toggle"></span>
-				</div>
-			</div>
-			<div class="site-mobile-menu-body"></div>
-		</div>
-
-
-
-		<header class="site-navbar site-navbar-target" role="banner">
-
-			<div class="container">
-				<div class="row align-items-center position-relative">
-
-					<div class="col-3">
-						<div class="site-logo">
-							<a href="<%=request.getContextPath()%>/home.do" class="font-weight-bold">Goodsom</a>
-						</div>
-					</div>
-
-					<div class="col-9  text-right">
-
-
-						<span class="d-inline-block d-lg-none"><a href="#"
-							class="text-primary site-menu-toggle js-menu-toggle py-5"><span
-								class="icon-menu h3 text-primary"></span></a></span>
-
-
-
-						<nav class="site-navigation text-right ml-auto d-none d-lg-block"
-							role="navigation">
-							<ul class="site-menu main-menu js-clone-nav ml-auto ">
-								<li><a href="<%=request.getContextPath()%>/home.do" class="nav-link">Home</a></li>
-								<li><a href="<%=request.getContextPath()%>/groupBuy/list.do" class="nav-link">GroupBuy</a></li>
-								<li><a href="<%=request.getContextPath()%>/auction/list.do" class="nav-link">Auction</a></li>
-								<li><a href="#">Community</a></li>
-								<li><a href="<%=request.getContextPath()%>/user/detail.do"><img src="<%=request.getContextPath()%>/resources/images/mypage.jpg" alt="Image" 
-								width="30px" height="20px" class="img-fluid"> ${userSession.user.nickname}</a></li>
-							</ul>
-						</nav>
-					</div>
-
-
-				</div>
-			</div>
-
-		</header>
-
+<%@ include file="../IncludeBanner.jsp" %> 
 
 		<div class="site-section-cover">
 			<div class="container">
@@ -119,18 +31,18 @@
 				<c:choose>
 					<c:when test="${not empty orderForm.order.lineGroupBuys}">  
 						<div class="col-lg-4 col-md-6 mb-4">
-								<div class="post-entry-1 h-100">
-									<div class="post-entry-1-contents">
+								<div class="post-entry-1 h-100" style="width:1000px;">
+									<div class="post-entry-1-contents" style="width:1000px;">
 										<h4>
 											<a href="<c:url value='../../groupBuy/detail.do'>
 															<c:param name="groupBuyId" value="${orderForm.order.groupBuyId}" />
 													 </c:url>"> ${orderForm.order.groupBuy.title}</a>
 										</h4>
-										<c:forEach var="lineGroupBuy" items="${orderForm.order.lineGroupBuys}" varStatus="status">
+										<c:forEach var="lineGroupBuy" items="${orderForm.order.lineGroupBuys}" varStatus="status"><br />
 										<span class="meta d-inline-block mb-3">
 											<span class="mx-2"> 옵션 : ${lineGroupBuy.selectOption}</span> &nbsp;&nbsp; 
 											<span class="mx-2"> 수량 : ${lineGroupBuy.quantity}개</span> &nbsp;&nbsp;
-											<span class="mx-2"> 금액 : ${lineGroupBuy.unitPrice}원</span> <br>
+											<span class="mx-2"> 금액 : ${lineGroupBuy.unitPrice}원</span>
 										</span>
 										</c:forEach>
 									</div>
@@ -144,8 +56,8 @@
 					</c:when>
 					<c:otherwise> <!-- auction이 담긴 orderForm이 넘어옴 -->
 							<div class="col-lg-4 col-md-6 mb-4">
-								<div class="post-entry-1 h-100">
-									<div class="post-entry-1-contents">
+								<div class="post-entry-1 h-100" style="width:1000px;">
+									<div class="post-entry-1-contents" style="width:1000px;">
 										<h3>
 											<a href="<c:url value='../auction/detail.do'>
 															<c:param name="auctionId" value="${orderForm.order.auction.auctionId}" />
