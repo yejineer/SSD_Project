@@ -59,7 +59,7 @@
 									<div class="post-entry-1-contents">
 										<h4>
 											<a href="<c:url value='../../groupBuy/detail.do'>
-																<c:param name="groupBuyId" value="${lineGroupBuy.groupBuyId}" />
+																<c:param name="groupBuyId" value="${order.groupBuy.groupBuyId}" />
 													 </c:url>"> ${order.groupBuy.title}</a>
 										</h4>
 										<c:forEach var="lineGroupBuy" items="${order.lineGroupBuys}" varStatus="status">
