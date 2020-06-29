@@ -101,6 +101,7 @@
   <select id="getGroupBuyList" resultType="dongduk.cs.ssd.domain.GroupBuy">
     SELECT <include refid="BaseColumns_GroupBuys" />
     FROM GROUPBUYS
+    ORDER BY UPLOADDATE DESC
   </select>
   
   <update id="increaseCount" parameterType="dongduk.cs.ssd.domain.GroupBuy">
