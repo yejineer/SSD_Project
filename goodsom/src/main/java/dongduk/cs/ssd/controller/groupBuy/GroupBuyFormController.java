@@ -117,6 +117,13 @@ public class GroupBuyFormController {
 		model.addAttribute("writer", user.getUser().getNickname());
 		model.addAttribute("dDay", groupBuy.getDday(groupBuy.getEndDate().getTime()));
 		
+		// LineGroupBuyForm 값 지정
+		LineGroupBuyForm lineGroupBuyForm = new LineGroupBuyForm();
+		lineGroupBuyForm.setGroupBuyId(groupBuyId);
+		lineGroupBuyForm.setGroupBuy(groupBuy);
+		session.setAttribute("lineGroupBuyForm", lineGroupBuyForm);
+		model.addAttribute("lineGroupBuyForm", lineGroupBuyForm);
+		
 		sessionStatus.setComplete();
 		
 		return GROUPBUY_DETAIL;
