@@ -9,8 +9,8 @@ import dongduk.cs.ssd.domain.User;
 
 
 /**
- * @author Hyekyung Kim | kimdahyee
- * @since  2020.05.08   | 2020.06.24
+ * @author Hyekyung Kim | kimdahyee		| Yejin Lee
+ * @since  2020.05.08   | 2020.06.24	| 2020.06.29
  */
 
 public interface BidDao {
@@ -26,8 +26,9 @@ public interface BidDao {
 	void createBid(Bid bid) throws DataAccessException;	
 	
 	List<Bid> getBidByUserId(int userId) throws DataAccessException;
-	//void updateBid(Bid bid) throws DataAccessException;
 	
-	//User getUserById(int userId) throws DataAccessException;
+	Bid getBidByUserIdAndAuctionId(int userId, int auctionId);
+	
+	void updateBid(Bid bid) throws DataAccessException;
 	
 }

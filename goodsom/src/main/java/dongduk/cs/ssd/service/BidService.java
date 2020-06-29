@@ -6,8 +6,8 @@ import dongduk.cs.ssd.domain.Bid;
 import dongduk.cs.ssd.domain.User;
 
 /**
- * @author Hyekyung Kim | kimdahyee
- * @since  2020.05.08   | 2020.06.24
+ * @author Hyekyung Kim | kimdahyee		| Yejin Lee
+ * @since  2020.05.08   | 2020.06.24	| 2020.06.29
  */
 
 public interface BidService {
@@ -23,8 +23,9 @@ public interface BidService {
 	void createBid(Bid bid);
 	
 	List<Bid> getBidByUserId(int userId);
-	//void updateBid(Bid bid);
 	
-	//User getUserById(int userId);
-
+	Bid getBidByUserIdAndAuctionId(int userId, int auctionId);
+	
+	void updateBid(Bid bid);
+	
 }
