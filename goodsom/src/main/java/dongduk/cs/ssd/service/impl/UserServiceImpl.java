@@ -20,7 +20,6 @@ import dongduk.cs.ssd.service.UserService;
  */
 
 @Service("userServiceImpl")
-@Transactional
 public class UserServiceImpl implements UserService {
 	
 	@Autowired
@@ -52,7 +51,12 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public int deleteUser(int userId) {
-		return userDao.deleteUser(userId);
+		try {
+			userDao.deleteUser(userId);
+		} catch (DataAccessException ex) {
+			return 0;
+		}
+		return 1;
 	}
 
 	@Override
@@ -79,14 +83,16 @@ public class UserServiceImpl implements UserService {
 		List<GroupBuy> groupBuys = userDao.getGroupBuyList(userId);
 		List<Auction> auctions = userDao.getAuctionList(userId);
 		
+		System.out.println("[GROUPBUY EXIST?]" + groupBuys.get(0).getState());
+		System.out.println("[AUCTION EXIST?]" + auctions.get(0).getState());
 		for (GroupBuy groupBuy : groupBuys) {
-			if (groupBuy.getState() != "closed") {
+			if (!groupBuy.getState().equals("closed")) {
 				return true;
 			}
 		}
 		
 		for (Auction auction : auctions) {
-			if (auction.getState() != "closed") {
+			if (!auction.getState().equals("closed")) {
 				return true;
 			}
 		}

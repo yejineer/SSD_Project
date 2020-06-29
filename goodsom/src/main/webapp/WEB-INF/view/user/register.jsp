@@ -41,8 +41,8 @@
 
 					<div class="form-group">
 						<label for="name">Password</label> 
-						<form:input path="user.password" type="password" class="form-control" placeholder="Password" />
-						<form:errors path="user.password" cssClass="error" />
+						<form:input path="user.passwd" type="password" class="form-control" placeholder="Password" />
+						<form:errors path="user.passwd" cssClass="error" />
 					</div>
 
 					<div class="form-group">

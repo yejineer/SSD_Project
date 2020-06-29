@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -61,7 +62,7 @@ public class RegisterUserFormController {
 	
 	@RequestMapping(method = RequestMethod.POST)
 	public String onSubmit(HttpServletRequest request, HttpSession session,
-			@ModelAttribute("userForm") UserForm userForm, BindingResult result) throws Exception {
+			@ModelAttribute("userForm") UserForm userForm, BindingResult result, Model model) throws Exception {
 		
 		new UserFormValidator().validate(userForm, result);
 		
@@ -75,6 +76,7 @@ public class RegisterUserFormController {
 			return formViewName;
 		} else {
 			userService.createUser(userForm.getUser());
+			model.addAttribute("loginForm", new LoginForm());
 			UserSession userSession = new UserSession(userService.getUserByEmail(userForm.getUser().getEmail()));
 			session.setAttribute("userSession", userSession);
 			return successViewName;
