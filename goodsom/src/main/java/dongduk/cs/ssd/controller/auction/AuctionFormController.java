@@ -96,7 +96,8 @@ public class AuctionFormController implements ApplicationContextAware  {
 //		AuctionForm객체 validation
 		if (result.hasErrors()) {
 			if (requestUrl.equals("/auction/update.do")) {
-				return "redirect:form.do?auctionId=" + auctionForm.getAuction().getAuctionId();
+				model.addAttribute("auctionId", auctionForm.getAuction().getAuctionId());
+				return AUCTION_FORM;
 			} else {
 				return AUCTION_FORM;
 			}

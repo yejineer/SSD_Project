@@ -83,7 +83,8 @@ public class GroupBuyFormController {
 				
 		if(result.hasErrors()) {
 			if(requestUrl.equals("/groupBuy/update.do")) {
-				return "redirect:form.do?groupBuyId=" + groupBuyForm.getGroupBuy().getGroupBuyId();
+				model.addAttribute("groupBuyId", groupBuyForm.getGroupBuy().getGroupBuyId());
+				return GROUPBUY_FORM;
 			}else {
 				return GROUPBUY_FORM;
 			}
