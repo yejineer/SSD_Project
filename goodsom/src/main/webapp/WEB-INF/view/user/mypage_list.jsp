@@ -129,18 +129,31 @@
 										<img src="${auction.img}" alt="Image" class="img-fluid">
 									</a>
 									<div class="post-entry-1-contents">
-
+										<div class="price-wrap d-flex" style="color:blue;">
+											<c:if test="${auction.state eq 'proceeding'}">
+												<h5>Proceeding</h5> 
+											</c:if>
+											
+											<c:if test="${auction.state eq 'closed'}">
+												<h5>Closed</h5>
+											</c:if>
+											
+				    						<span class="meta d-inline-block mb-3">
+												&nbsp; ~ <fmt:formatDate value="${auction.endDate}" pattern="yyyy-MM-dd" />
+											</span>
+			    						</div>
 										<h2>
 											<a href="<c:url value='../auction/detail.do'>
 														<c:param name="auctionId" value ="${auction.auctionId}" />
 													</c:url>">
 												${auction.title} </a>
 										</h2>
-										<span class="meta d-inline-block mb-3"><fmt:formatDate
-												value="${auction.uploadDate}" pattern="yyyy-MM-dd" /> <span
-											class="mx-2"> by</span> ${userSession.user.nickname} </span>
+										<span class="meta d-inline-block mb-3">
+											<span>현재 최고 금액</span> &nbsp;
+											<a href="#"><fmt:formatNumber value="${auction.maxPrice}" pattern="#,###원"/></a>
+										</span>
+										
 										<p>${auction.content}</p>
-										<!-- 요약할 방법을 찾아보자. -->
 									</div>
 								</div>
 							</div>
@@ -159,8 +172,24 @@
 											</c:url>">
 										<img src="${groupBuy.img}" alt="Image" class="img-fluid">
 									</a>
+									<div style="float:right">조회수: ${groupBuy.count}&nbsp;&nbsp;</div>
 									<div class="post-entry-1-contents">
-
+										<div class="price-wrap d-flex" style="color:blue;">
+											<c:if test="${groupBuy.state eq 'proceeding'}" >
+												<h5>Proceeding</h5>
+											</c:if>
+											<c:if test="${groupBuy.state eq 'achieved'}" >
+												<h5>Achieved</h5>
+											</c:if>
+											<c:if test="${groupBuy.state eq 'closed'}" >
+												<h5>Closed</h5>
+											</c:if>
+										
+											<span class="meta d-inline-block mb-3">
+												
+												&nbsp; ~ <fmt:formatDate value="${groupBuy.endDate}" pattern="yyyy-MM-dd" />
+											</span>
+										</div>
 										<h2>
 											<a
 												href="<c:url value='../groupBuy/detail.do'>
@@ -168,11 +197,16 @@
 											</c:url>">
 												${groupBuy.title} </a>
 										</h2>
-										<span class="meta d-inline-block mb-3"><fmt:formatDate
-												value="${groupBuy.uploadDate}" pattern="yyyy-MM-dd" /> <span
-											class="mx-2"> by</span> ${userSession.user.nickname} </span>
+										<span class="mx-2">가격</span> 
+											<a href="#"><fmt:formatNumber value="${groupBuy.price}" pattern="#,###원"/></a> <br/><br/>
+										
+										<span class="mx-2">달성률</span> 
+											<a href="#"><fmt:formatNumber value="${groupBuy.participants}"/>명 / </a>
+											<a href="#"><fmt:formatNumber value="${groupBuy.minNo}"/>명</a>
+											<a href="#"><fmt:formatNumber value="${groupBuy.rate}"/>%</a>
+										
+									
 										<p>${groupBuy.content}</p>
-										<!-- 요약할 방법을 찾아보자. -->
 									</div>
 								</div>
 							</div>
