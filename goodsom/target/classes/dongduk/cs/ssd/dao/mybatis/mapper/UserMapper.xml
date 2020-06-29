@@ -66,7 +66,7 @@
 
   <select id="getGroupBuyList" parameterType="int"
   		resultType="GroupBuy">
-  	SELECT groupBuyId, title, img, uploadDate, userId, menuId
+  	SELECT groupBuyId, title, img, uploadDate, state, userId, menuId
   	FROM groupBuys
   	WHERE userId = #{userId}
   	ORDER BY groupBuyId DESC
@@ -74,7 +74,7 @@
   
     <select id="getAuctionList" parameterType="int"
   		resultType="Auction">
-  	SELECT auctionId, title, img, uploadDate, userId, menuId
+  	SELECT auctionId, title, img, uploadDate, state, userId, menuId
   	FROM auctions
   	WHERE userId = #{userId}
   	ORDER BY auctionId DESC

@@ -41,5 +41,7 @@ public interface AuctionDao {
 //	스케줄러
 	void closeEvent(Date curTime);
 	
+	public int getSuccessBidderUserId(int auctionId);
+	
 	public SuccessBidder getSuccessBidderByAuctionId(int auctionId);
 }

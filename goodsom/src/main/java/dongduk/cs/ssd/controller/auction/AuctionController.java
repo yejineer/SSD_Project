@@ -19,6 +19,7 @@ import dongduk.cs.ssd.domain.Auction;
 import dongduk.cs.ssd.service.AuctionService;
 import dongduk.cs.ssd.service.UserService;
 import dongduk.cs.ssd.domain.Bid;
+import dongduk.cs.ssd.domain.SuccessBidder;
 //import dongduk.cs.ssd.domain.SuccessBidder;
 import dongduk.cs.ssd.service.BidService;
 
@@ -67,13 +68,17 @@ public class AuctionController {
 		
 		Bid bid = bidService.getBidByMaxPrice(auction.getMaxPrice(), auctionId); //auction의 최고 금액에 해당하는 bid 정보 가져오기
 		
+//		경매가 마감된 경우
+		// 낙찰자 정보 가져오기 (낙찰자의 userId)
+		mav.addObject("successBidderUserId", auctionService.getSuccessBidderUserId(auctionId));
+		
 		// 낙찰자가 결제까지 완료한 경우
-//		SuccessBidder successBidder = auctionService.getSuccessBidderByAuctionId(auctionId);
-//		if (successBidder != null) {
-//			mav.addObject("completeOrder", 1);
-//		} else {
-//			mav.addObject("completeOrder", 0);
-//		}
+		SuccessBidder successBidder = auctionService.getSuccessBidderByAuctionId(auctionId);
+		if (successBidder != null) {
+			mav.addObject("completeOrder", 1);
+		} else {
+			mav.addObject("completeOrder", 0);
+		}
 		
 		UserSession user  = (UserSession)request.getSession().getAttribute("userSession");
 		if (user.getUser().getUserId() == auction.getUserId()) {

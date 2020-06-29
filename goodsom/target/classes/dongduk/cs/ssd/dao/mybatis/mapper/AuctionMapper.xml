@@ -101,4 +101,10 @@
     WHERE ROWNUM <= 3
    ]]>
   </select>
+  
+ <select id="getSuccessBidderUserId" parameterType="int" resultType="int">
+ 	SELECT DISTINCT b.userId
+	FROM AUCTIONS a, BIDS b
+	WHERE a.auctionId = b.auctionId AND a.maxPrice = b.bidPrice AND a.auctionId = #{auctionId}
+ </select>
 </mapper>
