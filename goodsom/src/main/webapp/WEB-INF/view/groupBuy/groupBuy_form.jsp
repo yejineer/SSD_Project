@@ -151,8 +151,8 @@ function input_append(ff){
 							
 							<div class="form-group row">
 								<div class="col-md-12">
-									<label for="img">대표 이미지</label> <br>
-									<form:input type="file" id="img" path="groupBuy.img" class="form-control" value="input file"/>
+									<label for="groupBuy.report">대표 이미지</label>&nbsp;&nbsp;&nbsp;<form:errors path="groupBuy.report" cssClass="error"/><br/>
+									<form:input type="file" path="groupBuy.report"/>
               					</div>
               				</div>
               				

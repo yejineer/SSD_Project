@@ -15,6 +15,7 @@ import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
 
 public class GroupBuy {
 	private static final String PROCEEDING = "proceeding";
@@ -24,6 +25,7 @@ public class GroupBuy {
 	int groupBuyId;
 	@NotEmpty
 	String title;
+	MultipartFile report;
 	@NotEmpty
 	String content;
 	String img;
@@ -129,6 +131,14 @@ public class GroupBuy {
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+	
+	public MultipartFile getReport() {
+		return report;
+	}
+
+	public void setReport(MultipartFile report) {
+		this.report = report;
 	}
 
 	public String getContent() {
