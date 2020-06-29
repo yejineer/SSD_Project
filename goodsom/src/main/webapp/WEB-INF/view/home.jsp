@@ -10,8 +10,6 @@
 <html lang="ko">
 
 <head>
-
-<head>
 <title>Goodsom &mdash; SSD Final Project</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -28,60 +26,14 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/fonts/flaticon/font/flaticon.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/aos.css">
 
+<link href="<%=request.getContextPath()%>/resources/css/main.css" rel="stylesheet" />
+
 <!-- MAIN CSS -->
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/style.css">
 
 </head>
 
-<body data-spy="scroll" data-target=".site-navbar-target"
-	data-offset="300">
-
-
-	<div class="site-wrap" id="home-section">
-
-		<div class="site-mobile-menu site-navbar-target">
-			<div class="site-mobile-menu-header">
-				<div class="site-mobile-menu-close mt-3">
-					<span class="icon-close2 js-menu-toggle"></span>
-				</div>
-			</div>
-			<div class="site-mobile-menu-body"></div>
-		</div>
-
-
-		<header class="site-navbar site-navbar-target" role="banner">
-
-			<div class="container">
-				<div class="row align-items-center position-relative">
-
-					<div class="col-3">
-						<div class="site-logo">
-							<a href="<%=request.getContextPath()%>/home.do" class="font-weight-bold">Goodsom</a>
-						</div>
-					</div>
-
-					<div class="col-9 text-right">
-
-						<span class="d-inline-block d-lg-none"><a href="#"
-							class="text-primary site-menu-toggle js-menu-toggle py-5"><span
-								class="icon-menu h3 text-primary"></span></a></span>
-
-						<nav class="site-navigation text-right ml-auto d-none d-lg-block" role="navigation">
-							<ul class="site-menu main-menu js-clone-nav ml-auto ">
-								<li><a href="<%=request.getContextPath()%>/home.do" class="nav-link">Home</a></li>
-								<li><a href="<%=request.getContextPath()%>/groupBuy/list.do" class="nav-link">GroupBuy</a></li>
-								<li><a href="<%=request.getContextPath()%>/auction/list.do" class="nav-link">Auction</a></li>
-								<li><a href="<%=request.getContextPath()%>/about.do">Community</a></li>
-								<li><a href="<%=request.getContextPath()%>/user/detail.do"><img src="<%=request.getContextPath()%>/resources/images/mypage.jpg" alt="Image" 
-								width="30px" height="20px" class="img-fluid"> ${userSession.user.nickname}</a></li>
-							</ul>
-						</nav>
-					</div>
-				</div>
-			</div>
-
-		</header>
-
+<%@ include file="IncludeBanner.jsp" %> 
 
 		<div class="site-section-cover">
 			<div class="container">
@@ -89,8 +41,35 @@
 					<div class="col-lg-10">
 						<h1 class="text-white mb-4">GOODSOM</h1>
 						<p class="lead">Dongduk Women's University Goods Market</p><br/>
-						<p><a href="<c:url value='/order/list.do' />" data-fancybox class="btn-video_38929"><span class="icon-play"></span></a></p>
-					</div>
+						
+						<div class="s003">
+					         <form name="sform" method="POST" action="<c:url value='/list/search.do' />" class="p-5 contact-form">
+					            <div class="inner-form">
+					            	<div class="input-field first-wrap">
+						               	<div class="input-select">
+						                  <select data-trigger=""  name="choice" id="choice" style="width: 170px;">
+						                     	<option value="1">GroupBuy</option>
+						                     	<option value="2">Auction</option>
+											</select> 
+										</div>
+									</div>
+									
+									<div class="input-field second-wrap">
+										<input name="keyword" id="keyword " class="form-control"  type="text" style="width:300px;" placeholder="search by keyword">
+					                </div>
+					               
+					                <div class="input-field third-wrap">
+					                	<button class="btn-search" type="submit" style="background: #6411f2;">
+						                    <svg class="svg-inline--fa fa-search fa-w-16" aria-hidden="true" data-prefix="fas" data-icon="search" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+						                      <path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path>
+						                    </svg>
+			                 			</button>
+					                </div>
+					            </div>
+					         </form>
+					  </div>
+					  
+					  
 				</div>
 			</div>
 		</div>

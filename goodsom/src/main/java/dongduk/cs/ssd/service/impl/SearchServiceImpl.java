@@ -16,9 +16,9 @@ import dongduk.cs.ssd.dao.AuctionDao;
  * @since 2020.05.05
  */
 
-//@Service
+@Service
 public class SearchServiceImpl implements SearchService{
-	/*
+	
 	@Autowired
 	private GroupBuyDao groupBuy;
 	@Autowired
@@ -26,13 +26,12 @@ public class SearchServiceImpl implements SearchService{
 	
 	@Override
 	public List<GroupBuy> groupBuyListByKeyword(String keyword) {
-		return groupBuy.getGroupBuyListByKeyword(keyword);
+		return groupBuy.groupBuyListByKeyword(keyword);
 	}
 
 	@Override
 	public List<Auction> auctionListByKeyword(String keyword) {
-		return auction.getAuctionListByKeyword(keyword);
+		return auction.auctionListByKeyword(keyword);
 	}
-	*/
-
+	
 }
