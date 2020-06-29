@@ -9,14 +9,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import javax.validation.constraints.Future;
 import javax.validation.constraints.FutureOrPresent;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Positive;
-import javax.validation.constraints.PositiveOrZero;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
@@ -58,8 +54,8 @@ public class Auction implements Serializable {
 		return userId;
 	}
 
-	public void setUserId(int userId) {
-		this.userId = userId;
+		public void setUserId(int userId) {
+			this.userId = userId;
 	}
 	
 	public List<Bid> getBids() {

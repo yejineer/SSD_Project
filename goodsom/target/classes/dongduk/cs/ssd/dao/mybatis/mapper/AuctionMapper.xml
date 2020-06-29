@@ -50,7 +50,7 @@
   <update id="updateAuction" parameterType="dongduk.cs.ssd.domain.Auction">
    	UPDATE AUCTIONS
     SET title=#{title}, content=#{content}, img=#{img}, startPrice=#{startPrice}, 
- 		ENDDATE=#{endDate}, MAXPRICE=#{maxPrice}
+ 		ENDDATE=#{endDate}, MAXPRICE=#{maxPrice}, state=#{state}
   	WHERE  AUCTIONID=#{auctionId}
   </update>
   

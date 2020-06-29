@@ -67,7 +67,7 @@ function orderAuction() {
 		<div class="container">
 			<div class="row align-items-center">
 				<div class="col-md-6 mb-5 mb-md-0">
-					<img src="${auction.img}" alt="Image" class="img-fluid">
+					<img src="${auction.img}" onerror="this.src='<%=request.getContextPath()%>/resources/images/somsom.jpg'" alt="Image" class="img-fluid">
 				</div>
 
 				<div class="col-md-5 ml-auto">
