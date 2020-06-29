@@ -175,7 +175,7 @@
 								<form:select path="order.cardBank" items="${cardBanks}" />
 								<form:errors path="order.cardBank" cssClass="error" />
 								<form:input path="order.cardNo" type="text"
-									class="form-control" placeholder="카드번호를 입력하세요" /> 
+									class="form-control" placeholder="카드번호를 입력하세요 ex) 1234-1234-1234-1234" /> 
 								</div>
 								<form:errors path="order.cardNo" cssClass="error" />
 							</div>
@@ -183,21 +183,21 @@
 							<div class="form-group">
 								<label for="validDate">유효기간</label> 
 								<form:input path="order.validDate" type="text"
-									class="form-control" placeholder="MM/YY" />
+									class="form-control" placeholder="MM/YY ex) 12/34" />
 								<form:errors path="order.validDate" cssClass="error" />	
 							</div>
 
 							<div class="form-group">
 								<label for="cvc">CVC</label> 
 								<form:input path="order.cvc" type="text" 
-									class="form-control" placeholder="123" />
+									class="form-control" placeholder="cvc ex) 123" />
 								<form:errors path="order.cvc" cssClass="error" />	
 							</div>
 
 							<div class="form-group">
 								<label for="phone">전화번호</label> 
 								<form:input path="order.phone" type="text"
-									class="form-control" placeholder="010-1234-5678" />
+									class="form-control" placeholder="phone ex) 010-1234-5678" />
 								<form:errors path="order.phone" cssClass="error" />	
 							</div>
 
@@ -223,7 +223,7 @@
 									</form:select>
 									<form:errors path="order.refundBank" cssClass="error" />	
 									<form:input path="order.refundAccount" type="text"
-										class="form-control" placeholder="환불계좌를 입력하세요" />
+										class="form-control" placeholder="환불계좌를 입력하세요 ex) 123-1234-1234" />
 								</div>
 								<form:errors path="order.refundAccount" cssClass="error" />	 
 							</div>

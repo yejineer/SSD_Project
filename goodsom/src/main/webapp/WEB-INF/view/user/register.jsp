@@ -34,7 +34,7 @@
 
 					<div class="form-group">
 						<label for="name">Email</label> 
-						<form:input path="user.email" class="form-control" placeholder="Email" />
+						<form:input path="user.email" class="form-control" placeholder="Email ex) 20170000@dongduk.ac.kr" />
 						<form:errors path="user.email" cssClass="error" />
 						<form:errors cssClass="error" />
 					</div>
@@ -65,7 +65,7 @@
 
 					<div class="form-group">
 						<label for="name">Phone</label> 
-						<form:input path="user.phone" class="form-control" placeholder="Phone" />
+						<form:input path="user.phone" class="form-control" placeholder="Phone ex) 010-0000-0000" />
 						<form:errors path="user.phone" cssClass="error" />
 					</div>
 
@@ -87,7 +87,7 @@
 								<option value="" selected>은행</option>
 								<form:options items="${cardBanks}" />
 							</form:select>
-							<form:input path="user.refundAccount" class="form-control" placeholder="Account" /> 
+							<form:input path="user.refundAccount" class="form-control" placeholder="Account ex) 123-1234-1234" /> 
 						</div>
 					</div>
 					<br/>

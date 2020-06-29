@@ -97,8 +97,8 @@
 
 		<div class="container-fluid portfolio-wrap bg-light pt-0 site-section">
 		
-			<div class="col-md-6 mr-auto" style="color:red;">
-				<a href="<c:url value='/groupBuy/list.do'></c:url>" class="nav-link">공동구매 더보기</a>
+			<div class="col-md-6 mr-auto">
+				<a href="<c:url value='/groupBuy/list.do'></c:url>" class="btn btn-primary py-3 px-5">공동구매 더보기 &nbsp;></a>
 			</div>
 			
 			<div class="row align-items-end mb-4">
@@ -154,7 +154,7 @@
 			</div>
 			
 			<div class="col-md-6 mr-auto">
-				<a href="<c:url value='/auction/list.do'></c:url>">경매 더보기</a>
+				<a href="<c:url value='/auction/list.do'></c:url>" class="btn btn-primary py-3 px-5">경매 더보기 &nbsp;></a>
 			</div>
 			
 			<div class="row align-items-start">
