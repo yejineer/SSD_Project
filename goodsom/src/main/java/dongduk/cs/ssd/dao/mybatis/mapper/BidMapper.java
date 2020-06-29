@@ -8,8 +8,8 @@ import dongduk.cs.ssd.domain.Bid;
 import dongduk.cs.ssd.domain.User;
 
 /**
- * @author kimdahyee
- * @since  2020.06.24
+ * @author kimdahyee	| Yejin Lee
+ * @since  2020.06.24	| 2020.06.29
  */
 
 public interface BidMapper {
@@ -27,8 +27,9 @@ public interface BidMapper {
 	List<Bid> getBidByUserId(int userId);
 	
 	Bid getSuccessBidByAuctionId(int auctionId);
-	//void updateBid(Bid bid);
+
+	Bid getBidByUserIdAndAuctionId(int userId, int auctionId); // 수정위해(bid 참여한 적이 있는지 확인위해).
 	
-	//User getUserById(int userId);
+	void updateBid(Bid bid);
 	
 }

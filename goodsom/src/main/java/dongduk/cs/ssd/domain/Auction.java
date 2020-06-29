@@ -25,7 +25,6 @@ import org.springframework.web.multipart.MultipartFile;
 public class Auction implements Serializable {
 	private static final String PROCEEDING = "proceeding";
 	private static final int MENUID_AUCTION = 1;
-//	private static final String CLOSED = "closed";
 	
 	int auctionId;
 	@NotEmpty

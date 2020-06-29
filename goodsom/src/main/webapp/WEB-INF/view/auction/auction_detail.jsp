@@ -104,7 +104,7 @@ function orderAuction() {
 					<c:if test="${isWriter eq false}">
 						<div class="d-flex">
 							<form:form modelAttribute="bidForm" method="post" action="/goodsom/auction/bid/create.do">
-								<h5>베팅 금액</h5>&nbsp;&nbsp;<form:errors path="bid.bidPrice" cssClass="error"/>
+								<h5>베팅 금액</h5>
 								<div class="d-flex">
 								<form:input type="hidden" path="bid.auctionId" value="${auction.auctionId}"/>
 									<c:if test="${auction.state eq 'proceeding'}">
@@ -122,6 +122,7 @@ function orderAuction() {
 										</c:if>
 									</c:if>
 								</div>
+								<form:errors path="bid.bidPrice" cssClass="error"/>
 							</form:form>
 						</div>
 					</c:if>
@@ -138,7 +139,7 @@ function orderAuction() {
 			
 			<div class="form-group" align="right">
 				<%-- <c:if test="${(isWriter eq true) and (empty bids) and (auction.state eq 'proceeding')}"> --%>
-				<c:if test="${(isWriter eq true) and (empty bids)}">
+				<c:if test="${(isWriter eq true) and (empty auction.bids)}">
 					<a class="btn btn-primary py-3 px-5" href="javascript:updateAuction()" >수정</a>
 					<a class="btn btn-primary py-3 px-5" href="javascript:deleteAuction()" >삭제</a>
 				</c:if>

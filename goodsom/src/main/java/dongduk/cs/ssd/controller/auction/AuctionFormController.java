@@ -120,7 +120,6 @@ public class AuctionFormController implements ApplicationContextAware  {
 		System.out.println(user.toString());
 //		시간세팅
 		auctionForm.getAuction().timeSet();
-		auctionForm.getAuction().setMaxPrice(auctionForm.getAuction().getStartPrice());
 
 //		파일 업로드 기능
 		System.out.println("uploadDir: " + uploadDir);

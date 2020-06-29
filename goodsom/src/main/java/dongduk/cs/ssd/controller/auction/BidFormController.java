@@ -60,7 +60,7 @@ public class BidFormController {
 		model.addAttribute("writer", userService.getUserByUserId(auction.getUserId()).getNickname());
 		model.addAttribute("isWriter", false);
 	
-		if (bidForm.getBid().getBidPrice() < auction.getMaxPrice()) {
+		if (bidForm.getBid().getBidPrice() <= auction.getMaxPrice()) {
 			result.rejectValue("bid.bidPrice", "invalid");
 		}
 
@@ -79,26 +79,30 @@ public class BidFormController {
 			return AUCTION_DETAIL;
 		}
 		
+//		bid 생성
 		UserSession userSession = (UserSession)session.getAttribute("userSession");
 		int userId = (int) userSession.getUser().getUserId();
-
+		
 		java.util.Date utilDate = new java.util.Date();
 		java.sql.Date bidDate = new java.sql.Date(utilDate.getTime());
 
-		System.out.println("Betting auctionId checking: " + auctionId);
-		System.out.println("bid생성 전 최고금액" + auction.getMaxPrice());
-		System.out.println("배팅금액" + bidForm.getBid().getBidPrice());
-
-//		bid 생성
-		Bid newBid = new Bid(userId, auctionId, bidForm.getBid().getBidPrice(), bidDate);
-		bidService.createBid(newBid);
+//		해당 경매에 한 번이라도 입찰한 적이 있으면 updateBide(), 없으면 createBid()를 해준다.
+		Bid bid = bidService.getBidByUserIdAndAuctionId(userId, auctionId);
+		if (bid == null) {
+			bid = new Bid(userId, auctionId, bidForm.getBid().getBidPrice(), bidDate);
+			bidService.createBid(bid);
+		} else {
+			bid.setBidPrice(bidForm.getBid().getBidPrice());
+			bidService.updateBid(bid);
+		}
 
 //		Auction객체의 최고 금액 변경 후 Auction객체 다시 가져와 넘겨주기
 		int updatedAutionId = auctionService.updateAuctionMaxPrice(bidForm.getBid().getBidPrice(), auctionId); // auction table maxPrice update
 		model.addAttribute("auction", auctionService.getAuction(updatedAutionId));;
+		
 //		auction_detail.jsp에 넘겨줄 model 값 설정
-		model.addAttribute("date_maxBid", newBid.getBidDate());
-		User user_maxBid = userService.getUserByUserId(newBid.getUserId());
+		model.addAttribute("date_maxBid", bid.getBidDate());
+		User user_maxBid = userService.getUserByUserId(bid.getUserId());
 		model.addAttribute("user_maxBid", user_maxBid.getNickname());
 		session.setAttribute("bidForm", new BidForm());
 		model.addAttribute("bidForm", session.getAttribute("bidForm"));

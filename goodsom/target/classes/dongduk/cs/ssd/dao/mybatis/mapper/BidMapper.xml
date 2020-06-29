@@ -41,12 +41,11 @@
   	  (BIDID_SEQ.nextval, #{bidPrice}, #{bidDate}, #{userId}, #{auctionId}) 
   </insert>
   
-  <select id="getBidByUserId" resultType="dongduk.cs.ssd.domain.Bid" parameterType="int">
+  <select id="getBidByUserId" resultType="Bid" parameterType="int">
     SELECT *
-	FROM BIDS
-	WHERE USERID = #{userId}
+   FROM BIDS
+   WHERE USERID = #{userId}
   </select> 
-  
   
   <select id="getSuccessBidByAuctionId" resultType="dongduk.cs.ssd.domain.Bid" parameterType="int">
    <![CDATA[
@@ -56,10 +55,17 @@
 	WHERE ROWNUM <=1 AND AUCTIONID = #{auctionId}
 	]]>
   </select> 
- <!--  <update id="updateBid" parameterType="Bid">
+  
+  <select id="getBidByUserIdAndAuctionId" resultType="BId">
+  	SELECT *
+  	FROM BIDS
+  	WHERE USERID = #{param1} AND AUCTIONID = #{param2}
+  </select>
+  
+  <update id="updateBid" parameterType="Bid">
   	UPDATE BIDS 
-  	SET
-  	WHERE  
-  </update> -->
+  	SET BIDPRICE = #{bidPrice}
+  	WHERE bidId = #{bidId}
+  </update>
   
 </mapper>
