@@ -1,13 +1,19 @@
 package dongduk.cs.ssd.controller.groupBuy;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,6 +22,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.multipart.MultipartFile;
 
 import dongduk.cs.ssd.controller.auction.Hour;
 import dongduk.cs.ssd.controller.auction.Minute;
@@ -24,18 +32,27 @@ import dongduk.cs.ssd.domain.GroupBuy;
 import dongduk.cs.ssd.service.GroupBuyService;
 
 /**
- * @author Seonmi Hwang | HK
- * @since 2020.05.06	| 2020.06.26
+ * @author Seonmi Hwang | HK			| Yejin Lee
+ * @since 2020.05.06	| 2020.06.26	| 2020.06.29
  */
 
 @Controller
 //@SessionAttributes("groupBuySession")
 @SessionAttributes("groupBuyForm")
 @RequestMapping("/groupBuy")
-public class GroupBuyFormController {
+public class GroupBuyFormController implements ApplicationContextAware {
 	
 	private static final String GROUPBUY_FORM = "groupBuy/groupBuy_form";
 	private static final String GROUPBUY_DETAIL = "groupBuy/groupBuy_detail";
+	private WebApplicationContext context;	
+	private String uploadDir;
+
+	@Override					// life-cycle callback method
+	public void setApplicationContext(ApplicationContext appContext)
+		throws BeansException {
+		this.context = (WebApplicationContext) appContext;
+		this.uploadDir = context.getServletContext().getRealPath("/resources/images/");
+	}
 	
 	@Autowired
 	private GroupBuyService groupBuyService;
@@ -75,12 +92,17 @@ public class GroupBuyFormController {
 		String requestUrl = reqPage.trim();
 		
 //		default img 세팅 & initGroupBuy
-		groupBuyForm.getGroupBuy().initGroupBuy(user.getUser());
-		
-		if (groupBuyForm.getGroupBuy().getImg().trim() == "") {
-			groupBuyForm.getGroupBuy().initImg(request.getContextPath());
-        }
+//		groupBuyForm.getGroupBuy().initGroupBuy(user.getUser());
+//		
+//		if (groupBuyForm.getGroupBuy().getImg().trim() == "") {
+//			groupBuyForm.getGroupBuy().initImg(request.getContextPath());
+//        }
 				
+//		대표 이미지 선택 안 했을 시
+		if (groupBuyForm.getGroupBuy().getReport().getSize() == 0) {
+			result.rejectValue("groupBuy.report", "notSelected");
+		}
+		
 		if(result.hasErrors()) {
 			if(requestUrl.equals("/groupBuy/update.do")) {
 				return "redirect:form.do?groupBuyId=" + groupBuyForm.getGroupBuy().getGroupBuyId();
@@ -92,10 +114,22 @@ public class GroupBuyFormController {
 		groupBuyForm.getGroupBuy().timeSet();
 		
 		if (reqPage.trim().equals("/groupBuy/update.do")) { 	//		update
+//			기존 파일 삭제 후 파일 업로드
+			GroupBuy oldGroupBuy = groupBuyService.getGroupBuy(groupBuyForm.getGroupBuy().getGroupBuyId());
+			String[] oldFileName = oldGroupBuy.getImg().split("/");
+			if (deleteFile(uploadDir + oldFileName[4])) {
+				System.out.println("파일 삭제 성공! 이제부터 파일 업로드.");
+			}
+//			파일 업로드 기능
+			String savedFileName = uploadFile(groupBuyForm.getGroupBuy().getReport());
+			groupBuyForm.getGroupBuy().setImg(request.getContextPath() + "/resources/images/"+ savedFileName);
 //			db: groupBuy update & option 삭제 후, 다시 생성
 			groupBuyId = groupBuyService.updateGroupBuy(groupBuyForm.getGroupBuy());
 			groupBuyService.updateOptions(groupBuyForm.getGroupBuy());
-		} else { 												//		create	
+		} else { 	// create
+//			파일 업로드 기능
+			String savedFileName = uploadFile(groupBuyForm.getGroupBuy().getReport());
+			groupBuyForm.getGroupBuy().setImg(request.getContextPath() + "/resources/images/"+ savedFileName);	
 //			db: groupBuy create 후, id 받아오기
 			groupBuyService.createGroupBuy(groupBuyForm.getGroupBuy());
 			groupBuyId = groupBuyForm.getGroupBuy().getGroupBuyId();
@@ -134,6 +168,29 @@ public class GroupBuyFormController {
 		this.groupBuyService = groupBuyService;
 	}
 	*/
+//	파일명 랜덤생성 메서드
+	private String uploadFile(MultipartFile report) {
+//		uuid 생성(Universal Unique IDentifier, 범용 고유 식별자)
+		UUID uuid = UUID.randomUUID();
+//		랜덤생성 + 파일이름 저장
+		String savedName = uuid.toString() + "_" + report.getOriginalFilename();
+//		임시디렉토리에 저장된 업로드된 파일을 지정된 디렉토리로 복사
+		File file = new File(uploadDir + savedName);
+		try {
+			report.transferTo(file);
+		} catch (IllegalStateException | IOException e) {
+			e.printStackTrace();
+		}
+		return savedName;
+	}
+	
+//	파일명 삭제 메서드
+	private boolean deleteFile(String oldFileSavedName) {
+//		서버에 저장된 업로드된 파일을 삭제
+		boolean result = new File(oldFileSavedName).delete();
+		return result;
+	}
+	
 	@ModelAttribute("hourData")
 	protected List<Hour> referenceData1() throws Exception {
 		List<Hour> hour = new ArrayList<Hour>();
