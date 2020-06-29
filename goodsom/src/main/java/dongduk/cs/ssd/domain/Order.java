@@ -229,6 +229,9 @@ public class Order {
 		refundBank = user.getRefundBank();
 		refundAccount = user.getRefundAccount();
 		
+		totalPrice = 0;
+		totalQuantity = 0;
+		
 		// GroupBuy를 결제하는 경우
 		if (lineGroupBuyForm != null) {
 			lineGroupBuys = new ArrayList<LineGroupBuy>();
