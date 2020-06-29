@@ -94,12 +94,13 @@ public class OrderFormController {
 		if (bindingResult.hasErrors()) {
 			return new ModelAndView(orderFormView);
 		}
-
+		
+		String beforeState = orderForm.getOrder().getGroupBuy().getState();
 		int totalQuantity = orderForm.getOrder().getTotalQuantity();
 		orderForm.getOrder().getGroupBuy().orderSet(totalQuantity);
 		
 		GroupBuy groupBuy = orderForm.getOrder().getGroupBuy();
-		if(groupBuy.getState().equals("achieved")) {
+		if(groupBuy.getState().equals("achieved") && beforeState.equals("proceeding")) {
 			notiService.createNoti_g(groupBuy);
 		}
 		

@@ -44,7 +44,7 @@ function deleteNoti() {
        <div>
          
           <div align="right">
-         	<p>&nbsp; &nbsp;${type} : ${nickname}님의 알림함 <br/></p>
+         	<p>&nbsp; &nbsp; ${nickname}님의 알림함 <br/></p>
           </div>
           
          	<h2 align="center">제목: ${noti.title}</h2><br/>
