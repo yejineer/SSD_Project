@@ -26,11 +26,19 @@ public class MybatisNotiDao implements NotificationDao {
 		notiMapper.createNoti_a(bid);
 	}
 	
+	public Notification getNoti(int notiId) throws DataAccessException{
+		return notiMapper.getNoti(notiId);
+	}
+	
 //	public List<Bid> getBidByUserId(int userId)throws DataAccessException{
 //		return notiMapper.getBidByUserId(userId);
 //	}
 	
 	public List<Notification> getNotiByUserId(int userId) throws DataAccessException{
 		return notiMapper.getNotiByUserId(userId);
+	}
+	
+	public void deleteNoti(int notiId) throws DataAccessException{
+		notiMapper.deleteNoti(notiId);
 	}
 }

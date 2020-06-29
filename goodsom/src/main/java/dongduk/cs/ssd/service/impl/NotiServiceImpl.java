@@ -25,11 +25,11 @@ public class NotiServiceImpl implements NotiService {
 		return notiDao.getNotiByUserId(userId);
 	}
 
-//	@Override
-//	public Notification getNoti(int notiId) {
-//		return notiDao.getNoti(notiId);
-//	}
-//
+	@Override
+	public Notification getNoti(int notiId) {
+		return notiDao.getNoti(notiId);
+	}
+
 //	@Override
 //	public void createNoti_g(int groupBuyId) {
 //		notiDao.createNoti_g(groupBuyId);
@@ -45,10 +45,10 @@ public class NotiServiceImpl implements NotiService {
 //		return notiDao.getBidByUserId(userId);
 //	}
 
-//	@Override
-//	public void deleteNoti(int notiId) {
-//		notiDao.deleteNoti(notiId);
-//	}
+	@Override
+	public void deleteNoti(int notiId) {
+		notiDao.deleteNoti(notiId);
+	}
 	
 
 }

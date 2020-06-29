@@ -16,8 +16,18 @@
   	</selectKey>	
   </insert>
   
+  <select id="getNoti" resultType="dongduk.cs.ssd.domain.Notification"  parameterType="int">
+  	SELECT * FROM NOTIFICATIONS_A
+  	WHERE NOTIID = #{notiId}
+  </select>
+  
   <select id="getNotiByUserId" resultType="dongduk.cs.ssd.domain.Notification">
 	  SELECT * FROM NOTIFICATIONS_A
 	  WHERE USERID = #{userId}
   </select>
+  
+  <delete id="deleteNoti" parameterType="java.lang.Integer">
+    DELETE FROM NOTIFICATIONS_A
+    WHERE NOTIID = #{notiId}
+  </delete>
 </mapper>
