@@ -19,8 +19,11 @@ import org.springframework.web.servlet.ModelAndViewDefiningException;
 
 import dongduk.cs.ssd.controller.groupBuy.LineGroupBuyForm;
 import dongduk.cs.ssd.controller.user.UserSession;
+import dongduk.cs.ssd.domain.GroupBuy;
 import dongduk.cs.ssd.domain.User;
 import dongduk.cs.ssd.service.AuctionService;
+import dongduk.cs.ssd.service.GroupBuyService;
+import dongduk.cs.ssd.service.NotiService;
 import dongduk.cs.ssd.service.OrderService;
 import dongduk.cs.ssd.validator.OrderFormValidator;
 
@@ -38,6 +41,10 @@ public class OrderFormController {
 	private OrderService orderService;
 	@Autowired
 	private AuctionService auctionService;
+	@Autowired
+	private GroupBuyService groupBuyService;
+	@Autowired
+	private NotiService notiService;
 	
 	private static final String orderFormView = "order/order_create";
 	private static final String detailView = "order/payment_detail";
@@ -90,6 +97,11 @@ public class OrderFormController {
 
 		int totalQuantity = orderForm.getOrder().getTotalQuantity();
 		orderForm.getOrder().getGroupBuy().orderSet(totalQuantity);
+		
+		GroupBuy groupBuy = orderForm.getOrder().getGroupBuy();
+		if(groupBuy.getState().equals("achieved")) {
+			notiService.createNoti_g(groupBuy);
+		}
 		
 		int orderSuccess = orderService.createOrder(orderForm.getOrder());
 		

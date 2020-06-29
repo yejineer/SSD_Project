@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import dongduk.cs.ssd.dao.NotificationDao;
 import dongduk.cs.ssd.domain.Bid;
+import dongduk.cs.ssd.domain.GroupBuy;
 import dongduk.cs.ssd.domain.Notification;
 import dongduk.cs.ssd.service.NotiService;
 
@@ -21,13 +22,18 @@ public class NotiServiceImpl implements NotiService {
 	private NotificationDao notiDao;
 	
 	@Override
-	public List<Notification> getNotiByUserId(int userId){
-		return notiDao.getNotiByUserId(userId);
+	public List<Notification> getAuctionNotiByUserId(int userId){
+		return notiDao.getAuctionNotiByUserId(userId);
 	}
 
 	@Override
-	public Notification getNoti(int notiId) {
-		return notiDao.getNoti(notiId);
+	public Notification getAuctionNoti(int notiId) {
+		return notiDao.getAuctionNoti(notiId);
+	}
+	
+	@Override
+	public Notification getGroupBuyNoti(int notiId) {
+		return notiDao.getGroupBuyNoti(notiId);
 	}
 
 //	@Override
@@ -40,15 +46,28 @@ public class NotiServiceImpl implements NotiService {
 		notiDao.createNoti_a(bid);
 	}
 	
+	@Override
+	public void createNoti_g(GroupBuy groupBuy) {
+		notiDao.createNoti_g(groupBuy);
+	}
+	
+	@Override
+	public List<Notification> getGroupBuyNotiByUserId(int userId){
+		return notiDao.getGroupBuyNotiByUserId(userId);
+	}
+	
 //	@Override
 //	public List<Bid> getBidByUserId(int userId){
 //		return notiDao.getBidByUserId(userId);
 //	}
 
 	@Override
-	public void deleteNoti(int notiId) {
-		notiDao.deleteNoti(notiId);
+	public void deleteAuctionNoti(int notiId) {
+		notiDao.deleteAuctionNoti(notiId);
 	}
 	
-
+	@Override
+	public void deleteGroupBuyNoti(int notiId) {
+		notiDao.deleteGroupBuyNoti(notiId);
+	}
 }

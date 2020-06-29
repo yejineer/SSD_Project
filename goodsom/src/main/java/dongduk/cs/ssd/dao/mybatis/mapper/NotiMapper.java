@@ -4,15 +4,25 @@ import java.util.List;
 
 
 import dongduk.cs.ssd.domain.Bid;
+import dongduk.cs.ssd.domain.GroupBuy;
 import dongduk.cs.ssd.domain.Notification;
 
 public interface NotiMapper {
 	void createNoti_a(Bid bid); // successBidders table
 
 //	List<Bid> getBidByUserId(int userId);
-	Notification getNoti(int notiId);
+	Notification getAuctionNoti(int notiId);
 	
-	List<Notification> getNotiByUserId(int userId);
+	Notification getGroupBuyNoti(int notiId);
 	
-	void deleteNoti(int notiId);
+	List<Notification> getAuctionNotiByUserId(int userId);
+	
+	List<Notification> getGroupBuyNotiByUserId(int userId);
+	
+	void deleteAuctionNoti(int notiId);
+	
+	void createNoti_g(GroupBuy groupBuy);
+	
+	void deleteGroupBuyNoti(int notiId);
+	
 }

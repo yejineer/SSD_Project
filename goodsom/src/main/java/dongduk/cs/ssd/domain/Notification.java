@@ -10,6 +10,7 @@ public class Notification {
 	String title;
 	String content;
 	Date notiDate;
+	String state;
 	
 	public Notification() {
 	}
@@ -69,5 +70,14 @@ public class Notification {
 	public void setNotiDate(Date notiDate) {
 		this.notiDate = notiDate;
 	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+	
 	
 }

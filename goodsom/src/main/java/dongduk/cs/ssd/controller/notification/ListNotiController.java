@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import dongduk.cs.ssd.controller.user.UserSession;
@@ -38,15 +39,28 @@ public class ListNotiController {
 	public ModelAndView handleRequest(HttpSession session) throws Exception {
 		UserSession userSession  = (UserSession)session.getAttribute("userSession");
 		User user = userSession.getUser();
-		List<Notification> userNotiList = null;
-		
-//		해당 유저가 배팅한 모든 Bid 정보
-		userNotiList = notiService.getNotiByUserId(user.getUserId());
+		List<Notification> bidNotiList = null;
+		List<Notification> groupBuyNotiList = null;
 		
 		ModelAndView mov = new ModelAndView();
+		
+		bidNotiList = notiService.getAuctionNotiByUserId(user.getUserId());
+		for(int i=0; i<bidNotiList.size(); i++) {
+				bidNotiList.get(i).setContent("참여한 경매가 낙찰되었습니다. 결제를 진행해주세요!");
+		}
+			
+		groupBuyNotiList = notiService.getGroupBuyNotiByUserId(user.getUserId());
+		for(int i=0; i<groupBuyNotiList.size(); i++) {
+			if( (groupBuyNotiList.get(i).getState()).equals("closed") ) {
+				groupBuyNotiList.get(i).setContent("참여한 공동구매가 마감되었습니다.");
+			}else {
+				groupBuyNotiList.get(i).setContent("참여한 공동구매가 목표 인원을 달성하여 성사되었습니다!");
+			}
+		}
+		
 		mov.addObject("nickname", user.getNickname());
-		mov.addObject("message", "참여한 경매가 낙찰되었습니다. 결제를 진행해주세요!");
-		mov.addObject("userNotiList", userNotiList);
+		mov.addObject("bidNotiList", bidNotiList);
+		mov.addObject("groupBuyNotiList", groupBuyNotiList);
 		mov.setViewName(formViewName);
 		
 		return mov;
