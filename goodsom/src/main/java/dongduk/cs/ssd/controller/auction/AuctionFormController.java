@@ -2,13 +2,9 @@ package dongduk.cs.ssd.controller.auction;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.NumberFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import java.util.UUID;
-import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -16,19 +12,14 @@ import javax.validation.Valid;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.context.WebApplicationContext;
@@ -67,10 +58,6 @@ public class AuctionFormController implements ApplicationContextAware  {
 	
 	@Autowired
 	private AuctionService auctionService;
-	@Autowired
-	private UserService userService;
-	@Autowired
-	private BidService bidService;
 
 	@ModelAttribute("auctionForm")
 	public AuctionForm formBacking(HttpServletRequest request, Model model, SessionStatus sessionStatus) throws Exception{
@@ -121,19 +108,28 @@ public class AuctionFormController implements ApplicationContextAware  {
 //		시간세팅
 		auctionForm.getAuction().timeSet();
 
-//		파일 업로드 기능
-		System.out.println("uploadDir: " + uploadDir);
-		String savedFileName = uploadFile(auctionForm.getAuction().getReport());
-		auctionForm.getAuction().setImg(request.getContextPath() + "/resources/images/" + savedFileName);
 		
 //		경매 update/create 작업
-//		auctionForm.getAuction().setStartPrice(Integer.valueOf(auctionForm.getInputPrice()));
 		if (requestUrl.equals("/auction/update.do")) { // update
+			Auction oldAuction = auctionService.getAuction(auctionForm.getAuction().getAuctionId());
+//			기존 파일 삭제 후 파일 업로드
+			String[] oldFileName = oldAuction.getImg().split("/");
+			if (deleteFile(uploadDir + oldFileName[4])) {
+				System.out.println("파일 삭제 성공! 이제부터 파일 업로드.");
+			}
+//			파일 업로드 기능
+			String savedFileName = uploadFile(auctionForm.getAuction().getReport());
+			auctionForm.getAuction().setImg(request.getContextPath() + "/resources/images/"+ savedFileName);
+			
 			System.out.println(auctionForm.getAuction().toString());
 			auctionForm.getAuction().setState("proceeding");
 			int auctionId = auctionService.updateAuction(auctionForm.getAuction());
 			model.addAttribute("auction", auctionService.getAuction(auctionId));
 		} else { // create
+//			파일 업로드 기능
+			String savedFileName = uploadFile(auctionForm.getAuction().getReport());
+			auctionForm.getAuction().setImg(request.getContextPath() + "/resources/images/" + savedFileName);
+			
             auctionForm.getAuction().initAuction(user.getUser());
 			System.out.println("[AuctionFormController] auctionForm 값: " + auctionForm.toString());
 			auctionService.createAuction(auctionForm.getAuction());
@@ -173,10 +169,12 @@ public class AuctionFormController implements ApplicationContextAware  {
 		return savedName;
 	}
 	
-//	@InitBinder
-//	public void initBinder(WebDataBinder binder) {
-//	    binder.registerCustomEditor(MultipartFile.class, "auction.report",new StringTrimmerEditor(true));
-//	} 
+//	파일명 삭제 메서드
+	private boolean deleteFile(String oldFileSavedName) {
+//		서버에 저장된 업로드된 파일을 삭제
+		boolean result = new File(oldFileSavedName).delete();
+		return result;
+	}
 	
 	@ModelAttribute("hourData")
 	protected List<Hour> referenceData1() throws Exception {
