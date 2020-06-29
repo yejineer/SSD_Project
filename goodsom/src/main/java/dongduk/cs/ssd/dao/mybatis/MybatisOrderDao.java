@@ -46,9 +46,9 @@ public class MybatisOrderDao implements OrderDao {
 
 	@Override
 	@Transactional
-	public int createOrder(Order order) throws DataAccessException {
+	public void createOrder(Order order) throws DataAccessException {
 		// ORDERS 테이블에 order 삽입
-		int orderSuccess = orderMapper.createOrder(order);
+		orderMapper.createOrder(order);
 		
 		// GroupBuy를 결제하는 경우
 		List<LineGroupBuy> lineGroupBuys = order.getLineGroupBuys();
@@ -56,10 +56,10 @@ public class MybatisOrderDao implements OrderDao {
 			// LINEGROUPBUYS 테이블에 lineGroupBuy들 삽입
 			for (LineGroupBuy lineGroupBuy : lineGroupBuys) {
 				lineGroupBuy.setOrderId(order.getOrderId());
-				orderSuccess += lineGroupBuyMapper.insertLineGroupBuy(lineGroupBuy);
+				lineGroupBuyMapper.insertLineGroupBuy(lineGroupBuy);
 			}
 			// GROUPBUYS 테이블에 참여자, 달성률, 상태 update
-			orderSuccess += groupBuyMapper.updateState(order.getGroupBuy());
+			groupBuyMapper.updateState(order.getGroupBuy());
 		}
 		
 		// Auction을 결제하는 경우
@@ -69,10 +69,9 @@ public class MybatisOrderDao implements OrderDao {
 		
 		if (successBidder != null) {
 			successBidder.setOrderId(order.getOrderId());
-			orderSuccess += successBidderMapper.insertSuccessBidder(successBidder);
+			successBidderMapper.insertSuccessBidder(successBidder);
 		}
 		
-		return orderSuccess;
 	}
 	
 	@Override

@@ -3,8 +3,8 @@ package dongduk.cs.ssd.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import dongduk.cs.ssd.dao.AuctionDao;
 import dongduk.cs.ssd.dao.GroupBuyDao;
@@ -22,7 +22,6 @@ import dongduk.cs.ssd.service.OrderService;
  */
 
 @Service
-@Transactional
 public class OrderServiceImpl implements OrderService {
 
 	@Autowired
@@ -46,7 +45,12 @@ public class OrderServiceImpl implements OrderService {
 
 	@Override
 	public int createOrder(Order order) {
-		return orderDao.createOrder(order);
+		try {
+			orderDao.createOrder(order);
+		} catch(DataAccessException ex) {
+			return 0;
+		}
+		return 1;
 	}
 	
 	@Override

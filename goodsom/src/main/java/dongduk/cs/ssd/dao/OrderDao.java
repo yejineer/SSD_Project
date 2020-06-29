@@ -13,7 +13,7 @@ public interface OrderDao {
 
 	  Order getOrder(int orderId) throws DataAccessException;
 
-	  int createOrder(Order order) throws DataAccessException;
+	  void createOrder(Order order) throws DataAccessException;
 
 	  Order getOrderWithLineGroupBuys(int orderId) throws DataAccessException;
 
