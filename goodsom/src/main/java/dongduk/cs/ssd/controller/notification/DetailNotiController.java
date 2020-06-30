@@ -37,15 +37,16 @@ public class DetailNotiController {
 		Notification noti;
 		int userId;
 		User user;
-		if(type == 1) {
+		if(type == 1) {		// auction
 			noti = notiService.getAuctionNoti(notiId);
 			userId = noti.getUserId();
 			user = userService.getUserByUserId(userId);
-			
-		}else {
+			mov.addObject("id", noti.getAuctionId());
+		}else {				// groupBuy
 			noti = notiService.getGroupBuyNoti(notiId);
 			userId = noti.getUserId();
 			user = userService.getUserByUserId(userId);
+			mov.addObject("id", noti.getGroupBuyId());
 		}
 		System.out.println("type: " + type);
 		mov.addObject("nickname", user.getNickname());
