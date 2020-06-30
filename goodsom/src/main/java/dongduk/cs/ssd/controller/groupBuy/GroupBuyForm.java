@@ -44,10 +44,4 @@ public class GroupBuyForm implements Serializable {
 	public void setNewGroupBuy(boolean newGroupBuy) {
 		this.newGroupBuy = newGroupBuy;
 	}
-	
-	/*
-	public boolean isNewGroupBuy() {
-		return newGroupBuy;
-	}
-	*/
 }

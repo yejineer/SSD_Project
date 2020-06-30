@@ -37,7 +37,6 @@ import dongduk.cs.ssd.service.GroupBuyService;
  */
 
 @Controller
-//@SessionAttributes("groupBuySession")
 @SessionAttributes("groupBuyForm")
 @RequestMapping("/groupBuy")
 public class GroupBuyFormController implements ApplicationContextAware {
@@ -79,7 +78,6 @@ public class GroupBuyFormController implements ApplicationContextAware {
 		return GROUPBUY_FORM;
 	}
 	
-	
 	// form -> detail : create & update
 	@RequestMapping(value= {"/create.do", "/update.do"}, method=RequestMethod.POST)
 	public String updateOrSubmit(HttpServletRequest request,
@@ -106,7 +104,6 @@ public class GroupBuyFormController implements ApplicationContextAware {
 				return GROUPBUY_FORM;
 			}
 		}
-		
 //		시간 세팅
 		groupBuyForm.getGroupBuy().timeSet();
 		
@@ -135,7 +132,7 @@ public class GroupBuyFormController implements ApplicationContextAware {
 			groupBuyService.createOptions(groupBuyForm.getGroupBuy());
 		}
 //		스케줄러 => create / update 시 resultDate로 설정
-		groupBuyService.deadLineScheduler(groupBuyForm.getGroupBuy().getResultDate(), groupBuyId);
+		groupBuyService.deadLineScheduler(groupBuyForm.getGroupBuy().getResultDate(), groupBuyId, user.getUser().getUserId());
 		
 //		detail에 필요한 파라미터 세팅
 		GroupBuy groupBuy = groupBuyService.getGroupBuy(groupBuyId);
@@ -160,11 +157,6 @@ public class GroupBuyFormController implements ApplicationContextAware {
 		return GROUPBUY_DETAIL;
 	}
 		
-	/*
-	public void setGroupBuyService(GroupBuyService groupBuyService) {
-		this.groupBuyService = groupBuyService;
-	}
-	*/
 //	파일명 랜덤생성 메서드
 	private String uploadFile(MultipartFile report) {
 //		uuid 생성(Universal Unique IDentifier, 범용 고유 식별자)

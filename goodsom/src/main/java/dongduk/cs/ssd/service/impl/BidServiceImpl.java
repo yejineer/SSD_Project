@@ -3,12 +3,10 @@ package dongduk.cs.ssd.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import dongduk.cs.ssd.dao.BidDao;
 import dongduk.cs.ssd.domain.Bid;
-import dongduk.cs.ssd.domain.User;
 import dongduk.cs.ssd.service.BidService;
 
 /**

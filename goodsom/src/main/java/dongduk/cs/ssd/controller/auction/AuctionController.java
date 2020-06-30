@@ -39,10 +39,8 @@ public class AuctionController {
 	
 	@Autowired
 	AuctionService auctionService;
-	
 	@Autowired
 	UserService userService;
-	
 	@Autowired
 	BidService bidService;
 	
@@ -71,8 +69,7 @@ public class AuctionController {
 //		auction 정보 가져오기
 		Auction auction = auctionService.getAuction(auctionId); 
 		
-//		경매가 마감된 경우
-		// 낙찰자 정보 가져오기 (낙찰자의 userId)
+// 		낙찰자 정보 가져오기 (낙찰자의 userId) -> 낙찰자에게만 '결제하기'버튼이 보이게 하기 위해
 		mav.addObject("successBidderUserId", auctionService.getSuccessBidderUserId(auctionId));
 
 // 		낙찰자가 결제까지 완료한 경우

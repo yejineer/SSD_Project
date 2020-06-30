@@ -28,5 +28,7 @@ public interface NotificationDao {
 	
 	void deleteGroupBuyNoti(int notiId) throws DataAccessException;
 	
+	void notiUserUpdate(int groupBuyId) throws DataAccessException;
+	
 //	List<Bid> getBidByUserId(int userId) throws DataAccessException;
 }

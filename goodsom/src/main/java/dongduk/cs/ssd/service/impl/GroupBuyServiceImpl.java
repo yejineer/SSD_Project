@@ -99,6 +99,7 @@ public class GroupBuyServiceImpl implements GroupBuyService {
 				if(state.equals("closed")) {
 					GroupBuy groupBuy = groupBuyDao.getGroupBuy(groupBuyId);
 					notiDao.createNoti_g(groupBuy);
+					notiDao.notiUserUpdate(groupBuyId);
 					System.out.println("****closed groupBuy and create noti ");
 				}
 			}
