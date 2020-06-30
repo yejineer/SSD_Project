@@ -46,6 +46,15 @@
   	</selectKey>	
   </insert>
   
+  
+  <update id="notiUserUpdate" parameterType="int">
+    UPDATE NOTIFICATIONS_G n set n.userId = (
+        SELECT DISTINCT o.userId
+        FROM orders o , lineGroupBuys l
+        WHERE o.orderId = l.orderId AND n.groupBuyId = l.groupBuyID)
+    WHERE n.groupBuyId = #{groupBuyId}
+  </update>
+  
   <select id="getGroupBuyNotiByUserId" resultType="dongduk.cs.ssd.domain.Notification">
 	  SELECT * FROM NOTIFICATIONS_G
 	  WHERE USERID = #{userId}

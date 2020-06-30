@@ -132,7 +132,7 @@ public class GroupBuyFormController implements ApplicationContextAware {
 			groupBuyService.createOptions(groupBuyForm.getGroupBuy());
 		}
 //		스케줄러 => create / update 시 resultDate로 설정
-		groupBuyService.deadLineScheduler(groupBuyForm.getGroupBuy().getResultDate(), groupBuyId);
+		groupBuyService.deadLineScheduler(groupBuyForm.getGroupBuy().getResultDate(), groupBuyId, user.getUser().getUserId());
 		
 //		detail에 필요한 파라미터 세팅
 		GroupBuy groupBuy = groupBuyService.getGroupBuy(groupBuyId);
