@@ -40,8 +40,8 @@ public class MybatisUserDao implements UserDao {
 		userMapper.createUser(user);
 	}
 
-	public void updateUser(User user) throws DataAccessException {
-		userMapper.updateUser(user);
+	public int updateUser(User user) throws DataAccessException {
+		return userMapper.updateUser(user);
 	}
 
 	public int deleteUser(User user) throws DataAccessException {

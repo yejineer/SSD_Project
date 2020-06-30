@@ -18,7 +18,7 @@ import dongduk.cs.ssd.service.UserService;
  * @since 2020.05.03 | 2020.06.12 | 2020.06.13
  */
 
-@Service("userServiceImpl")
+@Service
 public class UserServiceImpl implements UserService {
 	
 	@Autowired
@@ -44,8 +44,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void updateUser(User user) {
-		userDao.updateUser(user);
+	public int updateUser(User user) {
+		return userDao.updateUser(user);
 	}
 
 	@Override
@@ -77,8 +77,6 @@ public class UserServiceImpl implements UserService {
 		List<GroupBuy> groupBuys = userDao.getGroupBuyList(userId);
 		List<Auction> auctions = userDao.getAuctionList(userId);
 		
-//		System.out.println("[GROUPBUY EXIST?]" + groupBuys.get(0).getState());
-//		System.out.println("[AUCTION EXIST?]" + auctions.get(0).getState());
 		if (groupBuys != null && auctions != null) {
 			for (GroupBuy groupBuy : groupBuys) {
 				if (!groupBuy.getState().equals("closed")) {

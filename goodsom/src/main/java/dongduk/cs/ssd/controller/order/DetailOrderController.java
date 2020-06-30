@@ -25,15 +25,13 @@ public class DetailOrderController {
 	OrderService orderService;
 	
 	@RequestMapping("/order/groupBuy/detail.do")
-	public ModelAndView groupBuyHandleRequest(
+	public ModelAndView groupBuyHandleRequest( // 공동구매
 			@ModelAttribute("userSession") UserSession userSession,
-			@RequestParam("orderId") int orderId
-			) throws Exception {
-		// UserSession의 userId와 orderId에 해당하는 Order의 userId가 같은지 판단하는 코드 추가
+			@RequestParam("orderId") int orderId) throws Exception {
+		
 			ModelAndView mav = new ModelAndView("order/payment_detail");
 			Order order = orderService.getOrderWithLineGroupBuys(orderId);
 			
-			// 공동구매
 			order.setGroupBuy(orderService.getGroupBuy(orderId));
 			
 			mav.addObject("order", order);
@@ -41,15 +39,13 @@ public class DetailOrderController {
 	}
 	
 	@RequestMapping("/order/auction/detail.do")
-	public ModelAndView auctionHandleRequest(
+	public ModelAndView auctionHandleRequest( // 경매
 			@ModelAttribute("userSession") UserSession userSession,
-			@RequestParam("orderId") int orderId
-			) throws Exception {
-		// UserSession의 userId와 orderId에 해당하는 Order의 userId가 같은지 판단하는 코드 추가
+			@RequestParam("orderId") int orderId) throws Exception {
+		
 			ModelAndView mav = new ModelAndView("order/payment_detail");
 			Order order = orderService.getOrder(orderId);
 
-			// 경매
 			order.setAuction(orderService.getAuction(orderId));
 			
 			mav.addObject("order", order);

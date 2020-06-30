@@ -78,7 +78,7 @@ public class LoginController {
 		model.addAttribute("recentGroupBuy", recentGroupBuy);
 		model.addAttribute("recentAuction", recentAuction);
 		
-		System.out.println("[LoginForm : ]" + loginForm);
+		System.out.println("LoginForm : " + loginForm);
 		
 		try {
 			authenticator.authenticate(loginForm); // email과 password가 맞는지 검증

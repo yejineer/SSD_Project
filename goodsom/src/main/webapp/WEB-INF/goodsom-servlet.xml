@@ -25,28 +25,6 @@
 
 	<task:scheduler id="scheduler" pool-size="10" />
 
- 	<mvc:view-controller path="/index/login.do"
-		view-name="user/login" />
-	<mvc:view-controller path="/user/register.do"
-		view-name="user/register" />
-
-	<mvc:view-controller path="/home.do"
-		view-name="home" />
-	<mvc:view-controller path="/about.do"
-		view-name="about" />
-
-	<mvc:view-controller path="/auction/list.do"
-		view-name="auction/auction_list" />
-
-	<mvc:view-controller path="/groupBuy/list.do"
-		view-name="groupBuy/groupBuy_list" />
-	<mvc:view-controller path="/groupBuy/form.do"
-		view-name="groupBuy/groupBuy_form" />
-	<mvc:view-controller path="/groupBuy/detail.do"
-		view-name="groupBuy/groupBuy_detail" />
-
-	<!-- <mvc:view-controller path="/mypage/list.do" view-name="user/mypage_list"/> -->
-
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="viewClass"
@@ -68,6 +46,5 @@
 		</property>
 		<property name="defaultEncoding" value="UTF-8" />
 	</bean>
-
 
 </beans>

@@ -8,8 +8,8 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,6 +32,9 @@ public class UpdateUserFormController {
 	private String formViewName;
 	@Value("user/user_detail")
 	private String successViewName;
+	
+	private static final int FAIL = 0;
+
 	
 	@Autowired
 	private UserService userService;
@@ -62,17 +65,20 @@ public class UpdateUserFormController {
 	
 	@RequestMapping(method = RequestMethod.POST)
 	public String onSubmit(HttpServletRequest request, HttpSession session,
-			@ModelAttribute("userForm") UserForm userForm, BindingResult result) throws Exception {
-		new UserFormValidator().validate(userForm, result);
+			@ModelAttribute("userForm") UserForm userForm, Model model, BindingResult bindingResult) throws Exception {
+		
+		new UserFormValidator().validate(userForm, bindingResult);
 		
 		// 검증 오류 발생 시 다시 form view로 이동
-		if (result.hasErrors()) { return formViewName; }
+		if (bindingResult.hasErrors()) { 
+			return formViewName; 
+			}
 		
-		try {
-			userService.updateUser(userForm.getUser());
-		} catch (DataIntegrityViolationException ex) {
-			result.rejectValue("user.userName", "USER_ID_ALREADY_EXISTS", "User ID already exists: choose a different ID.");
-			return formViewName;
+		int result = userService.updateUser(userForm.getUser());
+		
+		if (result == FAIL) {
+			model.addAttribute("updateComplete", FAIL);
+			return successViewName;
 		}
 		
 		UserSession userSession = new UserSession(userService.getUserByEmail(userForm.getUser().getEmail()));
