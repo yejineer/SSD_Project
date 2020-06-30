@@ -16,7 +16,7 @@
 					class="row align-items-center text-center justify-content-center">
 					<div class="col-lg-6">
 						<h1 class="text-white mb-4">Proceed Order</h1>
-						<p class="lead">결제를 진행하는 화면입니다.</p>
+						<p class="lead">결제를 진행하는 화면</p>
 
 					</div>
 				</div>
@@ -225,9 +225,6 @@
 		</div>
 
 
-
-	</div>
-
 	<script src="js/jquery-3.3.1.min.js"></script>
 	<script src="js/jquery-migrate-3.0.0.js"></script>
 	<script src="js/popper.min.js"></script>
@@ -263,4 +260,3 @@
 </body>
 
 </html>
-

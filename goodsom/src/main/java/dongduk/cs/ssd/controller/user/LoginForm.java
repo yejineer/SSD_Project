@@ -1,23 +1,15 @@
 package dongduk.cs.ssd.controller.user;
 
-//import javax.validation.constraints.Email;
-//import javax.validation.constraints.NotBlank;
+/**
+ * @author Seonmi Hwang
+ * @since 2020.06.28
+ */
 
-public class LoginForm { //command class
+public class LoginForm {
 
-//	@NotBlank @Email
 	private String email;
-//	@NotBlank
 	private String password;
 
-	public LoginForm() {
-		
-	}
-
-	public LoginForm(String email, String password) {
-		this.email = email;
-		this.password = password;
-	}
 	public String getEmail() {
 		return email;
 	}
@@ -38,5 +30,5 @@ public class LoginForm { //command class
 	public String toString() {
 		return "LoginForm [email=" + email + ", password=" + password + "]";
 	}
-}
 
+}

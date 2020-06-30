@@ -95,7 +95,7 @@
 					            <div class="inner-form">
 					            	<div class="input-field first-wrap">
 						               	<div class="input-select">
-						                  <select data-trigger=""  name="choice" id="choice" style="width: 170px;">
+						                  <select data-trigger=""  name="choice" id="choice" style="width:200px; height:40px;">
 						                     	<option value="1">GroupBuy</option>
 						                     	<option value="2">Auction</option>
 											</select> 

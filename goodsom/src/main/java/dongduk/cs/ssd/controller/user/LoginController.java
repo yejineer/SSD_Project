@@ -59,8 +59,6 @@ public class LoginController {
 		return formViewName;
 	}
 
-	// forward : 주소 변경 X, 화면 전환, 대량의 데이터 전달
-	// redirect : 주소 변경 O, 화면 전환, 소량의 데이터 전달 (get 방식만 가능)
 	@RequestMapping(method = RequestMethod.POST)
 	public ModelAndView handleRequest(HttpServletRequest request, HttpSession session,
 			@ModelAttribute("loginForm") LoginForm loginForm, Model model, BindingResult bindingResult) throws Exception {
@@ -80,7 +78,7 @@ public class LoginController {
 		model.addAttribute("recentGroupBuy", recentGroupBuy);
 		model.addAttribute("recentAuction", recentAuction);
 		
-		System.out.println("[LoginForm : ]" + loginForm);
+		System.out.println("LoginForm : " + loginForm);
 		
 		try {
 			authenticator.authenticate(loginForm); // email과 password가 맞는지 검증

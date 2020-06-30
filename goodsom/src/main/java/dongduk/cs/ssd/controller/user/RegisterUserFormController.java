@@ -34,9 +34,7 @@ public class RegisterUserFormController {
 	
 	@Autowired
 	private UserService userService;
-	public void setUserService(UserService userService) {
-		this.userService = userService;
-	}
+
 	
 	@ModelAttribute("userForm")
 	public UserForm formBackingObject(HttpServletRequest request) throws Exception {

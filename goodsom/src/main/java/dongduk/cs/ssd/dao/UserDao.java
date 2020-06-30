@@ -18,13 +18,13 @@ public interface UserDao {
 
 	User getUser(String emailId, String password) throws DataAccessException; // login시 필요
 	
-	User getUserByEmail(String email) throws DataAccessException; // email로 user객체 얻어와서
+	User getUserByEmail(String email) throws DataAccessException; // email로 user객체 얻어옴
 	
-	User getUserByUserId(int userId) throws DataAccessException; // userId로 user객체 얻어와서
+	User getUserByUserId(int userId) throws DataAccessException; // userId로 user객체 얻어옴
 	
 	void createUser(User user) throws DataAccessException;
 
-	void updateUser(User user) throws DataAccessException;
+	int updateUser(User user) throws DataAccessException;
 
 	int deleteUser(User user) throws DataAccessException;
 	

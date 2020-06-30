@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.dao.DataAccessException;
 
 import dongduk.cs.ssd.domain.Bid;
-import dongduk.cs.ssd.domain.User;
 
 
 /**

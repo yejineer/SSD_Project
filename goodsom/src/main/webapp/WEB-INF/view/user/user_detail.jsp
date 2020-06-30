@@ -31,6 +31,9 @@
 	<c:when test="${deleteComplete == 0}">
 		<body onLoad="alert('예상치 못한 문제로 회원탈퇴에 실패했습니다.')">
 	</c:when>
+	<c:when test="${updateComplete == 0}">
+		<body onLoad="alert('예상치 못한 문제로 회원정보 수정에 실패했습니다.')">
+	</c:when>
 	<c:otherwise>
 		<body>
 	</c:otherwise>
@@ -44,7 +47,7 @@
 					class="row align-items-center text-center justify-content-center">
 					<div class="col-lg-6">
 						<h1 class="text-white mb-4">My Page</h1>
-						<p class="lead">회원 정보 조회 및 수정, 공동구매 및 경매에 등록한 목록이나 결제한 목록, 스크랩한 목록을 볼 수 있는 페이지입니다.</p>
+						<p class="lead">회원 정보 조회 및 수정, 공동구매 및 경매에 등록한 목록이나 결제한 목록, 알림 등을 볼 수 있는 페이지</p>
 					</div>
 				</div>
 			</div>

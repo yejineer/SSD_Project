@@ -25,8 +25,6 @@ import dongduk.cs.ssd.service.UserService;
 @SessionAttributes("userSession")
 public class ListMypageController {
 	
-//	@Autowired
-//	ScrapService scrapService;
 	@Autowired
 	UserService userService;
 	@Autowired
@@ -57,11 +55,7 @@ public class ListMypageController {
 		mav.addObject("auctionOrderList", orderService.setAuctionInfo(auctionOrderList));
 		mav.addObject("groupBuyOrderList", orderService.setGroupBuyInfo(groupBuyOrderList));
 		
-//		mav.addObject("scrap_aList", scrapService.getScrap_aList());
-//		mav.addObject("scrap_gList", scrapService.getScrap_gList());
 		return mav;
 	}
-	
-
 	
 }

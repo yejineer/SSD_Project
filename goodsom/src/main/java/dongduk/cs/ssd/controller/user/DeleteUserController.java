@@ -1,17 +1,12 @@
 package dongduk.cs.ssd.controller.user;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.util.WebUtils;
 
 import dongduk.cs.ssd.domain.User;
 import dongduk.cs.ssd.service.UserService;
@@ -25,22 +20,21 @@ import dongduk.cs.ssd.service.UserService;
 @Controller
 public class DeleteUserController {
 	
+	private static final String formViewName = "user/login";
+	private static final String detailViewName = "user/user_detail";
+	
+	private static final int NOT_ALLOWED = -1;
+	private static final int FAIL = 0;
+	private static final int SUCCESS = 1;
+
 	@Autowired
 	private UserService userService;
 	
-	@Value("user/login")
-	private String formViewName;
-	@Value("user/user_detail")
-	private String detailViewName;
-	
-	private int NOT_ALLOWED = -1;
-	private int FAIL = 0;
-	private int SUCCESS = 1;
 	
 	@RequestMapping("/user/delete.do")
 	public ModelAndView handleRequest(HttpSession session,
 			HttpServletResponse response) throws Exception {
-		//로그인한 사용자의 userId를 세션에서 가져와 deleteUser(userId)해준다.
+
 		ModelAndView mav = new ModelAndView();
 		UserSession userSession = (UserSession) session.getAttribute("userSession");
 		User user = userSession.getUser();

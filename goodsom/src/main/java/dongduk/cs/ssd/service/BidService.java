@@ -3,7 +3,6 @@ package dongduk.cs.ssd.service;
 import java.util.List;
 
 import dongduk.cs.ssd.domain.Bid;
-import dongduk.cs.ssd.domain.User;
 
 /**
  * @author Hyekyung Kim | kimdahyee		| Yejin Lee
