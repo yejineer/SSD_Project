@@ -17,18 +17,11 @@ import dongduk.cs.ssd.domain.GroupBuy;
 import dongduk.cs.ssd.service.GroupBuyService;
 
 /**
- * @author Seonmi Hwang
- * @since 2020.05.06
+ * @author Seonmi Hwang | HK 
+ * @since 2020.05.06	| @since 2020.06.22
  */
-/**
- * @author HK
- * @since 2020.06.22
- */
-
-
 
 @Controller
-//@SessionAttributes("groupBuySession")
 public class DeleteGroupBuyController {
 	
 	private static final String GROUPBUY_LIST = "groupBuy/groupBuy_list";
