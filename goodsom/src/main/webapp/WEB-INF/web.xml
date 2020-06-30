@@ -43,6 +43,18 @@
 		<servlet-name>goodsom</servlet-name>
 		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
+	
+	<!-- remoting servlet -->
+	<servlet>
+	    <servlet-name>remoting</servlet-name>
+	    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+	    <load-on-startup>2</load-on-startup>
+	  </servlet>
+	  <servlet-mapping>
+	    <servlet-name>remoting</servlet-name>
+	    <url-pattern>/rest/*</url-pattern>
+	    <url-pattern>*.service</url-pattern>
+	  </servlet-mapping>
 
 	<filter>
 		<filter-name>encodingFilter</filter-name>
