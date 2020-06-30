@@ -90,11 +90,6 @@ public class GroupBuyFormController implements ApplicationContextAware {
 		UserSession user  = (UserSession)session.getAttribute("userSession");
 		String reqPage = request.getServletPath();
 		
-//		default img 세팅 & initGroupBuy
-//		
-//		if (groupBuyForm.getGroupBuy().getImg().trim() == "") {
-//			groupBuyForm.getGroupBuy().initImg(request.getContextPath());
-//        }
 		groupBuyForm.getGroupBuy().initGroupBuy(user.getUser());
 		
 //		대표 이미지 선택 안 했을 시
