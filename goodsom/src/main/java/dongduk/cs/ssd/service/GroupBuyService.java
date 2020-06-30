@@ -30,8 +30,6 @@ public interface GroupBuyService {
 	
 	public void increaseCount(GroupBuy groupBuy);
 	
-//	public List<GroupBuy> getGroupBuyListByKeyword(String keyword);
-	
 	public void deadLineScheduler(Date endDate, int groupBuyId);
 	
 	public List<GroupBuy> getRecentGroupBuyList();

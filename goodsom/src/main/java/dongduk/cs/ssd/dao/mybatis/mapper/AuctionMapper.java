@@ -11,6 +11,7 @@ import dongduk.cs.ssd.domain.Auction;
  * @author Yejin Lee | kimdahyee  | Seonmi Hwang
  * @since 2020.06.12 | 2020.06.25 | 2020.06.29
  */
+
 public interface AuctionMapper { // AuctionMapper.xml에서 구현한 method 이름과 일치해야함!
 	
 	Auction getAuction(int auctionId) throws DataAccessException;
@@ -33,17 +34,12 @@ public interface AuctionMapper { // AuctionMapper.xml에서 구현한 method 이
 	
 	List<Auction> getRecentAuctionList() throws DataAccessException;
 	
-//	List<Bid> getBidByAuctionId(int auctionId) throws DataAccessException;
-	
-//	boolean isAuctionClosed(int auctionId, Date endDate) throws DataAccessException;
 	void increaseCount(Auction auction) throws DataAccessException;
 	
-//	스케줄러
 	void closeEvent(Date curTime);
 	
 	Integer getSuccessBidderUserId(int auctionId);
 	
-//  keyword로 검색
 	List<Auction> auctionListByKeyword(String keyword);
 
 }

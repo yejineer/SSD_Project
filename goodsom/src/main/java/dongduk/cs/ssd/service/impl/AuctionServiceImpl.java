@@ -45,10 +45,6 @@ public class AuctionServiceImpl implements AuctionService {
 	public List<Auction> getAuctionList() {
 		return auctionDao.getAuctionList();
 	}
-	
-	public List<Auction> getAuctionListByKeyword(String keyword) {
-		return auctionDao.getAuctionListByKeyword(keyword);
-	}
 
 	public int createAuction(Auction auction) {
 		return auctionDao.createAuction(auction);
@@ -66,11 +62,7 @@ public class AuctionServiceImpl implements AuctionService {
 		auctionDao.deleteAuction(auctionId);			
 		return auctionDao.getAuctionList();
 	}
-
-//	public List<Bid> getBidByAuctionId(int auctionId) {
-//		return auctionDao.getBidByAuctionId(auctionId);
-//	}
-//
+	
 	public boolean isAuctionClosed(int auctionId, Date endDate) {
 		return auctionDao.isAuctionClosed(auctionId, endDate);
 	}
@@ -82,8 +74,7 @@ public class AuctionServiceImpl implements AuctionService {
 	public List<Auction> getRecentAuctionList() {
 		return auctionDao.getRecentAuctionList();
 	}
-	
-//	스케줄러
+
 	public void deadLineScheduler(Date endDate, final int auctionId) {
 		Runnable updateTableRunner = new Runnable() {	
 			// anonymous class 정의

@@ -26,17 +26,12 @@ public interface AuctionService {
 	
 	List<Auction> getAuctionList();
 	
-	List<Auction> getAuctionListByKeyword(String keyword);
-	
-//	List<Bid> getBidByAuctionId(int auctionId);
-	
 	boolean isAuctionClosed(int auctionId, Date endDate);
 	
 	void increaseCount(Auction auction);
 	
 	List<Auction> getRecentAuctionList();
 	
-//	스케줄러
 	public void deadLineScheduler(Date endDate, int auctionId);
 	
 	public Integer getSuccessBidderUserId(int auctionId);

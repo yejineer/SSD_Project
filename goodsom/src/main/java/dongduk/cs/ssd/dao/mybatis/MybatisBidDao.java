@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 
 import dongduk.cs.ssd.dao.BidDao;
 import dongduk.cs.ssd.domain.Bid;
-import dongduk.cs.ssd.domain.User;
 import dongduk.cs.ssd.dao.mybatis.mapper.BidMapper;
 
 /**

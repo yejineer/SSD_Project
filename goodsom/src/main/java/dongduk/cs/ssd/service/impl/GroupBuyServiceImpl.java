@@ -79,17 +79,11 @@ public class GroupBuyServiceImpl implements GroupBuyService {
 	public void increaseCount(GroupBuy groupBuy) {
 		groupBuyDao.increaseCount(groupBuy);
 	}
-	/*
-	public List<GroupBuy> getGroupBuyListByKeyword(String keyword) {
-		return groupBuyDao.getGroupBuyListByKeyword(keyword);
-	}
-	*/
 	
 	public List<GroupBuy> getRecentGroupBuyList() {
 		return groupBuyDao.getRecentGroupBuyList();
 	}
-	
-//	스케줄러
+
 	public void deadLineScheduler(Date endDate, final int groupBuyId) {
 		Runnable updateTableRunner = new Runnable() {	
 			// anonymous class 정의
