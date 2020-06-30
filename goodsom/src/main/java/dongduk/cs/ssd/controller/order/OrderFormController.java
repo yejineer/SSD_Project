@@ -22,7 +22,6 @@ import dongduk.cs.ssd.controller.user.UserSession;
 import dongduk.cs.ssd.domain.GroupBuy;
 import dongduk.cs.ssd.domain.User;
 import dongduk.cs.ssd.service.AuctionService;
-import dongduk.cs.ssd.service.GroupBuyService;
 import dongduk.cs.ssd.service.NotiService;
 import dongduk.cs.ssd.service.OrderService;
 import dongduk.cs.ssd.validator.OrderFormValidator;
@@ -32,24 +31,22 @@ import dongduk.cs.ssd.validator.OrderFormValidator;
  * @since 2020.05.04	| 2020.06.26
  */
 
-
 @Controller
 @SessionAttributes({"lineGroupBuyForm", "orderForm"})
 public class OrderFormController {
+	
+	private static final String orderFormView = "order/order_create";
+	private static final String detailView = "order/payment_detail";
+
+	private static final int FAIL = 0; // 결제가 실패했을 경우
 	
 	@Autowired
 	private OrderService orderService;
 	@Autowired
 	private AuctionService auctionService;
 	@Autowired
-	private GroupBuyService groupBuyService;
-	@Autowired
 	private NotiService notiService;
-	
-	private static final String orderFormView = "order/order_create";
-	private static final String detailView = "order/payment_detail";
 
-	private int FAIL = 0;
 	
 	@ModelAttribute("orderForm")
 	public OrderForm formBacking(HttpServletRequest request) {
@@ -71,8 +68,8 @@ public class OrderFormController {
 	@RequestMapping(value = "/order/groupBuy/create.do", method = RequestMethod.GET) // form 출력
 	public ModelAndView groupBuyOrderForm(HttpServletRequest request,
 			@ModelAttribute("lineGroupBuyForm") LineGroupBuyForm lineGroupBuyForm,
-			@ModelAttribute("orderForm") OrderForm orderForm
-			) throws ModelAndViewDefiningException {
+			@ModelAttribute("orderForm") OrderForm orderForm) throws ModelAndViewDefiningException {
+
 		ModelAndView mav = new ModelAndView(orderFormView);
 		
 		UserSession userSession = (UserSession) request.getSession().getAttribute("userSession");
@@ -85,8 +82,8 @@ public class OrderFormController {
 	@RequestMapping(value = "/order/groupBuy/create.do", method = RequestMethod.POST) // 결과 출력
 	protected ModelAndView groupBuyOrderSubmit(
 			@ModelAttribute("orderForm") OrderForm orderForm,
-			BindingResult bindingResult,
-			SessionStatus status) {
+			BindingResult bindingResult, SessionStatus status) {
+		
 		System.out.println("command 객체: " + orderForm);
 		new OrderFormValidator().validate(orderForm, bindingResult);
 		
@@ -104,17 +101,17 @@ public class OrderFormController {
 			notiService.createNoti_g(groupBuy);
 		}
 		
-		int orderSuccess = orderService.createOrder(orderForm.getOrder());
+		int result = orderService.createOrder(orderForm.getOrder());
 		
 		ModelAndView mav = new ModelAndView(detailView);
 		mav.addObject("order", orderForm.getOrder());
 		
-		if (orderSuccess == FAIL) {
+		if (result == FAIL) {
 			mav.addObject("message", "결제에 실패했습니다.");
 		} else {
 			mav.addObject("message", "결제가 성공적으로 완료되었습니다.");
 		}
-		status.setComplete();  // remove sessionLineGroupBuy and orderForm from session
+		status.setComplete();  // remove session lineGroupBuyForm and orderForm from session
 		return mav;
 	}
 	
@@ -136,8 +133,7 @@ public class OrderFormController {
 	@RequestMapping(value = "/order/auction/create.do", method = RequestMethod.POST) // 결과 출력
 	protected ModelAndView auctionOrderSubmit(
 			@ModelAttribute("orderForm") OrderForm orderForm, 
-			SessionStatus status,
-			BindingResult bindingResult) {
+			SessionStatus status, BindingResult bindingResult) {
 		
 		System.out.println("command 객체: " + orderForm);
 		new OrderFormValidator().validate(orderForm, bindingResult);
@@ -147,17 +143,17 @@ public class OrderFormController {
 			return new ModelAndView(orderFormView);
 		}
 		
-		int orderSuccess = orderService.createOrder(orderForm.getOrder());
+		int result = orderService.createOrder(orderForm.getOrder());
 		
 		ModelAndView mav = new ModelAndView(detailView);
 		mav.addObject("order", orderForm.getOrder());
 		
-		if (orderSuccess == FAIL) {
+		if (result == FAIL) {
 			mav.addObject("message", "결제에 실패했습니다.");
 		} else {
 			mav.addObject("message", "결제가 성공적으로 완료되었습니다.");
 		}
-		status.setComplete();  // remove sessionLineGroupBuy and orderForm from session
+		status.setComplete();  // remove session lineGroupBuyForm and orderForm from session
 		return mav;
 	}
 	

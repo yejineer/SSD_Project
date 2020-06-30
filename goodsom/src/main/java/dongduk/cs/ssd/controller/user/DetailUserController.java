@@ -18,6 +18,8 @@ import dongduk.cs.ssd.service.UserService;
 @Controller
 public class DetailUserController {
 
+	private static final String detailViewName = "user/user_detail";
+	
 	@Autowired
 	UserService userService; 
 	
@@ -27,8 +29,8 @@ public class DetailUserController {
 		return new UserForm(userService.getUserByEmail(userSession.getUser().getEmail()));
 	}
 	
-	@RequestMapping("/user/detail.do")  // ex) /user/detail.do?userId=2
+	@RequestMapping("/user/detail.do")
 	public String showForm() {
-		return "user/user_detail";
+		return detailViewName;
 	}
 }

@@ -16,7 +16,7 @@
 					class="row align-items-center text-center justify-content-center">
 					<div class="col-lg-6">
 						<h1 class="text-white mb-4">My Page</h1>
-						<p class="lead">회원 정보 조회 및 수정, 공동구매 및 경매에 등록한 목록이나 결제한 목록, 스크랩한 목록을 볼 수 있는 페이지입니다.</p>
+						<p class="lead">회원 정보 조회 및 수정, 공동구매 및 경매에 등록한 목록이나 결제한 목록, 알림 등을 볼 수 있는 페이지</p>
 					</div>
 				</div>
 			</div>
@@ -56,7 +56,6 @@
 						<c:forEach var="order" items="${auctionOrderList}" varStatus="status">
 							<div class="col-lg-4 col-md-6 mb-4">
 								<div class="post-entry-1 h-100">
-									<!-- 이미지 출력 -->
 									<a href="<c:url value='../auction/detail.do'>
 												<c:param name="auctionId" value="${order.auctionId}" />
 											</c:url>">
@@ -64,14 +63,12 @@
 									</a>
 									<div class="post-entry-1-contents">
 
-										<!-- 제목 출력 -->
 										<h2>
 											<a href="<c:url value='../auction/detail.do'>
 														<c:param name="auctionId" value="${order.auctionId}" />
 													</c:url>"> ${order.auction.title}</a>
 										</h2>
 										
-										<!-- date, totalPrice, quantity, 상세보기 출력 -->
 										<span class="meta d-inline-block mb-3">
 											<fmt:formatDate value="${order.orderDate}" pattern="yyyy-MM-dd" /> 
 											<span class="mx-2"> 총액 : ${order.totalPrice}원</span>
