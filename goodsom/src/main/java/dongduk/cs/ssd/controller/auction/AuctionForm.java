@@ -1,16 +1,8 @@
 package dongduk.cs.ssd.controller.auction;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.validation.Valid;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.web.multipart.MultipartFile;
 
 import dongduk.cs.ssd.domain.Auction;
 
@@ -40,11 +32,6 @@ public class AuctionForm implements Serializable{
 	public Auction getAuction() {
 		return auction;
 	}
-	
-//	public String getInputPrice() {
-//		return inputPrice;
-//	}
-
 
 	public boolean isNewAuction() {
 		return newAuction;
@@ -54,9 +41,5 @@ public class AuctionForm implements Serializable{
 	public String toString() {
 		return "AuctionForm [auction=" + auction + ", newAuction=" + newAuction + "]";
 	}
-
-//	public Date getSelectDate() {
-//		return selectDate;
-//	}
 
 }
