@@ -17,13 +17,14 @@ import dongduk.cs.ssd.domain.GroupBuy;
 public class GroupBuyForm implements Serializable {
 	
 	@Valid
-	@Autowired
 	private GroupBuy groupBuy;
 
 	private boolean newGroupBuy;
 	
 	public GroupBuyForm() {
+		
 		this.groupBuy = new GroupBuy();
+		System.out.println("GroupBuyForm 내 setReport: " + groupBuy.getReport());
 		this.setNewGroupBuy(true);
 	}
 	

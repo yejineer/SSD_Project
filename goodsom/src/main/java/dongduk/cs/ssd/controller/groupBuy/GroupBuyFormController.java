@@ -89,28 +89,29 @@ public class GroupBuyFormController implements ApplicationContextAware {
 		HttpSession session = request.getSession();
 		UserSession user  = (UserSession)session.getAttribute("userSession");
 		String reqPage = request.getServletPath();
-		String requestUrl = reqPage.trim();
 		
 //		default img 세팅 & initGroupBuy
-//		groupBuyForm.getGroupBuy().initGroupBuy(user.getUser());
 //		
 //		if (groupBuyForm.getGroupBuy().getImg().trim() == "") {
 //			groupBuyForm.getGroupBuy().initImg(request.getContextPath());
 //        }
-				
+		groupBuyForm.getGroupBuy().initGroupBuy(user.getUser());
+		
 //		대표 이미지 선택 안 했을 시
+		System.out.println("groupBuy.getReport: " + groupBuyForm.getGroupBuy().getReport().getSize());
 		if (groupBuyForm.getGroupBuy().getReport().getSize() == 0) {
 			result.rejectValue("groupBuy.report", "notSelected");
 		}
 		
 		if(result.hasErrors()) {
-			if(requestUrl.equals("/groupBuy/update.do")) {
+			if(reqPage.trim().equals("/groupBuy/update.do")) {
 				model.addAttribute("groupBuyId", groupBuyForm.getGroupBuy().getGroupBuyId());
 				return GROUPBUY_FORM;
 			}else {
 				return GROUPBUY_FORM;
 			}
 		}
+		
 //		시간 세팅
 		groupBuyForm.getGroupBuy().timeSet();
 		

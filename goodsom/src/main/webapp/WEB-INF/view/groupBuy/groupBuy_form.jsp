@@ -131,7 +131,7 @@ function input_append(ff){
 				<div class="row" >
 					<div class="col-lg-8 mb-5">
 					
-						<form:form modelAttribute="groupBuyForm" method="post" name="groupBuyForm">
+						<form:form modelAttribute="groupBuyForm" method="post" name="groupBuyForm" enctype="multipart/form-data">
 							<div class="form-group row">
 								<div class="col-md-12">
 									<label for="title">제목</label> 
@@ -151,7 +151,7 @@ function input_append(ff){
 							
 							<div class="form-group row">
 								<div class="col-md-12">
-									<label for="groupBuy.report">대표 이미지</label>&nbsp;&nbsp;&nbsp;<form:errors path="groupBuy.report" cssClass="error"/><br/>
+									<label for="report">대표 이미지</label>&nbsp;&nbsp;&nbsp;<form:errors path="groupBuy.report" cssClass="error"/><br/>
 									<form:input type="file" path="groupBuy.report"/>
               					</div>
               				</div>
