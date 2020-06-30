@@ -27,12 +27,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import dongduk.cs.ssd.controller.user.UserSession;
 import dongduk.cs.ssd.domain.Auction;
-import dongduk.cs.ssd.domain.Bid;
-import dongduk.cs.ssd.domain.User;
 import dongduk.cs.ssd.service.AuctionService;
-import dongduk.cs.ssd.service.BidService;
-import dongduk.cs.ssd.service.UserService;
-import dongduk.cs.ssd.service.impl.AuctionServiceImpl;
 
 /**
  * @author Hyekyung Kim | Yejin Lee  | kimdahyee
@@ -44,10 +39,15 @@ import dongduk.cs.ssd.service.impl.AuctionServiceImpl;
 @RequestMapping("/auction/*.do")
 public class AuctionFormController implements ApplicationContextAware  {
 	
+//	request handler가 보내줄 view이름 지정
 	private static final String AUCTION_FORM = "auction/auction_form";
 	private static final String AUCTION_DETAIL = "auction/auction_detail";
+//	파일 업로드 위한 변수
 	private WebApplicationContext context;	
 	private String uploadDir;
+//	Service 객체
+	@Autowired
+	private AuctionService auctionService;
 
 	@Override					// life-cycle callback method
 	public void setApplicationContext(ApplicationContext appContext)
@@ -55,21 +55,17 @@ public class AuctionFormController implements ApplicationContextAware  {
 		this.context = (WebApplicationContext) appContext;
 		this.uploadDir = context.getServletContext().getRealPath("/resources/images/");
 	}
-	
-	@Autowired
-	private AuctionService auctionService;
 
 	@ModelAttribute("auctionForm")
 	public AuctionForm formBacking(HttpServletRequest request, Model model, SessionStatus sessionStatus) throws Exception{
 		String reqPage = request.getServletPath();
 		System.out.println(reqPage);
 		String auctionId = request.getParameter("auctionId");
-		System.out.println(auctionId);
-		if(auctionId == null) { //create: /auction/form.do
+		if(auctionId == null) { //create: '/auction/form.do' 로 들어옴
 			return new AuctionForm();
-		} else { // update: /auction/form.do?auctionId=
+		} else { // update: '/auction/form.do?auctionId=' 로 들어옴
 			Auction auction = auctionService.getAuction(Integer.valueOf(auctionId));
-			System.out.println(auction.toString());
+			System.out.println("수정 전 auction 객체: " + auction.toString());
 			return new AuctionForm(auction);
 		}
 		
@@ -139,6 +135,8 @@ public class AuctionFormController implements ApplicationContextAware  {
 		
 //		스케줄러 => create / update 시 endDate로 설정
 		auctionService.deadLineScheduler(auctionForm.getAuction().getEndDate(), auctionForm.getAuction().getAuctionId());
+		
+//		view에 전송할 attribute
 		session.setAttribute("bidForm", new BidForm());
 		model.addAttribute("date_maxBid", "");
 		model.addAttribute("user_maxBid", "아직 입찰자가 없습니다.");
