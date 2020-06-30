@@ -9,14 +9,7 @@
 <%@ include file="../IncludeTop.jsp" %> 
 
 <script>
-function toBidNoti(){
-	
-}
 
-function toGroupBuyNoti(){
-
-	
-}
 </script>
 <%@ include file="../IncludeBanner.jsp" %> 
 

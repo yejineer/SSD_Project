@@ -109,7 +109,6 @@ public class AuctionFormController implements ApplicationContextAware  {
 //		시간세팅
 		auctionForm.getAuction().timeSet();
 
-		
 //		경매 update/create 작업
 		if (requestUrl.equals("/auction/update.do")) { // update
 			Auction oldAuction = auctionService.getAuction(auctionForm.getAuction().getAuctionId());
