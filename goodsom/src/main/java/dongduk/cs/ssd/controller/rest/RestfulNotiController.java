@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import dongduk.cs.ssd.domain.Auction;
 import dongduk.cs.ssd.domain.GroupBuy;
-import dongduk.cs.ssd.domain.LineGroupBuy;
 import dongduk.cs.ssd.service.AuctionService;
 import dongduk.cs.ssd.service.GroupBuyService;
 import dongduk.cs.ssd.service.NotiService;
