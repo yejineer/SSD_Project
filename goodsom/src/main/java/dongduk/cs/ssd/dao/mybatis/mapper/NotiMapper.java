@@ -25,4 +25,5 @@ public interface NotiMapper {
 	
 	void deleteGroupBuyNoti(int notiId);
 	
+	void notiUserUpdate(int groupBuyId);
 }

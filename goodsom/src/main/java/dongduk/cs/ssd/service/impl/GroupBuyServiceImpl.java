@@ -84,7 +84,7 @@ public class GroupBuyServiceImpl implements GroupBuyService {
 		return groupBuyDao.getRecentGroupBuyList();
 	}
 
-	public void deadLineScheduler(Date endDate, final int groupBuyId) {
+	public void deadLineScheduler(Date endDate, final int groupBuyId, int userId) {
 		Runnable updateTableRunner = new Runnable() {	
 			// anonymous class 정의
 			@Override

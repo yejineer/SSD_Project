@@ -58,4 +58,9 @@ public class MybatisNotiDao implements NotificationDao {
 	public void deleteGroupBuyNoti(int notiId) throws DataAccessException{
 		notiMapper.deleteGroupBuyNoti(notiId);
 	}
+
+	@Override
+	public void notiUserUpdate(int groupBuyId) throws DataAccessException {
+		notiMapper.notiUserUpdate(groupBuyId);
+	}
 }
