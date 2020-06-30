@@ -326,6 +326,10 @@ public class GroupBuy {
         	}
         }
         
+        if(getHour() == 12) {
+        	setHour(00);
+        }
+        
         try {
         	String dateFormat = newDate + " " + String.valueOf(getHour()) + ":" + String.valueOf(getMinute());
             System.out.println("dateFormat: " + dateFormat);

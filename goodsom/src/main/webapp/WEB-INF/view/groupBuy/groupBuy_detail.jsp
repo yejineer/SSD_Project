@@ -193,9 +193,8 @@ function delItem(id) {
        </div>
 	   
 	   <br/><br/><br/>
-	   
-	 
-	    <c:if test="${isWriter eq true}">
+
+	    <c:if test="${(isWriter eq true) and (participants eq 0)}">
 		   <div class="form-group" align="right">
 		   		<a class="btn btn-primary py-3 px-5" href="<c:url value='/groupBuy/form.do'>
 					<c:param name="groupBuyId" value="${groupBuy.groupBuyId}"/>
@@ -204,7 +203,10 @@ function delItem(id) {
 	   				<c:param name="groupBuyId" value="${groupBuy.groupBuyId}"/></c:url>" 
 			   		onClick="return deleteGroupBuy('${groupBuy.participants}');">삭제</a>	
 	   		</div>	
-	    </c:if>						
+	    </c:if>
+	    
+	    <a class="btn btn-primary py-3 px-5" href="<c:url value='/groupBuy/list.do'></c:url>">목록</a>
+	   						
    </div>
     
 <%@ include file="../IncludeBottom.jsp" %>
