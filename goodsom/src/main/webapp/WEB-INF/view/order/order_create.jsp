@@ -144,9 +144,7 @@
 
 							<div class="form-group" align="center">
 								<input type="submit" value="Order" class="btn btn-primary py-3 px-5"> &nbsp;
-								<a class="btn btn-primary py-3 px-5" href="<c:url value='../../groupBuy/detail.do'>
-																				<c:param name="groupBuyId" value="${orderForm.order.groupBuyId}" />
-																			</c:url>">Cancel</a> 
+								<a class="btn btn-primary py-3 px-5" href="javascript:history.back()">Cancel</a> 
 							</div>
 						</form:form>
 					</div>
