@@ -125,24 +125,20 @@ public class GroupBuy {
 	}
 
 	public String getTitle() {
-		System.out.println("GroupBuy 내 setTitle: " + title);
 		return title;
 	}
 
 	public void setTitle(String title) {
 		this.title = title;
-		System.out.println("GroupBuy 내 setTitle: " + title);
 	}
 	
 	public MultipartFile getReport() {
-		System.out.println("GroupBuy 내 getReport: " + report);
 		return report;
 		
 	}
 
 	public void setReport(MultipartFile report) {
 		this.report = report;
-		System.out.println("GroupBuy 내 setReport: " + report);
 	}
 
 	public String getContent() {

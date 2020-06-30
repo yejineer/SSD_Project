@@ -24,15 +24,14 @@ public interface GroupBuyDao {
 	List<GroupBuy> getGroupBuyList() throws DataAccessException;
 	
 	void increaseCount(GroupBuy groupBuy) throws DataAccessException;
-//	List<GroupBuy> getGroupBuyListByKeyword(String keyword) throws DataAccessException;
 
 	int updateState(GroupBuy groupBuy) throws DataAccessException;
 	
-	void closeEvent(Date curTime);
+	void closeEvent(Date curTime) throws DataAccessException;
 	
 	List<GroupBuy> getRecentGroupBuyList() throws DataAccessException;
 	
 //	keyword로 검색
-	public List<GroupBuy> groupBuyListByKeyword(String keyword);
+	List<GroupBuy> groupBuyListByKeyword(String keyword) throws DataAccessException;
 	
 }

@@ -42,8 +42,6 @@ public class OrderFormController {
 	@Autowired
 	private AuctionService auctionService;
 	@Autowired
-	private GroupBuyService groupBuyService;
-	@Autowired
 	private NotiService notiService;
 	
 	private static final String orderFormView = "order/order_create";
