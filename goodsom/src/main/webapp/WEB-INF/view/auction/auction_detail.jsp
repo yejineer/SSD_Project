@@ -103,7 +103,7 @@ function orderAuction() {
 					<!-- betting -->
 					<c:if test="${isWriter eq false}">
 						<div class="d-flex">
-							<form:form modelAttribute="bidForm" method="post" action="/goodsom/auction/bid/create.do">
+							<form:form modelAttribute="bidForm" method="post" action="bidCreate.do">
 								<h5>베팅 금액</h5>
 								<div class="d-flex">
 								<form:input type="hidden" path="bid.auctionId" value="${auction.auctionId}"/>

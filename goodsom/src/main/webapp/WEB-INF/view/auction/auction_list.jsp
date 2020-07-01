@@ -67,11 +67,7 @@
 							</div>
 						</div>
 					</c:forEach>
-					
-					<div class="col-12 mt-5 text-center">
-						<span class="p-3">1</span> <a href="#" class="p-3">2</a> <a
-							href="#" class="p-3">3</a> <a href="#" class="p-3">4</a>
-					</div>
+
 
 				</div>
 			</div>

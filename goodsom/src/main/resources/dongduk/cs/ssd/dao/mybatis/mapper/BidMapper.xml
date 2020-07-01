@@ -56,7 +56,7 @@
 	]]>
   </select> 
   
-  <select id="getBidByUserIdAndAuctionId" resultType="BId">
+  <select id="getBidByUserIdAndAuctionId" resultType="Bid">
   	SELECT *
   	FROM BIDS
   	WHERE USERID = #{param1} AND AUCTIONID = #{param2}
