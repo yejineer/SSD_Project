@@ -1,4 +1,4 @@
 # SSD_Project
 
 
-https://youtu.be/Z-BuUAnLpFQ
+시연 영상: https://youtu.be/Z-BuUAnLpFQ
